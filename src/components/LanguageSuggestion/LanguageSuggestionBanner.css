@@ -1,0 +1,41 @@
+.lang-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    background: #f5f5ff;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #374151;
+    text-align: center;
+}
+
+.lang-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-banner__actions button {
+    border: none;
+    background: #4a4af4;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.lang-banner__dismiss {
+    background: none !important;
+    color: #9ca3af !important;
+    font-weight: 400 !important;
+    padding: 6px 8px !important;
+}
+
+.lang-banner__dismiss:hover {
+    color: #1a1a1a !important;
+}

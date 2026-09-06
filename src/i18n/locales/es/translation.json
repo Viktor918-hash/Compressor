@@ -1,0 +1,582 @@
+{
+  "header": {
+    "tools": "Herramientas de imagen",
+    "compress": "Comprimir fotos",
+    "compressDesc": "Reduce el tamaño de JPG, PNG y WebP",
+    "convert": "Convertir a JPG",
+    "convertDesc": "Convierte PNG, WebP, HEIC y otros formatos a JPG",
+    "resize": "Cambiar tamaño",
+    "resizeDesc": "Recorta o ajusta a cualquier tamaño",
+    "howItWorks": "Cómo funciona",
+    "pricing": "Precios",
+    "help": "Ayuda",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "language": "Idioma",
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "webp": "Convertir a WebP",
+    "webpDesc": "Convierte PNG, JPG, HEIC y otros formatos a WebP",
+    "prest": "Filtros predefinidos para fotos",
+    "wordToPdf": "Word a PDF",
+    "wordToPdfDesc": "Convierte archivos DOC y DOCX a PDF",
+    "pdfToWord": "PDF a Word",
+    "pdfToWordDesc": "Convierte PDF en un DOCX editable",
+    "removeBg": "Eliminar fondo",
+    "removeBgDesc": "Elimina el fondo de una foto en un clic",
+    "catCompress": "Compresión y formatos",
+    "catEdit": "Editar fotos",
+    "catDocs": "Documentos",
+    "imageToText": "Imagen a texto",
+    "imageToTextDesc": "Extraer texto de una foto o captura"
+  },
+  "hero": {
+    "titlePart1": "Fotos pesadas, ahora",
+    "titleGradient": "más ligeras",
+    "text1": "Comprime JPG, PNG y WebP en segundos, directamente en tu navegador y sin perder calidad.",
+    "text2": "Reduce el tamaño de varias imágenes a la vez.",
+    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo"
+  },
+  "convert": {
+    "titlePart2": "Cualquier formato",
+    "titleGradient": "a JPG",
+    "text1": "Convierte PNG, WebP, HEIC, HEIF y BMP a JPG directamente en tu navegador.",
+    "text2": "Convierte varias imágenes a la vez.",
+    "dropzone": "Arrastra los archivos aquí o haz clic para convertirlos a JPG"
+  },
+  "resize": {
+    "title": "Cambiar tamaño de",
+    "subtitle": "Introduce las dimensiones que necesitas o elige un ajuste preestablecido para redes sociales.",
+    "dropzone": "Arrastra tu foto aquí o haz clic para seleccionarla",
+    "changeAnother": "Elegir otra foto",
+    "settingsTitle": "Ajustes de tamaño",
+    "downloadedTitle": "Foto descargada",
+    "empty": "Añadir una foto",
+    "original": "Original",
+    "newWidth": "Nuevo ancho",
+    "newHeight": "Nueva altura",
+    "keepRatio": "Mantener proporciones",
+    "cropMethod": "Método de ajuste",
+    "cover": "Rellenar (recortar)",
+    "stretch": "Estirar",
+    "format": "Formato",
+    "presets": "Ajustes preestablecidos",
+    "resizeAndDownload": "Cambiar tamaño y descargar",
+    "processing": "Procesando…",
+    "cropHint": "Arrastra para elegir el área que permanecerá en el encuadre",
+    "error": "No se ha podido cambiar el tamaño de la imagen.",
+    "dropText2": "Suelta las imágenes para subirlas",
+    "photo": "foto",
+    "keepAspectRatio": "Mantener relación de aspecto"
+  },
+  "panel": {
+    "dropText": "Suelta los archivos para subirlos",
+    "closePanel": "Cerrar panel",
+    "fileDownload": "Archivo subido",
+    "fileRedi": "Listo para descargar",
+    "processing": "Procesando archivos…",
+    "adFile": "Añadir un archivo",
+    "selected": "Fotos seleccionadas:",
+    "upLoadPhotos": "Descargar fotos",
+    "upLoadPhoto": "Descargar",
+    "saved": "Ahorrado"
+  },
+  "convertWebp": {
+    "titlePart2": "Convierte fotos a ",
+    "text1": "PNG, JPG, JPEG, HEIC y HEIF — conviértelos a WebP directamente en tu navegador.",
+    "titleGradient": "WebP"
+  },
+  "presets": {
+    "navTitle": "Ajustes preestablecidos",
+    "title": "Ajustes preestablecidos para",
+    "titleGradient": "tus fotos",
+    "text1": "Sube una foto, elige un ajuste y modifica los detalles en tiempo real.",
+    "dropzone": "Arrastra y suelta tu foto aquí o haz clic para seleccionarla",
+    "filters": "Filtro",
+    "filterPortrait": "Retrato",
+    "filterNature": "Naturaleza",
+    "filterUrban": "Urbano",
+    "filterNight": "Noche",
+    "filterSummer": "Verano",
+    "filterWinter": "Invierno",
+    "filterAutumn": "Otoño",
+    "filterCars": "Automoción",
+    "filterCinema": "Cinematográfico",
+    "anotherPhoto": "Elegir otra foto",
+    "download": "Descargar foto",
+    "preparingPhoto": "Preparando foto…",
+    "befor": "ANTES",
+    "after": "DESPUÉS",
+    "efect": "Intensidad del efecto",
+    "original": "Original",
+    "more": "Más intenso",
+    "return": "← Volver a los ajustes",
+    "processing": "Procesando…",
+    "noMatch": "No hay ajustes para este filtro",
+    "all": "Todos"
+  },
+  "removeBg": {
+    "title": "Eliminar el fondo de una foto",
+    "titleGradient": "online",
+    "subtitle": "Sube una foto: el fondo se elimina automáticamente, directamente en tu navegador.",
+    "dropzone": "Arrastra tu foto aquí o haz clic para seleccionar",
+    "dropText2": "Suelta la imagen para subirla",
+    "processing": "Eliminando el fondo…",
+    "settingsTitle": "Pincel mágico",
+    "downloadedTitle": "Foto descargada",
+    "brushHint": "Pasa el pincel sobre la foto para restaurar o eliminar parte del fondo",
+    "brushMode": "Modo del pincel",
+    "restore": "Restaurar",
+    "erase": "Borrar",
+    "brushSize": "Tamaño del pincel",
+    "reprocess": "Eliminar el fondo de nuevo",
+    "download": "Descargar PNG",
+    "error": "No se pudo eliminar el fondo de esta imagen. Prueba con otra foto."
+  },
+  "footer": {
+    "title": "Tu asistente de confianza"
+  },
+  "auth": {
+    "titleLogin": "Iniciar sesión en tu cuenta",
+    "titleRegister": "Crear una cuenta",
+    "googleBtn": "Continuar con Google",
+    "orEmail": "o con email",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Contraseña",
+    "invalidEmail": "Formato de email no válido",
+    "emptyPassword": "Introduce una contraseña",
+    "loginBtn": "Iniciar sesión",
+    "registerBtn": "Registrarse",
+    "loading": "Cargando...",
+    "noAccount": "¿No tienes una cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "invalidCredentials": "Email o contraseña incorrectos",
+    "loginSuccess": "¡Has iniciado sesión correctamente!",
+    "registerSuccess": "¡Registro completado correctamente!",
+    "confirmEmailSent": "¡Registro completado! Revisa tu email para confirmar tu cuenta."
+  },
+  "wordToPdf": {
+    "titlePart2": "Convertidor de documentos en línea profesional de DOC y DOCX",
+    "titleGradient": "a PDF",
+    "text1": "¿Busca una manera rápida y fiable de convertir sus archivos de oficina?",
+    "text2": "Convierta DOC y DOCX en archivos PDF en pocos segundos manteniendo la calidad.",
+    "dropzone": "Arrastra y suelta un archivo aquí o haz clic para convertirlo a PDF",
+    "limit": "Has agotado todas tus conversiones gratuitas de hoy. ¡Regístrate para obtener más!",
+    "limit2": "Has alcanzado tu límite diario de conversiones. Por favor, inténtalo de nuevo mañana.",
+    "text3": "Ya no es necesario convertir cada documento uno por uno: convierta varios archivos al mismo tiempo.",
+    "panel": {
+      "emptyState": "Añadir un archivo",
+      "addMore": "Añadir otro archivo",
+      "addMoreAria": "Añadir otro archivo",
+      "selected": "Archivos seleccionados:",
+      "downloadOne": "Descargar PDF",
+      "downloadMany": "Descargar archivos PDF",
+      "remove": "Eliminar"
+    }
+  },
+  "pdfToWord": {
+    "titlePart2": "Convertidor de archivos PDF en línea profesional",
+    "titleGradient": "a Word",
+    "text1": "¿Busca una manera rápida y fiable de convertir archivos a DOC?",
+    "text2": "Convierta PDF en archivos DOC en pocos segundos manteniendo la calidad.",
+    "dropzone": "Arrastra y suelta un archivo aquí o haz clic para convertirlo a Word",
+    "panel": {
+      "emptyState": "Añadir un archivo",
+      "addMore": "Añadir otro archivo",
+      "addMoreAria": "Añadir otro archivo",
+      "selected": "Archivos seleccionados:",
+      "downloadOne": "Descargar Word",
+      "downloadMany": "Descargar archivos Word",
+      "remove": "Eliminar"
+    }
+  },
+  "imageToText": {
+    "titlePart2": "Extraer texto de una foto",
+    "titleGradient": "online",
+    "text1": "Sube una foto, un escaneo o una captura de pantalla y obtén un archivo de texto listo en pocos segundos.",
+    "text2": "Utiliza el convertidor cuando necesites extraer texto rápidamente de capturas de pantalla o páginas escaneadas",
+    "dropzone": "Arrastra una foto aquí o haz clic para extraer el texto",
+    "panel": {
+      "emptyState": "Añade una foto",
+      "addMore": "Añadir otra foto",
+      "addMoreAria": "Añadir otra foto",
+      "selected": "Fotos seleccionadas:",
+      "downloadOne": "Descargar texto",
+      "downloadMany": "Descargar archivos de texto",
+      "remove": "Eliminar"
+    }
+  },
+  "seoContent": {
+    "home": {
+      "title": "Por qué comprimir imágenes online",
+      "text1": "Comprimir una imagen reduce el peso del archivo sin una pérdida de calidad notable: las fotos cargan más rápido, el sitio web se posiciona mejor en Google y los adjuntos de correo dejan de saturar la bandeja de entrada. El compresor funciona directamente en el navegador — los archivos JPG, PNG o WebP se comprimen en segundos y los originales nunca salen de tu dispositivo.",
+      "text2": "Esto es especialmente importante para dueños de sitios web, blogueros y tiendas online: las imágenes más ligeras aceleran la carga de páginas, mejoran los Core Web Vitals y afectan directamente al posicionamiento en buscadores. Además, los archivos más pequeños ahorran espacio en disco y se envían más rápido por mensajería y correo.",
+      "benefits": [
+        {
+          "title": "Velocidad",
+          "text": "La compresión ocurre al instante directamente en el navegador, sin colas ni esperas de subida al servidor."
+        },
+        {
+          "title": "Privacidad",
+          "text": "Los archivos se procesan localmente en tu dispositivo y nunca se envían a servidores externos."
+        },
+        {
+          "title": "Alta calidad visual",
+          "text": "El algoritmo selecciona automáticamente los parámetros de compresión adecuados para mantener la imagen nítida y natural."
+        },
+        {
+          "title": "Adaptable a todo",
+          "text": "El servicio funciona igual de bien en ordenador, tablet o móvil, sin instalar ningún programa."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Cuánto se reducirá el tamaño de mi foto tras comprimirla?",
+          "a": "Según el formato y la calidad original, el tamaño del archivo suele reducirse entre un 50% y un 90% prácticamente sin diferencia visual."
+        },
+        {
+          "q": "¿Puedo comprimir varias fotos a la vez?",
+          "a": "Sí, puedes subir varias imágenes a la vez — el servicio procesa cada una y permite descargar el resultado en un solo archivo comprimido."
+        },
+        {
+          "q": "¿Se pierde calidad de imagen?",
+          "a": "El algoritmo selecciona automáticamente los parámetros de compresión adecuados para mantener la imagen nítida y natural."
+        },
+        {
+          "q": "¿Necesito instalar algún programa?",
+          "a": "No, todo funciona directamente en el navegador de cualquier dispositivo: Windows, macOS, Android o iOS."
+        }
+      ]
+    },
+    "convert": {
+      "title": "Por qué convertir imágenes a JPG",
+      "text1": "JPG es uno de los formatos de imagen más compatibles y funciona en sitios web, redes sociales, aplicaciones de mensajería, programas y la mayoría de dispositivos. Convertir PNG, WebP, HEIC y otros formatos a JPG ayuda a preparar fotos para servicios que requieren o funcionan mejor con JPG.",
+      "text2": "Nuestro conversor de JPG ajusta automáticamente los parámetros del archivo de salida para conseguir un excelente equilibrio entre tamaño y calidad visual. Convierte varias imágenes a la vez y prepara fotos de tu teléfono, cámara u ordenador en pocos clics.",
+      "benefits": [
+        {
+          "title": "Amplia compatibilidad",
+          "text": "JPG funciona en sitios web, dispositivos, editores de imágenes y servicios online."
+        },
+        {
+          "title": "Optimización automática",
+          "text": "Los parámetros de salida se ajustan automáticamente para equilibrar calidad visual y tamaño del archivo."
+        },
+        {
+          "title": "HEIC a JPG",
+          "text": "Convierte fotos de iPhone en formato HEIC o HEIF a JPG directamente en el navegador."
+        },
+        {
+          "title": "Conversión por lotes",
+          "text": "Sube varias imágenes y conviértelas al mismo tiempo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Qué formatos puedo convertir a JPG?",
+          "a": "Se admiten formatos populares como PNG, WebP, HEIC, HEIF y BMP."
+        },
+        {
+          "q": "¿La foto mantendrá una alta calidad después de convertirla?",
+          "a": "Sí. El conversor selecciona automáticamente parámetros JPG adecuados para ofrecer una alta calidad visual en el archivo final."
+        },
+        {
+          "q": "¿Puedo convertir fotos de iPhone?",
+          "a": "Sí. Puedes convertir fotos HEIC y HEIF a JPG directamente en el navegador."
+        },
+        {
+          "q": "¿Puedo convertir varias fotos a la vez?",
+          "a": "Sí. Sube varias imágenes y procésalas simultáneamente."
+        }
+      ]
+    },
+    "resize": {
+      "title": "Por qué redimensionar una foto",
+      "text1": "Redimensionar una imagen es necesario cuando una foto es demasiado grande para subirla a un sitio web, a un formulario con requisitos de tamaño concretos, o a una red social con un formato de publicación fijo. En vez de adivinar las proporciones a mano, la herramienta permite indicar un ancho y alto exactos o elegir un ajuste predefinido.",
+      "text2": "El tamaño de imagen adecuado ahorra datos a los visitantes del sitio, acelera la carga de páginas y mejora las puntuaciones de Google PageSpeed. Para redes sociales, también garantiza que la foto no se recorte de forma extraña en el feed o en el perfil.",
+      "benefits": [
+        {
+          "title": "Ajustes predefinidos",
+          "text": "Los tamaños para Instagram, Facebook, YouTube y Twitter ya están configurados; solo hay que elegir la plataforma."
+        },
+        {
+          "title": "Control del recorte",
+          "text": "Elige manualmente qué parte de la foto conservar al cambiar las proporciones, arrastrando el área de recorte."
+        },
+        {
+          "title": "Bloqueo de proporción",
+          "text": "La opción de proporción fija evita que la imagen se distorsione al cambiar solo un lado."
+        },
+        {
+          "title": "Elección del formato de salida",
+          "text": "Guarda la foto redimensionada en JPG, PNG o WebP, según dónde vaya a usarse."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Cómo redimensiono una foto para una red social concreta?",
+          "a": "Elige un ajuste predefinido (Instagram, Facebook, YouTube, Twitter) y las dimensiones se aplican automáticamente."
+        },
+        {
+          "q": "¿Qué pasa si las nuevas proporciones no coinciden con el original?",
+          "a": "La herramienta ofrece recortar la imagen, y arrastrando el área de recorte puedes elegir qué parte de la foto conservar."
+        },
+        {
+          "q": "¿Puedo indicar solo el ancho y que la altura se calcule automáticamente?",
+          "a": "Sí, el bloqueo de proporción está activado por defecto; basta con indicar un valor."
+        },
+        {
+          "q": "¿En qué formato se guarda el resultado?",
+          "a": "Puedes elegir JPG, PNG o WebP justo antes de descargar el archivo final."
+        }
+      ]
+    },
+    "webp": {
+      "title": "Por qué convertir fotos a WebP",
+      "text1": "WebP es un formato de imagen moderno de Google que comprime las fotos con mucha más eficiencia que JPG o PNG, manteniendo casi la misma calidad visual. Google recomienda oficialmente WebP para sitios web, ya que las imágenes más ligeras afectan directamente a la velocidad de carga y al posicionamiento en buscadores.",
+      "text2": "WebP admite funciones modernas de imagen, incluida la transparencia, y puede utilizarse como un formato compacto para sitios web y aplicaciones web.",
+      "benefits": [
+        {
+          "title": "Menor tamaño de archivo",
+          "text": "WebP suele pesar entre un 25% y un 35% menos que un JPG de la misma calidad visual."
+        },
+        {
+          "title": "Mejor SEO",
+          "text": "Las imágenes más ligeras aceleran el sitio, lo que beneficia a los Core Web Vitals y al posicionamiento en Google."
+        },
+        {
+          "title": "Compatible con transparencia",
+          "text": "A diferencia de JPG, WebP admite canal alfa, así que puedes convertir logotipos e iconos sin fondo blanco."
+        },
+        {
+          "title": "Amplia compatibilidad",
+          "text": "El formato es compatible con todos los navegadores modernos y la mayoría de plataformas y CMS."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Por qué WebP es mejor que JPG para un sitio web?",
+          "a": "WebP ofrece un tamaño de archivo menor con la misma calidad, lo que acelera la carga de páginas y mejora las métricas de SEO."
+        },
+        {
+          "q": "¿Todos los navegadores admiten WebP?",
+          "a": "Sí, todas las versiones modernas de Chrome, Firefox, Safari y Edge muestran WebP sin configuración adicional."
+        },
+        {
+          "q": "¿Puedo convertir fotos HEIC de iPhone a WebP?",
+          "a": "Sí, los archivos HEIC y HEIF son compatibles junto con JPG, PNG y BMP."
+        },
+        {
+          "q": "¿Se pierde la transparencia del fondo al convertir a WebP?",
+          "a": "No, WebP admite transparencia, por lo que los logotipos y PNG con fondo transparente se convierten correctamente."
+        }
+      ]
+    },
+    "presets": {
+      "title": "Por qué usar preajustes de fotos",
+      "text1": "Los preajustes son combinaciones predefinidas de color, contraste y tono que dan a las fotos un aspecto acabado y con estilo en un solo clic. En lugar de editar manualmente cada imagen en un editor complejo, basta con elegir una categoría (retrato, naturaleza, urbano, noche) y aplicar el filtro.",
+      "text2": "Un estilo de edición uniforme en todas las fotos crea una identidad visual reconocible para un blog, una tienda online o una red social. La intensidad de cada preajuste se puede ajustar suavemente con un deslizador para que el efecto se vea natural en lugar de sobrecargar la foto.",
+      "benefits": [
+        {
+          "title": "Categorías predefinidas",
+          "text": "Los filtros están agrupados por temática: retrato, naturaleza, urbano, noche, verano, coches, cinematográfico, otoño e invierno."
+        },
+        {
+          "title": "Intensidad ajustable",
+          "text": "La fuerza del efecto se puede cambiar suavemente entre 0% y 200% para encontrar el equilibrio perfecto."
+        },
+        {
+          "title": "Comparación antes/después",
+          "text": "Un deslizador antes/después permite ver claramente cómo el preajuste cambia la foto original."
+        },
+        {
+          "title": "Resultado instantáneo",
+          "text": "El procesamiento ocurre al instante en el navegador; la foto final se puede descargar enseguida en alta calidad."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Qué es un preajuste de fotos?",
+          "a": "Es una combinación predefinida de ajustes de color y tono que se aplica a la foto en un clic en lugar de editarla manualmente."
+        },
+        {
+          "q": "¿Puedo cambiar la intensidad del efecto de un preajuste?",
+          "a": "Sí, el deslizador de intensidad permite reducir o aumentar el efecto entre 0% y 200%."
+        },
+        {
+          "q": "¿Se pierde calidad de imagen al aplicar un preajuste?",
+          "a": "No, la imagen final se exporta en alta resolución sin compresión adicional."
+        },
+        {
+          "q": "¿Cuántos preajustes hay disponibles?",
+          "a": "Hay decenas de preajustes disponibles en categorías como retrato, naturaleza, urbano, noche, verano, coches, cine, otoño e invierno."
+        }
+      ]
+    },
+    "wordToPdf": {
+      "title": "Por qué convertir Word a PDF",
+      "text1": "El PDF mantiene el diseño de un documento sin cambios en cualquier dispositivo: las fuentes, los espaciados y las imágenes se ven igual en un ordenador, en un móvil o al imprimir. Esto es fundamental para currículums, contratos, propuestas comerciales y documentos oficiales que no deben descuadrarse al abrirse en otra versión de Word.",
+      "text2": "Un archivo PDF también es más difícil de modificar por error que un .doc o .docx, por lo que este formato es el estándar para enviar versiones finales de documentos. El conversor procesa el archivo directamente en el navegador, conservando el formato, las tablas y las imágenes del original.",
+      "benefits": [
+        {
+          "title": "Formato conservado",
+          "text": "Las fuentes, los espaciados, las tablas y las imágenes se ven idénticas al original en cualquier dispositivo."
+        },
+        {
+          "title": "Listo para enviar",
+          "text": "El PDF se abre sin necesidad de Word ni LibreOffice: basta con cualquier visor o navegador."
+        },
+        {
+          "title": "Conversión por lotes",
+          "text": "Sube varios archivos .doc o .docx a la vez y obtén todos los PDF en un solo archivo comprimido."
+        },
+        {
+          "title": "Protección frente a cambios",
+          "text": "A diferencia de Word, un documento PDF es más difícil de editar por accidente tras enviarlo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Se conserva el formato al convertir Word a PDF?",
+          "a": "Sí, las fuentes, tablas, imágenes y espaciados se trasladan al PDF sin cambios."
+        },
+        {
+          "q": "¿Qué formatos de documento son compatibles?",
+          "a": "Se aceptan archivos .doc y .docx de cualquier versión de Microsoft Word o un editor compatible."
+        },
+        {
+          "q": "¿Puedo convertir varios documentos a la vez?",
+          "a": "Sí, puedes subir hasta 10 archivos a la vez y obtener el resultado en un solo archivo comprimido."
+        },
+        {
+          "q": "¿Necesito tener Word instalado para convertir?",
+          "a": "No, la conversión se realiza en el servidor del servicio; no necesitas Word ni ningún otro programa en tu dispositivo."
+        }
+      ]
+    },
+    "pdfToWord": {
+      "title": "Por qué convertir PDF a Word",
+      "text1": "El PDF es cómodo para ver e imprimir, pero incómodo para editar: para corregir el texto se necesita un archivo .docx que se abra en Word o Google Docs. Convertir PDF a Word devuelve la posibilidad de editar el texto, las tablas y la estructura del documento sin tener que volver a escribirlo todo a mano.",
+      "text2": "Esto es especialmente útil al trabajar con contratos, informes o formularios antiguos, cuando el archivo Word original se perdió hace tiempo y solo queda un escaneo o una versión en PDF del documento. El archivo .docx resultante conserva la estructura de párrafos y el formato básico del original.",
+      "benefits": [
+        {
+          "title": "Resultado editable",
+          "text": "El archivo .docx resultante se puede abrir y editar de inmediato en Word o Google Docs."
+        },
+        {
+          "title": "Estructura conservada",
+          "text": "Los párrafos, encabezados y el formato básico se trasladan de PDF a Word con la mayor precisión posible."
+        },
+        {
+          "title": "Sin reescribir a mano",
+          "text": "No hace falta volver a escribir el texto del documento manualmente: el conversor lo hace automáticamente."
+        },
+        {
+          "title": "Procesamiento por lotes",
+          "text": "Sube varios archivos PDF a la vez y obtén todos los .docx en un solo archivo comprimido."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo editar el texto después de convertir PDF a Word?",
+          "a": "Sí, el resultado es un archivo .docx normal que se abre y se puede editar en Word o Google Docs."
+        },
+        {
+          "q": "¿Son compatibles los PDF escaneados?",
+          "a": "El conversor funciona mejor con PDF de texto; para escaneos recomendamos usar una herramienta de reconocimiento de texto (OCR)."
+        },
+        {
+          "q": "¿Se conservan las tablas y las imágenes?",
+          "a": "La estructura básica del documento, incluidos los párrafos y las imágenes, se traslada al archivo de Word."
+        },
+        {
+          "q": "¿Cuántos archivos puedo convertir a la vez?",
+          "a": "Puedes subir hasta 10 archivos PDF al mismo tiempo."
+        }
+      ]
+    },
+    "removeBg": {
+      "title": "Por qué eliminar el fondo de una foto",
+      "text1": "Eliminar el fondo es necesario para fotos de productos de una tienda online, avatares, presentaciones o collages, cuando solo importa el objeto y no lo que lo rodea. En lugar de recortarlo a mano en Photoshop, una red neuronal detecta automáticamente los bordes del objeto y elimina el fondo en segundos.",
+      "text2": "La imagen resultante con fondo transparente (PNG) se puede colocar sobre cualquier otro fondo, banner o diseño sin bordes blancos o grises alrededor del objeto. Un pincel mágico integrado permite retocar manualmente los detalles que el modelo pudo eliminar o dejar por error.",
+      "benefits": [
+        {
+          "title": "Detección automática",
+          "text": "Una red neuronal identifica por sí sola los bordes del objeto en la foto, sin necesidad de trazar el contorno a mano."
+        },
+        {
+          "title": "Pincel mágico",
+          "text": "Restaura o borra manualmente detalles de la máscara, útil para el pelo, bordes transparentes o formas complejas."
+        },
+        {
+          "title": "PNG transparente",
+          "text": "El resultado se guarda con canal alfa, por lo que el objeto se puede colocar fácilmente sobre otro fondo."
+        },
+        {
+          "title": "Procesamiento en el navegador",
+          "text": "La foto no se sube a ningún servidor externo; todo el procesamiento ocurre localmente en tu dispositivo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Sirve esta herramienta para eliminar el fondo de fotos de productos?",
+          "a": "Sí, es uno de sus usos principales: fichas de producto para marketplaces y tiendas online."
+        },
+        {
+          "q": "¿Qué hago si el fondo no se elimina perfectamente?",
+          "a": "Usa el pincel mágico para restaurar o borrar manualmente las zonas de la máscara que necesites."
+        },
+        {
+          "q": "¿En qué formato se guarda el resultado?",
+          "a": "El archivo se guarda en formato PNG con fondo transparente (canal alfa)."
+        },
+        {
+          "q": "¿Se envía la foto a un servidor para procesarla?",
+          "a": "No, la detección y eliminación del fondo ocurre directamente en tu navegador, en tu dispositivo."
+        }
+      ]
+    },
+    "imageToText": {
+      "title": "Por qué reconocer texto en una imagen",
+      "text1": "El reconocimiento de texto (OCR) convierte el texto de una captura de pantalla, un escaneo o una foto de un documento en un formato de texto editable que se puede copiar, editar o pegar en otro documento. Esto evita tener que volver a escribir a mano citas de libros, documentos, carteles o diapositivas de una presentación.",
+      "text2": "La herramienta funciona directamente en el navegador sin subir las imágenes a servidores externos, algo importante para documentos confidenciales. El texto reconocido se puede descargar en un formato cómodo para seguir editándolo o archivarlo.",
+      "benefits": [
+        {
+          "title": "Reconocimiento rápido",
+          "text": "El texto de una foto o un escaneo se reconoce en segundos, sin necesidad de volver a escribirlo a mano."
+        },
+        {
+          "title": "Varios archivos a la vez",
+          "text": "Sube hasta 20 imágenes a la vez y reconoce el texto de cada una."
+        },
+        {
+          "title": "Privacidad",
+          "text": "El reconocimiento ocurre localmente en el navegador; las imágenes nunca se envían a un servidor."
+        },
+        {
+          "title": "Elección del formato de salida",
+          "text": "El resultado se puede guardar en un formato de texto cómodo para seguir editándolo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Qué imágenes son compatibles para reconocer texto?",
+          "a": "Se aceptan archivos JPG, PNG, WebP y BMP: capturas de pantalla, fotos de documentos o escaneos."
+        },
+        {
+          "q": "¿Se envía la imagen a un servidor?",
+          "a": "No, el reconocimiento de texto ocurre completamente en el navegador, en tu dispositivo."
+        },
+        {
+          "q": "¿Qué tan preciso es el reconocimiento de texto manuscrito?",
+          "a": "Los mejores resultados se obtienen con texto impreso; el texto manuscrito se reconoce con menor precisión."
+        },
+        {
+          "q": "¿Cuántos archivos puedo procesar a la vez?",
+          "a": "Puedes subir hasta 20 imágenes a la vez, cada una se procesa por separado."
+        }
+      ]
+    },
+    "faqTitle": "Preguntas frecuentes"
+  }
+}

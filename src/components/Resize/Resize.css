@@ -1,0 +1,230 @@
+/* ---- превʼю фото в основній області ---- */
+.resize-preview-area {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.resize-preview-wrap {
+    position: relative;
+    max-width: 520px;
+    max-height: 65vh;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    user-select: none;
+}
+
+.resize-preview {
+    display: block;
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.resize-crop-frame {
+    position: absolute;
+    outline: 2px solid #4f7cff;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.55);
+    background: transparent;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resize-crop-frame:active {
+    cursor: grabbing;
+}
+
+.resize-crop-handle {
+    color: #fff;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
+}
+
+.resize-hint {
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* ---- контроли в бічній панелі ---- */
+.resize-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 4px 12px;
+}
+
+.resize-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resize-row {
+    display: flex;
+    gap: 12px;
+}
+
+.resize-row .resize-block {
+    flex: 1;
+}
+
+.resize-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.resize-value {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.resize-block input[type="number"] {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.resize-block input[type="number"]:focus {
+    outline: none;
+    border-color: #4f7cff;
+}
+
+.resize-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+}
+
+.resize-format-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.resize-format-btn {
+    padding: 8px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.resize-format-btn:hover {
+    border-color: #4f7cff;
+}
+
+.resize-format-btn--active {
+    background: #4f7cff;
+    border-color: #4f7cff;
+    color: #fff;
+}
+
+.resize-presets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.resize-preset-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.resize-preset-btn:hover {
+    border-color: #4f7cff;
+    background: #f5f7ff;
+}
+
+.resize-preset-size {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ---- кнопка-тогл налаштувань (тільки мобільні) ---- */
+/* ---- кнопка-тогл налаштувань (тільки мобільні) ---- */
+.resize-toggle-btn {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .resize-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 76px;
+        /* під хедером сайту, подалі від кнопки завантаження знизу */
+        right: 16px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #4f7cff;
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+        cursor: pointer;
+        z-index: 1100;
+        transition: background 0.2s;
+    }
+
+    .resize-toggle-btn:hover {
+        background: #3152c7;
+    }
+
+    /* панель ховаємо/показуємо через opacity+visibility, а не display —
+     це анімується плавно і не конфліктує з transform, який вже може
+     використовуватись у sidePanel.css для виїзду панелі */
+    .side-panel {
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+        max-height: 100dvh;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+
+        /* щоб контент не ховався під плаваючою кнопкою */
+    }
+
+    .side-panel.side-panel--mobile-collapsed {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .side-panel--open:not(.side-panel--mobile-collapsed) {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 520px) {
+    .resize-presets {
+        grid-template-columns: 1fr;
+    }
+
+    .resize-row {
+        flex-direction: column;
+    }
+}

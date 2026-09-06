@@ -1,0 +1,375 @@
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -380px;
+    width: 360px;
+    max-width: 90vw;
+    height: 100vh;
+    background: #f1f1f1;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 15px 24px;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+
+.side-panel--open {
+    right: 0;
+}
+
+.side-panel__header {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+
+}
+
+.side-panel__title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #040404;
+    margin: 10px 0px 20px 0px;
+
+}
+
+p.panel__files {
+    align-self: flex-end;
+    margin: 10px 0;
+
+}
+
+.side-panel__back {
+    position: relative;
+    align-self: flex-start;
+}
+
+.side-panel__back-btn {
+    background: #4B5563;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 11px 6px 8px;
+    margin: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff
+}
+
+.side-panel__back-btn:hover {
+    background-color: #EFF6FF;
+    color: #2563EB;
+    transition: 0.3s;
+}
+
+.side-panel__tooltip {
+    position: absolute;
+    top: 40px;
+    left: 23;
+    background: #222;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+}
+
+.side-panel__back:hover .side-panel__tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-panel__stats {
+    background: #f1f1f1;
+
+    padding: 20px;
+    text-align: center;
+    margin: 15px 0 12px 0;
+
+}
+
+.side-panel__stats-percent {
+    color: #2fb572;
+    font-weight: 800;
+    font-size: 36px;
+    margin: 0 0 8px;
+}
+
+.side-panel__stats-detail {
+    color: #666;
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.side-panel__empty,
+.side-panel__loading {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+}
+
+
+
+.side__panel-wrapper {
+    position: relative;
+
+}
+
+.panel__plus {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    left: 18%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+    color: #fff;
+    background: #222;
+
+}
+
+.side__panel-wrapper:hover .panel__plus {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.side-panel__add-btn {
+    align-self: center;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 10px;
+    background: #4f7cff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+    font-size: 18px;
+}
+
+
+
+
+.side-panel__add-btn:hover {
+    background-color: #3152C7;
+}
+
+.side-panel__format-switch {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+@media(max-width:769px) {
+    .side-panel__format-switch {
+        margin-bottom: 80px;
+    }
+}
+
+.side-panel__format-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: 1px solid #d7dfff;
+    border-radius: 8px;
+    background: #fff;
+    color: #4F7CFF;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.side-panel__format-btn:hover {
+    background: #eef2ff;
+}
+
+.side-panel__format-btn--active {
+    background: #4f7cff;
+    border-color: #4f7cff;
+    color: #fff;
+}
+
+.side-panel__download-btn {
+    width: 100%;
+    padding: 18px;
+    background: #4f7cff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.side-panel__download-btn:hover {
+    background-color: #3152C7;
+}
+
+.side-panel__download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ___________________________________іконки фото в панелі________________________ */
+/* ___________________________________іконки фото в панелі________________________ */
+
+.side-panel__filelist {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.side-panel__file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.side-panel__thumbnail {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.side-panel__thumbnail--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EEF2FF;
+    color: #4F7CFF;
+}
+
+.side-panel__filename {
+    flex: 1;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.side-panel__remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.side-panel__remove-btn:hover {
+    color: #ff5c5c;
+}
+
+/* 
+__________________________МОБАЙЛ______________________________ */
+
+/* Бейдж з кількістю файлів на кнопці "+" */
+.side-panel__add-btn {
+    position: relative;
+    /* потрібно для позиціювання бейджа */
+}
+
+.side-panel__add-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+/* ==== МОБІЛЬНА АДАПТАЦІЯ ==== */
+@media (max-width: 768px) {
+
+    /* панель стає повноекранною, а не бічною */
+    .side-panel {
+        right: auto;
+        left: 0;
+        top: 100vh;
+        /* сховано знизу */
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        transition: top 0.3s ease;
+    }
+
+    .side-panel--open {
+        top: 0;
+    }
+
+    /* кнопка "+" стає плаваючою круглою кнопкою */
+    .side__panel-wrapper {
+        position: fixed;
+        bottom: 90px;
+        /* над кнопкою "Завантажити" */
+        right: 15px;
+        z-index: 10;
+        width: auto;
+    }
+
+    .side-panel__add-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        padding: 0;
+        justify-content: center;
+    }
+
+    /* текст ховаємо, лишається тільки іконка + бейдж */
+    .side-panel__add-text {
+        display: none;
+    }
+
+    /* кнопка "Завантажити" лишається внизу на всю ширину */
+    .side-panel__download-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+        left: auto;
+        width: auto;
+        min-width: 45%;
+        padding: 14px 24px;
+        border-radius: 12px;
+        margin: 0;
+    }
+
+    .side-panel__download-btn--empty {
+        display: none;
+    }
+}

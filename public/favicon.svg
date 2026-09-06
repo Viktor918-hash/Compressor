@@ -1,0 +1,11 @@
+<svg viewBox="30 35 150 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bigImg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F7CFF"/>
+      <stop offset="100%" stop-color="#1E3FCC"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="35" width="150" height="150" rx="26" fill="url(#bigImg)"/>
+  <circle cx="70" cy="82" r="14" fill="white" opacity="0.95"/>
+  <path d="M45 152 L90 97 L120 132 L145 102 L165 152 Z" fill="white" opacity="0.95"/>
+</svg>

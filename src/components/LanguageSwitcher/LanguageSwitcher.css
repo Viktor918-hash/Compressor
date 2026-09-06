@@ -1,0 +1,176 @@
+.ls-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.ls-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.ls-trigger:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.ls-trigger:focus-visible {
+    outline: 2px solid #4f7cff;
+    outline-offset: 2px;
+}
+
+.ls-trigger-label {
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Desktop dropdown ---------- */
+
+.ls-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 50;
+    min-width: 180px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    animation: dropdownIn 0.14s ease;
+}
+
+@keyframes dropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Shared option style ---------- */
+
+.ls-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #1a1a1a;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.ls-option:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.ls-option:focus-visible {
+    outline: 2px solid #4f7cff;
+    outline-offset: -2px;
+}
+
+.ls-option-active {
+    font-weight: 600;
+}
+
+.ls-option-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.06);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.ls-option-label {
+    flex: 1;
+}
+
+/* ---------- Mobile bottom sheet ---------- */
+
+.ls-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.4);
+    animation: backdropIn 0.15s ease;
+}
+
+@keyframes backdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.ls-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    margin: 0;
+    padding: 8px 12px calc(16px + env(safe-area-inset-bottom));
+    list-style: none;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.16);
+    animation: sheetIn 0.2s ease;
+}
+
+@keyframes sheetIn {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.ls-sheet-handle {
+    width: 36px;
+    height: 4px;
+    margin: 6px auto 10px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.ls-sheet-title {
+    padding: 4px 12px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ls-sheet .ls-option {
+    padding: 14px 12px;
+    font-size: 16px;
+}

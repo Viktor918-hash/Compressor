@@ -1,0 +1,475 @@
+.presets-page {
+    position: relative;
+    min-height: 100 vh;
+    padding: 40px 0 80px;
+    flex: 1 0 auto;
+    background: #f1f1f1;
+}
+
+
+.presets-page__wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---- dropzone ---- */
+.presets-dropzone {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 48px 24px;
+    border: 2px dashed #e5e7eb;
+    border-radius: 14px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.presets-dropzone--active {
+    border-color: #4f7cff;
+    background: #f5f7ff;
+}
+
+.presets-dropzone__icon {
+    color: #4f7cff;
+}
+
+.presets-dropzone__btn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* ---- toolbar над сіткою/деталями ---- */
+.presets-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    gap: 12px;
+}
+
+.presets-toolbar__filename {
+    font-size: 14px;
+    color: #6b7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.presets-toolbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.presets-toolbar__reset {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.presets-toolbar__reset:hover {
+    border-color: #4f7cff;
+}
+
+/* ---- кнопка фільтрів ---- */
+.presets-filter-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.presets-filter-btn:hover {
+    border-color: #4f7cff;
+}
+
+.presets-filter-btn--active {
+    border-color: #4a4af4;
+    color: #4a4af4;
+    background: #f5f5ff;
+}
+
+.presets-filter-btn__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4a4af4;
+}
+
+/* ---- панель чипів фільтра ---- */
+.presets-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.presets-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.presets-filters__chip {
+    flex-shrink: 0;
+    padding: 7px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 13px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.presets-filters__chip:hover {
+    border-color: #4a4af4;
+}
+
+.presets-filters__chip--active {
+    background: #4a4af4;
+    border-color: #4a4af4;
+    color: #fff;
+}
+
+.presets-filters__clear {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.presets-grid__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* ---- сітка пресетів ---- */
+.presets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+
+
+}
+
+
+
+.presets-grid__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.presets-grid__thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.presets-grid__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.presets-grid__item:hover .presets-grid__thumb img {
+    transform: scale(1.03);
+}
+
+.presets-grid__thumb-loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.presets-grid__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.presets-grid__desc {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* ---- детальний вигляд обраного пресету ---- */
+.presets-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 24px;
+}
+
+.presets-detail__media {
+    flex: 1 1 640px;
+    min-width: 0;
+}
+
+.presets-detail__side {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.presets-detail__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.presets-detail__back {
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.presets-detail__back:hover {
+    color: #1a1a1a;
+}
+
+.ba-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 12px;
+    user-select: none;
+    cursor: ew-resize;
+    background: #111;
+    touch-action: none;
+    /* забороняє браузеру скролити/зумити при дотику тут */
+}
+
+.presets-detail__download {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #4f7cff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.presets-detail__download:hover {
+    background: #3152c7;
+}
+
+.presets-detail__download:disabled {
+    background: #c7d2fe;
+    cursor: not-allowed;
+}
+
+/* --- Повзунок інтенсивності --- */
+.presets-intensity {
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    background: #fafafa;
+}
+
+.presets-intensity__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.presets-intensity__value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #4a4af4;
+}
+
+.presets-intensity__input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(to right,
+            #4a4af4 0%,
+            #4a4af4 var(--progress, 66.6%),
+            #e2e2e2 var(--progress, 66.6%),
+            #e2e2e2 100%);
+    outline: none;
+    margin: 8px 0;
+}
+
+.presets-intensity__input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #4a4af4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.presets-intensity__input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #4a4af4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.presets-intensity__marks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    opacity: 0.55;
+    margin-top: 4px;
+}
+
+/* --- Кнопки дій --- */
+.presets-detail__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.presets-detail__download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #4a4af4;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.presets-detail__download:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.presets-detail__back {
+    background: none;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* --- Адаптив: на планшетах/мобільних все в колонку --- */
+@media (max-width: 900px) {
+    .presets-detail {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .presets-detail__media {
+        width: 100%;
+        flex: none;
+    }
+
+    .presets-detail__side {
+        position: static;
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* --- Адаптив: мобільний тулбар і фільтри --- */
+@media (max-width: 560px) {
+    .presets-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .presets-toolbar__filename {
+        flex: 1 1 100%;
+        order: -1;
+    }
+
+    .presets-toolbar__actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .presets-filter-btn,
+    .presets-toolbar__reset {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .presets-filters {
+        margin: 0 -20px 20px;
+        padding: 4px 20px;
+    }
+}

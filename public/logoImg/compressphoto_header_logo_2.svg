@@ -1,0 +1,34 @@
+<svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bigImg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F7CFF"/>
+      <stop offset="100%" stop-color="#1E3FCC"/>
+    </linearGradient>
+    <linearGradient id="smallImg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2FD8E8"/>
+      <stop offset="100%" stop-color="#12A8C7"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3FCC"/>
+      <stop offset="100%" stop-color="#12A8C7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Big image square -->
+  <rect x="30" y="35" width="150" height="150" rx="26" fill="url(#bigImg)"/>
+  <circle cx="70" cy="82" r="14" fill="white" opacity="0.95"/>
+  <path d="M45 152 L90 97 L120 132 L145 102 L165 152 Z" fill="white" opacity="0.95"/>
+
+  <!-- Arrow -->
+  <path d="M195 95 C 225 90, 240 90, 255 95" stroke="#7C93C9" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M245 83 L262 95 L245 107" stroke="#7C93C9" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Small image square -->
+  <rect x="275" y="70" width="85" height="85" rx="16" fill="url(#smallImg)"/>
+  <circle cx="298.5" cy="98.5" r="8" fill="white" opacity="0.95"/>
+  <path d="M284.5 134.5 L308.5 104.5 L326.5 124.5 L340.5 108.5 L350.5 134.5 Z" fill="white" opacity="0.95"/>
+
+  <!-- Text: font size tuned + textLength locked so it always renders in full and never clips -->
+  <text x="400" y="130" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800"
+        textLength="560" lengthAdjust="spacingAndGlyphs" fill="url(#textGrad)">Compress<tspan fill="#12A8C7">Photo</tspan></text>
+</svg>

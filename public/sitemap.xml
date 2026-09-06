@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://compressphoto.org/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en" />
+     <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+
+    <url>
+    <loc>https://compressphoto.org/ru</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/es</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en" />
+      <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/convert-to-jpg</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-jpg" />
+     <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-jpg" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-jpg" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/convert-to-jpg</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-jpg" />
+     <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-jpg" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-jpg" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+
+  <url>
+    <loc>https://compressphoto.org/ru/convert-to-jpg</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-jpg" />
+     <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-jpg" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-jpg" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/es/convertir-a-jpg</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-jpg" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-jpg" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-jpg" />
+
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-jpg" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-jpg" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/resize-image</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/resize-image" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/resize-image" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/resize-image" />
+
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/redimensionar-imagen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/resize-image" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/resize-image</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/resize-image" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/resize-image" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/resize-image" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/redimensionar-imagen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/resize-image" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+
+  <url>
+    <loc>https://compressphoto.org/ru/resize-image</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/resize-image" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/resize-image" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/resize-image" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/redimensionar-imagen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/resize-image" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/es/redimensionar-imagen</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/resize-image" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/resize-image" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/resize-image" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/redimensionar-imagen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/resize-image" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/convert-to-webp</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-webp" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-webp" />
+
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-webp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-webp" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/convert-to-webp</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-webp" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-webp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-webp" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/ru/convert-to-webp</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-webp" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-webp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-webp" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/es/convertir-a-webp</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-to-webp" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-to-webp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-a-webp" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-to-webp" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/photo-presets</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/photo-presets" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/photo-presets" />
+
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/filtros-para-fotos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/photo-presets" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/photo-presets</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/photo-presets" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/filtros-para-fotos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/photo-presets" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/remove-background</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/remove-background" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/remove-background" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/remove-background" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/eliminar-fondo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/remove-background" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+    <url>
+    <loc>https://compressphoto.org/en/remove-background</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/remove-background" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/remove-background" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/remove-background" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/eliminar-fondo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/remove-background" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+      <url>
+    <loc>https://compressphoto.org/ru/remove-background</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/remove-background" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/remove-background" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/remove-background" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/eliminar-fondo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/remove-background" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+      <url>
+    <loc>https://compressphoto.org/es/eliminar-fondo</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/remove-background" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/remove-background" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/remove-background" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/eliminar-fondo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/remove-background" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/ru/photo-presets</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/photo-presets" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/filtros-para-fotos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/photo-presets" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/es/filtros-para-fotos</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/photo-presets" />
+            <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/photo-presets" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/filtros-para-fotos" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/photo-presets" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/convert-word-to-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-word-to-pdf" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-word-a-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-word-to-pdf" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/convert-word-to-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-word-to-pdf" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-word-a-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-word-to-pdf" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+    <url>
+    <loc>https://compressphoto.org/ru/convert-word-to-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-word-to-pdf" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-word-a-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-word-to-pdf" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/es/convertir-word-a-pdf</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-word-to-pdf" />
+            <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-word-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-word-a-pdf" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-word-to-pdf" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/convert-pdf-to-word</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-pdf-to-word" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-pdf-a-word" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-pdf-to-word" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <url>
+    <loc>https://compressphoto.org/en/convert-pdf-to-word</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-pdf-to-word" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-pdf-a-word" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-pdf-to-word" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+    <url>
+    <loc>https://compressphoto.org/ru/convert-pdf-to-word</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-pdf-to-word" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-pdf-a-word" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-pdf-to-word" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+      <url>
+    <loc>https://compressphoto.org/es/convertir-pdf-a-word</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/convert-pdf-to-word" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/convert-pdf-to-word" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/convertir-pdf-a-word" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/convert-pdf-to-word" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+
+  <url>
+    <loc>https://compressphoto.org/image-to-text</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/imagen-a-texto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/image-to-text" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/en/image-to-text</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/imagen-a-texto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/image-to-text" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/ru/image-to-text</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/imagen-a-texto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/image-to-text" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compressphoto.org/es/imagen-a-texto</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://compressphoto.org/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://compressphoto.org/en/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://compressphoto.org/ru/image-to-text" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://compressphoto.org/es/imagen-a-texto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compressphoto.org/en/image-to-text" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

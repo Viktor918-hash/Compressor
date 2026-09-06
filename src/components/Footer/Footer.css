@@ -1,0 +1,13 @@
+.footer__wrapper {
+    padding: 5px 20px;
+    display: flex;
+
+}
+
+.footer__text {
+    font-size: 14px;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+
+}

@@ -1,0 +1,445 @@
+.header {
+    background-color: #fff;
+    font-family: Inter, sans-serif;
+}
+
+.container {
+    width: 100%;
+    min-height: 60px
+}
+
+.header__wrapper {}
+
+.header__content {}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 30px;
+}
+
+.header__logo-link {}
+
+.header__logo {
+    width: auto;
+    height: 55px;
+}
+
+.header__nav-list {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.header__list:hover {
+    color: #000000;
+    transition: 0.3s;
+}
+
+
+
+.nav__link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nav__link svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+
+
+.div__nav {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 auto;
+}
+
+.div__nav,
+.header__sigIn {
+    color: #6B7280;
+    font-size: 16px;
+    background: none;
+}
+
+
+.header__sigIn:hover {
+    color: #000000;
+
+
+    transition: 0.3s;
+}
+
+.header__logIn {
+    padding: 14px 24px;
+    background-color: #4F7CFF;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+
+.header__logIn {
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.header__logIn:hover {
+    background-color: #3152C7;
+}
+
+
+
+.lenguage:hover {
+    color: #000000;
+    transition: 0.3s;
+}
+
+/* 
+________________________ПАНЕЛЬ СПЛИВАЮЧА________________________  */
+.header__list--dropdown {
+    position: relative;
+}
+
+.dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -8px);
+    width: calc(100vw - 80px);
+    max-width: 1000px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 28px 32px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 100;
+}
+
+/* показуємо панель, коли наводимо на li АБО на саму панель
+   (друге — щоб можна було довести курсор до пунктів меню, не втративши hover) */
+.header__list--dropdown:hover .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.dropdown-panel__col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dropdown-panel__col:not(:first-child) {
+    border-left: 1px solid #eef0f4;
+    padding-left: 32px;
+}
+
+.dropdown-panel__col-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+    padding: 0 12px 10px;
+}
+
+.dropdown-panel__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-panel__item:hover {
+    background: #f5f7ff;
+}
+
+.dropdown-panel__icon {
+    color: #4f7cff;
+    flex-shrink: 0;
+}
+
+.dropdown-panel__title {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.dropdown-panel__desc {
+    display: block;
+    font-size: 12px;
+    color: #888;
+}
+
+
+
+/* _____________________________MEDIA HEADER____________________________ */
+
+/* Бургер — за замовчуванням прихований (десктоп) */
+.burger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==== ВИСУВНА НАВІГАЦІЙНА ПАНЕЛЬ ==== */
+.mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.mobile-menu-backdrop--open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+aside.mobile-menu {
+    overflow-y: auto;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+
+    width: 300px;
+    max-width: 85vw;
+    height: 100dvh;
+    background: #f1f1f1;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    overscroll-behavior: contain;
+
+
+}
+
+.mobile-menu--open {
+    transform: translateX(0);
+}
+
+.mobile-menu__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.mobile-menu__title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.mobile-menu__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-menu__section {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.mobile-menu__section-title {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #999;
+    padding: 8px 4px 4px;
+}
+
+.mobile-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 4px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 15px;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mobile-menu__item--plain {
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu__icon {
+    color: #4f7cff;
+    flex-shrink: 0;
+}
+
+.mobile-menu__language {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 12px;
+}
+
+.mobile-menu__auth {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
+}
+
+.mobile-menu__signin {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #4f7cff;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 14px;
+}
+
+.mobile-menu__signup {
+    text-align: center;
+    background-color: #f1f1f1;
+    color: #000000;
+    font-size: 14px;
+}
+
+/* _____________________________MEDIA HEADER____________________________ */
+
+@media(max-width:1150px) {
+    .header__list--secondary {
+        display: none;
+    }
+
+    .header__logIn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+@media (max-width: 900px) {
+    .lenguage {
+        display: none;
+    }
+
+    .burger-btn {
+        display: flex;
+    }
+
+    .header__sigIn,
+    .header__nav-list {
+        font-size: 14px;
+    }
+
+    .nav__link {
+        font-size: 14px;
+    }
+}
+
+/* ≤800px: ховаємо кнопки Вхід / Зареєструватися з хедера — доступні через бургер */
+@media (max-width: 800px) {
+
+    .header__sigIn,
+    .header__logIn {
+        display: none;
+    }
+}
+
+/* ≤798px: ховаємо "Інструменти для зображень" з хедера — доступно через бургер.
+   Мегаменю лишається адаптивним аж до цієї межі (798px), нижче — тільки бургер. */
+@media (max-width: 798px) {
+    .header__list--tools {
+        display: none;
+    }
+
+    .header__nav-list {
+        margin: 0;
+        padding-left: 10px;
+    }
+}
+
+/* Вузькі ноутбучні екрани — трьом колонкам замало місця, звужуємо відступи */
+@media (max-width: 1400px) {
+    .dropdown-panel {
+        width: calc(100vw - 300px);
+        column-gap: 20px;
+        padding: 20px 16px;
+    }
+
+    .dropdown-panel__col:not(:first-child) {
+        padding-left: 20px;
+    }
+}
+
+/* 799–900px — мегаменю ще видиме (бургер вмикається лише з 798px), тож
+   докручуємо компактність, щоб три колонки впевнено вміщались без
+   переповнення/горизонтального скролу на найвужчих десктопних екранах. */
+@media (max-width: 950px) {
+    .dropdown-panel {
+        width: calc(100vw - 35px);
+        column-gap: 16px;
+        padding: 20px 16px;
+    }
+
+    .dropdown-panel__col:not(:first-child) {
+        padding-left: 14px;
+    }
+
+    .dropdown-panel__col-title {
+        font-size: 11px;
+        padding: 0 10px 8px;
+    }
+
+    .dropdown-panel__item {
+        padding: 8px 10px;
+        gap: 10px;
+    }
+
+    .dropdown-panel__title {
+        font-size: 13px;
+    }
+
+    .dropdown-panel__desc {
+        font-size: 11px;
+    }
+}

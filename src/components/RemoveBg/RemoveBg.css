@@ -1,0 +1,252 @@
+/* ---- превʼю фото в основній області ---- */
+.removebg-preview-area {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.removebg-preview-wrap {
+    position: relative;
+    max-width: 560px;
+    max-height: 65vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    user-select: none;
+    /* шахова "прозорість" — щоб було видно, де фон вже видалено */
+    background-image: linear-gradient(45deg, #d9d9d9 25%, transparent 25%),
+        linear-gradient(-45deg, #d9d9d9 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #d9d9d9 75%),
+        linear-gradient(-45deg, transparent 75%, #d9d9d9 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color: #f1f1f1;
+}
+
+.removebg-canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    touch-action: none;
+    cursor: none;
+}
+
+.removebg-brush-cursor {
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid #4f7cff;
+    border-radius: 50%;
+    background: rgba(79, 124, 255, 0.12);
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.removebg-brush-cursor--erase {
+    border-color: #ff5c5c;
+    background: rgba(255, 92, 92, 0.12);
+}
+
+.removebg-hint {
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* ---- оверлей обробки (видалення фону триває) ---- */
+.removebg-processing {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: rgba(241, 241, 241, 0.9);
+    z-index: 10;
+    border-radius: 12px;
+}
+
+.removebg-spinner {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 4px solid #dbe3ff;
+    border-top-color: #4f7cff;
+    animation: removebg-spin 0.8s linear infinite;
+}
+
+@keyframes removebg-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.removebg-processing-text {
+    color: #374151;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.removebg-processing-bar {
+    width: 200px;
+    height: 6px;
+    border-radius: 999px;
+    background: #dbe3ff;
+    overflow: hidden;
+}
+
+.removebg-processing-bar-fill {
+    height: 100%;
+    background: #4f7cff;
+    border-radius: 999px;
+    transition: width 0.2s ease;
+}
+
+/* ---- контроли в бічній панелі ---- */
+.removebg-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 4px 12px;
+}
+
+.removebg-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.removebg-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.removebg-mode-group {
+    display: flex;
+    gap: 8px;
+}
+
+.removebg-mode-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.removebg-mode-btn:hover {
+    border-color: #4f7cff;
+}
+
+.removebg-mode-btn--active {
+    background: #4f7cff;
+    border-color: #4f7cff;
+    color: #fff;
+}
+
+.removebg-mode-btn--active.removebg-mode-btn--erase {
+    background: #ff5c5c;
+    border-color: #ff5c5c;
+}
+
+.removebg-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.removebg-slider-row input[type="range"] {
+    flex: 1;
+    accent-color: #4f7cff;
+}
+
+.removebg-slider-value {
+    font-size: 13px;
+    color: #374151;
+    font-weight: 600;
+    min-width: 34px;
+    text-align: right;
+}
+
+.removebg-reset-btn {
+    padding: 10px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.removebg-reset-btn:hover {
+    border-color: #ff5c5c;
+    color: #ff5c5c;
+}
+
+/* ---- кнопка-тогл налаштувань (тільки мобільні) ---- */
+.removebg-toggle-btn {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .removebg-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 76px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #4f7cff;
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+        cursor: pointer;
+        z-index: 1100;
+        transition: background 0.2s;
+    }
+
+    .removebg-toggle-btn:hover {
+        background: #3152c7;
+    }
+
+    .side-panel {
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+        max-height: 100dvh;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .side-panel.side-panel--mobile-collapsed {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .side-panel--open:not(.side-panel--mobile-collapsed) {
+        opacity: 1;
+        visibility: visible;
+    }
+}

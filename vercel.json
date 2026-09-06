@@ -1,0 +1,64 @@
+{
+  "redirects": [
+    {
+      "source": "/convert",
+      "destination": "/convert-to-jpg",
+      "permanent": true
+    },
+    {
+      "source": "/en/convert",
+      "destination": "/en/convert-to-jpg",
+      "permanent": true
+    },
+
+    { "source": "/resize", "destination": "/resize-image", "permanent": true },
+    {
+      "source": "/en/resize",
+      "destination": "/en/resize-image",
+      "permanent": true
+    },
+
+    { "source": "/webp", "destination": "/convert-to-webp", "permanent": true },
+    {
+      "source": "/en/webp",
+      "destination": "/en/convert-to-webp",
+      "permanent": true
+    },
+
+    {
+      "source": "/presets",
+      "destination": "/photo-presets",
+      "permanent": true
+    },
+    {
+      "source": "/en/presets",
+      "destination": "/en/photo-presets",
+      "permanent": true
+    },
+
+    {
+      "source": "/word-to-pdf",
+      "destination": "/convert-word-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/en/word-to-pdf",
+      "destination": "/en/convert-word-to-pdf",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/word-to-pdf.js": {
+      "maxDuration": 30
+    },
+    "api/pdf-to-word.js": {
+      "maxDuration": 30
+    }
+  }
+}
