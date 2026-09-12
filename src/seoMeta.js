@@ -88,6 +88,7 @@ export const PAGE_META = {
       description:
         "Конвертировать изображения в WEBP. Преобразовывайте JPG, PNG, TIF, PSD, SVG, HEIC или RAW в формат WEBP. Конвертируйте несколько WEBP онлайн одновременно.",
     },
+    //заглушка
     es: {
       title: "Convertir imágenes a WebP",
       description:
