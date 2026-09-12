@@ -36,7 +36,8 @@
     "titleGradient": "más ligeras",
     "text1": "Comprime JPG, PNG y WebP en segundos, directamente en tu navegador y sin perder calidad.",
     "text2": "Reduce el tamaño de varias imágenes a la vez.",
-    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo"
+    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo",
+    "moreToolsTitle": "Herramientas populares"
   },
   "convert": {
     "titlePart2": "Cualquier formato",

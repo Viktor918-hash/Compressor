@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
+import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 
@@ -57,6 +58,32 @@ const Hero = () => {
         <p className="main__text">{t("hero.text1")}</p>
         <p className="main__text">{t("hero.text2")}</p>
       </Panel>
+
+      {/* Внутрішні лінки на суміжні інструменти — допомагає і
+          користувачам ("що робити далі"), і розподілу link equity з
+          головної (найкраще індексованої/клікабельної сторінки, за
+          даними Search Console) на інші tool-сторінки. */}
+      <section className="home-more-tools container">
+        <h2 className="home-more-tools__title">{t("hero.moreToolsTitle")}</h2>
+        <div className="home-more-tools__grid">
+          <LocalizedLink to="/convert-to-jpg" className="home-more-tools__item">
+            <span className="home-more-tools__item-title">{t("header.convert")}</span>
+            <span className="home-more-tools__item-desc">{t("header.convertDesc")}</span>
+          </LocalizedLink>
+          <LocalizedLink to="/resize-image" className="home-more-tools__item">
+            <span className="home-more-tools__item-title">{t("header.resize")}</span>
+            <span className="home-more-tools__item-desc">{t("header.resizeDesc")}</span>
+          </LocalizedLink>
+          <LocalizedLink to="/remove-background" className="home-more-tools__item">
+            <span className="home-more-tools__item-title">{t("header.removeBg")}</span>
+            <span className="home-more-tools__item-desc">{t("header.removeBgDesc")}</span>
+          </LocalizedLink>
+          <LocalizedLink to="/photo-presets" className="home-more-tools__item">
+            <span className="home-more-tools__item-title">{t("header.prest")}</span>
+          </LocalizedLink>
+        </div>
+      </section>
+
       <SeoContent pageKey="home" />
     </>
   );

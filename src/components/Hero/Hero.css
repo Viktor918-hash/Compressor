@@ -151,3 +151,54 @@
         padding: 18px 28px;
     }
 }
+/* Блок "Popular tools" на головній сторінці — внутрішні лінки на
+   суміжні інструменти під головним компресором. */
+.home-more-tools {
+    margin: 48px auto 0;
+    padding: 0 0 8px;
+}
+
+.home-more-tools__title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.home-more-tools__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.home-more-tools__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.home-more-tools__item:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.home-more-tools__item-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.home-more-tools__item-desc {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+@media (max-width: 520px) {
+    .home-more-tools__title {
+        font-size: 19px;
+    }
+}

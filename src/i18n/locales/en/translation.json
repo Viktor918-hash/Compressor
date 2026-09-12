@@ -32,11 +32,12 @@
     "imageToTextDesc": "Extract text from a photo or screenshot"
   },
   "hero": {
-    "titlePart1": "Heavy photos - now",
-    "titleGradient": "lighter",
+    "titlePart1": "Compress photos online – reduce photo file",
+    "titleGradient": "size",
     "text1": "Compress JPG, PNG, WebP — in seconds, right in your browser, without quality loss.",
     "text2": "Resize multiple images at once.",
-    "dropzone": "Drop your file here or click to select"
+    "dropzone": "Drop your file here or click to select",
+    "moreToolsTitle": "Popular tools"
   },
   "convert": {
     "titlePart2": "Any format",
@@ -212,6 +213,7 @@
       "title": "Why compress images online",
       "text1": "Image compression shrinks a file's size without a noticeable drop in quality: photos load faster, your site ranks better in Google, and email attachments no longer clog up inboxes. The compressor runs right in your browser — JPG, PNG or WebP files are compressed in seconds, and the originals never leave your device.",
       "text2": "This matters most for website owners, bloggers and online stores: lighter images speed up page loads, improve Core Web Vitals, and directly affect search rankings. Smaller files also save disk space and are faster to send over messengers and email.",
+      "text3": "Unlike most online photo compressors, this one never uploads your file to a server — the whole process runs locally in your browser using JavaScript, so the image never leaves your device. That also means there's no queue, no file size limit tied to an upload connection, and nothing to worry about if the photo contains sensitive or private information.",
       "benefits": [
         {
           "title": "Speed",
@@ -246,6 +248,14 @@
         {
           "q": "Do I need to install any software?",
           "a": "No, everything works right in the browser on any device — Windows, macOS, Android or iOS."
+        },
+        {
+          "q": "How do I reduce the file size of a photo?",
+          "a": "Drop the photo into the box above — the compressor automatically shrinks JPG, PNG or WebP files by up to 90%, right in your browser, with no upload to a server and no software to install."
+        },
+        {
+          "q": "What's the best way to compress a JPEG without losing quality?",
+          "a": "A smart compressor balances file size against visual quality automatically instead of just lowering resolution — that's what this tool does, so most photos look virtually identical after compression even though the file is much smaller."
         }
       ]
     },

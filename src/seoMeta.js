@@ -8,7 +8,7 @@
 export const PAGE_META = {
   home: {
     uk: {
-      title: "Стиснути зображення онлайн швидко та без втрати якості",
+      title: "Стиснути фото онлайн безкоштовно — без втрати якості",
       description:
         "Безкоштовно стиснути фото JPG, PNG, HEIC та інших форматів відразу в браузері. Легко та без зайвих зусиль",
     },
@@ -30,14 +30,14 @@ export const PAGE_META = {
   },
   convert: {
     uk: {
-      title: "Швидке конвертування фото у JPG онлайн безкоштовно",
+      title: "Конвертувати в JPG онлайн безкоштовно — PNG, WebP, HEIC",
       description:
-        "Перетворити зображення в JPG. Перетворюйте PNG, TIF, PSD, SVG, WEBP, HEIC або RAW на формат JPG. Конвертуйте декілька JPG онлайн одночасно.",
+        "Конвертувати фото в jpg онлайн, перетворити png в jpg, конвертер зображень в jpg. Перетворюйте PNG, TIF, PSD, SVG, WEBP, HEIC або RAW на формат JPG.",
     },
     en: {
       title: "Image converter to JPG",
       description:
-        "Convert images to JPG. Turn PNG, TIF, PSD, SVG, WEBP, HEIC or RAW files into JPG format. Convert multiple images online simultaneously.",
+        "Convertir imagen a jpg, convertidor de png a jpg, convertir heic a jpg. Turn PNG, TIF, PSD, SVG, WEBP, HEIC or RAW files into JPG format.",
     },
     ru: {
       title: "Конвертировать изображения в JPG",
@@ -54,7 +54,7 @@ export const PAGE_META = {
     uk: {
       title: "Змінити розмір фото онлайн",
       description:
-        "Швидко змініть розмір зображень під потрібні. Безкоштовно змінюй розмір фото прямо в браузері.",
+        "Зменшити розмір зображення. Змінюй ширину фото, зменшуй фото безкоштовно",
     },
     en: {
       title: "Resize Images Online Free",
@@ -64,7 +64,7 @@ export const PAGE_META = {
     ru: {
       title: "Изменить размер изображений онлайн",
       description:
-        "Изменить размер фото онлайн бесплатно. Изменяйте размер изображений в формате JPG, PNG, SVG или GIF за считанные секунды легко и бесплатно.",
+        "Изменить размер фото онлайн бесплатно. Изменяйте размер изображений в формате JPG, PNG, SVG или GIF. Изменить ширину фото.",
     },
     es: {
       title: "Redimensionar Imágenes Online Gratis",
@@ -84,11 +84,10 @@ export const PAGE_META = {
         "Convert images to WebP. Turn JPG, PNG, TIF, PSD, SVG, HEIC or RAW files into WebP format. Convert multiple images online simultaneously.",
     },
     ru: {
-      title: "Конвертировать изображения в WEBP онлайн",
+      title: "Конвертировать изображения в WEBP",
       description:
-        "Конвертировать изображения в WEBP. Преобразовывайте JPG, PNG, TIF, PSD, SVG, HEIC или RAW в формат WEBP. Конвертируйте несколько WEBP онлайн одновременно.",
+        "Конвертировать изображения в JPG. Преобразовывайте PNG, TIF, PSD, SVG, WEBP, HEIC или RAW в формат JPG. Конвертируйте несколько JPG онлайн одновременно.",
     },
-    //заглушка
     es: {
       title: "Convertir imágenes a WebP",
       description:
@@ -97,12 +96,12 @@ export const PAGE_META = {
   },
   presets: {
     uk: {
-      title: "Готові фільтри та пресети для ваших фото",
+      title: "Пресети та фільтри для фото онлайн безкоштовно",
       description:
         "Швидко обробити фото онлайн: додайте готові фільтри та пресети за секунди. Понад 50 стилів для ваших зображень —  Lightroom, прямо в браузері.",
     },
     en: {
-      title: "Ready-made filters and presets for your photos",
+      title: "Free Photo Presets & Filters Online — No Lightroom Needed",
       description:
         "Quickly process photos online: add ready-made filters and presets in seconds. 50+ styles for your images — no Lightroom needed, right in your browser.",
     },
@@ -173,9 +172,9 @@ export const PAGE_META = {
         "Automatically remove the background from any photo right in your browser. Magic brush for fine-tuning edges. Your photo never leaves your device.",
     },
     ru: {
-      title: "Удалить задний фон с фото онлайн бесплатно",
+      title: "Убрать задний фон на фото онлайн бесплатно",
       description:
-        "Автоматически удалите задний фон с фото прямо в браузере. Магическая кисть для точной доработки краёв. Без отправки фото на сервер.",
+        "Быстро уберите или удалите задний фон на фото прямо в браузере — без Photoshop и установки программ. Магическая кисть для точной доработки краёв. Фото не покидает ваше устройство.",
     },
     es: {
       title: "Eliminar el fondo de una foto online gratis",
@@ -185,9 +184,9 @@ export const PAGE_META = {
   },
   imageToText: {
     uk: {
-      title: "Розпізнати текст із фото онлайн безкоштовно",
+      title: "Фото в текст онлайн безкоштовно — розпізнати текст із фото",
       description:
-        "Конвертувати фото, скріншот в текст. Розпізнати текст із зображення або відсканованої сторінки, онлайн без реєстрації.",
+        "Перетворіть фото, скріншот або скан у текст онлайн — безкоштовно, без реєстрації, прямо в браузері. Розпізнає текст із фото будь-якою мовою за кілька секунд.",
     },
     en: {
       title: "Extract Text from Image Online Free",
@@ -195,7 +194,7 @@ export const PAGE_META = {
         "Turn any photo, scan, or screenshot into editable text right in your browser. Supports English, Ukrainian, Russian and Spanish. Your files never leave your device.",
     },
     ru: {
-      title: "Распознать текст с фото онлайн бесплатно",
+      title: "Фото в текст распознать текст с фото онлайн бесплатно",
       description:
         "Конвертер фото в текст позволяет скопировать текст с фото. Вы можете извлечь текст с картинки с помощью этого переводчика изображений.",
     },
