@@ -1,4 +1,6 @@
-import heic2any from "heic2any";
+// heic2any (~1.3 МБ) вантажимо лише тоді, коли користувач справді додав
+// HEIC/HEIF — а не в головному бандлі для всіх відвідувачів.
+const loadHeic2any = async () => (await import("heic2any")).default;
 
 // Розширення/типи, які браузер сам НЕ вміє декодувати через <canvas>
 const isHeic = (file) => {
@@ -55,6 +57,7 @@ const blobToWebp = (blob, quality) => {
 // HEIC/HEIF (фото з iPhone) heic2any не вміє віддавати одразу у WebP —
 // спершу декодуємо в JPEG, потім цей результат перекодовуємо в WebP.
 const convertHeicToWebp = async (file, quality) => {
+  const heic2any = await loadHeic2any();
   const result = await heic2any({
     blob: file,
     toType: "image/jpeg",

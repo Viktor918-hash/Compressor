@@ -8,53 +8,53 @@
 export const PAGE_META = {
   home: {
     uk: {
-      title: "Стиснути фото онлайн безкоштовно — без втрати якості",
+      title: "Стиснути зображення онлайн швидко та без втрати якості",
       description:
-        "Безкоштовно стиснути фото JPG, PNG, HEIC та інших форматів відразу в браузері. Легко та без зайвих зусиль",
+        "Безкоштовно стиснути фото JPG, PNG та WebP відразу в браузері. Легко та без зайвих зусиль",
     },
     en: {
       title: "Compress images online quickly and without loss of quality",
       description:
-        "Free online photo compressor for JPG, PNG, HEIC and other formats directly in your browser. Easy and effortless",
+        "Free online photo compressor for JPG, PNG and WebP directly in your browser. Easy and effortless",
     },
     ru: {
       title: "Сжать изображение онлайн бесплатно",
       description:
-        "Сжать изображения онлайн. Сжимайте и оптимизируйте JPEG, PNG, WebP, SVG изображения. Сжимайте изображения онлайн, легко и бесплатно.",
+        "Сжать изображения онлайн. Сжимайте и оптимизируйте JPEG, PNG и WebP изображения прямо в браузере, легко и бесплатно.",
     },
     es: {
       title: "Comprimir imágenes online rápido y sin perder calidad",
       description:
-        "Comprime fotos JPG, PNG, HEIC y otros formatos gratis, directamente en el navegador. Fácil y sin complicaciones",
+        "Comprime fotos JPG, PNG y WebP gratis, directamente en el navegador. Fácil y sin complicaciones",
     },
   },
   convert: {
     uk: {
-      title: "Конвертувати в JPG онлайн безкоштовно — PNG, WebP, HEIC",
+      title: "Швидке конвертування фото у JPG онлайн безкоштовно",
       description:
-        "Конвертувати фото в jpg онлайн, перетворити png в jpg, конвертер зображень в jpg. Перетворюйте PNG, TIF, PSD, SVG, WEBP, HEIC або RAW на формат JPG.",
+        "Перетворити зображення в JPG. Перетворюйте PNG, WEBP, BMP та HEIC (фото з iPhone) на формат JPG. Конвертуйте кілька файлів онлайн одночасно.",
     },
     en: {
       title: "Image converter to JPG",
       description:
-        "Convertir imagen a jpg, convertidor de png a jpg, convertir heic a jpg. Turn PNG, TIF, PSD, SVG, WEBP, HEIC or RAW files into JPG format.",
+        "Convert images to JPG. Turn PNG, WEBP, BMP and HEIC (iPhone photos) files into JPG format. Convert multiple images online simultaneously.",
     },
     ru: {
       title: "Конвертировать изображения в JPG",
       description:
-        "Конвертировать изображения в JPG. Преобразовывайте PNG, TIF, PSD, SVG, WEBP, HEIC или RAW в формат JPG. Конвертируйте несколько JPG онлайн одновременно.",
+        "Конвертировать изображения в JPG. Преобразовывайте PNG, WEBP, BMP и HEIC (фото с iPhone) в формат JPG. Конвертируйте несколько файлов онлайн одновременно.",
     },
     es: {
       title: "Conversor de imágenes a JPG",
       description:
-        "Convierte imágenes a JPG. Transforma archivos PNG, TIF, PSD, SVG, WEBP, HEIC o RAW al formato JPG. Convierte varias imágenes a la vez.",
+        "Convierte imágenes a JPG. Transforma archivos PNG, WEBP, BMP y HEIC (fotos de iPhone) al formato JPG. Convierte varias imágenes a la vez.",
     },
   },
   resize: {
     uk: {
       title: "Змінити розмір фото онлайн",
       description:
-        "Зменшити розмір зображення. Змінюй ширину фото, зменшуй фото безкоштовно",
+        "Швидко змініть розмір зображень під потрібні. Безкоштовно змінюй розмір фото прямо в браузері.",
     },
     en: {
       title: "Resize Images Online Free",
@@ -64,7 +64,7 @@ export const PAGE_META = {
     ru: {
       title: "Изменить размер изображений онлайн",
       description:
-        "Изменить размер фото онлайн бесплатно. Изменяйте размер изображений в формате JPG, PNG, SVG или GIF. Изменить ширину фото.",
+        "Изменить размер фото онлайн бесплатно. Изменяйте размер изображений в формате JPG, PNG, SVG или GIF за считанные секунды легко и бесплатно.",
     },
     es: {
       title: "Redimensionar Imágenes Online Gratis",
@@ -76,34 +76,34 @@ export const PAGE_META = {
     uk: {
       title: "Швидке конвертування фото у WEBP онлайн безкоштовно",
       description:
-        "Перетворити зображення в WEBP. Перетворюйте JPG, PNG, TIF, PSD, SVG, HEIC або RAW на формат WEBP. Конвертуйте декілька WEBP онлайн одночасно.",
+        "Перетворити зображення в WEBP. Перетворюйте JPG, PNG, BMP та HEIC (фото з iPhone) на формат WEBP. Конвертуйте кілька файлів онлайн одночасно.",
     },
     en: {
       title: "Convert images to WebP",
       description:
-        "Convert images to WebP. Turn JPG, PNG, TIF, PSD, SVG, HEIC or RAW files into WebP format. Convert multiple images online simultaneously.",
+        "Convert images to WebP. Turn JPG, PNG, BMP and HEIC (iPhone photos) files into WebP format. Convert multiple images online simultaneously.",
     },
     ru: {
       title: "Конвертировать изображения в WEBP",
       description:
-        "Конвертировать изображения в JPG. Преобразовывайте PNG, TIF, PSD, SVG, WEBP, HEIC или RAW в формат JPG. Конвертируйте несколько JPG онлайн одновременно.",
+        "Конвертировать изображения в WEBP. Преобразовывайте JPG, PNG, BMP и HEIC (фото с iPhone) в формат WEBP. Конвертируйте несколько файлов онлайн одновременно.",
     },
     es: {
       title: "Convertir imágenes a WebP",
       description:
-        "Convierte imágenes a WebP. Transforma archivos JPG, PNG, TIF, PSD, SVG, HEIC o RAW al formato WebP. Convierte varias imágenes a la vez.",
+        "Convierte imágenes a WebP. Transforma archivos JPG, PNG, BMP y HEIC (fotos de iPhone) al formato WebP. Convierte varias imágenes a la vez.",
     },
   },
   presets: {
     uk: {
-      title: "Пресети та фільтри для фото онлайн безкоштовно",
+      title: "Готові фільтри та пресети для ваших фото",
       description:
-        "Швидко обробити фото онлайн: додайте готові фільтри та пресети за секунди. Понад 50 стилів для ваших зображень —  Lightroom, прямо в браузері.",
+        "Швидко обробити фото онлайн: додайте готові фільтри та пресети за секунди. 25+ стилів для ваших зображень — без Lightroom, прямо в браузері.",
     },
     en: {
-      title: "Free Photo Presets & Filters Online — No Lightroom Needed",
+      title: "Ready-made filters and presets for your photos",
       description:
-        "Quickly process photos online: add ready-made filters and presets in seconds. 50+ styles for your images — no Lightroom needed, right in your browser.",
+        "Quickly process photos online: add ready-made filters and presets in seconds. 25+ styles for your images — no Lightroom needed, right in your browser.",
     },
     ru: {
       title: "Бесплатные пресеты для фото онлайн",
@@ -113,19 +113,19 @@ export const PAGE_META = {
     es: {
       title: "Filtros y preajustes listos para tus fotos",
       description:
-        "Edita fotos online en segundos: aplica filtros y preajustes listos para usar. Más de 50 estilos para tus imágenes, sin necesidad de Lightroom.",
+        "Edita fotos online en segundos: aplica filtros y preajustes listos para usar. Más de 25 estilos para tus imágenes, sin necesidad de Lightroom.",
     },
   },
   wordToPdf: {
     uk: {
       title: "Конвертувати Word у PDF онлайн безкоштовно",
       description:
-        "Перетворіть DOC та DOCX у PDF за кілька секунд прямо в браузері. Точна конвертація зі збереженням форматування, без встановлення програм.",
+        "Перетворіть DOC та DOCX у PDF за кілька секунд онлайн. Точна конвертація зі збереженням форматування, без встановлення програм.",
     },
     en: {
       title: "Convert Word to PDF online for free",
       description:
-        "Turn DOC and DOCX files into PDF in seconds, right in your browser. Accurate conversion with formatting preserved — no software to install.",
+        "Turn DOC and DOCX files into PDF in seconds, online. Accurate conversion with formatting preserved — no software to install.",
     },
     ru: {
       title: "Конвертировать WORD в PDF",
@@ -135,7 +135,7 @@ export const PAGE_META = {
     es: {
       title: "Convertir Word a PDF online gratis",
       description:
-        "Convierte archivos DOC y DOCX a PDF en segundos, directamente en el navegador. Conversión precisa con formato conservado, sin instalar programas.",
+        "Convierte archivos DOC y DOCX a PDF en segundos, online. Conversión precisa con formato conservado, sin instalar programas.",
     },
   },
   pdfToWord: {
@@ -172,9 +172,9 @@ export const PAGE_META = {
         "Automatically remove the background from any photo right in your browser. Magic brush for fine-tuning edges. Your photo never leaves your device.",
     },
     ru: {
-      title: "Убрать задний фон на фото онлайн бесплатно",
+      title: "Удалить задний фон с фото онлайн бесплатно",
       description:
-        "Быстро уберите или удалите задний фон на фото прямо в браузере — без Photoshop и установки программ. Магическая кисть для точной доработки краёв. Фото не покидает ваше устройство.",
+        "Автоматически удалите задний фон с фото прямо в браузере. Магическая кисть для точной доработки краёв. Без отправки фото на сервер.",
     },
     es: {
       title: "Eliminar el fondo de una foto online gratis",
@@ -184,9 +184,9 @@ export const PAGE_META = {
   },
   imageToText: {
     uk: {
-      title: "Фото в текст онлайн безкоштовно — розпізнати текст із фото",
+      title: "Розпізнати текст із фото онлайн безкоштовно",
       description:
-        "Перетворіть фото, скріншот або скан у текст онлайн — безкоштовно, без реєстрації, прямо в браузері. Розпізнає текст із фото будь-якою мовою за кілька секунд.",
+        "Конвертувати фото, скріншот в текст. Розпізнати текст із зображення або відсканованої сторінки, онлайн без реєстрації.",
     },
     en: {
       title: "Extract Text from Image Online Free",
@@ -194,7 +194,7 @@ export const PAGE_META = {
         "Turn any photo, scan, or screenshot into editable text right in your browser. Supports English, Ukrainian, Russian and Spanish. Your files never leave your device.",
     },
     ru: {
-      title: "Фото в текст распознать текст с фото онлайн бесплатно",
+      title: "Распознать текст с фото онлайн бесплатно",
       description:
         "Конвертер фото в текст позволяет скопировать текст с фото. Вы можете извлечь текст с картинки с помощью этого переводчика изображений.",
     },

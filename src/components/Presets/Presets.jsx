@@ -56,6 +56,7 @@ const Presets = () => {
   const [isExporting, setIsExporting] = useState(false);
   const [activeFilter, setActiveFilter] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const renderTokenRef = useRef(0);
   const previewTokenRef = useRef(0);
 
@@ -67,7 +68,7 @@ const Presets = () => {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MultimediaApplication",
+    "@type": "WebApplication",
     name: meta.title,
     description: meta.description,
     url: `${SITE_URL}${route[lang]}`,
@@ -83,6 +84,7 @@ const Presets = () => {
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
     if (!file) return;
+    setErrorMessage("");
     setOriginalFile(file);
     setSelectedId(null);
     setPreviewUrl(null);
@@ -90,12 +92,22 @@ const Presets = () => {
     setIntensity(DEFAULT_INTENSITY);
   }, []);
 
+  // Файл не з accept (напр. .txt/.pdf) — раніше тихо ігнорувався
+  const onDropRejected = useCallback(
+    (rejections) => {
+      const name = rejections?.[0]?.file?.name || "";
+      setErrorMessage(t("errors.fileInvalidType", { name }));
+    },
+    [t]
+  );
+
   // noClick/noKeyboard прибрано — тепер уся площа дропзони клікабельна
   // (не тільки кнопка всередині), і доступна з клавіатури (Tab + Enter).
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { "image/*": [] },
     multiple: false,
     onDrop,
+    onDropRejected,
   });
 
   useEffect(() => {
@@ -112,6 +124,7 @@ const Presets = () => {
   useEffect(() => {
     if (!originalFile) return;
     const token = ++renderTokenRef.current;
+    const thumbsCount = {}; // скільки мініатюр уже вдалося створити в цьому проході
 
     (async () => {
       for (const preset of PRESETS) {
@@ -126,10 +139,21 @@ const Presets = () => {
           }
         } catch (err) {
           console.error("Не вдалося застосувати пресет", preset.id, err);
+          // Усі пресети декодують один і той самий файл: якщо перший не
+          // вдався — файл зіпсований/не зображення. Раніше сітка вічно
+          // показувала "Обробка…" без пояснень.
+          if (renderTokenRef.current === token && Object.keys(thumbsCount).length === 0) {
+            setErrorMessage(
+              t("errors.imageDecodeFailed", { name: originalFile.name })
+            );
+            setOriginalFile(null);
+          }
+          return;
         }
+        thumbsCount[preset.id] = true;
       }
     })();
-  }, [originalFile]);
+  }, [originalFile, t]);
 
   // Прев'ю в детальному екрані — перераховуємо з дебаунсом при русі повзунка
   useEffect(() => {
@@ -144,15 +168,25 @@ const Presets = () => {
     setIsPreviewLoading(true);
 
     (async () => {
-      const scaled = scalePreset(preset, debouncedIntensity / 100);
-      const canvas = await renderPresetToCanvas(originalFile, scaled, {
-        maxSize: PREVIEW_SIZE,
-      });
-      if (previewTokenRef.current !== token) return;
-      setPreviewUrl(canvas.toDataURL("image/jpeg", 0.9));
-      setIsPreviewLoading(false);
+      try {
+        const scaled = scalePreset(preset, debouncedIntensity / 100);
+        const canvas = await renderPresetToCanvas(originalFile, scaled, {
+          maxSize: PREVIEW_SIZE,
+        });
+        if (previewTokenRef.current !== token) return;
+        setPreviewUrl(canvas.toDataURL("image/jpeg", 0.9));
+      } catch (err) {
+        console.error("Не вдалося побудувати прев'ю", err);
+        if (previewTokenRef.current === token) {
+          setErrorMessage(t("errors.processFailed", { name: originalFile.name }));
+        }
+      } finally {
+        // раніше без try/finally кнопка "Завантажити" лишалась заблокованою
+        // назавжди, якщо рендер кидав виняток
+        if (previewTokenRef.current === token) setIsPreviewLoading(false);
+      }
     })();
-  }, [originalFile, selectedId, debouncedIntensity]);
+  }, [originalFile, selectedId, debouncedIntensity, t]);
 
   const handleSelect = (id) => {
     setSelectedId(id);
@@ -176,14 +210,22 @@ const Presets = () => {
       a.href = url;
       const base = originalFile.name.replace(/\.[^.]+$/, "");
       a.download = `${base}-${selectedId}-${intensity}.jpg`;
+      a.style.display = "none";
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(url);
+      a.remove();
+      // не відкликаємо URL одразу: частина браузерів ще не почала завантаження
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    } catch (err) {
+      console.error("Експорт не вдався", err);
+      setErrorMessage(t("errors.processFailed", { name: originalFile.name }));
     } finally {
       setIsExporting(false);
     }
   };
 
   const handleReset = () => {
+    setErrorMessage("");
     setOriginalFile(null);
     setSelectedId(null);
     setPreviewUrl(null);
@@ -228,6 +270,12 @@ const Presets = () => {
               </span>
             </div>
           </div>
+        )}
+
+        {errorMessage && (
+          <p className="error-text" role="alert">
+            {errorMessage}
+          </p>
         )}
 
         {originalFile && (

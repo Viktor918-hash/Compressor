@@ -6,11 +6,11 @@ const SITE_URL = "https://compressphoto.org";
 // Fallback, якщо для route.slug немає запису в PAGE_META
 // (наприклад, нова сторінка, для якої ще не написали унікальний текст)
 const DEFAULT_DESCRIPTIONS = {
-  uk: "Безкоштовний онлайн-сервіс для обробки зображень у браузері: стиснення, зміна розміру, конвертація у JPG і WebP та фото-пресети. Швидко, якісно та без відправки файлів на сервер.",
-  en: "Free online image tool: compress photos, resize images, convert to JPG and WebP, and apply photo presets directly in your browser. Fast, private, and secure.",
-  ru: "Бесплатный онлайн-сервис для обработки изображений в браузере: сжатие, изменение размера, конвертация в JPG и WebP и фото-прессеты. Быстро, качественно и без отправки файлов на сервер.",
+  uk: "Безкоштовний онлайн-сервіс для обробки зображень у браузері: стиснення, зміна розміру, конвертація у JPG і WebP та фото-пресети. Швидко та безпечно.",
+  en: "Free online image tool: compress photos, resize images, convert to JPG and WebP, and apply photo presets directly in your browser. Fast and secure.",
+  ru: "Бесплатный онлайн-сервис для обработки изображений в браузере: сжатие, изменение размера, конвертация в JPG и WebP и фото-прессеты. Быстро и безопасно.",
   // TODO: перевірити/відредагувати іспанський переклад
-  es: "Herramienta gratuita en línea para editar imágenes en tu navegador: comprime, redimensiona, convierte a JPG y WebP, y aplica preajustes de fotos. Rápido, privado y seguro.",
+  es: "Herramienta gratuita en línea para editar imágenes en tu navegador: comprime, redimensiona, convierte a JPG y WebP, y aplica preajustes de fotos. Rápido y seguro.",
 };
 
 const DEFAULT_TITLES = {

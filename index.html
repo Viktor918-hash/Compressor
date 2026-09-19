@@ -12,14 +12,17 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0F165P2VRL"></script>
+  <!-- Google Analytics: скрипт gtag.js НЕ вантажиться до згоди користувача
+       (див. src/utils/consent.js). Тут лише "заглушка" з consent = denied. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-0F165P2VRL');
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
   </script>
   <style>
     html,

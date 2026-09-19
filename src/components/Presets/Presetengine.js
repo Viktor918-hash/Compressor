@@ -256,11 +256,25 @@ function loadImage(source) {
       return;
     }
     const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error("Не вдалося завантажити зображення"));
+    // Blob-URL, створений тут, звільняємо одразу після завантаження (раніше
+    // він не відкликався ніколи — а на кожен із 26 пресетів створювався новий).
+    let objectUrl = null;
+    const cleanup = () => {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    };
+    img.onload = () => {
+      cleanup();
+      resolve(img);
+    };
+    img.onerror = () => {
+      cleanup();
+      reject(new Error("Не вдалося завантажити зображення"));
+    };
 
     if (source instanceof Blob) {
-      img.src = URL.createObjectURL(source);
+      objectUrl = URL.createObjectURL(source);
+      img.src = objectUrl;
     } else {
       img.src = source; // рядок-URL
     }

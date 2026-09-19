@@ -9,13 +9,20 @@ import { supabase } from "../lib/supabaseClient";
 
 const AuthContext = createContext(null);
 
+// supabase === null, коли не задано VITE_SUPABASE_* (див. lib/supabaseClient.js):
+// сайт працює як гість, а методи авторизації повертають зрозумілу помилку.
+const authUnavailable = () => ({
+  data: null,
+  error: new Error("Auth is not configured"),
+});
+
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [profile, setProfile] = useState(null); // рядок з таблиці profiles (is_pro, тощо)
   const [loading, setLoading] = useState(true);
 
   const loadProfile = useCallback(async (userId) => {
-    if (!userId) {
+    if (!userId || !supabase) {
       setProfile(null);
       return;
     }
@@ -33,6 +40,11 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return undefined;
+    }
+
     // Початкова сесія при завантаженні сторінки
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -52,11 +64,13 @@ export function AuthProvider({ children }) {
   }, [loadProfile]);
 
   const signUpWithEmail = async (email, password) => {
+    if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signUp({ email, password });
     return { data, error };
   };
 
   const signInWithEmail = async (email, password) => {
+    if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -65,6 +79,7 @@ export function AuthProvider({ children }) {
   };
 
   const signInWithGoogle = async () => {
+    if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: window.location.origin },
@@ -73,6 +88,7 @@ export function AuthProvider({ children }) {
   };
 
   const signInWithApple = async () => {
+    if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "apple",
       options: { redirectTo: window.location.origin },
@@ -81,6 +97,7 @@ export function AuthProvider({ children }) {
   };
 
   const signOut = async () => {
+    if (!supabase) return;
     await supabase.auth.signOut();
   };
 

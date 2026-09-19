@@ -36,8 +36,7 @@
     "titleGradient": "más ligeras",
     "text1": "Comprime JPG, PNG y WebP en segundos, directamente en tu navegador y sin perder calidad.",
     "text2": "Reduce el tamaño de varias imágenes a la vez.",
-    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo",
-    "moreToolsTitle": "Herramientas populares"
+    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo"
   },
   "convert": {
     "titlePart2": "Cualquier formato",
@@ -81,7 +80,9 @@
     "selected": "Fotos seleccionadas:",
     "upLoadPhotos": "Descargar fotos",
     "upLoadPhoto": "Descargar",
-    "saved": "Ahorrado"
+    "saved": "Ahorrado",
+    "removeFile": "Eliminar {{name}}",
+    "addMoreAria": "Añadir otro archivo"
   },
   "convertWebp": {
     "titlePart2": "Convierte fotos a ",
@@ -417,7 +418,7 @@
     "wordToPdf": {
       "title": "Por qué convertir Word a PDF",
       "text1": "El PDF mantiene el diseño de un documento sin cambios en cualquier dispositivo: las fuentes, los espaciados y las imágenes se ven igual en un ordenador, en un móvil o al imprimir. Esto es fundamental para currículums, contratos, propuestas comerciales y documentos oficiales que no deben descuadrarse al abrirse en otra versión de Word.",
-      "text2": "Un archivo PDF también es más difícil de modificar por error que un .doc o .docx, por lo que este formato es el estándar para enviar versiones finales de documentos. El conversor procesa el archivo directamente en el navegador, conservando el formato, las tablas y las imágenes del original.",
+      "text2": "Un archivo PDF también es más difícil de modificar por error que un .doc o .docx, por lo que este formato es el estándar para enviar versiones finales de documentos. El archivo se envía por una conexión cifrada a un servidor de conversión y se elimina automáticamente de él al poco tiempo; se conservan el formato, las tablas y las imágenes.",
       "benefits": [
         {
           "title": "Formato conservado",
@@ -579,5 +580,44 @@
       ]
     },
     "faqTitle": "Preguntas frecuentes"
+  },
+  "errors": {
+    "fileInvalidType": "«{{name}}» no es un tipo de archivo compatible.",
+    "fileTooLarge": "«{{name}}» es demasiado grande (máximo {{max}} MB).",
+    "tooManyFiles": "Se añadieron los primeros {{count}} archivo(s); el límite es {{max}}. Omitidos: {{skipped}}.",
+    "limitFull": "Se alcanzó el límite de archivos ({{max}}). Elimina un archivo para añadir otro.",
+    "processFailed": "No se pudo procesar «{{name}}». El archivo puede estar dañado o tener un formato no compatible.",
+    "imageDecodeFailed": "No se pudo abrir la imagen «{{name}}». Es posible que el archivo esté dañado.",
+    "resizeFailed": "No se pudo cambiar el tamaño de la imagen. Prueba con otro tamaño o formato.",
+    "outputTooBig": "El tamaño solicitado es demasiado grande para tu navegador. Reduce el ancho o el alto.",
+    "zipFailed": "No se pudo crear el archivo ZIP. Prueba a descargar los archivos uno por uno.",
+    "network": "No hay conexión con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+    "more": "…y {{count}} mensajes más.",
+    "server": {
+      "EMPTY_FILE": "El archivo está vacío.",
+      "INVALID_FILE_TYPE": "El archivo no parece tener el formato de documento esperado. Comprueba que no esté dañado.",
+      "FILE_TOO_LARGE": "El archivo es demasiado grande. El tamaño máximo es 4 MB.",
+      "RESULT_TOO_LARGE": "El archivo convertido es demasiado grande para descargarlo (más de 4 MB). Prueba con un documento más pequeño.",
+      "SERVICE_UNAVAILABLE": "El servicio no está disponible temporalmente. Inténtalo más tarde.",
+      "CONVERSION_TIMEOUT": "La conversión tarda demasiado. Inténtalo de nuevo o usa un archivo más pequeño.",
+      "CONVERSION_FAILED": "No se pudo convertir el archivo. Inténtalo de nuevo más tarde."
+    },
+    "boundary": {
+      "title": "Algo salió mal",
+      "text": "Esta página no está disponible temporalmente. Recárgala; normalmente basta con eso.",
+      "reload": "Recargar"
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "Puede que la dirección tenga un error o que la página se haya eliminado.",
+    "home": "Ir al inicio"
+  },
+  "consent": {
+    "aria": "Cookies y analítica",
+    "text": "Usamos Google Analytics para entender cómo se usa el sitio. Tus archivos y sus nombres nunca se envían a la analítica.",
+    "accept": "Aceptar",
+    "decline": "Rechazar",
+    "settings": "Configuración de cookies"
   }
 }

@@ -1,4 +1,13 @@
+/* fixed, а не в потоці документа: раніше банер з'являвся після завантаження
+   й зсував увесь контент вниз (CLS). */
 .lang-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1000;
+    max-width: 640px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +15,9 @@
     flex-wrap: wrap;
     padding: 10px 20px;
     background: #f5f5ff;
-    border-bottom: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     font-size: 13px;
     color: #374151;
     text-align: center;

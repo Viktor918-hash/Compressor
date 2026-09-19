@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import i18n from "./i18n/i18n";
@@ -8,6 +8,9 @@ import { ROUTES } from "./routes.jsx";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer.jsx";
 import LanguageSuggestionBanner from "./components/LanguageSuggestion/LanguageSuggestionBanner";
+import ConsentBanner from "./components/ConsentBanner/ConsentBanner";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import NotFound from "./components/NotFound/NotFound";
 
 /**
  * Жорстко задає мову контенту для цього конкретного роута на основі URL
@@ -45,6 +48,7 @@ function PrerenderSignal() {
 }
 
 function App() {
+  const location = useLocation();
   return (
     <HelmetProvider>
       <AuthProvider>
@@ -52,6 +56,8 @@ function App() {
           <Header />
           <LanguageSuggestionBanner />
           <div className="app-main">
+            {/* key: після переходу на іншу сторінку межа помилок скидається */}
+            <ErrorBoundary key={location.pathname}>
             <Routes>
               {ROUTES.map(({ slug, uk, Component }) => (
                 <Route
@@ -97,9 +103,12 @@ function App() {
                   }
                 />
               ))}
+              <Route path="*" element={<NotFound />} />
             </Routes>
+            </ErrorBoundary>
           </div>
           <Footer />
+          <ConsentBanner />
           <PrerenderSignal />
         </div>
       </AuthProvider>

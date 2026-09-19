@@ -77,7 +77,7 @@ const RemoveBg = () => {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MultimediaApplication",
+    "@type": "WebApplication",
     name: meta.title,
     description: meta.description,
     url: `${SITE_URL}${route[lang]}`,

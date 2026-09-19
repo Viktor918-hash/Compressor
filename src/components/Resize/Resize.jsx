@@ -29,7 +29,13 @@ const FORMATS = [
 
 const RATIO_MATCH_TOLERANCE = 0.01;
 
+// Жорсткі межі canvas у браузерах (Chrome/Firefox: 32767 px по стороні,
+// ≈268 Мпікс площа). Понад це toBlob() тихо повертає порожнє зображення.
+const MAX_CANVAS_SIDE = 32767;
+const MAX_CANVAS_AREA = 268_435_456;
+
 const Resize = () => {
+  const { t } = useTranslation();
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [original, setOriginal] = useState({ width: 0, height: 0 });
@@ -54,6 +60,14 @@ const Resize = () => {
   const ratioRef = useRef(1);
   const previewRef = useRef(null);
   const draggingRef = useRef(false);
+  const imageUrlRef = useRef(null); // поточний Blob-URL, щоб звільняти його
+
+  // Звільняємо Blob-URL при виході зі сторінки
+  useEffect(() => {
+    return () => {
+      if (imageUrlRef.current) URL.revokeObjectURL(imageUrlRef.current);
+    };
+  }, []);
 
   const loadFile = useCallback((f) => {
     setError("");
@@ -63,6 +77,9 @@ const Resize = () => {
     const img = new Image();
 
     img.onload = () => {
+      // Попередній Blob-URL більше не потрібен — не тримаємо його в пам'яті
+      if (imageUrlRef.current) URL.revokeObjectURL(imageUrlRef.current);
+      imageUrlRef.current = url;
       setFile(f);
       setImageUrl(url);
       setOriginal({ width: img.naturalWidth, height: img.naturalHeight });
@@ -74,12 +91,12 @@ const Resize = () => {
     };
 
     img.onerror = () => {
-      setError("Не вдалося прочитати зображення.");
+      setError(t("errors.imageDecodeFailed", { name: f.name }));
       URL.revokeObjectURL(url);
     };
 
     img.src = url;
-  }, []);
+  }, [t]);
 
   const onDrop = useCallback(
     (accepted) => {
@@ -88,9 +105,19 @@ const Resize = () => {
     [loadFile]
   );
 
+  // Файл не з accept (напр. .txt/.pdf) — раніше тихо ігнорувався
+  const onDropRejected = useCallback(
+    (rejections) => {
+      const name = rejections?.[0]?.file?.name || "";
+      setError(t("errors.fileInvalidType", { name }));
+    },
+    [t]
+  );
+
   const { getRootProps, getInputProps, open, isDragActive } = useDropzone({
     accept: { "image/*": [] },
     onDrop,
+    onDropRejected,
     noClick: true,
     noKeyboard: true,
     multiple: false,
@@ -231,6 +258,15 @@ const Resize = () => {
   const handleResizeAndDownload = async () => {
     if (!file || !newWidth || !newHeight) return;
 
+    if (
+      newWidth > MAX_CANVAS_SIDE ||
+      newHeight > MAX_CANVAS_SIDE ||
+      newWidth * newHeight > MAX_CANVAS_AREA
+    ) {
+      setError(t("errors.outputTooBig"));
+      return;
+    }
+
     setIsProcessing(true);
     setError("");
 
@@ -247,6 +283,13 @@ const Resize = () => {
       canvas.height = newHeight;
       const ctx = canvas.getContext("2d");
       ctx.imageSmoothingQuality = "high";
+
+      // JPG не підтримує прозорість: без білої підкладки прозорі ділянки
+      // PNG/WebP ставали чорними (див. те саме в convertToJpg.jsx)
+      if (format.value === "image/jpeg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
 
       if (needsCrop && cropMode === "cover") {
         drawImageCover(ctx, img, newWidth, newHeight, cropOffset);
@@ -266,19 +309,25 @@ const Resize = () => {
       const a = document.createElement("a");
       a.href = url;
       a.download = outputName;
+      a.style.display = "none";
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(url);
+      a.remove();
+      // не відкликаємо URL одразу: частина браузерів ще не почала завантаження
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
 
       setDownloaded(true);
     } catch (e) {
-      setError("Не вдалося змінити розмір зображення.");
+      console.error("resize failed:", e);
+      setError(t("errors.resizeFailed"));
     } finally {
       setIsProcessing(false);
     }
   };
 
   const handleReset = () => {
-    if (imageUrl) URL.revokeObjectURL(imageUrl);
+    if (imageUrlRef.current) URL.revokeObjectURL(imageUrlRef.current);
+    imageUrlRef.current = null;
     setFile(null);
     setImageUrl(null);
     setOriginal({ width: 0, height: 0 });
@@ -288,14 +337,13 @@ const Resize = () => {
     setDownloaded(false);
     setMobileSettingsOpen(false);
   };
-  const { t } = useTranslation();
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "resize");
   const meta = PAGE_META.resize[lang];
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MultimediaApplication",
+    "@type": "WebApplication",
     name: meta.title,
     description: meta.description,
     url: `${SITE_URL}${route[lang]}`,
@@ -350,6 +398,13 @@ const Resize = () => {
                   </button>
                 </div>
               </div>
+
+              {/* помилка до завантаження файлу (не той тип / не вдалося відкрити) */}
+              {error && (
+                <p className="error-text" role="alert">
+                  {error}
+                </p>
+              )}
             </>
           )}
 
@@ -416,7 +471,7 @@ const Resize = () => {
               <button
                 className="side-panel__back-btn"
                 onClick={handleReset}
-                aria-label="Закрити панель"
+                aria-label={t("panel.closePanel")}
               >
                 <FiArrowLeft size={20} /> {t("panel.closePanel")}
               </button>
@@ -551,7 +606,11 @@ const Resize = () => {
               </div>
             </div>
 
-            {error && <p className="error-text">{error}</p>}
+            {error && (
+              <p className="error-text" role="alert">
+                {error}
+              </p>
+            )}
           </div>
         )}
 

@@ -15,14 +15,15 @@
     box-sizing: border-box;
 }
 
-:focus,
-:active {
+/* Прибираємо контур лише для кліку мишею; для клавіатури (Tab) він
+   лишається видимим — інакше користувач не бачить, де фокус (WCAG 2.4.7). */
+:focus:not(:focus-visible) {
     outline: none;
 }
 
-a:focus,
-a:active {
-    outline: none;
+:focus-visible {
+    outline: 2px solid #4a4af4;
+    outline-offset: 2px;
 }
 
 nav,

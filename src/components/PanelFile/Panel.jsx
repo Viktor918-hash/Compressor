@@ -2,16 +2,31 @@ import "../Hero/Hero.css";
 import "../Hero/sidePanel.css";
 import { FiDownload, FiArrowLeft, FiX, FiFileText } from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-import JSZip from "jszip";
 import { useTranslation } from "react-i18next";
+import { trackEvent } from "../analytics";
 
-// 📊 Функція для відправки подій в Google Analytics
-const trackGaEvent = (eventName, eventParams = {}) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", eventName, eventParams);
-  }
+// 📊 Події Google Analytics (лише після згоди — див. components/analytics.js).
+// УВАГА: не додавайте в params імена файлів чи інші персональні дані —
+// назви документів часто містять прізвища/назви договорів.
+const trackGaEvent = trackEvent;
+
+// Скільки повідомлень про помилки показуємо одразу (решта — "…та ще N")
+const MAX_VISIBLE_ERRORS = 3;
+
+// Блокуємо Blob-URL не одразу після click(): деякі браузери ще не встигли
+// почати завантаження. 60 с — з запасом, пам'ять звільняється після цього.
+const revokeLater = (url) => setTimeout(() => URL.revokeObjectURL(url), 60_000);
+
+const triggerDownload = (href, filename) => {
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = filename;
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 };
 
 const Panel = ({
@@ -28,7 +43,7 @@ const Panel = ({
   // передати свої, щоб не писало "Додайте фото" для .docx файлу.
   emptyStateText,
   addMoreText,
-  addMoreAriaLabel = "Додати ще фото",
+  addMoreAriaLabel,
   selectedLabel,
   downloadOneText,
   downloadManyText,
@@ -53,24 +68,90 @@ const Panel = ({
   const [selectedFormat, setSelectedFormat] = useState(
     defaultFormatId || formats?.[0]?.id
   );
+  const { t } = useTranslation();
   const [processedFiles, setProcessedFiles] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState([]); // масив локалізованих повідомлень
   const [showPanel, setShowPanel] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
+  // "Сесія" обробки: збільшується при закритті панелі й розмонтуванні, щоб
+  // цикл обробки, який ще виконується, зупинився і не додавав файли в
+  // уже закриту панель (і не витрачав CPU/квоту даремно).
+  const sessionRef = useRef(0);
+  const processedRef = useRef([]);
+  useEffect(() => {
+    processedRef.current = processedFiles;
+  }, [processedFiles]);
+  // Розмонтування (перехід на іншу сторінку): звільняємо всі Blob-URL
+  useEffect(() => {
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- навмисно: лічильник, не DOM-вузол
+      sessionRef.current++;
+      processedRef.current.forEach((f) => f.url && URL.revokeObjectURL(f.url));
+    };
+  }, []);
+
+  const pushError = useCallback(
+    (message) => setErrors((prev) => [...prev, message]),
+    []
+  );
+
+  // Причина відхилення файлу самим react-dropzone (тип не з accept тощо)
+  const describeRejection = useCallback(
+    (file, dropErrors) => {
+      const code = dropErrors?.[0]?.code;
+      if (code === "file-invalid-type") {
+        return t("errors.fileInvalidType", { name: file.name });
+      }
+      if (code === "file-too-large") {
+        return t("errors.fileTooLarge", {
+          name: file.name,
+          max: (maxFileSize / 1024 / 1024).toFixed(0),
+        });
+      }
+      return t("errors.processFailed", { name: file.name });
+    },
+    [t, maxFileSize]
+  );
+
   const onDrop = useCallback(
-    async (acceptedFiles) => {
-      setErrorMessage("");
+    async (acceptedFiles, fileRejections = []) => {
+      const problems = fileRejections.map(({ file, errors: dropErrors }) =>
+        describeRejection(file, dropErrors)
+      );
+
+      // Нічого придатного (наприклад, .txt на сторінці зображень): показуємо
+      // причину й НЕ відкриваємо порожню бічну панель.
+      if (acceptedFiles.length === 0) {
+        setErrors(problems);
+        return;
+      }
 
       const availableSlots = maxFiles - processedFiles.length;
 
-      if (acceptedFiles.length > availableSlots) {
-        setErrorMessage(
-          `Можна додати ще максимум ${availableSlots} файлів. Ліміт — ${maxFiles}.`
-        );
+      if (availableSlots <= 0) {
+        setErrors([...problems, t("errors.limitFull", { max: maxFiles })]);
         return;
       }
+
+      // Приймаємо перші N файлів, решту чесно позначаємо як пропущені —
+      // замість того, щоб відхиляти всю партію.
+      const filesToProcess = acceptedFiles.slice(0, availableSlots);
+      const skipped = acceptedFiles.length - filesToProcess.length;
+      if (skipped > 0) {
+        problems.push(
+          t("errors.tooManyFiles", {
+            count: filesToProcess.length,
+            max: maxFiles,
+            skipped,
+          })
+        );
+      }
+      setErrors(problems);
+
+      const session = sessionRef.current;
+      const isStale = () => session !== sessionRef.current;
 
       setShowPanel(true);
       setIsProcessing(true);
@@ -78,23 +159,25 @@ const Panel = ({
 
       // 📊 1. ВІДСТЕЖЕННЯ ПОЧАТКУ ОБРОБКИ
       trackGaEvent("photo_process_start", {
-        files_count: acceptedFiles.length,
+        files_count: filesToProcess.length,
       });
 
-      for (const file of acceptedFiles) {
+      for (const file of filesToProcess) {
+        if (isStale()) return;
+
         if (file.size > maxFileSize) {
-          setErrorMessage(
-            `Файл ${file.name} занадто великий, макс. ${(
-              maxFileSize /
-              1024 /
-              1024
-            ).toFixed(0)}МБ.`
+          pushError(
+            t("errors.fileTooLarge", {
+              name: file.name,
+              max: (maxFileSize / 1024 / 1024).toFixed(0),
+            })
           );
           continue;
         }
 
         try {
           const result = await processFile(file);
+          if (isStale()) return;
 
           if (hasFormatSwitcher) {
             // Мультиформатний режим: result — це "сирі" дані (наприклад,
@@ -117,7 +200,6 @@ const Panel = ({
             ]);
 
             trackGaEvent("photo_compressed", {
-              file_name: file.name,
               original_size_mb: (file.size / 1024 / 1024).toFixed(2),
               processed_size_mb: (blob.size / 1024 / 1024).toFixed(2),
             });
@@ -125,6 +207,10 @@ const Panel = ({
           }
 
           const url = URL.createObjectURL(result);
+          if (isStale()) {
+            URL.revokeObjectURL(url);
+            return;
+          }
           const outputName = getOutputName
             ? getOutputName(file.name)
             : file.name;
@@ -141,23 +227,29 @@ const Panel = ({
           ]);
           // 📊 2. ВІДСТЕЖЕННЯ УСПІШНОГО СТИСНЕННЯ / КОНВЕРТАЦІЇ КОЖНОГО ФАЙЛА
           trackGaEvent("photo_compressed", {
-            file_name: file.name,
             original_size_mb: (file.size / 1024 / 1024).toFixed(2),
             processed_size_mb: (result.size / 1024 / 1024).toFixed(2),
           });
         } catch (error) {
+          if (isStale()) return;
           if (error?.code === "LIMIT_REACHED") {
-            setErrorMessage(error.message);
+            pushError(error.message);
             onLimitReached?.(error);
             break; // немає сенсу пробувати решту файлів у цій же партії
           }
-          setErrorMessage(
-            error?.message || `Не вдалося обробити "${file.name}".`
+          console.error("processFile failed:", error);
+          // Показуємо повідомлення лише від помилок, які самі є
+          // "для користувача" (локалізовані); технічні тексти бібліотек
+          // ("Failed to fetch", "Canvas toBlob failed") — не показуємо.
+          pushError(
+            error?.userFacing && error?.message
+              ? error.message
+              : t("errors.processFailed", { name: file.name })
           );
         }
       }
 
-      setIsProcessing(false);
+      if (!isStale()) setIsProcessing(false);
     },
     [
       processedFiles.length,
@@ -168,6 +260,10 @@ const Panel = ({
       hasFormatSwitcher,
       buildOutput,
       selectedFormat,
+      describeRejection,
+      pushError,
+      onLimitReached,
+      t,
     ]
   );
 
@@ -246,38 +342,40 @@ const Panel = ({
       // Blob перегенеровано щойно вище, тож створюємо URL тут-таки і
       // одразу звільняємо його після кліку.
       const href = url || URL.createObjectURL(processed);
-      const a = document.createElement("a");
-      a.href = href;
-      a.download = outputName;
-      a.click();
-      if (!url) URL.revokeObjectURL(href);
+      triggerDownload(href, outputName);
+      if (!url) revokeLater(href);
       setDownloaded(true);
       return;
     }
 
-    const zip = new JSZip();
-    const usedNames = new Set();
+    try {
+      // JSZip (~100 КБ) потрібен лише для завантаження кількох файлів —
+      // тому вантажимо його тільки тут, а не в головному бандлі.
+      const { default: JSZip } = await import("jszip");
+      const zip = new JSZip();
+      const usedNames = new Set();
 
-    for (const { outputName, processed } of currentOutputs) {
-      const uniqueName = getUniqueFileName(outputName, usedNames);
-      zip.file(uniqueName, processed);
+      for (const { outputName, processed } of currentOutputs) {
+        const uniqueName = getUniqueFileName(outputName, usedNames);
+        zip.file(uniqueName, processed);
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const zipUrl = URL.createObjectURL(zipBlob);
+      triggerDownload(zipUrl, "processed-files.zip");
+      revokeLater(zipUrl);
+      setDownloaded(true);
+    } catch (error) {
+      console.error("zip failed:", error);
+      pushError(t("errors.zipFailed"));
     }
-
-    const zipBlob = await zip.generateAsync({ type: "blob" });
-    const zipUrl = URL.createObjectURL(zipBlob);
-
-    const a = document.createElement("a");
-    a.href = zipUrl;
-    a.download = "processed-files.zip";
-    a.click();
-    URL.revokeObjectURL(zipUrl);
-    setDownloaded(true);
   };
 
   const handleReset = () => {
+    sessionRef.current++; // зупиняємо обробку, що ще триває
     processedFiles.forEach((f) => f.url && URL.revokeObjectURL(f.url));
     setProcessedFiles([]);
-    setErrorMessage("");
+    setErrors([]);
     setShowPanel(false);
     setIsProcessing(false);
     setDownloaded(false);
@@ -311,7 +409,22 @@ const Panel = ({
   }, [showPanel]);
 
   const fmtSize = (bytes) => (bytes / 1024 / 1024).toFixed(2) + " MB";
-  const { t } = useTranslation();
+  const visibleErrors = errors.slice(0, MAX_VISIBLE_ERRORS);
+  const hiddenErrors = errors.length - visibleErrors.length;
+  const errorBlock =
+    errors.length > 0 ? (
+      <div role="alert">
+        {visibleErrors.map((message, i) => (
+          <p className="error-text" key={i}>
+            {message}
+          </p>
+        ))}
+        {hiddenErrors > 0 && (
+          <p className="error-text">{t("errors.more", { count: hiddenErrors })}</p>
+        )}
+      </div>
+    ) : null;
+
   return (
     <main className="main" {...getRootProps()}>
       <input {...getInputProps()} />
@@ -345,9 +458,7 @@ const Panel = ({
             </div>
           </div>
 
-          {errorMessage && !showPanel && (
-            <p className="error-text">{errorMessage}</p>
-          )}
+          {!showPanel && errorBlock}
         </div>
       </div>
 
@@ -358,7 +469,7 @@ const Panel = ({
               <button
                 className="side-panel__back-btn"
                 onClick={handleCloseClick}
-                aria-label="Закрити панель"
+                aria-label={t("panel.closePanel")}
               >
                 <FiArrowLeft size={20} /> {t("panel.closePanel")}
               </button>
@@ -369,7 +480,7 @@ const Panel = ({
           </h2>
         </div>
 
-        {errorMessage && <p className="error-text">{errorMessage}</p>}
+        {showPanel && errorBlock}
 
         {processedFiles.length > 0 ? (
           showStats && (
@@ -402,7 +513,7 @@ const Panel = ({
             <button
               className="side-panel__add-btn"
               onClick={open}
-              aria-label={addMoreAriaLabel}
+              aria-label={addMoreAriaLabel || t("panel.addMoreAria")}
             >
               <TbPhotoPlus size={24} className="side-panel_icon" />
               <span className="side-panel__add-text">
@@ -449,7 +560,7 @@ const Panel = ({
                 aria-label={
                   removeAriaLabel
                     ? removeAriaLabel(original.name)
-                    : `Видалити ${original.name}`
+                    : t("panel.removeFile", { name: original.name })
                 }
               >
                 <FiX size={16} className="btn__krest" />

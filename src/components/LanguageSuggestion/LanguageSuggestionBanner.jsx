@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import "./LanguageSuggestionBanner.css";
+import { getConsent, CONSENT_EVENT } from "../../utils/consent";
 
 const STORAGE_KEY = "lang-banner-dismissed";
 
@@ -56,10 +57,26 @@ const LanguageSuggestionBanner = () => {
   const suggestedLangCode = detectSuggestedLang(browserLang);
   const shouldSuggest = suggestedLangCode !== currentLangCode;
 
+  // Не показуємо разом із банером згоди (обидва fixed унизу): спершу
+  // користувач робить вибір щодо cookies, потім бачить пропозицію мови.
+  const [consentChosen, setConsentChosen] = useState(false);
   useEffect(() => {
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    setVisible(!dismissed && shouldSuggest);
-  }, [shouldSuggest]);
+    setConsentChosen(getConsent() !== null);
+    const onChange = () => setConsentChosen(true);
+    window.addEventListener(CONSENT_EVENT, onChange);
+    return () => window.removeEventListener(CONSENT_EVENT, onChange);
+  }, []);
+
+  useEffect(() => {
+    // localStorage може кидати виняток (приватний режим, заблоковані дані)
+    let dismissed = null;
+    try {
+      dismissed = localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // ігноруємо — просто покажемо банер
+    }
+    setVisible(!dismissed && shouldSuggest && consentChosen);
+  }, [shouldSuggest, consentChosen]);
 
   const switchLanguage = () => {
     const currentRoute = ROUTES.find(
@@ -75,7 +92,11 @@ const LanguageSuggestionBanner = () => {
   };
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
+    try {
+      localStorage.setItem(STORAGE_KEY, "1");
+    } catch {
+      // без localStorage відмова діє лише до перезавантаження
+    }
     setVisible(false);
   };
 

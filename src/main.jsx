@@ -3,7 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import "./components/resetCSS/reset.css";
 import App from "./App.jsx";
-import i18n from "./i18n/i18n.js";
+import "./i18n/i18n.js"; // ініціалізація i18next (побічний ефект імпорту)
+import { initAnalyticsFromStoredConsent } from "./utils/consent.js";
 
 /**
  * Сторінки в dist/ — це статичний HTML, "запечений" через Puppeteer-пре-рендер
@@ -32,6 +33,9 @@ function removePrerenderedSeoTags() {
   document.head.querySelectorAll(selectors.join(",")).forEach((el) => el.remove());
 }
 removePrerenderedSeoTags();
+
+// Google Analytics вантажимо лише якщо користувач раніше дав згоду
+initAnalyticsFromStoredConsent();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

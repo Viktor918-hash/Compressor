@@ -1,16 +1,27 @@
 const CLOUDCONVERT_API = "https://api.cloudconvert.com/v2";
 
-// Скільки разів і як часто опитувати статус завдання CloudConvert.
-// 20 × 1.2с ≈ 24с — вкладається у ліміт виконання serverless-функції
-// (див. functions.maxDuration у vercel.json).
-const POLL_ATTEMPTS = 20;
+// Опитування статусу завдання CloudConvert. Загальний дедлайн має
+// вкладатись у functions.maxDuration з vercel.json (там 60 с).
 const POLL_INTERVAL_MS = 1200;
+const POLL_DEADLINE_MS = 45_000;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
+ * Помилка з машинозчитуваним кодом. Текст (message) — лише для логів на
+ * сервері; клієнту віддається код, а людяне повідомлення підставляє i18n
+ * на фронтенді (див. errors.* у translation.json).
+ */
+export class ConvertError extends Error {
+  constructor(code, message, status = 500) {
+    super(message || code);
+    this.code = code;
+    this.status = status;
+  }
+}
+
+/**
  * Конвертує DOC/DOCX (Buffer) у PDF (Buffer) через CloudConvert.
- * Кидає Error з людяним повідомленням у разі невдачі.
  */
 export async function convertDocxToPdf(fileBuffer, filename) {
   return convertViaCloudConvert(fileBuffer, filename, "pdf");
@@ -18,10 +29,31 @@ export async function convertDocxToPdf(fileBuffer, filename) {
 
 /**
  * Конвертує PDF (Buffer) у DOCX (Buffer) через CloudConvert.
- * Кидає Error з людяним повідомленням у разі невдачі.
  */
 export async function convertPdfToDocx(fileBuffer, filename) {
   return convertViaCloudConvert(fileBuffer, filename, "docx");
+}
+
+// fetch із таймаутом, щоб зависання CloudConvert не з'їдало весь maxDuration
+async function timedFetch(url, options = {}, timeoutMs = 15_000) {
+  try {
+    return await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
+  } catch (err) {
+    if (err?.name === "TimeoutError" || err?.name === "AbortError") {
+      throw new ConvertError("CONVERSION_TIMEOUT", "CloudConvert request timed out", 504);
+    }
+    throw new ConvertError("CONVERSION_FAILED", `CloudConvert network error: ${err?.message}`, 502);
+  }
+}
+
+// Best-effort: скасувати/видалити завдання, щоб воно не продовжувало
+// коштувати після нашої помилки/таймауту.
+function cancelJob(jobId, authHeaders) {
+  return fetch(`${CLOUDCONVERT_API}/jobs/${jobId}`, {
+    method: "DELETE",
+    headers: authHeaders,
+    signal: AbortSignal.timeout(5_000),
+  }).catch(() => {});
 }
 
 /**
@@ -32,8 +64,10 @@ export async function convertPdfToDocx(fileBuffer, filename) {
 async function convertViaCloudConvert(fileBuffer, filename, outputFormat) {
   const apiKey = process.env.CLOUDCONVERT_API_KEY;
   if (!apiKey) {
-    throw new Error(
-      "CLOUDCONVERT_API_KEY не налаштований на сервері. Зверніться до адміністратора."
+    throw new ConvertError(
+      "SERVICE_UNAVAILABLE",
+      "CLOUDCONVERT_API_KEY не налаштований на сервері",
+      503
     );
   }
 
@@ -43,91 +77,104 @@ async function convertViaCloudConvert(fileBuffer, filename, outputFormat) {
   };
 
   // 1. Створюємо job: імпорт файлу (base64) → конвертація → експорт у URL
-  const createJobRes = await fetch(`${CLOUDCONVERT_API}/jobs`, {
-    method: "POST",
-    headers: authHeaders,
-    body: JSON.stringify({
-      tasks: {
-        "import-file": {
-          operation: "import/base64",
-          file: fileBuffer.toString("base64"),
-          filename,
+  const createJobRes = await timedFetch(
+    `${CLOUDCONVERT_API}/jobs`,
+    {
+      method: "POST",
+      headers: authHeaders,
+      body: JSON.stringify({
+        tasks: {
+          "import-file": {
+            operation: "import/base64",
+            file: fileBuffer.toString("base64"),
+            filename,
+          },
+          "convert-file": {
+            operation: "convert",
+            input: "import-file",
+            output_format: outputFormat,
+          },
+          "export-file": {
+            operation: "export/url",
+            input: "convert-file",
+          },
         },
-        "convert-file": {
-          operation: "convert",
-          input: "import-file",
-          output_format: outputFormat,
-        },
-        "export-file": {
-          operation: "export/url",
-          input: "convert-file",
-        },
-      },
-    }),
-  });
+      }),
+    },
+    20_000
+  );
 
   if (!createJobRes.ok) {
     const errText = await createJobRes.text().catch(() => "");
     console.error("CloudConvert create job failed:", createJobRes.status, errText);
-    throw new Error("Не вдалося створити завдання конвертації.");
+    throw new ConvertError("CONVERSION_FAILED", "CloudConvert create job failed", 502);
   }
 
   const createJobData = await createJobRes.json();
   const jobId = createJobData?.data?.id;
   if (!jobId) {
-    throw new Error("CloudConvert не повернув ID завдання.");
+    throw new ConvertError("CONVERSION_FAILED", "CloudConvert returned no job id", 502);
   }
 
-  // 2. Опитуємо статус, поки job не завершиться (успішно чи з помилкою)
-  let exportTask = null;
+  try {
+    // 2. Опитуємо статус, поки job не завершиться (успішно чи з помилкою)
+    let exportTask = null;
+    const deadline = Date.now() + POLL_DEADLINE_MS;
 
-  for (let attempt = 0; attempt < POLL_ATTEMPTS; attempt++) {
-    await sleep(POLL_INTERVAL_MS);
+    while (Date.now() < deadline) {
+      await sleep(POLL_INTERVAL_MS);
 
-    const statusRes = await fetch(
-      `${CLOUDCONVERT_API}/jobs/${jobId}?include=tasks`,
-      { headers: authHeaders }
-    );
-
-    if (!statusRes.ok) continue;
-
-    const statusData = await statusRes.json();
-    const job = statusData?.data;
-    const tasks = job?.tasks || [];
-
-    const errored = tasks.find((task) => task.status === "error");
-    if (errored) {
-      throw new Error(
-        `Помилка конвертації: ${errored.message || "невідома помилка CloudConvert"}`
+      const statusRes = await timedFetch(
+        `${CLOUDCONVERT_API}/jobs/${jobId}?include=tasks`,
+        { headers: authHeaders },
+        8_000
       );
+
+      if (!statusRes.ok) continue;
+
+      const statusData = await statusRes.json();
+      const tasks = statusData?.data?.tasks || [];
+
+      const errored = tasks.find((task) => task.status === "error");
+      if (errored) {
+        // Деталі — тільки в лог (можуть містити внутрішню інформацію).
+        console.error(
+          "CloudConvert task error:",
+          errored.name,
+          errored.code,
+          errored.message
+        );
+        throw new ConvertError("CONVERSION_FAILED", "CloudConvert task error", 502);
+      }
+
+      const foundExport = tasks.find(
+        (task) => task.name === "export-file" && task.status === "finished"
+      );
+      if (foundExport) {
+        exportTask = foundExport;
+        break;
+      }
     }
 
-    const foundExport = tasks.find(
-      (task) => task.name === "export-file" && task.status === "finished"
-    );
-    if (foundExport) {
-      exportTask = foundExport;
-      break;
+    if (!exportTask) {
+      throw new ConvertError("CONVERSION_TIMEOUT", "CloudConvert job timed out", 504);
     }
-  }
 
-  if (!exportTask) {
-    throw new Error(
-      "Конвертація триває занадто довго. Спробуйте, будь ласка, ще раз."
-    );
-  }
+    const fileUrl = exportTask.result?.files?.[0]?.url;
+    if (!fileUrl) {
+      throw new ConvertError("CONVERSION_FAILED", "CloudConvert returned no file url", 502);
+    }
 
-  const fileUrl = exportTask.result?.files?.[0]?.url;
-  if (!fileUrl) {
-    throw new Error("CloudConvert не повернув посилання на готовий файл.");
-  }
+    // 3. Завантажуємо готовий файл і повертаємо як Buffer
+    const outRes = await timedFetch(fileUrl, {}, 20_000);
+    if (!outRes.ok) {
+      throw new ConvertError("CONVERSION_FAILED", "Result download failed", 502);
+    }
 
-  // 3. Завантажуємо готовий PDF і повертаємо як Buffer
-  const pdfRes = await fetch(fileUrl);
-  if (!pdfRes.ok) {
-    throw new Error("Не вдалося завантажити готовий PDF.");
+    return Buffer.from(await outRes.arrayBuffer());
+  } catch (err) {
+    // Не залишаємо завдання «висіти» (і коштувати) після помилки/таймауту
+    await cancelJob(jobId, authHeaders);
+    throw err;
   }
-
-  const arrayBuffer = await pdfRes.arrayBuffer();
-  return Buffer.from(arrayBuffer);
 }

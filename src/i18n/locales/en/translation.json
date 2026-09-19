@@ -32,12 +32,11 @@
     "imageToTextDesc": "Extract text from a photo or screenshot"
   },
   "hero": {
-    "titlePart1": "Compress photos online – reduce photo file",
-    "titleGradient": "size",
+    "titlePart1": "Heavy photos - now",
+    "titleGradient": "lighter",
     "text1": "Compress JPG, PNG, WebP — in seconds, right in your browser, without quality loss.",
     "text2": "Resize multiple images at once.",
-    "dropzone": "Drop your file here or click to select",
-    "moreToolsTitle": "Popular tools"
+    "dropzone": "Drop your file here or click to select"
   },
   "convert": {
     "titlePart2": "Any format",
@@ -74,14 +73,16 @@
   "panel": {
     "dropText": "Drop files to upload",
     "closePanel": "Close panel",
-    "fileDownload": "File uploaded",
+    "fileDownload": "File downloaded",
     "fileRedi": "Ready to download",
     "processing": "Processing files…",
     "adFile": "Add a file",
     "selected": "Selected photos:",
     "upLoadPhotos": "Download photos",
     "upLoadPhoto": "Download",
-    "saved": "Saved"
+    "saved": "Saved",
+    "removeFile": "Remove {{name}}",
+    "addMoreAria": "Add another file"
   },
   "convertWebp": {
     "titlePart2": "Convert photos to ",
@@ -213,7 +214,6 @@
       "title": "Why compress images online",
       "text1": "Image compression shrinks a file's size without a noticeable drop in quality: photos load faster, your site ranks better in Google, and email attachments no longer clog up inboxes. The compressor runs right in your browser — JPG, PNG or WebP files are compressed in seconds, and the originals never leave your device.",
       "text2": "This matters most for website owners, bloggers and online stores: lighter images speed up page loads, improve Core Web Vitals, and directly affect search rankings. Smaller files also save disk space and are faster to send over messengers and email.",
-      "text3": "Unlike most online photo compressors, this one never uploads your file to a server — the whole process runs locally in your browser using JavaScript, so the image never leaves your device. That also means there's no queue, no file size limit tied to an upload connection, and nothing to worry about if the photo contains sensitive or private information.",
       "benefits": [
         {
           "title": "Speed",
@@ -248,14 +248,6 @@
         {
           "q": "Do I need to install any software?",
           "a": "No, everything works right in the browser on any device — Windows, macOS, Android or iOS."
-        },
-        {
-          "q": "How do I reduce the file size of a photo?",
-          "a": "Drop the photo into the box above — the compressor automatically shrinks JPG, PNG or WebP files by up to 90%, right in your browser, with no upload to a server and no software to install."
-        },
-        {
-          "q": "What's the best way to compress a JPEG without losing quality?",
-          "a": "A smart compressor balances file size against visual quality automatically instead of just lowering resolution — that's what this tool does, so most photos look virtually identical after compression even though the file is much smaller."
         }
       ]
     },
@@ -426,7 +418,7 @@
     "wordToPdf": {
       "title": "Why convert Word to PDF",
       "text1": "PDF keeps a document's layout unchanged on any device — fonts, spacing and images look identical on a computer, a phone, or when printed. This matters for resumes, contracts, business proposals and official documents that shouldn't shift out of place when opened in a different version of Word.",
-      "text2": "A PDF file is also harder to accidentally alter than a .doc or .docx, which is why the format is the standard for sending final versions of documents. The converter processes the file right in the browser, preserving the formatting, tables and images from the original.",
+      "text2": "A PDF file is also harder to accidentally alter than a .doc or .docx, which is why the format is the standard for sending final versions of documents. The file is sent over an encrypted connection to a conversion server and is automatically deleted from it after a short time; formatting, tables and images are preserved.",
       "benefits": [
         {
           "title": "Formatting preserved",
@@ -588,5 +580,44 @@
       ]
     },
     "faqTitle": "Frequently asked questions"
+  },
+  "errors": {
+    "fileInvalidType": "\"{{name}}\" is not a supported file type.",
+    "fileTooLarge": "\"{{name}}\" is too large (max {{max}} MB).",
+    "tooManyFiles": "Added the first {{count}} file(s) — the limit is {{max}}. Skipped: {{skipped}}.",
+    "limitFull": "File limit reached ({{max}}). Remove a file to add another.",
+    "processFailed": "Couldn't process \"{{name}}\". The file may be damaged or in an unsupported format.",
+    "imageDecodeFailed": "Couldn't open the image \"{{name}}\". The file may be damaged.",
+    "resizeFailed": "Couldn't resize the image. Try a different size or format.",
+    "outputTooBig": "The requested size is too large for your browser. Reduce the width or height.",
+    "zipFailed": "Couldn't create the ZIP archive. Try downloading the files one by one.",
+    "network": "Can't reach the server. Check your connection and try again.",
+    "more": "…and {{count}} more messages.",
+    "server": {
+      "EMPTY_FILE": "The file is empty.",
+      "INVALID_FILE_TYPE": "The file doesn't look like the expected document format. Make sure it isn't damaged.",
+      "FILE_TOO_LARGE": "The file is too large. Maximum size is 4 MB.",
+      "RESULT_TOO_LARGE": "The converted file is too large to download (over 4 MB). Try a smaller document.",
+      "SERVICE_UNAVAILABLE": "The service is temporarily unavailable. Please try again later.",
+      "CONVERSION_TIMEOUT": "The conversion is taking too long. Try again or use a smaller file.",
+      "CONVERSION_FAILED": "Couldn't convert the file. Please try again later."
+    },
+    "boundary": {
+      "title": "Something went wrong",
+      "text": "This page is temporarily unavailable. Reload it — that usually fixes it.",
+      "reload": "Reload"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The address may be mistyped, or the page has been removed.",
+    "home": "Go to the home page"
+  },
+  "consent": {
+    "aria": "Cookies and analytics",
+    "text": "We use Google Analytics to understand how the site is used. Your files and their names are never sent to analytics.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "settings": "Cookie settings"
   }
 }

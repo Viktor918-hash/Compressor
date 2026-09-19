@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
-import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
+import { PAGE_META } from "../../seoMeta";
 
 const compressImage = (file) => {
   const options = {
@@ -18,12 +18,13 @@ const compressImage = (file) => {
 };
 
 // JSON-LD structured data (schema.org) — допомагає Google краще розуміти
-// тип сайту й іноді додає розширені елементи у видачі (наприклад рейтинг).
-const jsonLd = {
+// тип сайту. Опис береться з PAGE_META для мови сторінки (раніше був
+// жорстко українським на всіх мовах).
+const buildJsonLd = (lang, route) => ({
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "CompressPhoto",
-  url: "https://compressphoto.org",
+  url: `https://compressphoto.org${route[lang]}`,
   applicationCategory: "PhotoEditingApplication",
   operatingSystem: "Any (Web Browser)",
   offers: {
@@ -31,14 +32,14 @@ const jsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
-  description:
-    "Безкоштовний онлайн-сервіс для стиснення, зміни розміру, конвертації та обробки фото пресетами прямо в браузері.",
-};
+  description: PAGE_META.home[lang].description,
+});
 
 const Hero = () => {
   const { t } = useTranslation();
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "home");
+  const jsonLd = buildJsonLd(lang, route);
 
   return (
     <>
@@ -58,32 +59,6 @@ const Hero = () => {
         <p className="main__text">{t("hero.text1")}</p>
         <p className="main__text">{t("hero.text2")}</p>
       </Panel>
-
-      {/* Внутрішні лінки на суміжні інструменти — допомагає і
-          користувачам ("що робити далі"), і розподілу link equity з
-          головної (найкраще індексованої/клікабельної сторінки, за
-          даними Search Console) на інші tool-сторінки. */}
-      <section className="home-more-tools container">
-        <h2 className="home-more-tools__title">{t("hero.moreToolsTitle")}</h2>
-        <div className="home-more-tools__grid">
-          <LocalizedLink to="/convert-to-jpg" className="home-more-tools__item">
-            <span className="home-more-tools__item-title">{t("header.convert")}</span>
-            <span className="home-more-tools__item-desc">{t("header.convertDesc")}</span>
-          </LocalizedLink>
-          <LocalizedLink to="/resize-image" className="home-more-tools__item">
-            <span className="home-more-tools__item-title">{t("header.resize")}</span>
-            <span className="home-more-tools__item-desc">{t("header.resizeDesc")}</span>
-          </LocalizedLink>
-          <LocalizedLink to="/remove-background" className="home-more-tools__item">
-            <span className="home-more-tools__item-title">{t("header.removeBg")}</span>
-            <span className="home-more-tools__item-desc">{t("header.removeBgDesc")}</span>
-          </LocalizedLink>
-          <LocalizedLink to="/photo-presets" className="home-more-tools__item">
-            <span className="home-more-tools__item-title">{t("header.prest")}</span>
-          </LocalizedLink>
-        </div>
-      </section>
-
       <SeoContent pageKey="home" />
     </>
   );

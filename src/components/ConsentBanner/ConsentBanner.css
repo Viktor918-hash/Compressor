@@ -1,0 +1,48 @@
+.consent-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1100;
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    background: #ffffff;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.consent-banner__text {
+    margin: 0;
+    flex: 1 1 260px;
+}
+
+.consent-banner__actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* однакові кнопки: відмова не має бути менш помітною за згоду */
+.consent-banner__btn {
+    border: 1px solid #4a4af4;
+    background: #ffffff;
+    color: #3a3ad0;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.consent-banner__btn:hover {
+    background: #f0f0ff;
+}

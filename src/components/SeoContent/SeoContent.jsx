@@ -29,13 +29,6 @@ const SeoContent = ({ pageKey }) => {
   const title = t(`seoContent.${pageKey}.title`);
   const text1 = t(`seoContent.${pageKey}.text1`);
   const text2 = t(`seoContent.${pageKey}.text2`);
-  // text3 — опційний третій абзац для сторінок/мов, де є сенс дати трохи
-  // глибший контент (напр. /en головна). Якщо ключа немає в перекладі,
-  // i18next поверне сам ключ як рядок — про це і перевірка нижче, щоб
-  // випадково не вивести "seoContent.home.text3" на екран користувачу.
-  const text3Key = `seoContent.${pageKey}.text3`;
-  const text3Raw = t(text3Key);
-  const text3 = text3Raw !== text3Key ? text3Raw : null;
   const benefits = t(`seoContent.${pageKey}.benefits`, { returnObjects: true });
   const faq = t(`seoContent.${pageKey}.faq`, { returnObjects: true });
 
@@ -64,7 +57,6 @@ const SeoContent = ({ pageKey }) => {
         <h2 className="seo-content__title">{title}</h2>
         <p className="seo-content__text">{text1}</p>
         <p className="seo-content__text">{text2}</p>
-        {text3 && <p className="seo-content__text">{text3}</p>}
 
         {Array.isArray(benefits) && benefits.length > 0 && (
           <div className="seo-content__benefits">
