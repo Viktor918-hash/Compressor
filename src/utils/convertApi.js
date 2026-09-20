@@ -1,4 +1,4 @@
-import { supabase } from "../lib/supabaseClient";
+import { getAccessToken } from "../lib/supabaseClient";
 import i18n from "../i18n/i18n";
 
 /**
@@ -23,7 +23,12 @@ export function userError(message, extra = {}) {
  * Ліміт для гостей сервер рахує за IP; заголовок X-Anon-Id більше не
  * використовується (клієнт міг підробити його в кожному запиті).
  */
-export async function postFileToConvertApi(endpoint, file, defaultContentType) {
+export async function postFileToConvertApi(
+  endpoint,
+  file,
+  defaultContentType,
+  { signal } = {}
+) {
   const headers = {
     "Content-Type": file.type || defaultContentType,
     "X-Filename": encodeURIComponent(file.name),
@@ -31,24 +36,22 @@ export async function postFileToConvertApi(endpoint, file, defaultContentType) {
 
   // Якщо користувач залогінений — додаємо його токен, щоб бекенд міг
   // порахувати ліміт "зареєстрований" (більше конвертацій на день), а не
-  // "гість". supabase може бути null, якщо змінні середовища не задано.
-  if (supabase) {
-    try {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session?.access_token) {
-        headers.Authorization = `Bearer ${session.access_token}`;
-      }
-    } catch {
-      // сесію не вдалося отримати — працюємо як гість
-    }
-  }
+  // "гість". Для гостя supabase-js навіть не завантажується.
+  const token = await getAccessToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
 
   let response;
   try {
-    response = await fetch(endpoint, { method: "POST", headers, body: file });
-  } catch {
+    response = await fetch(endpoint, {
+      method: "POST",
+      headers,
+      body: file,
+      signal,
+    });
+  } catch (err) {
+    // Скасування користувачем — не мережева помилка: пробрасуємо як є
+    // (Panel відкидає результат скасованого файлу).
+    if (err?.name === "AbortError") throw err;
     throw userError(i18n.t("errors.network"), { code: "NETWORK" });
   }
 

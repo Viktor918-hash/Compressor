@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import "./LanguageSwitcher.css";
 import { useTranslation } from "react-i18next";
+import { preloadLocales } from "../../i18n/i18n";
 
 // Відредагуйте список під ваші мови (код має збігатися з тим, що в i18n.resources)
 const LANGUAGES = [
@@ -33,6 +34,11 @@ export default function LanguageSwitcher() {
 
   const currentLang =
     LANGUAGES.find((l) => l.code === currentLangCode) || LANGUAGES[0];
+
+  // Коли відкрито перемикач — підвантажуємо решту мов, щоб перехід був миттєвим
+  useEffect(() => {
+    if (isOpen) preloadLocales();
+  }, [isOpen]);
 
   // Слідкуємо за шириною екрана, щоб перемикати dropdown <-> bottom sheet
   useEffect(() => {
@@ -109,7 +115,7 @@ export default function LanguageSwitcher() {
         onClick={() => setIsOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="Обрати мову / Change language"
+        aria-label={t("header.language")}
       >
         <GlobeIcon />
         <span className="ls-trigger-label">{currentLang.short}</span>

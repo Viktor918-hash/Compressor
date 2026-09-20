@@ -5,8 +5,8 @@ import { postFileToConvertApi } from "../../utils/convertApi";
 // відправляється на наш серверний проксі /api/pdf-to-word, який вже сам
 // звертається до CloudConvert і повертає готовий DOCX. Ключ CloudConvert
 // живе тільки на сервері.
-export const convertPdfToWord = (file) =>
-  postFileToConvertApi("/api/pdf-to-word", file, "application/pdf");
+export const convertPdfToWord = (file, { signal } = {}) =>
+  postFileToConvertApi("/api/pdf-to-word", file, "application/pdf", { signal });
 
 // Міняє будь-яке розширення (.pdf) на .docx
 export const getDocxOutputName = (originalName) => {

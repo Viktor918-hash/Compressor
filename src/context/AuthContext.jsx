@@ -2,15 +2,21 @@ import {
   createContext,
   useContext,
   useEffect,
+  useRef,
   useState,
   useCallback,
 } from "react";
-import { supabase } from "../lib/supabaseClient";
+import {
+  getSupabase,
+  supabaseConfigured,
+  hasStoredSession,
+  looksLikeOAuthReturn,
+} from "../lib/supabaseClient";
 
 const AuthContext = createContext(null);
 
-// supabase === null, коли не задано VITE_SUPABASE_* (див. lib/supabaseClient.js):
-// сайт працює як гість, а методи авторизації повертають зрозумілу помилку.
+// supabase-js не налаштовано (нема VITE_SUPABASE_*): сайт працює як гість,
+// а методи авторизації повертають зрозумілу помилку.
 const authUnavailable = () => ({
   data: null,
   error: new Error("Auth is not configured"),
@@ -19,9 +25,10 @@ const authUnavailable = () => ({
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [profile, setProfile] = useState(null); // рядок з таблиці profiles (is_pro, тощо)
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(supabaseConfigured);
+  const initRef = useRef(null); // Promise<client|null> — ініціалізація один раз
 
-  const loadProfile = useCallback(async (userId) => {
+  const loadProfile = useCallback(async (supabase, userId) => {
     if (!userId || !supabase) {
       setProfile(null);
       return;
@@ -39,37 +46,60 @@ export function AuthProvider({ children }) {
     setProfile(data);
   }, []);
 
-  useEffect(() => {
-    if (!supabase) {
-      setLoading(false);
-      return undefined;
-    }
-
-    // Початкова сесія при завантаженні сторінки
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      loadProfile(session?.user?.id);
-      setLoading(false);
-    });
-
-    // Підписка на зміни авторизації (логін, логаут, оновлення токена)
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        loadProfile(session?.user?.id);
+  /**
+   * Завантажує supabase-js (якщо ще ні), читає початкову сесію й підписується
+   * на зміни авторизації. Викликається лише коли це справді потрібно (є
+   * збережена сесія / повернення з OAuth / користувач хоче увійти).
+   */
+  const ensureAuth = useCallback(() => {
+    if (initRef.current) return initRef.current;
+    initRef.current = (async () => {
+      const supabase = await getSupabase();
+      if (!supabase) {
+        setLoading(false);
+        return null;
       }
-    );
+      const {
+        data: { session: initial },
+      } = await supabase.auth.getSession();
+      setSession(initial);
+      loadProfile(supabase, initial?.user?.id);
+      setLoading(false);
 
-    return () => listener.subscription.unsubscribe();
+      // Підписка на зміни авторизації (логін, логаут, оновлення токена)
+      supabase.auth.onAuthStateChange((_event, next) => {
+        setSession(next);
+        loadProfile(supabase, next?.user?.id);
+      });
+      return supabase;
+    })().catch((err) => {
+      console.error("Не вдалося ініціалізувати авторизацію:", err);
+      setLoading(false);
+      initRef.current = null;
+      return null;
+    });
+    return initRef.current;
   }, [loadProfile]);
 
+  useEffect(() => {
+    if (!supabaseConfigured) return;
+    if (hasStoredSession() || looksLikeOAuthReturn()) {
+      ensureAuth();
+    } else {
+      // Гість: бібліотеку не вантажимо, доки користувач не натисне "Увійти"
+      setLoading(false);
+    }
+  }, [ensureAuth]);
+
   const signUpWithEmail = async (email, password) => {
+    const supabase = await ensureAuth();
     if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signUp({ email, password });
     return { data, error };
   };
 
   const signInWithEmail = async (email, password) => {
+    const supabase = await ensureAuth();
     if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -79,6 +109,7 @@ export function AuthProvider({ children }) {
   };
 
   const signInWithGoogle = async () => {
+    const supabase = await ensureAuth();
     if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -88,6 +119,7 @@ export function AuthProvider({ children }) {
   };
 
   const signInWithApple = async () => {
+    const supabase = await ensureAuth();
     if (!supabase) return authUnavailable();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "apple",
@@ -97,11 +129,15 @@ export function AuthProvider({ children }) {
   };
 
   const signOut = async () => {
+    const supabase = await ensureAuth();
     if (!supabase) return;
     await supabase.auth.signOut();
   };
 
-  const refreshProfile = () => loadProfile(session?.user?.id);
+  const refreshProfile = async () => {
+    const supabase = await ensureAuth();
+    return loadProfile(supabase, session?.user?.id);
+  };
 
   const value = {
     session,
@@ -109,6 +145,8 @@ export function AuthProvider({ children }) {
     profile,
     isPro: !!profile?.is_pro,
     loading,
+    // Дає змогу прогріти supabase-js заздалегідь (наприклад, при відкритті вікна входу)
+    prepareAuth: ensureAuth,
     signUpWithEmail,
     signInWithEmail,
     signInWithGoogle,

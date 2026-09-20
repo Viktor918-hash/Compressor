@@ -196,3 +196,7 @@
         padding: 0 16px 16px;
     }
 }
+
+.seo-content__faq-answer[hidden] {
+    display: none;
+}

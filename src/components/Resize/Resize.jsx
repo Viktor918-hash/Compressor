@@ -452,8 +452,8 @@ const Resize = () => {
           onClick={() => setMobileSettingsOpen((prev) => !prev)}
           aria-label={
             mobileSettingsOpen
-              ? "Сховати налаштування"
-              : "Показати налаштування"
+              ? t("panel.hideSettings")
+              : t("panel.showSettings")
           }
         >
           {mobileSettingsOpen ? <FiX size={22} /> : <FiSettings size={22} />}
@@ -464,6 +464,7 @@ const Resize = () => {
         className={`side-panel ${file ? "side-panel--open" : ""} ${
           !mobileSettingsOpen ? "side-panel--mobile-collapsed" : ""
         }`}
+        inert={!file}
       >
         <div className="side-panel__header">
           {file && (

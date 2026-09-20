@@ -1,6 +1,13 @@
 import "../Hero/Hero.css";
 import "../Hero/sidePanel.css";
-import { FiDownload, FiArrowLeft, FiX, FiFileText } from "react-icons/fi";
+import {
+  FiDownload,
+  FiArrowLeft,
+  FiX,
+  FiFileText,
+  FiRefreshCw,
+  FiAlertCircle,
+} from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
@@ -29,9 +36,25 @@ const triggerDownload = (href, filename) => {
   a.remove();
 };
 
+const fmtSize = (bytes) => (bytes / 1024 / 1024).toFixed(2) + " MB";
+
+const newId = () =>
+  typeof crypto !== "undefined" && crypto.randomUUID
+    ? crypto.randomUUID()
+    : `f-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+/**
+ * Кожен файл у черзі має статус:
+ *   queued → processing → done | error
+ * Файли обробляються послідовно (обробка важка для CPU / платна на сервері).
+ * Помилка одного файлу не зупиняє решту; для файлу з помилкою є "Повторити".
+ * processFile отримує другим аргументом { signal } — AbortSignal, який
+ * спрацьовує при "Скасувати"/закритті панелі (не всі обробники його
+ * підтримують; результат "скасованого" файлу в будь-якому разі відкидається).
+ */
 const Panel = ({
   acceptedTypes,
-  processFile, // async (file) => Blob — саме тут відбувається стиснення АБО конвертація
+  processFile, // async (file, { signal }) => Blob — саме тут відбувається стиснення АБО конвертація
   getOutputName, // (originalName) => string — дозволяє поміняти розширення для конвертера
   maxFiles = 20,
   maxFileSize = 30 * 1024 * 1024,
@@ -49,6 +72,7 @@ const Panel = ({
   downloadManyText,
   removeAriaLabel, // (name) => string
   children, // заголовок і опис сторінки — свій для Hero і для Converter
+  options, // необов'язковий блок налаштувань під зоною завантаження (напр. якість стиснення)
 
   // ── Опційний перемикач формату виводу (наприклад, txt/doc для OCR) ──
   // Якщо formats передано (2+ записи) і задано buildOutput, Panel сама
@@ -61,6 +85,7 @@ const Panel = ({
   defaultFormatId,
   buildOutput, // (raw, formatId, originalName) => Blob
 }) => {
+  const { t } = useTranslation();
   const hasFormatSwitcher =
     Array.isArray(formats) &&
     formats.length > 1 &&
@@ -68,27 +93,45 @@ const Panel = ({
   const [selectedFormat, setSelectedFormat] = useState(
     defaultFormatId || formats?.[0]?.id
   );
-  const { t } = useTranslation();
-  const [processedFiles, setProcessedFiles] = useState([]);
-  const [errors, setErrors] = useState([]); // масив локалізованих повідомлень
+  const [items, setItems] = useState([]);
+  const [errors, setErrors] = useState([]); // повідомлення рівня "скидання файлів" (тип, ліміт кількості)
   const [showPanel, setShowPanel] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [tick, setTick] = useState(0); // щоб черга перезапускалась після завершення файлу
 
-  // "Сесія" обробки: збільшується при закритті панелі й розмонтуванні, щоб
-  // цикл обробки, який ще виконується, зупинився і не додавав файли в
-  // уже закриту панель (і не витрачав CPU/квоту даремно).
+  // "Сесія" обробки: збільшується при закритті панелі, "Скасувати" і
+  // розмонтуванні, щоб результат файлу, який ще обробляється, відкидався
+  // (і не додавався в уже закриту панель).
   const sessionRef = useRef(0);
-  const processedRef = useRef([]);
+  const runningRef = useRef(false);
+  const controllerRef = useRef(null);
+  const itemsRef = useRef(items);
+  // Найсвіжіші пропси для черги (щоб не перезапускати ефект щоразу, коли
+  // батьківський компонент створює нову функцію-обробник)
+  const latest = useRef({});
+
   useEffect(() => {
-    processedRef.current = processedFiles;
-  }, [processedFiles]);
+    itemsRef.current = items;
+  }, [items]);
+  useEffect(() => {
+    latest.current = {
+      processFile,
+      getOutputName,
+      buildOutput,
+      hasFormatSwitcher,
+      selectedFormat,
+      onLimitReached,
+      t,
+    };
+  });
+
   // Розмонтування (перехід на іншу сторінку): звільняємо всі Blob-URL
   useEffect(() => {
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps -- навмисно: лічильник, не DOM-вузол
       sessionRef.current++;
-      processedRef.current.forEach((f) => f.url && URL.revokeObjectURL(f.url));
+      controllerRef.current?.abort();
+      itemsRef.current.forEach((f) => f.url && URL.revokeObjectURL(f.url));
     };
   }, []);
 
@@ -96,6 +139,122 @@ const Panel = ({
     (message) => setErrors((prev) => [...prev, message]),
     []
   );
+
+  const patchItem = useCallback((id, patch) => {
+    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, ...patch } : i)));
+  }, []);
+
+  // ── Черга: бере наступний файл зі статусом "queued" ────────────────────
+  useEffect(() => {
+    if (runningRef.current) return;
+    const next = items.find((i) => i.status === "queued");
+    if (!next) return;
+
+    runningRef.current = true;
+    const controller = new AbortController();
+    controllerRef.current = controller;
+    const session = sessionRef.current;
+    const isStale = () => session !== sessionRef.current;
+    const file = next.file;
+
+    setItems((prev) =>
+      prev.map((i) => (i.id === next.id ? { ...i, status: "processing" } : i))
+    );
+
+    (async () => {
+      const cur = latest.current;
+      try {
+        const result = await cur.processFile(file, { signal: controller.signal });
+        if (isStale() || controller.signal.aborted) return;
+        // файл могли прибрати зі списку, поки він обробляався
+        if (!itemsRef.current.some((i) => i.id === next.id)) return;
+
+        if (cur.hasFormatSwitcher) {
+          // Мультиформатний режим: result — це "сирі" дані (наприклад,
+          // { text } від OCR), а не Blob. Готовий файл під поточний формат
+          // Panel перегенерує сама, без повторного OCR.
+          const blob = cur.buildOutput(result, cur.selectedFormat, file.name);
+          patchItem(next.id, {
+            status: "done",
+            raw: result,
+            processedSize: blob.size,
+            outputName: cur.getOutputName
+              ? cur.getOutputName(file.name, cur.selectedFormat)
+              : file.name,
+          });
+          trackGaEvent("photo_compressed", {
+            original_size_mb: (file.size / 1024 / 1024).toFixed(2),
+            processed_size_mb: (blob.size / 1024 / 1024).toFixed(2),
+          });
+        } else {
+          const url = URL.createObjectURL(result);
+          patchItem(next.id, {
+            status: "done",
+            processed: result,
+            processedSize: result.size,
+            url,
+            outputName: cur.getOutputName ? cur.getOutputName(file.name) : file.name,
+          });
+          // 📊 ВІДСТЕЖЕННЯ УСПІШНОГО СТИСНЕННЯ / КОНВЕРТАЦІЇ КОЖНОГО ФАЙЛА
+          trackGaEvent("photo_compressed", {
+            original_size_mb: (file.size / 1024 / 1024).toFixed(2),
+            processed_size_mb: (result.size / 1024 / 1024).toFixed(2),
+          });
+        }
+      } catch (error) {
+        if (isStale() || controller.signal.aborted) return;
+        if (error?.code === "LIMIT_REACHED") {
+          // Ліміт вичерпано: решту файлів обробити не вдасться — позначаємо
+          // їх помилкою (їх можна повторити пізніше кнопкою "Повторити").
+          setItems((prev) =>
+            prev.map((i) =>
+              i.id === next.id || i.status === "queued"
+                ? { ...i, status: "error", error: error.message }
+                : i
+            )
+          );
+          cur.onLimitReached?.(error);
+        } else {
+          console.error("processFile failed:", error);
+          // Показуємо повідомлення лише від помилок, які самі є
+          // "для користувача" (локалізовані); технічні тексти бібліотек
+          // ("Failed to fetch", "Canvas toBlob failed") — не показуємо.
+          patchItem(next.id, {
+            status: "error",
+            error:
+              error?.userFacing && error?.message
+                ? error.message
+                : cur.t("errors.processFailed", { name: file.name }),
+          });
+        }
+      } finally {
+        runningRef.current = false;
+        setTick((n) => n + 1);
+      }
+    })();
+  }, [items, tick, patchItem]);
+
+  const isProcessing = items.some(
+    (i) => i.status === "queued" || i.status === "processing"
+  );
+  const doneItems = useMemo(
+    () => items.filter((i) => i.status === "done"),
+    [items]
+  );
+  const finishedCount = items.filter(
+    (i) => i.status === "done" || i.status === "error"
+  ).length;
+
+  // Якщо закрити вкладку посеред обробки — браузер попередить про втрату
+  useEffect(() => {
+    if (!isProcessing) return undefined;
+    const warn = (e) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [isProcessing]);
 
   // Причина відхилення файлу самим react-dropzone (тип не з accept тощо)
   const describeRejection = useCallback(
@@ -116,7 +275,7 @@ const Panel = ({
   );
 
   const onDrop = useCallback(
-    async (acceptedFiles, fileRejections = []) => {
+    (acceptedFiles, fileRejections = []) => {
       const problems = fileRejections.map(({ file, errors: dropErrors }) =>
         describeRejection(file, dropErrors)
       );
@@ -128,7 +287,7 @@ const Panel = ({
         return;
       }
 
-      const availableSlots = maxFiles - processedFiles.length;
+      const availableSlots = maxFiles - itemsRef.current.length;
 
       if (availableSlots <= 0) {
         setErrors([...problems, t("errors.limitFull", { max: maxFiles })]);
@@ -137,134 +296,52 @@ const Panel = ({
 
       // Приймаємо перші N файлів, решту чесно позначаємо як пропущені —
       // замість того, щоб відхиляти всю партію.
-      const filesToProcess = acceptedFiles.slice(0, availableSlots);
-      const skipped = acceptedFiles.length - filesToProcess.length;
+      const withinLimit = acceptedFiles.slice(0, availableSlots);
+      const skipped = acceptedFiles.length - withinLimit.length;
       if (skipped > 0) {
         problems.push(
           t("errors.tooManyFiles", {
-            count: filesToProcess.length,
+            count: withinLimit.length,
             max: maxFiles,
             skipped,
           })
         );
       }
-      setErrors(problems);
 
-      const session = sessionRef.current;
-      const isStale = () => session !== sessionRef.current;
-
-      setShowPanel(true);
-      setIsProcessing(true);
-      setDownloaded(false);
-
-      // 📊 1. ВІДСТЕЖЕННЯ ПОЧАТКУ ОБРОБКИ
-      trackGaEvent("photo_process_start", {
-        files_count: filesToProcess.length,
-      });
-
-      for (const file of filesToProcess) {
-        if (isStale()) return;
-
+      // Завеликі файли не ставимо в чергу, а пояснюємо причину
+      const filesToProcess = withinLimit.filter((file) => {
         if (file.size > maxFileSize) {
-          pushError(
+          problems.push(
             t("errors.fileTooLarge", {
               name: file.name,
               max: (maxFileSize / 1024 / 1024).toFixed(0),
             })
           );
-          continue;
+          return false;
         }
+        return true;
+      });
+      setErrors(problems);
+      if (filesToProcess.length === 0) return;
 
-        try {
-          const result = await processFile(file);
-          if (isStale()) return;
+      setShowPanel(true);
+      setDownloaded(false);
 
-          if (hasFormatSwitcher) {
-            // Мультиформатний режим: result — це "сирі" дані (наприклад,
-            // { text } від OCR), а не Blob. Готовий файл під поточний
-            // формат обчислюємо тут-таки лише для GA/прев'ю; при зміні
-            // формату Panel перегенерує Blob сама, без повторного OCR.
-            const blob = buildOutput(result, selectedFormat, file.name);
-            const outputName = getOutputName
-              ? getOutputName(file.name, selectedFormat)
-              : file.name;
+      // 📊 ВІДСТЕЖЕННЯ ПОЧАТКУ ОБРОБКИ
+      trackGaEvent("photo_process_start", {
+        files_count: filesToProcess.length,
+      });
 
-            setProcessedFiles((prev) => [
-              ...prev,
-              {
-                id: crypto.randomUUID(),
-                original: file,
-                raw: result,
-                outputName,
-              },
-            ]);
-
-            trackGaEvent("photo_compressed", {
-              original_size_mb: (file.size / 1024 / 1024).toFixed(2),
-              processed_size_mb: (blob.size / 1024 / 1024).toFixed(2),
-            });
-            continue;
-          }
-
-          const url = URL.createObjectURL(result);
-          if (isStale()) {
-            URL.revokeObjectURL(url);
-            return;
-          }
-          const outputName = getOutputName
-            ? getOutputName(file.name)
-            : file.name;
-
-          setProcessedFiles((prev) => [
-            ...prev,
-            {
-              id: crypto.randomUUID(),
-              original: file,
-              processed: result,
-              outputName,
-              url,
-            },
-          ]);
-          // 📊 2. ВІДСТЕЖЕННЯ УСПІШНОГО СТИСНЕННЯ / КОНВЕРТАЦІЇ КОЖНОГО ФАЙЛА
-          trackGaEvent("photo_compressed", {
-            original_size_mb: (file.size / 1024 / 1024).toFixed(2),
-            processed_size_mb: (result.size / 1024 / 1024).toFixed(2),
-          });
-        } catch (error) {
-          if (isStale()) return;
-          if (error?.code === "LIMIT_REACHED") {
-            pushError(error.message);
-            onLimitReached?.(error);
-            break; // немає сенсу пробувати решту файлів у цій же партії
-          }
-          console.error("processFile failed:", error);
-          // Показуємо повідомлення лише від помилок, які самі є
-          // "для користувача" (локалізовані); технічні тексти бібліотек
-          // ("Failed to fetch", "Canvas toBlob failed") — не показуємо.
-          pushError(
-            error?.userFacing && error?.message
-              ? error.message
-              : t("errors.processFailed", { name: file.name })
-          );
-        }
-      }
-
-      if (!isStale()) setIsProcessing(false);
+      setItems((prev) => [
+        ...prev,
+        ...filesToProcess.map((file) => ({
+          id: newId(),
+          file,
+          status: "queued",
+        })),
+      ]);
     },
-    [
-      processedFiles.length,
-      maxFiles,
-      maxFileSize,
-      processFile,
-      getOutputName,
-      hasFormatSwitcher,
-      buildOutput,
-      selectedFormat,
-      describeRejection,
-      pushError,
-      onLimitReached,
-      t,
-    ]
+    [maxFiles, maxFileSize, describeRejection, t]
   );
 
   const getUniqueFileName = (name, usedNames) => {
@@ -300,28 +377,19 @@ const Panel = ({
   // обраного формату, тож перераховуємо їх з "сирих" даних щоразу, коли
   // список файлів або обраний формат змінюються — без повторного OCR.
   const currentOutputs = useMemo(() => {
-    if (!hasFormatSwitcher) return processedFiles;
+    if (!hasFormatSwitcher) return doneItems;
 
-    return processedFiles.map((f) => ({
+    return doneItems.map((f) => ({
       ...f,
-      processed: buildOutput(f.raw, selectedFormat, f.original.name),
+      processed: buildOutput(f.raw, selectedFormat, f.file.name),
       outputName: getOutputName
-        ? getOutputName(f.original.name, selectedFormat)
+        ? getOutputName(f.file.name, selectedFormat)
         : f.outputName,
     }));
-  }, [
-    hasFormatSwitcher,
-    processedFiles,
-    selectedFormat,
-    buildOutput,
-    getOutputName,
-  ]);
+  }, [hasFormatSwitcher, doneItems, selectedFormat, buildOutput, getOutputName]);
 
   const stats = useMemo(() => {
-    const totalOriginal = currentOutputs.reduce(
-      (sum, f) => sum + f.original.size,
-      0
-    );
+    const totalOriginal = currentOutputs.reduce((sum, f) => sum + f.file.size, 0);
     const totalProcessed = currentOutputs.reduce(
       (sum, f) => sum + f.processed.size,
       0
@@ -339,8 +407,7 @@ const Panel = ({
     if (currentOutputs.length === 1) {
       const { processed, outputName, url } = currentOutputs[0];
       // У звичайному режимі url уже готовий заздалегідь; у мультиформатному
-      // Blob перегенеровано щойно вище, тож створюємо URL тут-таки і
-      // одразу звільняємо його після кліку.
+      // Blob перегенеровано щойно вище, тож створюємо URL тут-таки.
       const href = url || URL.createObjectURL(processed);
       triggerDownload(href, outputName);
       if (!url) revokeLater(href);
@@ -372,22 +439,35 @@ const Panel = ({
   };
 
   const handleReset = () => {
-    sessionRef.current++; // зупиняємо обробку, що ще триває
-    processedFiles.forEach((f) => f.url && URL.revokeObjectURL(f.url));
-    setProcessedFiles([]);
+    sessionRef.current++; // відкидаємо результати файлів, що ще обробляються
+    controllerRef.current?.abort();
+    items.forEach((f) => f.url && URL.revokeObjectURL(f.url));
+    setItems([]);
     setErrors([]);
     setShowPanel(false);
-    setIsProcessing(false);
     setDownloaded(false);
   };
 
   const handleCloseClick = () => {
     handleReset();
-    return;
+  };
+
+  // "Скасувати": прибираємо все, що ще не оброблено; готові й помилкові лишаються
+  const handleCancel = () => {
+    sessionRef.current++;
+    controllerRef.current?.abort();
+    setItems((prev) =>
+      prev.filter((i) => i.status === "done" || i.status === "error")
+    );
+  };
+
+  const handleRetry = (id) => {
+    patchItem(id, { status: "queued", error: null });
+    setDownloaded(false);
   };
 
   const handleRemoveFile = (id) => {
-    setProcessedFiles((prev) => {
+    setItems((prev) => {
       const fileToRemove = prev.find((f) => f.id === id);
       if (fileToRemove?.url) {
         URL.revokeObjectURL(fileToRemove.url);
@@ -408,7 +488,6 @@ const Panel = ({
     };
   }, [showPanel]);
 
-  const fmtSize = (bytes) => (bytes / 1024 / 1024).toFixed(2) + " MB";
   const visibleErrors = errors.slice(0, MAX_VISIBLE_ERRORS);
   const hiddenErrors = errors.length - visibleErrors.length;
   const errorBlock =
@@ -445,6 +524,7 @@ const Panel = ({
                 size={35}
                 color="#4F7CFF"
                 className="download__icon"
+                aria-hidden="true"
               />
             </div>
             <div className="input__info-text">
@@ -458,11 +538,16 @@ const Panel = ({
             </div>
           </div>
 
+          {options}
+
           {!showPanel && errorBlock}
         </div>
       </div>
 
-      <aside className={`side-panel ${showPanel ? "side-panel--open" : ""}`}>
+      <aside
+        className={`side-panel ${showPanel ? "side-panel--open" : ""}`}
+        inert={!showPanel}
+      >
         <div className="side-panel__header">
           {showPanel && (
             <div className="side-panel__back">
@@ -482,33 +567,61 @@ const Panel = ({
 
         {showPanel && errorBlock}
 
-        {processedFiles.length > 0 ? (
-          showStats && (
-            <div className="side-panel__stats">
-              <p className="side-panel__stats-percent">
-                −{stats.savedPercent}%
-              </p>
-              <p className="side-panel__stats-detail">
-                {fmtSize(stats.totalOriginal)} → {fmtSize(stats.totalProcessed)}
-              </p>
-              <p className="side-panel__stats-detail">
-                {t("panel.saved")} {fmtSize(stats.savedBytes)}
-              </p>
-            </div>
-          )
-        ) : isProcessing ? (
-          <p className="side-panel__empty">{t("panel.processing")} </p>
-        ) : (
+        {items.length === 0 && (
           <p className="side-panel__empty">
             {emptyStateText || t("panel.adFile")}
           </p>
         )}
 
-        {isProcessing && (
-          <p className="side-panel__loading">{t("resize.processing")} </p>
+        {doneItems.length > 0 && showStats && (
+          <div className="side-panel__stats">
+            <p className="side-panel__stats-percent">−{stats.savedPercent}%</p>
+            <p className="side-panel__stats-detail">
+              {fmtSize(stats.totalOriginal)} → {fmtSize(stats.totalProcessed)}
+            </p>
+            <p className="side-panel__stats-detail">
+              {t("panel.saved")} {fmtSize(stats.savedBytes)}
+            </p>
+          </div>
         )}
 
-        {showPanel && processedFiles.length < maxFiles && (
+        {items.length > 0 && (
+          <div className="side-panel__progress">
+            <div className="side-panel__progress-row" aria-live="polite">
+              <span>
+                {isProcessing
+                  ? t("panel.progress", {
+                      done: finishedCount,
+                      total: items.length,
+                    })
+                  : t("panel.progressDone", {
+                      done: doneItems.length,
+                      total: items.length,
+                    })}
+              </span>
+              {isProcessing && (
+                <button
+                  type="button"
+                  className="side-panel__cancel-btn"
+                  onClick={handleCancel}
+                >
+                  {t("panel.cancel")}
+                </button>
+              )}
+            </div>
+            <progress
+              className="side-panel__progress-bar"
+              max={items.length}
+              value={finishedCount}
+              aria-label={t("panel.progress", {
+                done: finishedCount,
+                total: items.length,
+              })}
+            />
+          </div>
+        )}
+
+        {showPanel && items.length < maxFiles && (
           <div className="side__panel-wrapper">
             <button
               className="side-panel__add-btn"
@@ -519,54 +632,80 @@ const Panel = ({
               <span className="side-panel__add-text">
                 {addMoreText || t("resize.empty")}
               </span>
-              {processedFiles.length > 0 && (
-                <span className="side-panel__add-badge">
-                  {processedFiles.length}
-                </span>
+              {items.length > 0 && (
+                <span className="side-panel__add-badge">{items.length}</span>
               )}
             </button>
           </div>
         )}
 
         <p className="panel__files">
-          {selectedLabel || t("panel.selected")} {processedFiles.length}/
-          {maxFiles}
+          {selectedLabel || t("panel.selected")} {items.length}/{maxFiles}
         </p>
 
         <ul className="side-panel__filelist">
-          {processedFiles.map(({ id, original, url }) => (
-            <li key={id} className="side-panel__file-item">
-              {/* У мультиформатному режимі (наприклад, OCR) url відсутній —
-                  оброблений файл це текст/doc, а не картинка, тож завжди
-                  показуємо іконку файлу замість зламаного прев'ю. */}
-              {url && original.type?.startsWith("image/") ? (
-                <img
-                  src={url}
-                  alt={original.name}
-                  className="side-panel__thumbnail"
-                />
-              ) : (
-                <span
-                  className="side-panel__thumbnail side-panel__thumbnail--icon"
-                  aria-hidden="true"
-                >
-                  <FiFileText size={20} />
+          {items.map((item) => {
+            const { id, file, url, status } = item;
+            return (
+              <li key={id} className="side-panel__file-item">
+                {/* У мультиформатному режимі (наприклад, OCR) url відсутній —
+                    оброблений файл це текст/doc, а не картинка, тож завжди
+                    показуємо іконку файлу замість зламаного прев'ю. */}
+                {url && file.type?.startsWith("image/") ? (
+                  <img src={url} alt="" className="side-panel__thumbnail" />
+                ) : (
+                  <span
+                    className={`side-panel__thumbnail side-panel__thumbnail--icon ${
+                      status === "error" ? "side-panel__thumbnail--error" : ""
+                    }`}
+                    aria-hidden="true"
+                  >
+                    {status === "error" ? (
+                      <FiAlertCircle size={20} />
+                    ) : (
+                      <FiFileText size={20} />
+                    )}
+                  </span>
+                )}
+                <span className="side-panel__file-info">
+                  <span className="side-panel__filename" title={file.name}>
+                    {file.name}
+                  </span>
+                  <span
+                    className={`side-panel__file-status side-panel__file-status--${status}`}
+                  >
+                    {status === "queued" && t("panel.status.queued")}
+                    {status === "processing" && t("panel.status.processing")}
+                    {status === "done" &&
+                      `${fmtSize(file.size)} → ${fmtSize(item.processedSize)}`}
+                    {status === "error" && item.error}
+                  </span>
                 </span>
-              )}
-              <span className="side-panel__filename">{original.name}</span>
-              <button
-                className="side-panel__remove-btn"
-                onClick={() => handleRemoveFile(id)}
-                aria-label={
-                  removeAriaLabel
-                    ? removeAriaLabel(original.name)
-                    : t("panel.removeFile", { name: original.name })
-                }
-              >
-                <FiX size={16} className="btn__krest" />
-              </button>
-            </li>
-          ))}
+                {status === "error" && (
+                  <button
+                    type="button"
+                    className="side-panel__retry-btn"
+                    onClick={() => handleRetry(id)}
+                    aria-label={t("panel.retryAria", { name: file.name })}
+                    title={t("panel.retry")}
+                  >
+                    <FiRefreshCw size={16} />
+                  </button>
+                )}
+                <button
+                  className="side-panel__remove-btn"
+                  onClick={() => handleRemoveFile(id)}
+                  aria-label={
+                    removeAriaLabel
+                      ? removeAriaLabel(file.name)
+                      : t("panel.removeFile", { name: file.name })
+                  }
+                >
+                  <FiX size={16} className="btn__krest" />
+                </button>
+              </li>
+            );
+          })}
         </ul>
 
         {hasFormatSwitcher && (
@@ -591,12 +730,12 @@ const Panel = ({
 
         <button
           className={`side-panel__download-btn ${
-            processedFiles.length === 0 ? "side-panel__download-btn--empty" : ""
+            doneItems.length === 0 ? "side-panel__download-btn--empty" : ""
           }`}
           onClick={handleDownloadAll}
-          disabled={processedFiles.length === 0 || isProcessing}
+          disabled={doneItems.length === 0 || isProcessing}
         >
-          {processedFiles.length > 1
+          {doneItems.length > 1
             ? downloadManyText || t("panel.upLoadPhotos")
             : downloadOneText || t("panel.upLoadPhoto")}
         </button>

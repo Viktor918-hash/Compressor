@@ -1,0 +1,149 @@
+.compress-options {
+    max-width: 520px;
+    margin: 28px auto 0;
+    padding: 16px 20px;
+    border: 1px solid #dfe3ea;
+    border-radius: 12px;
+    background: #fff;
+    text-align: left;
+}
+
+.compress-options__row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.compress-options__row+.compress-options__row {
+    margin-top: 14px;
+}
+
+.compress-options__row--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+}
+
+.compress-options__label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.compress-options__value {
+    color: #3152C7;
+}
+
+/* У reset.css для input задано appearance: none — тож повзунок і чекбокс
+   малюємо самі. */
+.compress-options__range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 24px;
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+}
+
+.compress-options__range::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 3px;
+    background: #dbe3f5;
+}
+
+.compress-options__range::-moz-range-track {
+    height: 6px;
+    border-radius: 3px;
+    background: #dbe3f5;
+}
+
+.compress-options__range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    margin-top: -8px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background: #4F7CFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.compress-options__range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background: #4F7CFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.compress-options__range:focus-visible,
+.compress-options__check input:focus-visible,
+.compress-options__select:focus-visible {
+    outline: 2px solid #4F7CFF;
+    outline-offset: 3px;
+}
+
+.compress-options__check,
+.compress-options__select-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+}
+
+.compress-options__check input {
+    -webkit-appearance: none;
+    appearance: none;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    display: inline-grid;
+    place-content: center;
+    border: 2px solid #9aa3b2;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.compress-options__check input::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+}
+
+.compress-options__check input:checked {
+    background: #4F7CFF;
+    border-color: #4F7CFF;
+}
+
+.compress-options__check input:checked::after {
+    transform: scale(1);
+}
+
+.compress-options__select {
+    font: inherit;
+    padding: 4px 8px;
+    border: 1px solid #cbd2dc;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.compress-options__hint {
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #6B7280;
+}

@@ -264,12 +264,110 @@ p.panel__files {
     color: #4F7CFF;
 }
 
-.side-panel__filename {
+.side-panel__file-info {
     flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.side-panel__filename {
     font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.side-panel__file-status {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.3;
+}
+
+.side-panel__file-status--processing {
+    color: #4F7CFF;
+}
+
+.side-panel__file-status--error {
+    color: #d93025;
+}
+
+.side-panel__thumbnail--error {
+    background: #FDECEA;
+    color: #d93025;
+}
+
+.side-panel__retry-btn {
+    background: none;
+    border: none;
+    color: #4F7CFF;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 6px;
+}
+
+.side-panel__retry-btn:hover {
+    background: #EEF2FF;
+}
+
+/* Прогрес обробки черги */
+.side-panel__progress {
+    margin: 10px 0 4px;
+}
+
+.side-panel__progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.side-panel__cancel-btn {
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #374151;
+}
+
+.side-panel__cancel-btn:hover {
+    border-color: #ff5c5c;
+    color: #d93025;
+}
+
+.side-panel__progress-bar {
+    width: 100%;
+    height: 6px;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #E5E7EB;
+    accent-color: #4F7CFF;
+}
+
+.side-panel__progress-bar::-webkit-progress-bar {
+    background: #E5E7EB;
+}
+
+.side-panel__progress-bar::-webkit-progress-value {
+    background: #4F7CFF;
+    transition: width 0.2s ease;
+}
+
+.side-panel__progress-bar::-moz-progress-bar {
+    background: #4F7CFF;
 }
 
 .side-panel__remove-btn {

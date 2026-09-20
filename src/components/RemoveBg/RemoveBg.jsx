@@ -94,6 +94,16 @@ const RemoveBg = () => {
   // dropzone і вибирає фото — тоді сама обробка після вибору фото
   // почнеться майже миттєво, а не після довгого чекання на модель.
   useEffect(() => {
+    // Не тягнемо ~40 МБ наперед на повільному з'єднанні / у режимі економії
+    // трафіку — модель завантажиться, коли користувач справді додасть фото.
+    const conn = navigator.connection;
+    if (
+      conn?.saveData ||
+      ["slow-2g", "2g", "3g"].includes(conn?.effectiveType)
+    ) {
+      return undefined;
+    }
+
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300));
     const cancelIdle = window.cancelIdleCallback || clearTimeout;
 
@@ -516,8 +526,8 @@ const RemoveBg = () => {
           onClick={() => setMobileSettingsOpen((prev) => !prev)}
           aria-label={
             mobileSettingsOpen
-              ? "Сховати налаштування"
-              : "Показати налаштування"
+              ? t("panel.hideSettings")
+              : t("panel.showSettings")
           }
         >
           {mobileSettingsOpen ? <FiX size={22} /> : <FiSettings size={22} />}
@@ -528,6 +538,7 @@ const RemoveBg = () => {
         className={`side-panel ${file ? "side-panel--open" : ""} ${
           !mobileSettingsOpen ? "side-panel--mobile-collapsed" : ""
         }`}
+        inert={!file}
       >
         <div className="side-panel__header">
           {file && (
@@ -535,7 +546,7 @@ const RemoveBg = () => {
               <button
                 className="side-panel__back-btn"
                 onClick={handleReset}
-                aria-label="Закрити панель"
+                aria-label={t("panel.closePanel")}
               >
                 <FiArrowLeft size={20} /> {t("panel.closePanel")}
               </button>

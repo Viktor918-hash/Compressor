@@ -1,10 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Коди помилок Supabase Auth → ключі перекладу (auth.errors.*). Сирі
+// англійські повідомлення бібліотеки користувачу не показуємо.
+const ERROR_KEYS = {
+  invalid_credentials: "invalidCredentials",
+  user_already_exists: "userExists",
+  email_exists: "userExists",
+  weak_password: "weakPassword",
+  email_not_confirmed: "emailNotConfirmed",
+  over_request_rate_limit: "rateLimit",
+  over_email_send_rate_limit: "rateLimit",
+  signup_disabled: "signupDisabled",
+};
+
+/**
+ * Діалог відкривається/закривається зовні. Внутрішній стан живе в
+ * <AuthDialog>, який монтується заново при кожному відкритті — тож форма
+ * скидається без ефектів із setState.
+ */
 export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
+  if (!isOpen) return null;
+  return <AuthDialog onClose={onClose} initialMode={initialMode} />;
+}
+
+function AuthDialog({ onClose, initialMode }) {
   const [mode, setMode] = useState(initialMode); // 'login' або 'register'
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,24 +42,32 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
   const [passwordTouched, setPasswordTouched] = useState(false);
 
   // Отримуємо методи авторизації з AuthContext
-  const { signUpWithEmail, signInWithEmail, signInWithGoogle } = useAuth();
+  const { signUpWithEmail, signInWithEmail, signInWithGoogle, prepareAuth } =
+    useAuth();
   const { t } = useTranslation();
+  const uid = useId();
+  const dialogRef = useRef(null);
+  const closeTimerRef = useRef(null);
 
-  // Скидаємо форму щоразу, коли модалку відкривають заново або міняють
-  // початковий режим ззовні (клік "Увійти" після "Зареєструватись" тощо).
+  useFocusTrap(dialogRef, true, onClose);
+
+  // Прогріваємо supabase-js, поки користувач заповнює форму
   useEffect(() => {
-    if (isOpen) {
-      setMode(initialMode);
-      setEmail("");
-      setPassword("");
-      setErrorMsg("");
-      setSuccessMsg("");
-      setEmailTouched(false);
-      setPasswordTouched(false);
-    }
-  }, [isOpen, initialMode]);
+    prepareAuth?.();
+  }, [prepareAuth]);
 
-  if (!isOpen) return null;
+  // Не закриваємо вже розмонтований діалог таймером
+  useEffect(() => () => clearTimeout(closeTimerRef.current), []);
+
+  const errorText = (error) => {
+    const key = ERROR_KEYS[error?.code];
+    if (key) return t(`auth.errors.${key}`);
+    // старі версії supabase-js без error.code
+    if (error?.message === "Invalid login credentials") {
+      return t("auth.errors.invalidCredentials");
+    }
+    return t("auth.errors.generic");
+  };
 
   const isEmailInvalid =
     emailTouched && email.length > 0 && !EMAIL_REGEX.test(email);
@@ -49,6 +81,10 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
     setSuccessMsg("");
     setEmailTouched(false);
     setPasswordTouched(false);
+  };
+
+  const closeSoon = (ms) => {
+    closeTimerRef.current = setTimeout(() => onClose(), ms);
   };
 
   const handleSubmit = async (e) => {
@@ -70,29 +106,21 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
     if (mode === "register") {
       const { data, error } = await signUpWithEmail(email, password);
       if (error) {
-        setErrorMsg(error.message);
-      } else {
+        setErrorMsg(errorText(error));
+      } else if (data?.user && data?.session === null) {
         // Якщо в Supabase увімкнено "Confirm Email"
-        if (data?.user && data?.session === null) {
-          setSuccessMsg(
-            "Реєстрація успішна! Перевірте вашу пошту для підтвердження."
-          );
-        } else {
-          setSuccessMsg("Успішна реєстрація!");
-          setTimeout(() => onClose(), 1200);
-        }
+        setSuccessMsg(t("auth.confirmEmailSent"));
+      } else {
+        setSuccessMsg(t("auth.registerSuccess"));
+        closeSoon(1200);
       }
     } else {
       const { error } = await signInWithEmail(email, password);
       if (error) {
-        setErrorMsg(
-          error.message === "Invalid login credentials"
-            ? "Невірний email або пароль"
-            : error.message
-        );
+        setErrorMsg(errorText(error));
       } else {
-        setSuccessMsg("Успішний вхід!");
-        setTimeout(() => onClose(), 800);
+        setSuccessMsg(t("auth.loginSuccess"));
+        closeSoon(800);
       }
     }
 
@@ -102,23 +130,45 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
   const handleGoogleAuth = async () => {
     setErrorMsg("");
     const { error } = await signInWithGoogle();
-    if (error) setErrorMsg(error.message);
+    if (error) setErrorMsg(errorText(error));
   };
+
+  const titleId = `${uid}-title`;
+  const emailId = `${uid}-email`;
+  const passwordId = `${uid}-password`;
+  const emailErrId = `${uid}-email-err`;
+  const passwordErrId = `${uid}-password-err`;
 
   return (
     <div style={overlayStyle} onClick={onClose}>
-      <div style={modalStyle} onClick={(e) => e.stopPropagation()}>
-        <button style={closeButtonStyle} onClick={onClose}>
-          ✕
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        style={modalStyle}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          style={closeButtonStyle}
+          onClick={onClose}
+          aria-label={t("auth.close")}
+        >
+          <span aria-hidden="true">✕</span>
         </button>
 
-        <h2>
+        <h2 id={titleId}>
           {mode === "login" ? t("auth.titleLogin") : t("auth.titleRegister")}
         </h2>
 
         {/* Соціальна кнопка — лише Google */}
         <div style={oauthContainerStyle}>
-          <button style={googleButtonStyle} onClick={handleGoogleAuth}>
+          <button
+            type="button"
+            style={googleButtonStyle}
+            onClick={handleGoogleAuth}
+          >
             {t("auth.googleBtn")}
           </button>
         </div>
@@ -127,31 +177,56 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
           <span>{t("auth.orEmail")}</span>
         </div>
 
-        {errorMsg && <div style={errorStyle}>{errorMsg}</div>}
-        {successMsg && <div style={successStyle}>{successMsg}</div>}
+        <div role="alert">
+          {errorMsg && <div style={errorStyle}>{errorMsg}</div>}
+        </div>
+        <div role="status">
+          {successMsg && <div style={successStyle}>{successMsg}</div>}
+        </div>
 
         <form onSubmit={handleSubmit} style={formStyle} noValidate>
+          <label htmlFor={emailId} className="visually-hidden">
+            {t("auth.emailPlaceholder")}
+          </label>
           <input
+            id={emailId}
+            data-autofocus
             type="email"
+            name="email"
+            autoComplete="email"
             placeholder={t("auth.emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={() => setEmailTouched(true)}
+            aria-invalid={isEmailInvalid}
+            aria-describedby={isEmailInvalid ? emailErrId : undefined}
             style={isEmailInvalid ? inputErrorStyle : inputStyle}
           />
           {isEmailInvalid && (
-            <span style={fieldErrorTextStyle}>{t("auth.invalidEmail")}</span>
+            <span id={emailErrId} style={fieldErrorTextStyle}>
+              {t("auth.invalidEmail")}
+            </span>
           )}
+          <label htmlFor={passwordId} className="visually-hidden">
+            {t("auth.passwordPlaceholder")}
+          </label>
           <input
+            id={passwordId}
             type="password"
+            name="password"
+            autoComplete={mode === "login" ? "current-password" : "new-password"}
             placeholder={t("auth.passwordPlaceholder")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onBlur={() => setPasswordTouched(true)}
+            aria-invalid={isPasswordInvalid}
+            aria-describedby={isPasswordInvalid ? passwordErrId : undefined}
             style={isPasswordInvalid ? inputErrorStyle : inputStyle}
           />
           {isPasswordInvalid && (
-            <span style={fieldErrorTextStyle}>{t("auth.emptyPassword")}</span>
+            <span id={passwordErrId} style={fieldErrorTextStyle}>
+              {t("auth.emptyPassword")}
+            </span>
           )}
 
           <button
@@ -173,6 +248,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
             <p>
               {t("auth.noAccount")}{" "}
               <button
+                type="button"
                 onClick={() => switchMode("register")}
                 style={linkButtonStyle}
               >
@@ -183,6 +259,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = "login" }) {
             <p>
               {t("auth.hasAccount")}{" "}
               <button
+                type="button"
                 onClick={() => switchMode("login")}
                 style={linkButtonStyle}
               >

@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import "./components/resetCSS/reset.css";
 import App from "./App.jsx";
-import "./i18n/i18n.js"; // ініціалізація i18next (побічний ефект імпорту)
+import { i18nReady } from "./i18n/i18n.js";
 import { initAnalyticsFromStoredConsent } from "./utils/consent.js";
 
 /**
@@ -37,10 +37,16 @@ removePrerenderedSeoTags();
 // Google Analytics вантажимо лише якщо користувач раніше дав згоду
 initAnalyticsFromStoredConsent();
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
-);
+// Рендеримо після завантаження пакета мови поточного URL — перший кадр уже
+// з правильною мовою (без мигання). Поки чекаємо, лишається запечений HTML.
+i18nReady
+  .catch((err) => console.error("i18n init failed:", err))
+  .then(() => {
+    createRoot(document.getElementById("root")).render(
+      <StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StrictMode>
+    );
+  });

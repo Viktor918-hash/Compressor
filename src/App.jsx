@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import i18n from "./i18n/i18n";
+import i18n, { setLanguage } from "./i18n/i18n";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ROUTES } from "./routes.jsx";
@@ -20,7 +20,9 @@ import NotFound from "./components/NotFound/NotFound";
 function LangSync({ lang, children }) {
   useEffect(() => {
     if (i18n.language !== lang) {
-      i18n.changeLanguage(lang);
+      // мова першого завантаження вже виставлена з URL (i18n.js); сюди
+      // потрапляємо лише при переході між мовами всередині застосунку
+      setLanguage(lang);
     }
   }, [lang]);
   return children;

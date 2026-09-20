@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { PAGE_META } from "../../seoMeta";
+import { toolBySlug } from "../../toolsCatalog";
 
 const SITE_URL = "https://compressphoto.org";
 
@@ -43,6 +45,7 @@ const SeoHead = ({
   robots = "index, follow",
   jsonLd,
 }) => {
+  const { t } = useTranslation();
   const canonicalPath =
     lang === "es"
       ? route.es
@@ -66,7 +69,42 @@ const SeoHead = ({
 
   // Дозволяємо передавати як один об'єкт, так і масив схем
   // (наприклад, SoftwareApplication + FAQPage одночасно)
-  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? [...jsonLd] : [jsonLd]) : [];
+
+  // Розмітка, спільна для всіх сторінок сайту (не потрібно дублювати на
+  // кожній сторінці): WebSite — на головній, BreadcrumbList "Головна →
+  // Інструмент" — на сторінках інструментів (для показу навігаційного
+  // ланцюжка замість сирого URL у видачі Google).
+  const tool = toolBySlug(route?.slug);
+  if (route?.slug === "home") {
+    jsonLdList.push({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "CompressPhoto",
+      url: canonicalUrl,
+      inLanguage: lang,
+    });
+  } else if (tool && robots.startsWith("index")) {
+    const homeRoute = { uk: "/", en: "/en", ru: "/ru", es: "/es" };
+    jsonLdList.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "CompressPhoto",
+          item: `${SITE_URL}${homeRoute[lang] || "/"}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: t(tool.nameKey),
+          item: canonicalUrl,
+        },
+      ],
+    });
+  }
 
   return (
     <Helmet>

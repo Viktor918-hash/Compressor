@@ -29,14 +29,23 @@
     "catEdit": "Editar fotos",
     "catDocs": "Documentos",
     "imageToText": "Imagen a texto",
-    "imageToTextDesc": "Extraer texto de una foto o captura"
+    "imageToTextDesc": "Extraer texto de una foto o captura",
+    "signOut": "Cerrar sesión",
+    "mainNav": "Navegación principal"
   },
   "hero": {
     "titlePart1": "Fotos pesadas, ahora",
     "titleGradient": "más ligeras",
     "text1": "Comprime JPG, PNG y WebP en segundos, directamente en tu navegador y sin perder calidad.",
     "text2": "Reduce el tamaño de varias imágenes a la vez.",
-    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo"
+    "dropzone": "Arrastra tu archivo aquí o haz clic para seleccionarlo",
+    "options": {
+      "title": "Ajustes de compresión",
+      "quality": "Calidad",
+      "keepSize": "Mantener el tamaño original",
+      "maxSide": "Lado máx.",
+      "hint": "Los cambios se aplican a los archivos que añadas después. PNG es sin pérdida, así que el control de calidad no le afecta: para reducir un PNG, desactiva «Mantener el tamaño original»."
+    }
   },
   "convert": {
     "titlePart2": "Cualquier formato",
@@ -82,7 +91,18 @@
     "upLoadPhoto": "Descargar",
     "saved": "Ahorrado",
     "removeFile": "Eliminar {{name}}",
-    "addMoreAria": "Añadir otro archivo"
+    "addMoreAria": "Añadir otro archivo",
+    "progress": "Procesados {{done}} de {{total}}",
+    "progressDone": "Listo: {{done}} de {{total}}",
+    "cancel": "Cancelar",
+    "retry": "Reintentar",
+    "retryAria": "Reintentar {{name}}",
+    "status": {
+      "queued": "En cola",
+      "processing": "Procesando…"
+    },
+    "hideSettings": "Ocultar ajustes",
+    "showSettings": "Mostrar ajustes"
   },
   "convertWebp": {
     "titlePart2": "Convierte fotos a ",
@@ -116,7 +136,9 @@
     "return": "← Volver a los ajustes",
     "processing": "Procesando…",
     "noMatch": "No hay ajustes para este filtro",
-    "all": "Todos"
+    "all": "Todos",
+    "before": "ANTES",
+    "clearFilter": "Quitar filtro"
   },
   "removeBg": {
     "title": "Eliminar el fondo de una foto",
@@ -137,7 +159,8 @@
     "error": "No se pudo eliminar el fondo de esta imagen. Prueba con otra foto."
   },
   "footer": {
-    "title": "Tu asistente de confianza"
+    "title": "Tu asistente de confianza",
+    "tools": "Herramientas"
   },
   "auth": {
     "titleLogin": "Iniciar sesión en tu cuenta",
@@ -156,7 +179,17 @@
     "invalidCredentials": "Email o contraseña incorrectos",
     "loginSuccess": "¡Has iniciado sesión correctamente!",
     "registerSuccess": "¡Registro completado correctamente!",
-    "confirmEmailSent": "¡Registro completado! Revisa tu email para confirmar tu cuenta."
+    "confirmEmailSent": "¡Registro completado! Revisa tu email para confirmar tu cuenta.",
+    "close": "Cerrar",
+    "errors": {
+      "invalidCredentials": "Email o contraseña incorrectos",
+      "userExists": "Ya existe una cuenta con este email. Prueba a iniciar sesión.",
+      "weakPassword": "La contraseña es demasiado débil. Usa al menos 6 caracteres.",
+      "emailNotConfirmed": "Confirma tu email con el mensaje que te enviamos e inténtalo de nuevo.",
+      "rateLimit": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+      "signupDisabled": "El registro no está disponible temporalmente.",
+      "generic": "Algo salió mal. Inténtalo de nuevo más tarde."
+    }
   },
   "wordToPdf": {
     "titlePart2": "Convertidor de documentos en línea profesional de DOC y DOCX",
@@ -619,5 +652,8 @@
     "accept": "Aceptar",
     "decline": "Rechazar",
     "settings": "Configuración de cookies"
+  },
+  "related": {
+    "title": "Herramientas relacionadas"
   }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import "./Header.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import {
@@ -22,6 +22,7 @@ import LocalizedLink from "../LocalizedLink/LocalizedLink";
 // Змінюємо "../" на "../../"
 import { useAuth } from "../../context/AuthContext";
 import AuthModal from "../AuthModal/AuthModal";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -35,6 +36,38 @@ const Header = () => {
   const { user, isPro, signOut } = useAuth();
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  // Випадне меню "Інструменти": відкривається кліком/Enter/Space (а не лише
+  // наведенням мишки), закривається Escape, кліком поза меню й виходом фокуса.
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const toolsRef = useRef(null);
+  const toolsButtonRef = useRef(null);
+  const toolsPanelId = useId();
+
+  useEffect(() => {
+    if (!isToolsOpen) return undefined;
+    const onPointerDown = (e) => {
+      if (toolsRef.current && !toolsRef.current.contains(e.target)) {
+        setIsToolsOpen(false);
+      }
+    };
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsToolsOpen(false);
+        toolsButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isToolsOpen]);
+
+  // Мобільне меню — модальне: фокус усередині, Escape закриває
+  const mobileMenuRef = useRef(null);
+  useFocusTrap(mobileMenuRef, isMenuOpen, closeMenu);
 
   // Хендлери відкриття авторизації
   const openLogin = (e) => {
@@ -92,7 +125,7 @@ const Header = () => {
       <div className="header__wrapper container">
         <div className="header__content"></div>
 
-        <nav className="header__nav">
+        <nav className="header__nav" aria-label={t("header.mainNav")}>
           <LocalizedLink to="/" className="header__logo-link">
             <img
               className="header__logo"
@@ -102,13 +135,31 @@ const Header = () => {
           </LocalizedLink>
 
           <ul className="header__nav-list">
-            <li className="header__list header__list--dropdown header__list--tools">
-              <a className="nav__link" href="#">
+            <li
+              ref={toolsRef}
+              className={`header__list header__list--dropdown header__list--tools ${
+                isToolsOpen ? "header__list--open" : ""
+              }`}
+              onBlur={(e) => {
+                // фокус пішов за межі меню (Tab) — закриваємо
+                if (!e.currentTarget.contains(e.relatedTarget)) {
+                  setIsToolsOpen(false);
+                }
+              }}
+            >
+              <button
+                ref={toolsButtonRef}
+                type="button"
+                className="nav__link nav__link--button"
+                aria-expanded={isToolsOpen}
+                aria-controls={toolsPanelId}
+                onClick={() => setIsToolsOpen((v) => !v)}
+              >
                 {t("header.tools")}
-                <MdKeyboardArrowDown size={22} />
-              </a>
+                <MdKeyboardArrowDown size={22} aria-hidden="true" />
+              </button>
 
-              <div className="dropdown-panel">
+              <div className="dropdown-panel" id={toolsPanelId}>
                 <div className="dropdown-panel__col">
                   <span className="dropdown-panel__col-title">
                     {t("header.catCompress")}
@@ -260,11 +311,6 @@ const Header = () => {
                 {t("presets.navTitle")}
               </LocalizedLink>
             </li>
-            <li className="header__list header__list--secondary">
-              <a className="nav__link" href="">
-                {t("header.pricing")}
-              </a>
-            </li>
           </ul>
 
           <div className="div__nav">
@@ -299,7 +345,8 @@ const Header = () => {
                   type="button"
                   className="sigIn"
                   onClick={signOut}
-                  title="Вийти"
+                  title={t("header.signOut")}
+                  aria-label={t("header.signOut")}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -338,7 +385,9 @@ const Header = () => {
               type="button"
               className="burger-btn"
               onClick={() => setIsMenuOpen(true)}
-              aria-label="Відкрити меню"
+              aria-label={t("header.openMenu")}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               <FiMenu size={28} />
             </button>
@@ -356,14 +405,22 @@ const Header = () => {
         />
       )}
 
-      <aside className={`mobile-menu ${isMenuOpen ? "mobile-menu--open" : ""}`}>
+      <aside
+        id="mobile-menu"
+        ref={mobileMenuRef}
+        className={`mobile-menu ${isMenuOpen ? "mobile-menu--open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("header.menu")}
+        inert={!isMenuOpen}
+      >
         <div className="mobile-menu__header">
           <span className="mobile-menu__title">{t("header.menu")}</span>
           <button
             type="button"
             className="mobile-menu__close"
             onClick={closeMenu}
-            aria-label="Закрити меню"
+            aria-label={t("header.closeMenu")}
           >
             <FiX size={24} />
           </button>
@@ -447,13 +504,6 @@ const Header = () => {
           </LocalizedLink>
         </div>
 
-        <a href="" className="mobile-menu__item mobile-menu__item--plain">
-          {t("header.pricing")}
-        </a>
-        <a href="" className="mobile-menu__item mobile-menu__item--plain">
-          {t("header.help")}
-        </a>
-
         <div className="mobile-menu__item mobile-menu__language">
           <LanguageSwitcher className="mobile-menu__language-switcher" />
         </div>
@@ -483,7 +533,7 @@ const Header = () => {
                   closeMenu();
                 }}
               >
-                Вийти
+                {t("header.signOut")}
               </button>
             </div>
           ) : (

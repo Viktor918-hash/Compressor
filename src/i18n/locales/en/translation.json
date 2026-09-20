@@ -29,14 +29,23 @@
     "catEdit": "Edit Photos",
     "catDocs": "Documents",
     "imageToText": "Image to Text",
-    "imageToTextDesc": "Extract text from a photo or screenshot"
+    "imageToTextDesc": "Extract text from a photo or screenshot",
+    "signOut": "Sign out",
+    "mainNav": "Main navigation"
   },
   "hero": {
     "titlePart1": "Heavy photos - now",
     "titleGradient": "lighter",
     "text1": "Compress JPG, PNG, WebP — in seconds, right in your browser, without quality loss.",
     "text2": "Resize multiple images at once.",
-    "dropzone": "Drop your file here or click to select"
+    "dropzone": "Drop your file here or click to select",
+    "options": {
+      "title": "Compression settings",
+      "quality": "Quality",
+      "keepSize": "Keep original size",
+      "maxSide": "Max side",
+      "hint": "Changes apply to files you add afterwards. PNG is lossless, so the quality slider has no effect on it — to shrink a PNG, turn off “Keep original size”."
+    }
   },
   "convert": {
     "titlePart2": "Any format",
@@ -82,7 +91,18 @@
     "upLoadPhoto": "Download",
     "saved": "Saved",
     "removeFile": "Remove {{name}}",
-    "addMoreAria": "Add another file"
+    "addMoreAria": "Add another file",
+    "progress": "Processed {{done}} of {{total}}",
+    "progressDone": "Done: {{done}} of {{total}}",
+    "cancel": "Cancel",
+    "retry": "Retry",
+    "retryAria": "Retry {{name}}",
+    "status": {
+      "queued": "Queued",
+      "processing": "Processing…"
+    },
+    "hideSettings": "Hide settings",
+    "showSettings": "Show settings"
   },
   "convertWebp": {
     "titlePart2": "Convert photos to ",
@@ -116,7 +136,9 @@
     "return": "← Back to presets",
     "processing": "Processing…",
     "noMatch": "No presets for this filter",
-    "all": "All"
+    "all": "All",
+    "before": "BEFORE",
+    "clearFilter": "Clear filter"
   },
   "removeBg": {
     "title": "Remove background from photo",
@@ -137,7 +159,8 @@
     "error": "Failed to remove the background from this image. Try another photo."
   },
   "footer": {
-    "title": "Your reliable assistant"
+    "title": "Your reliable assistant",
+    "tools": "Tools"
   },
   "auth": {
     "titleLogin": "Account Login",
@@ -156,7 +179,17 @@
     "invalidCredentials": "Invalid email or password",
     "loginSuccess": "Successful login!",
     "registerSuccess": "Registration successful!",
-    "confirmEmailSent": "Registration successful! Check your email for confirmation."
+    "confirmEmailSent": "Registration successful! Check your email for confirmation.",
+    "close": "Close",
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "userExists": "An account with this email already exists. Try signing in.",
+      "weakPassword": "The password is too weak. Use at least 6 characters.",
+      "emailNotConfirmed": "Please confirm your email using the message we sent, then try again.",
+      "rateLimit": "Too many attempts. Please wait a moment and try again.",
+      "signupDisabled": "Sign-up is temporarily unavailable.",
+      "generic": "Something went wrong. Please try again later."
+    }
   },
   "wordToPdf": {
     "titlePart2": "Professional online document converter from DOC and DOCX",
@@ -619,5 +652,8 @@
     "accept": "Accept",
     "decline": "Decline",
     "settings": "Cookie settings"
+  },
+  "related": {
+    "title": "Related tools"
   }
 }

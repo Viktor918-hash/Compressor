@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { FiZap, FiShield, FiSmartphone, FiCheckCircle, FiChevronDown } from "react-icons/fi";
+import RelatedTools from "./RelatedTools";
 import "./SeoContent.css";
 
 // Іконки для 4 карток переваг — однаковий набір на всіх сторінках,
@@ -102,15 +103,19 @@ const SeoContent = ({ pageKey }) => {
                         className="seo-content__faq-chevron"
                       />
                     </button>
-                    {isOpen && (
-                      <p className="seo-content__faq-answer">{item.a}</p>
-                    )}
+                    {/* Відповідь завжди в DOM (лише прихована): текст, що є в
+                        розмітці FAQPage, має бути на сторінці й для ботів */}
+                    <p className="seo-content__faq-answer" hidden={!isOpen}>
+                      {item.a}
+                    </p>
                   </div>
                 );
               })}
             </div>
           </div>
         )}
+
+        <RelatedTools current={pageKey} />
       </div>
     </section>
   );
