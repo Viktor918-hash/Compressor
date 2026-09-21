@@ -54,7 +54,7 @@ const newId = () =>
  */
 const Panel = ({
   acceptedTypes,
-  processFile, // async (file, { signal }) => Blob — саме тут відбувається стиснення АБО конвертація
+  processFile, // async (file, { signal, onProgress }) => Blob — саме тут відбувається стиснення АБО конвертація
   getOutputName, // (originalName) => string — дозволяє поміняти розширення для конвертера
   maxFiles = 20,
   maxFileSize = 30 * 1024 * 1024,
@@ -164,7 +164,26 @@ const Panel = ({
     (async () => {
       const cur = latest.current;
       try {
-        const result = await cur.processFile(file, { signal: controller.signal });
+        // onProgress({ text, value }) — необов'язковий прогрес обробника
+        // (напр. OCR: "Розпізнавання 43%"); value 0…1. Оновлюємо стан лише
+        // при зміні відсотка, щоб не перерисовувати панель на кожну подію.
+        let lastProgressKey = "";
+        const onProgress = (p) => {
+          if (isStale() || controller.signal.aborted) return;
+          const pct =
+            typeof p?.value === "number" ? Math.round(p.value * 100) : null;
+          const key = `${p?.text ?? ""}|${pct}`;
+          if (key === lastProgressKey) return;
+          lastProgressKey = key;
+          patchItem(next.id, {
+            progressText: p?.text ?? null,
+            progressValue: pct === null ? null : pct / 100,
+          });
+        };
+        const result = await cur.processFile(file, {
+          signal: controller.signal,
+          onProgress,
+        });
         if (isStale() || controller.signal.aborted) return;
         // файл могли прибрати зі списку, поки він обробляався
         if (!itemsRef.current.some((i) => i.id === next.id)) return;
@@ -462,7 +481,12 @@ const Panel = ({
   };
 
   const handleRetry = (id) => {
-    patchItem(id, { status: "queued", error: null });
+    patchItem(id, {
+      status: "queued",
+      error: null,
+      progressText: null,
+      progressValue: null,
+    });
     setDownloaded(false);
   };
 
@@ -675,11 +699,21 @@ const Panel = ({
                     className={`side-panel__file-status side-panel__file-status--${status}`}
                   >
                     {status === "queued" && t("panel.status.queued")}
-                    {status === "processing" && t("panel.status.processing")}
+                    {status === "processing" &&
+                      (item.progressText || t("panel.status.processing"))}
                     {status === "done" &&
                       `${fmtSize(file.size)} → ${fmtSize(item.processedSize)}`}
                     {status === "error" && item.error}
                   </span>
+                  {status === "processing" &&
+                    typeof item.progressValue === "number" && (
+                      <progress
+                        className="side-panel__file-progress"
+                        max={1}
+                        value={item.progressValue}
+                        aria-label={item.progressText || t("panel.status.processing")}
+                      />
+                    )}
                 </span>
                 {status === "error" && (
                   <button

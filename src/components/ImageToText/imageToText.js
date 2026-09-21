@@ -1,5 +1,19 @@
 import { createWorker } from "tesseract.js";
 import i18n from "../../i18n/i18n";
+import { userError } from "../../utils/userError";
+import { cleanOcrText, fixCyrillicLatinConfusion } from "./ocrText";
+
+// Мови розпізнавання, які пропонує інтерфейс. Порядок важливий: у рядку
+// "ukr+eng" перша мова — основна, тому англійська (запасна для брендів,
+// посилань і елементів інтерфейсу на скріншотах) стоїть останньою.
+// Файли моделей лежать у public/tesseract/lang (див. scripts/copy-ocr-assets.mjs).
+export const OCR_LANGS = [
+  { code: "ukr", label: "Українська" },
+  { code: "rus", label: "Русский" },
+  { code: "spa", label: "Español" },
+  { code: "eng", label: "English" },
+];
+export const OCR_MAX_LANGS = 3;
 
 // Мова сторінки (uk/en/ru/es) → код мовної моделі Tesseract.
 const LANG_MAP = {
@@ -8,6 +22,36 @@ const LANG_MAP = {
   ru: "rus",
   es: "spa",
 };
+
+/** Мови за замовчуванням: мова сторінки + English (крім самої English). */
+export const defaultOcrLangs = (pageLang) => {
+  const primary = LANG_MAP[pageLang] || "eng";
+  return primary === "eng" ? ["eng"] : [primary, "eng"];
+};
+
+/** Нормалізує вибір: лише відомі коди, у канонічному порядку, 1…OCR_MAX_LANGS. */
+export const normalizeOcrLangs = (codes, pageLang) => {
+  const chosen = OCR_LANGS.map((l) => l.code).filter((c) =>
+    (codes || []).includes(c)
+  );
+  if (chosen.length === 0) return defaultOcrLangs(pageLang);
+  return chosen.slice(0, OCR_MAX_LANGS);
+};
+
+// Шляхи до власних копій воркера/ядра/моделей (без CDN).
+const TESSERACT_PATHS = {
+  workerPath: "/tesseract/worker.min.js",
+  corePath: "/tesseract/core",
+  langPath: "/tesseract/lang",
+};
+
+// Скільки воркер живе без діла після останнього розпізнавання. WASM-ядро
+// й мовна модель займають сотні МБ пам'яті — не тримаємо їх даремно.
+const IDLE_TERMINATE_MS = 60_000;
+
+// Найбільша довга сторона зображення для OCR: понад це — зменшуємо (інакше
+// canvas у сотні мегапікселів вбиває вкладку на телефоні).
+const OCR_MAX_LONG_SIDE = 4500;
 
 // Скріншоти й фото документів часто мають замалу для OCR роздільність —
 // дрібні гліфи (маркер списку "•", тире "—", цифри виносок у [1]) на
@@ -109,11 +153,31 @@ const despeckle = (data, width, height) => {
 // порогування — використовується як запасний прохід, коли бінаризація
 // дає низьку впевненість розпізнавання. Оригінальний файл користувача
 // при цьому ніколи не змінюється.
+// createImageBitmap є не в усіх старих Safari — запасний шлях через <img>.
+const decodeImage = async (file) => {
+  if (typeof createImageBitmap === "function") {
+    return createImageBitmap(file);
+  }
+  const url = URL.createObjectURL(file);
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    return { width: img.naturalWidth, height: img.naturalHeight, source: img, close() {} };
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+};
+
 const preprocessForOcr = async (file, { binarize = true } = {}) => {
-  const bitmap = await createImageBitmap(file);
+  const bitmap = await decodeImage(file);
   const longSide = Math.max(bitmap.width, bitmap.height);
   const scale =
-    longSide < OCR_TARGET_LONG_SIDE ? OCR_TARGET_LONG_SIDE / longSide : 1;
+    longSide < OCR_TARGET_LONG_SIDE
+      ? OCR_TARGET_LONG_SIDE / longSide
+      : longSide > OCR_MAX_LONG_SIDE
+      ? OCR_MAX_LONG_SIDE / longSide
+      : 1;
 
   const canvas = document.createElement("canvas");
   canvas.width = Math.round(bitmap.width * scale);
@@ -123,7 +187,7 @@ const preprocessForOcr = async (file, { binarize = true } = {}) => {
   // виглядає "зубчастим", що тільки шкодить розпізнаванню дрібних гліфів.
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = "high";
-  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bitmap.source || bitmap, 0, 0, canvas.width, canvas.height);
   bitmap.close();
 
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -159,30 +223,137 @@ const preprocessForOcr = async (file, { binarize = true } = {}) => {
   );
 };
 
-// Тримаємо один воркер на весь сеанс замість того, щоб створювати новий
-// на кожне фото — ініціалізація воркера й завантаження мовної моделі
-// займають помітний час, тож перевикористання суттєво пришвидшує
-// розпізнавання кількох фото поспіль (саме це і потрібно для мульти-аплоаду
-// в <Panel />, який викликає processFile послідовно для кожного файлу).
+// ── Воркер Tesseract ─────────────────────────────────────────────────────
+// Один воркер на сеанс (а не на кожне фото): ініціалізація й завантаження
+// мовної моделі — найдовша частина, тож для мультиаплоаду перевикористовуємо.
+// Воркер:
+//  • перестворюється, якщо змінився набір мов;
+//  • ЗНИЩУЄТЬСЯ при "Скасувати", при виході зі сторінки і після 60 с простою
+//    (terminateOcrWorker / IDLE_TERMINATE_MS) — WASM і модель звільняють пам'ять;
+//  • не залишається "зламаним" назавжди, якщо завантаження моделі не вдалось
+//    (наприклад, обрив мережі) — наступна спроба створить його заново.
 let workerPromise = null;
-let workerLang = null;
+let workerKey = null;
+let idleTimer = null;
+let currentProgress = null; // колбек прогресу поточного завдання (логгер воркера один)
 
-const getWorker = async (lang) => {
-  if (workerPromise && workerLang === lang) {
-    return workerPromise;
+// Завдання виконуються по одному: скасоване завдання не має "перетинатись"
+// із наступним, а зміна мов не повинна знищити воркер посеред розпізнавання.
+let queue = Promise.resolve();
+const runExclusive = (fn) => {
+  const run = queue.then(fn);
+  queue = run.catch(() => {});
+  return run;
+};
+
+const abortError = () => new DOMException("Aborted", "AbortError");
+
+// Перериває очікування promise, коли спрацьовує signal (сам promise
+// продовжує жити у фоні, але результат нікого не цікавить).
+const raceAbort = (promise, signal) => {
+  if (!signal) return promise;
+  if (signal.aborted) return Promise.reject(abortError());
+  return new Promise((resolve, reject) => {
+    const onAbort = () => reject(abortError());
+    signal.addEventListener("abort", onAbort, { once: true });
+    promise.then(
+      (v) => {
+        signal.removeEventListener("abort", onAbort);
+        resolve(v);
+      },
+      (e) => {
+        signal.removeEventListener("abort", onAbort);
+        reject(e);
+      }
+    );
+  });
+};
+
+/** Знищує воркер (якщо є). Безпечно викликати будь-коли. */
+export const terminateOcrWorker = () => {
+  clearTimeout(idleTimer);
+  idleTimer = null;
+  const p = workerPromise;
+  workerPromise = null;
+  workerKey = null;
+  if (p) p.then((w) => w.terminate()).catch(() => {});
+};
+
+const scheduleIdleTerminate = () => {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(terminateOcrWorker, IDLE_TERMINATE_MS);
+};
+
+// Повідомлення логгера Tesseract → { phase, value }
+const mapLoggerMessage = (m) => {
+  if (m.status === "recognizing text") {
+    return { phase: "recognizing", value: m.progress };
   }
-
-  // Мова відрізняється від тієї, з якою воркер уже створений (користувач
-  // перемкнув мову сторінки між завантаженнями) — закриваємо старий
-  // воркер, щоб не тримати в пам'яті одразу дві мовні моделі.
-  if (workerPromise) {
-    const oldWorker = await workerPromise;
-    await oldWorker.terminate();
+  if (m.status === "loading language traineddata") {
+    return { phase: "loading", value: m.progress };
   }
+  return { phase: "loading" };
+};
 
-  workerLang = lang;
-  workerPromise = (async () => {
-    const worker = await createWorker(lang);
+// Мовні моделі, які вже успішно завантажувались у цьому сеансі
+const loadedLangs = new Set();
+
+// Попереднє завантаження мовних моделей з основного потоку. Навіщо:
+//  • tesseract.js при помилці мережі під час завантаження моделі НЕ відхиляє
+//    проміс createWorker (він висить вічно) — а тут помилка видна одразу,
+//    без створеного й "загубленого" воркера;
+//  • можна показати реальний відсоток завантаження;
+//  • воркер потім бере файл із HTTP-кешу браузера (Cache-Control у vercel.json).
+const preloadLangModels = async (codes, signal, onProgress) => {
+  const missing = codes.filter((c) => !loadedLangs.has(c));
+  let done = 0;
+  for (const code of missing) {
+    const resp = await fetch(`${TESSERACT_PATHS.langPath}/${code}.traineddata.gz`, { signal });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status} for ${code}`);
+    const total = Number(resp.headers.get("content-length")) || 0;
+    if (resp.body && total) {
+      const reader = resp.body.getReader();
+      let got = 0;
+      for (;;) {
+        const { done: end, value } = await reader.read();
+        if (end) break;
+        got += value.length;
+        onProgress?.({ phase: "loading", value: (done + got / total) / missing.length });
+      }
+    } else {
+      await resp.arrayBuffer();
+    }
+    done += 1;
+    onProgress?.({ phase: "loading", value: done / missing.length });
+  }
+};
+
+const getWorker = (langKey) => {
+  if (workerPromise && workerKey === langKey) return workerPromise;
+
+  // Набір мов змінився — закриваємо старий воркер, щоб не тримати в
+  // пам'яті одразу дві мовні моделі.
+  terminateOcrWorker();
+
+  workerKey = langKey;
+  const creating = (async () => {
+    // Помилки воркера (напр. збій завантаження моделі) tesseract.js віддає
+    // лише в errorHandler, а сам createWorker у цьому разі не завершується —
+    // тому перегоняємо його з власним "провалом".
+    let fail;
+    const failed = new Promise((_, reject) => {
+      fail = reject;
+    });
+    const worker = await Promise.race([
+      createWorker(langKey, 1, {
+        ...TESSERACT_PATHS,
+        logger: (m) => currentProgress?.(mapLoggerMessage(m)),
+        errorHandler: (e) => fail(new Error(String(e))),
+      }),
+      failed,
+    ]);
+    // Після старту помилки окремих завдань обробляє recognize() (reject)
+    langKey.split("+").forEach((c) => loadedLangs.add(c));
     await worker.setParameters({
       // Зберігає реальні пробіли/відступи між словами — важливо для
       // скріншотів з колонками, таблицями, меню, де порядок слів по
@@ -196,136 +367,100 @@ const getWorker = async (lang) => {
     });
     return worker;
   })();
-
-  return workerPromise;
+  workerPromise = creating;
+  // Якщо створення не вдалось — не тримаємо "зламаний" проміс
+  creating.catch(() => {
+    if (workerPromise === creating) {
+      workerPromise = null;
+      workerKey = null;
+    }
+  });
+  return creating;
 };
 
-// Прибирає зайві пробіли й порожні рядки, не ламаючи структуру абзаців.
-const cleanOcrText = (raw) =>
-  raw
-    .split("\n")
-    .map((line) => line.replace(/[ \t]+/g, " ").trimEnd())
-    .join("\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-
-// Літери, що виглядають ІДЕНТИЧНО в латиниці й кирилиці (класична
-// проблема "гомогліфів"). Коли мовна модель Tesseract працює одночасно
-// з двома алфавітами (ukr+eng), вона іноді "вибирає" не той алфавіт для
-// окремого гліфа — типовий наслідок: український текст на кшталт "т.ін"
-// розпізнається як "T.iH" (усі літери латинські, хоча слово українське).
-const LOOKALIKE_TO_CYRILLIC = {
-  A: "А",
-  B: "В",
-  E: "Е",
-  K: "К",
-  M: "М",
-  H: "Н",
-  O: "О",
-  P: "Р",
-  C: "С",
-  T: "Т",
-  X: "Х",
-  Y: "У",
-  a: "а",
-  e: "е",
-  o: "о",
-  p: "р",
-  c: "с",
-  x: "х",
-  y: "у",
-};
-
-// Латинська "I"/"i" схожа лише на українську "І"/"і" (з крапкою) — для
-// російської сторінки такої відповідності немає, тому додаємо цю пару
-// вибірково, лише коли мова сторінки — українська. tesseractLang тут —
-// код мовної моделі Tesseract ("ukr"/"rus"/...), а не код сторінки i18n.
-const buildLookalikeMap = (tesseractLang) => {
-  if (tesseractLang !== "ukr") return LOOKALIKE_TO_CYRILLIC;
-  return { ...LOOKALIKE_TO_CYRILLIC, I: "І", i: "і" };
-};
-
-const LETTER_RE = /[A-Za-zА-Яа-яЁёІіЇїЄєҐґ]/;
-const isCyrillicChar = (ch) => /[\u0400-\u04FF]/.test(ch);
-// Послідовність із 2+ ВЕЛИКИХ латинських літер поспіль — швидше за все
-// справжня англійська абревіатура (PDF, USB, URL) чи бренд, а не
-// зіпсована кирилиця, тому такі токени свідомо не чіпаємо.
-const LOOKS_LIKE_ACRONYM = /^[A-Z]{2,}$/;
-
-// Виправляє гомогліфи в межах рядка: визначає, чи рядок переважно
-// кириличний (за співвідношенням кириличних/латинських літер), і якщо
-// так — конвертує "підозрілі" латинські літери-двійники на кириличні
-// лише в словах змішаного алфавіту (не чіпає суто латинські слова й
-// схожі на англійську абревіатуру токени).
-// Це не чіпає жодної вже коректно розпізнаної кирилиці й не може
-// зіпсувати текст, який справді написаний латиницею (короткі рядки або
-// переважно англійські лишаються без змін). tesseractLang — код
-// мовної моделі Tesseract ("ukr"/"rus"/"eng"/"spa").
-const fixCyrillicLatinConfusion = (text, tesseractLang) => {
-  if (tesseractLang !== "ukr" && tesseractLang !== "rus") return text;
-  const map = buildLookalikeMap(tesseractLang);
-
-  return text
-    .split("\n")
-    .map((line) => {
-      const letters = line.match(new RegExp(LETTER_RE, "g")) || [];
-      if (letters.length < 4) return line; // замало даних для визначення алфавіту рядка
-
-      const cyrillicRatio =
-        letters.filter(isCyrillicChar).length / letters.length;
-      if (cyrillicRatio < 0.55) return line; // рядок переважно латиницею — не чіпаємо
-
-      return line.replace(/[A-Za-zА-Яа-яЁёІіЇїЄєҐґ.]+/g, (token) => {
-        if (LOOKS_LIKE_ACRONYM.test(token.replace(/\./g, ""))) return token;
-
-        // Міняємо лише токени ЗМІШАНОГО алфавіту (кирилиця + латиниця в
-        // одному слові) — це ознака зіпсованого розпізнавання. Суто латинські
-        // слова (support@gmail.com, Chrome, Telegram, URL-адреси) залишаємо
-        // як є, інакше вони непомітно перетворювались на кирилицю.
-        const hasCyrillic = /[\u0400-\u04FF]/.test(token);
-        const hasLatin = /[A-Za-z]/.test(token);
-        if (!(hasCyrillic && hasLatin)) return token;
-
-        let fixed = "";
-        for (const ch of token) fixed += map[ch] || ch;
-        return fixed;
-      });
-    })
-    .join("\n");
-};
+// Мова для виправлення "гомогліфів": українська має власну літеру "і".
+const homoglyphLang = (codes) =>
+  codes.includes("ukr") ? "ukr" : codes.includes("rus") ? "rus" : "eng";
 
 // Основне розпізнавання: бінаризований прохід і, за потреби, запасний
 // прохід без бінаризації, якщо впевненість першого проходу занизька.
-const recognizeText = async (file) => {
-  const primaryLang = LANG_MAP[i18n.language] || "eng";
-  // Додаємо eng до будь-якої мови — скріншоти часто містять англійські
-  // слова (елементи інтерфейсу, посилання, бренди), і без цього вони
-  // спотворюються мовною моделлю, "заточеною" тільки під кирилицю.
-  const lang = primaryLang === "eng" ? "eng" : `${primaryLang}+eng`;
-  const worker = await getWorker(lang);
+const recognizeText = async (file, { langs, signal, onProgress }) => {
+  const codes = normalizeOcrLangs(langs, i18n.language);
+  const langKey = codes.join("+");
+  const guard = (p) => raceAbort(p, signal);
+  const report = (payload) => {
+    if (!signal?.aborted) onProgress?.(payload);
+  };
+  // Дає браузеру домалювати статус перед важкою синхронною підготовкою зображення
+  const yieldToUi = () => new Promise((r) => setTimeout(r, 0));
 
-  const binarized = await preprocessForOcr(file, { binarize: true });
-  let result = await worker.recognize(binarized);
+  clearTimeout(idleTimer);
+  try {
+    report({ phase: "preparing" });
+    await guard(yieldToUi());
 
-  if (result.data.confidence < LOW_CONFIDENCE_RETRY_THRESHOLD) {
-    const grayscale = await preprocessForOcr(file, { binarize: false });
-    const fallback = await worker.recognize(grayscale);
-    if (fallback.data.confidence > result.data.confidence) {
-      result = fallback;
+    let binarized;
+    try {
+      binarized = await guard(preprocessForOcr(file, { binarize: true }));
+    } catch (err) {
+      if (err?.name === "AbortError") throw err;
+      throw userError(i18n.t("errors.imageDecodeFailed", { name: file.name }));
     }
-  }
 
-  const cleaned = cleanOcrText(result.data.text);
-  return fixCyrillicLatinConfusion(cleaned, primaryLang);
+    report({ phase: "loading" });
+    currentProgress = report;
+    let worker;
+    try {
+      if (!workerPromise || workerKey !== langKey) {
+        await guard(preloadLangModels(codes, signal, report));
+      }
+      worker = await guard(getWorker(langKey));
+    } catch (err) {
+      if (err?.name === "AbortError") throw err;
+      console.error("OCR: не вдалося створити воркер:", err);
+      throw userError(i18n.t("imageToText.errors.modelLoad"));
+    }
+
+    report({ phase: "recognizing", value: 0, pass: 1 });
+    currentProgress = (m) => report({ ...m, pass: 1 });
+    let result = await guard(worker.recognize(binarized));
+
+    if (result.data.confidence < LOW_CONFIDENCE_RETRY_THRESHOLD) {
+      report({ phase: "recognizing", value: 0, pass: 2 });
+      currentProgress = (m) => report({ ...m, pass: 2 });
+      const grayscale = await guard(preprocessForOcr(file, { binarize: false }));
+      const fallback = await guard(worker.recognize(grayscale));
+      if (fallback.data.confidence > result.data.confidence) {
+        result = fallback;
+      }
+    }
+
+    const cleaned = cleanOcrText(result.data.text);
+    return fixCyrillicLatinConfusion(cleaned, homoglyphLang(codes));
+  } catch (err) {
+    // Скасування: воркер може бути посеред розпізнавання — єдиний надійний
+    // спосіб його зупинити — знищити (наступне розпізнавання створить новий).
+    if (err?.name === "AbortError") terminateOcrWorker();
+    throw err;
+  } finally {
+    currentProgress = null;
+    if (workerPromise) scheduleIdleTerminate();
+  }
 };
 
 // processFile для <Panel />. Повертає не готовий Blob, а "сирі" дані —
 // розпізнаний текст. Це дозволяє Panel перегенеровувати вихідний файл
 // під обраний користувачем формат (txt/doc) БЕЗ повторного OCR, коли
 // людина перемикає формат перемикачем біля кнопки завантаження.
-export const extractOcrData = async (file) => {
-  const text = await recognizeText(file);
-  return { text };
+//
+// options: { langs: string[] (коди Tesseract), signal, onProgress({phase,value,pass}) }
+export const extractOcrData = (file, options = {}) => {
+  if (options.signal?.aborted) return Promise.reject(abortError());
+  return runExclusive(async () => {
+    if (options.signal?.aborted) throw abortError();
+    const text = await recognizeText(file, options);
+    return { text };
+  });
 };
 
 const escapeHtml = (str) =>

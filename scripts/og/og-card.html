@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- Шаблон OG-картинки 1200×630. Відкривається як og-card.html?lang=uk|en|ru|es.
+     Генерація PNG: python3 scripts/og/render.py (Playwright) → public/og/og-<lang>.png -->
+<html><head><meta charset="utf-8"><style>
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{font-family:"Liberation Sans",Arial,Helvetica,sans-serif;color:#14224a;
+       background:radial-gradient(900px 500px at 88% 8%,#d8f3f8 0,transparent 60%),
+                  linear-gradient(135deg,#f5f8ff 0%,#e8f0ff 100%);
+       position:relative}
+  .brand{position:absolute;left:72px;top:52px;display:flex;align-items:center;gap:28px}
+  .brand svg{display:block}
+  h1{position:absolute;left:80px;top:275px;font-size:112px;line-height:1;font-weight:800;letter-spacing:-2px;
+     background:linear-gradient(90deg,#1e3fcc 0%,#12a8c7 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+     padding-bottom:12px}
+  h1 span{color:transparent}
+  .tag{position:absolute;left:80px;top:412px;width:1040px;font-size:44px;line-height:1.22;font-weight:700;color:#14224a}
+  .sub{position:absolute;left:80px;top:496px;font-size:30px;color:#4a5a86}
+  .chips{position:absolute;right:80px;top:78px;display:flex;gap:12px}
+  .chips b{font-size:26px;font-weight:700;color:#1e3fcc;background:#fff;border:2px solid #cfdcff;border-radius:999px;padding:8px 20px}
+  .url{position:absolute;right:80px;bottom:56px;font-size:30px;font-weight:700;color:#12a8c7}
+</style></head><body>
+<div class="brand">
+  <svg width="420" height="195" viewBox="25 30 345 160" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F7CFF"/><stop offset="1" stop-color="#1E3FCC"/></linearGradient>
+      <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2FD8E8"/><stop offset="1" stop-color="#12A8C7"/></linearGradient>
+    </defs>
+    <rect x="30" y="35" width="150" height="150" rx="26" fill="url(#a)"/>
+    <circle cx="70" cy="82" r="14" fill="#fff" opacity=".95"/>
+    <path d="M45 152 L90 97 L120 132 L145 102 L165 152 Z" fill="#fff" opacity=".95"/>
+    <path d="M195 95 C 225 90, 240 90, 255 95" stroke="#7C93C9" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M245 83 L262 95 L245 107" stroke="#7C93C9" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="275" y="70" width="85" height="85" rx="16" fill="url(#b)"/>
+    <circle cx="298.5" cy="98.5" r="8" fill="#fff" opacity=".95"/>
+    <path d="M284.5 134.5 L308.5 104.5 L326.5 124.5 L340.5 108.5 L350.5 134.5 Z" fill="#fff" opacity=".95"/>
+  </svg>
+</div>
+<div class="chips"><b>JPG</b><b>WebP</b><b>PDF</b><b>OCR</b></div>
+<h1>CompressPhoto</h1>
+<div class="tag" id="tag"></div>
+<div class="sub" id="sub"></div>
+<div class="url">compressphoto.org</div>
+<script>
+  const T={
+    uk:["Стиснення та обробка фото онлайн","Безкоштовно · Прямо у вашому браузері"],
+    en:["Compress and convert photos online","Free · Right in your browser"],
+    ru:["Сжатие и обработка фото онлайн","Бесплатно · Прямо в вашем браузере"],
+    es:["Comprime y convierte fotos online","Gratis · Directamente en tu navegador"]
+  };
+  const l=new URLSearchParams(location.search).get("lang")||"uk";
+  document.documentElement.lang=l;
+  document.getElementById("tag").textContent=T[l][0];
+  document.getElementById("sub").textContent=T[l][1];
+</script></body></html>

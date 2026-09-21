@@ -240,6 +240,19 @@
       "downloadOne": "Descargar texto",
       "downloadMany": "Descargar archivos de texto",
       "remove": "Eliminar"
+    },
+    "langs": {
+      "title": "Idioma del texto de la foto",
+      "hint": "Elige hasta {{max}} idiomas. Cuantos menos idiomas, más rápido y preciso es el reconocimiento."
+    },
+    "status": {
+      "preparing": "Preparando la imagen…",
+      "loading": "Cargando el modelo de idioma…",
+      "recognizing": "Reconociendo {{pct}}%",
+      "secondPass": "Segunda pasada {{pct}}%"
+    },
+    "errors": {
+      "modelLoad": "No se pudo cargar el modelo de idioma. Comprueba tu conexión a internet e inténtalo de nuevo."
     }
   },
   "seoContent": {

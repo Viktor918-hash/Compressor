@@ -23,8 +23,31 @@ const DEFAULT_TITLES = {
   es: "CompressPhoto — Compresor y Convertidor de Imágenes Online",
 };
 
-// Шлях до зображення для прев'ю в соцмережах (розмір ~1200x630px)
-const DEFAULT_OG_IMAGE = `${SITE_URL}/logoImg/compressphoto_header_logo_2.png`;
+// Картинки для прев'ю в соцмережах: 1200×630, по одній на мову
+// (~60 КБ кожна; джерело — scripts/og/og-card.html, генерація — scripts/og/render.py)
+const OG_IMAGE_SIZE = { width: 1200, height: 630 };
+const ogImageFor = (lang) => `${SITE_URL}/og/og-${["uk", "en", "ru", "es"].includes(lang) ? lang : "uk"}.png`;
+const OG_ALT = {
+  uk: "CompressPhoto — стиснення та обробка фото онлайн",
+  en: "CompressPhoto — compress and convert photos online",
+  ru: "CompressPhoto — сжатие и обработка фото онлайн",
+  es: "CompressPhoto — comprime y convierte fotos online",
+};
+
+// Організація: логотип 512×512 (квадратний, як вимагає Google для Knowledge Panel/логотипу у видачі)
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const ORGANIZATION = {
+  "@type": "Organization",
+  "@id": ORGANIZATION_ID,
+  name: "CompressPhoto",
+  url: `${SITE_URL}/`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/logo-512.png`,
+    width: 512,
+    height: 512,
+  },
+};
 
 /**
  * <SeoHead route={route} lang="uk" />
@@ -65,7 +88,8 @@ const SeoHead = ({
     pageMeta?.description ||
     DEFAULT_DESCRIPTIONS[lang] ||
     DEFAULT_DESCRIPTIONS.uk;
-  const metaOgImage = ogImage || DEFAULT_OG_IMAGE;
+  const metaOgImage = ogImage || ogImageFor(lang);
+  const ogAlt = ogImage ? pageTitle : OG_ALT[lang] || OG_ALT.uk;
 
   // Дозволяємо передавати як один об'єкт, так і масив схем
   // (наприклад, SoftwareApplication + FAQPage одночасно)
@@ -77,13 +101,17 @@ const SeoHead = ({
   // ланцюжка замість сирого URL у видачі Google).
   const tool = toolBySlug(route?.slug);
   if (route?.slug === "home") {
-    jsonLdList.push({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "CompressPhoto",
-      url: canonicalUrl,
-      inLanguage: lang,
-    });
+    jsonLdList.push(
+      { "@context": "https://schema.org", ...ORGANIZATION },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "CompressPhoto",
+        url: canonicalUrl,
+        inLanguage: lang,
+        publisher: { "@id": ORGANIZATION_ID },
+      }
+    );
   } else if (tool && robots.startsWith("index")) {
     const homeRoute = { uk: "/", en: "/en", ru: "/ru", es: "/es" };
     jsonLdList.push({
@@ -135,6 +163,9 @@ const SeoHead = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={metaOgImage} />
+      {!ogImage && <meta property="og:image:width" content={String(OG_IMAGE_SIZE.width)} />}
+      {!ogImage && <meta property="og:image:height" content={String(OG_IMAGE_SIZE.height)} />}
+      <meta property="og:image:alt" content={ogAlt} />
       <meta
         property="og:locale"
         content={
@@ -153,6 +184,7 @@ const SeoHead = ({
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={metaOgImage} />
+      <meta name="twitter:image:alt" content={ogAlt} />
 
       {/* Structured data (schema.org) для rich snippets */}
       {jsonLdList.map((schema, index) => (

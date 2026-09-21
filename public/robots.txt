@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /account
-Disallow: /en/account
+Disallow: /tesseract/
 
 Sitemap: https://compressphoto.org/sitemap.xml

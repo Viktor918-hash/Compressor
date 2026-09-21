@@ -240,6 +240,19 @@
       "downloadOne": "Download text",
       "downloadMany": "Download text files",
       "remove": "Remove"
+    },
+    "langs": {
+      "title": "Language of the text in the photo",
+      "hint": "Choose up to {{max}} languages. The fewer languages, the faster and more accurate the recognition."
+    },
+    "status": {
+      "preparing": "Preparing image…",
+      "loading": "Loading language model…",
+      "recognizing": "Recognizing {{pct}}%",
+      "secondPass": "Second pass {{pct}}%"
+    },
+    "errors": {
+      "modelLoad": "Couldn't load the language model. Check your internet connection and try again."
     }
   },
   "seoContent": {
