@@ -9,12 +9,19 @@ const LANGS = ["uk", "en", "ru", "es"];
 test("sitemap: кожен маршрут × мова, з lastmod і hreflang", () => {
   const xml = buildSitemap("2026-01-02");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  const expected = ROUTE_PATHS.flatMap((r) => LANGS.map((l) => `https://compressphoto.org${r[l]}`));
+  // маршрут може існувати не в усіх мовах — беремо лише наявні
+  const expected = ROUTE_PATHS.flatMap((r) =>
+    LANGS.filter((l) => r[l]).map((l) => `https://compressphoto.org${r[l]}`)
+  );
   assert.deepEqual([...locs].sort(), [...expected].sort());
   assert.equal(new Set(locs).size, locs.length, "дублікати URL");
   assert.equal((xml.match(/<lastmod>2026-01-02<\/lastmod>/g) || []).length, locs.length);
-  // 4 мови + x-default у кожному записі
-  assert.equal((xml.match(/hreflang=/g) || []).length, locs.length * 5);
+  // у кожному <url>: усі наявні мови маршруту + x-default
+  const hreflangs = ROUTE_PATHS.reduce(
+    (sum, r) => sum + LANGS.filter((l) => r[l]).length * (LANGS.filter((l) => r[l]).length + 1),
+    0
+  );
+  assert.equal((xml.match(/hreflang=/g) || []).length, hreflangs);
 });
 
 test("robots.txt не забороняє неіснуючі сторінки й посилається на sitemap", () => {
@@ -24,6 +31,7 @@ test("robots.txt не забороняє неіснуючі сторінки й 
   const disallowed = [...robots.matchAll(/Disallow:\s*(\S+)/g)].map((m) => m[1]);
   for (const d of disallowed) {
     for (const r of ROUTE_PATHS) for (const l of LANGS) {
+      if (!r[l]) continue;
       assert.ok(!r[l].startsWith(d), `Disallow ${d} блокує реальну сторінку ${r[l]}`);
     }
   }

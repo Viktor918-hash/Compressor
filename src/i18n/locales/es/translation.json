@@ -3,8 +3,14 @@
     "tools": "Herramientas de imagen",
     "compress": "Comprimir fotos",
     "compressDesc": "Reduce el tamaño de JPG, PNG y WebP",
+    "compressToSize": "Comprimir a N KB",
+    "compressToSizeDesc": "Ajusta una foto a un límite de tamaño",
     "convert": "Convertir a JPG",
     "convertDesc": "Convierte PNG, WebP, HEIC y otros formatos a JPG",
+    "convertToPng": "Convertir a PNG",
+    "convertToPngDesc": "Convierte JPG, WebP, HEIC y otros formatos a PNG",
+    "removeExif": "Eliminar EXIF",
+    "removeExifDesc": "Quita metadatos y GPS de tus fotos",
     "resize": "Cambiar tamaño",
     "resizeDesc": "Recorta o ajusta a cualquier tamaño",
     "howItWorks": "Cómo funciona",
@@ -31,7 +37,9 @@
     "imageToText": "Imagen a texto",
     "imageToTextDesc": "Extraer texto de una foto o captura",
     "signOut": "Cerrar sesión",
-    "mainNav": "Navegación principal"
+    "mainNav": "Navegación principal",
+    "photoToPdf": "Fotos a PDF",
+    "photoToPdfDesc": "Combinar varias fotos en un solo archivo PDF"
   },
   "hero": {
     "titlePart1": "Fotos pesadas, ahora",
@@ -102,7 +110,15 @@
       "processing": "Procesando…"
     },
     "hideSettings": "Ocultar ajustes",
-    "showSettings": "Mostrar ajustes"
+    "showSettings": "Mostrar ajustes",
+    "moveUp": "Subir: {{name}}",
+    "moveDown": "Bajar: {{name}}",
+    "orderHint": "El orden de los archivos es el orden del resultado. Arrastra un archivo o usa las flechas.",
+    "mergeWorking": "Creando el archivo…",
+    "mergeNeedMore": "Número mínimo de archivos: {{min}}.",
+    "mergeTotal": "Total: {{from}} → {{to}}",
+    "mergeCreate": "Crear",
+    "mergeTitle": "Prepara tu archivo"
   },
   "convertWebp": {
     "titlePart2": "Convierte fotos a ",
@@ -253,6 +269,125 @@
     },
     "errors": {
       "modelLoad": "No se pudo cargar el modelo de idioma. Comprueba tu conexión a internet e inténtalo de nuevo."
+    }
+  },
+  "compressToSize": {
+    "titlePart2": "Reduce una foto al tamaño que necesitas",
+    "titleGradient": "en KB online",
+    "text1": "Indica cuántos KB o MB puede pesar la foto y obtén un archivo que no supere ese valor.",
+    "text2": "La calidad y la resolución se eligen automáticamente, y tus archivos no salen de tu dispositivo.",
+    "dropzone": "Arrastra las fotos aquí o haz clic para comprimirlas a un tamaño concreto",
+    "panel": {
+      "emptyState": "Añade una foto",
+      "addMore": "Añadir otra foto",
+      "addMoreAria": "Añadir otra foto",
+      "selected": "Fotos seleccionadas:",
+      "downloadOne": "Descargar foto",
+      "downloadMany": "Descargar fotos (ZIP)",
+      "remove": "Eliminar"
+    },
+    "target": {
+      "title": "Tamaño final del archivo",
+      "presets": "Tamaños predefinidos",
+      "custom": "Tamaño personalizado",
+      "unit": "Unidad",
+      "hint": "El archivo no superará este valor. Contamos 1 KB = 1000 bytes, así que cabe en el límite tanto con las reglas de Windows como con las de macOS."
+    },
+    "units": {
+      "kb": "KB",
+      "mb": "MB"
+    },
+    "format": {
+      "title": "Formato de salida"
+    },
+    "status": {
+      "preparing": "Preparando la foto…",
+      "encoding": "Buscando la calidad: {{quality}}% → {{size}} (objetivo {{target}})"
+    },
+    "note": {
+      "same": "Calidad {{quality}}% · {{width}}×{{height}}",
+      "resized": "Calidad {{quality}}% · {{width}}×{{height}} (reducida desde {{fromWidth}}×{{fromHeight}})",
+      "unchanged": "El archivo ya no supera el objetivo: se devuelve sin cambios."
+    },
+    "errors": {
+      "badTarget": "Indica un tamaño final de al menos 1 KB.",
+      "unreachable": "No se pudo reducir a {{target}}. El resultado más pequeño fue {{best}} ({{width}}×{{height}}). Elige un tamaño mayor.",
+      "formatUnsupported": "Este navegador no puede guardar WebP. Elige JPEG o abre la página en otro navegador."
+    }
+  },
+  "convertToPng": {
+    "titlePart2": "Convierte imágenes",
+    "titleGradient": "a PNG",
+    "text1": "Convierte JPG, WebP, BMP, GIF, AVIF, HEIC y HEIF a PNG directamente en tu navegador.",
+    "text2": "Se conserva la transparencia y tus archivos no salen de tu dispositivo. Puedes añadir varias imágenes a la vez.",
+    "dropzone": "Arrastra los archivos aquí o haz clic para convertirlos a PNG",
+    "panel": {
+      "emptyState": "Añade imágenes",
+      "addMore": "Añadir más imágenes",
+      "addMoreAria": "Añadir más imágenes",
+      "selected": "Archivos seleccionados:",
+      "downloadOne": "Descargar PNG",
+      "downloadMany": "Descargar PNG (ZIP)",
+      "remove": "Eliminar"
+    },
+    "note": {
+      "larger": "PNG conserva todos los píxeles sin pérdida, por eso el archivo pesa más que el original."
+    },
+    "errors": {
+      "encodeFailed": "No se pudo crear un PNG a partir de «{{name}}». Es posible que la imagen sea demasiado grande para tu dispositivo."
+    }
+  },
+  "removeExif": {
+    "titlePart2": "Elimina EXIF y metadatos",
+    "titleGradient": "de tus fotos online",
+    "text1": "Descubre qué hay oculto en tu foto —cámara, fecha, coordenadas GPS— y elimínalo con un clic.",
+    "text2": "Los píxeles no se recodifican, así que la calidad no cambia, y tus archivos no salen de tu dispositivo.",
+    "dropzone": "Arrastra las fotos aquí o haz clic para eliminar sus metadatos",
+    "panel": {
+      "emptyState": "Añade fotos",
+      "addMore": "Añadir más fotos",
+      "addMoreAria": "Añadir más fotos",
+      "selected": "Fotos seleccionadas:",
+      "downloadOne": "Descargar foto limpia",
+      "downloadMany": "Descargar fotos limpias (ZIP)",
+      "remove": "Eliminar"
+    },
+    "option": {
+      "reencode": "Recodificar la foto por completo (quita también la etiqueta de rotación; el perfil de color pasa a ser el sRGB estándar)",
+      "hint": "Sin esta opción los píxeles quedan intactos y un JPEG conserva solo su etiqueta de rotación. Recodificar reduce un poco la calidad de JPEG y WebP (hasta el 92 %), pero no deja etiquetas ni bloques auxiliares (salvo, quizá, el perfil sRGB estándar que añade el propio navegador)."
+    },
+    "kind": {
+      "gps": "coordenadas GPS",
+      "exif": "EXIF",
+      "thumbnail": "miniatura incrustada",
+      "xmp": "XMP",
+      "iptc": "IPTC / Photoshop",
+      "comment": "comentarios",
+      "text": "campos de texto",
+      "time": "fecha de modificación",
+      "other": "bloques auxiliares",
+      "trailing": "datos tras el final de la imagen"
+    },
+    "found": {
+      "camera": "Cámara",
+      "date": "Fecha de la foto",
+      "software": "Programa",
+      "author": "Autor",
+      "serial": "Número de serie"
+    },
+    "note": {
+      "none": "No se encontraron metadatos: el archivo se devuelve sin cambios.",
+      "removed": "Eliminado: {{list}}. La imagen no se recodificó.",
+      "orientationKept": "Solo se conservó la etiqueta de rotación para que la foto no quede de lado.",
+      "reencoded": "La foto se recodificó (calidad {{quality}} %): se quitaron todos los metadatos, incluida la etiqueta de rotación.",
+      "reencodedLossless": "La imagen se recodificó sin pérdida: se quitaron todos los metadatos.",
+      "fallback": "La limpieza rápida no funcionó, así que la foto se recodificó.",
+      "gps": "El archivo contenía el lugar donde se tomó la foto: {{lat}}, {{lon}}. Eliminado."
+    },
+    "errors": {
+      "encodeFailed": "No se pudo guardar «{{name}}» sin metadatos. Es posible que la imagen sea demasiado grande para tu dispositivo.",
+      "formatUnsupported": "Este navegador no puede guardar WebP. Desactiva la recodificación o abre la página en otro navegador.",
+      "animated": "«{{name}}» es una imagen animada: al recodificarla solo se conservaría el primer fotograma. Desactiva la recodificación y los metadatos se eliminarán sin perder la animación."
     }
   },
   "seoContent": {
@@ -625,7 +760,319 @@
         }
       ]
     },
-    "faqTitle": "Preguntas frecuentes"
+    "faqTitle": "Preguntas frecuentes",
+    "compressToSize": {
+      "title": "Por qué comprimir una foto a un tamaño exacto",
+      "text1": "Muchos formularios, cuentas en línea, servicios de correo y sitios de anuncios solo aceptan una foto hasta cierto tamaño, por ejemplo 200 KB. La compresión habitual no ayuda aquí: no sabes de antemano cuánto pesará el resultado y acabas moviendo el control de calidad a ciegas. Esta herramienta funciona al revés. Tú fijas el límite y ella busca la calidad —y, si hace falta, la resolución— con la que el archivo cabe en él.",
+      "text2": "Todo ocurre en tu navegador: la foto no se sube a ningún servidor, así que sirve igual para el escaneo de un documento o para una foto tipo carné. El resultado se guarda como JPEG o WebP, y de cada archivo ves el tamaño antes y después, la calidad utilizada y la resolución final.",
+      "benefits": [
+        {
+          "title": "Justo dentro del límite",
+          "text": "Escribe un número en KB o MB: el archivo no lo superará y tendrá la mayor calidad posible."
+        },
+        {
+          "title": "Sin subir nada a un servidor",
+          "text": "Los archivos no salen de tu dispositivo y no hace falta registrarse."
+        },
+        {
+          "title": "Un resultado claro",
+          "text": "Ves «antes → después», la calidad y la resolución. Si el objetivo no se puede alcanzar, te lo decimos sin rodeos."
+        },
+        {
+          "title": "Varias fotos a la vez",
+          "text": "Hasta 20 fotos de una vez con el mismo límite; varios archivos se descargan en un solo ZIP."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo comprimir una foto al tamaño que necesitas",
+          "steps": [
+            "Elige el tamaño final: pulsa uno de los valores predefinidos (50, 100, 200, 500 o 1000 KB) o escribe tu propio número y elige KB o MB.",
+            "Elige el formato de salida. JPEG lo aceptan casi en todas partes; WebP suele dar un archivo más pequeño con la misma calidad, pero no todos los servicios lo admiten.",
+            "Arrastra las fotos al área de carga o haz clic en ella y elige los archivos. Se admiten JPG, PNG, WebP, BMP y HEIC de iPhone.",
+            "Espera a que termine: para cada archivo la herramienta muestra qué calidad está probando en ese momento.",
+            "Comprueba el tamaño y la resolución en la lista y descarga el resultado: un solo archivo, o un ZIP si añadiste varias fotos."
+          ]
+        },
+        {
+          "title": "Cómo se encuentra el tamaño",
+          "text": "Primero la herramienta prueba una calidad alta, del 95 %. Si el archivo sale más grande que el objetivo, comprueba el límite inferior, del 30 %, y después usa una búsqueda binaria para encontrar la mayor calidad con la que el archivo todavía cabe; para una misma resolución son como máximo ocho intentos. Si ni siquiera el 30 % basta, la resolución se reduce en pasos del 85 %, pero nunca por debajo de 600 píxeles en el lado más largo. Así obtienes la mayor resolución y la mayor calidad que caben en el límite, en lugar de un archivo reducido «por si acaso». Los tamaños se cuentan en miles de bytes (1 KB = 1000 bytes), de modo que el archivo cabe en el límite sea cual sea la forma en que lo cuente tu servicio."
+        },
+        {
+          "title": "Cuándo hace falta",
+          "text": "Fotos para formularios en línea y cuentas personales, candidaturas de empleo y currículums, correos con límite de adjuntos, foros, sitios de anuncios y sistemas CRM que rechazan archivos grandes. También ayuda cuando necesitas aligerar rápidamente una imagen para un mensajero o una web y sabes exactamente cuánto puede pesar."
+        },
+        {
+          "title": "Limitaciones que conviene conocer",
+          "text": "Un límite muy pequeño para una foto grande y con mucho detalle no se puede cumplir sin una pérdida visible de nitidez. Si comprimir al tamaño que pediste es imposible incluso con una resolución de 600 píxeles, no te entregaremos un archivo estropeado: te mostraremos el tamaño más pequeño que se logró. La transparencia no se conserva: las zonas transparentes de un PNG pasan a ser blancas. Los metadatos (como la fecha de la foto o su ubicación) y el perfil de color incrustado no pasan al resultado. Si un archivo JPG, PNG o WebP ya no supera el objetivo, se devuelve sin cambios. Un archivo puede pesar hasta 30 MB y se procesan hasta 20 archivos a la vez. La velocidad depende de tu dispositivo: las imágenes grandes tardan más en un teléfono lento."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La compresión se ejecuta localmente en tu navegador, con la potencia de tu propio dispositivo. Los archivos no se envían a un servidor, no se guardan y no están disponibles para nosotros. La página funciona sin registro y el contenido de tus fotos no se envía a ningún servicio de analítica."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Cómo comprimo una imagen a 200 KB?",
+          "a": "Elige 200 KB entre los valores predefinidos, añade tu foto y descarga el resultado. La herramienta elige la calidad por sí sola y, si hace falta, reduce un poco la resolución."
+        },
+        {
+          "q": "¿Puedo comprimir una foto a 100 KB sin perder calidad?",
+          "a": "Del todo sin pérdida, no: JPEG y WebP son formatos con pérdida. Buscamos la mayor calidad con la que el archivo cabe en el límite. En imágenes sencillas la diferencia casi no se nota, mientras que en fotos muy detalladas se verán artefactos con un límite pequeño."
+        },
+        {
+          "q": "¿Qué pasa si la foto ya es más pequeña que el límite?",
+          "a": "Si un archivo JPG, PNG o WebP ya no supera el objetivo, lo devolvemos sin cambios y te lo indicamos: una compresión innecesaria solo bajaría la calidad."
+        },
+        {
+          "q": "¿Por qué no se puede comprimir mi foto al tamaño que necesito?",
+          "a": "A veces el objetivo es demasiado pequeño para esa imagen. Bajamos la calidad al 30 % y la resolución hasta 600 píxeles en el lado más largo, y ahí nos detenemos. Verás el tamaño más pequeño que se logró: elige un límite mayor o una imagen más sencilla."
+        },
+        {
+          "q": "¿Puedo comprimir una foto de iPhone en formato HEIC?",
+          "a": "Sí, HEIC se reconoce y se convierte a JPEG o WebP. El módulo adicional que hace falta se carga solo en esta página y solo cuando añades un archivo HEIC."
+        },
+        {
+          "q": "¿Es seguro usarlo con fotos de documentos?",
+          "a": "Los archivos no salen de tu dispositivo: el procesamiento se hace en el navegador. No podemos ver ni guardar tus fotos."
+        }
+      ]
+    },
+    "convertToPng": {
+      "title": "Por qué convertir una imagen a PNG",
+      "text1": "PNG es un formato sin pérdida con transparencia real. Es el que se pide para logotipos, capturas de pantalla, esquemas, gráficos para webs y presentaciones, y maquetas en programas de diseño. Sin embargo, a menudo la imagen te llega en otra forma: un WebP guardado desde el navegador, un HEIC de iPhone, un AVIF de una web moderna o un GIF. Esta página convierte rápidamente esos archivos en un PNG que se abre en cualquier parte.",
+      "text2": "La conversión se hace en tu navegador: los archivos no se suben a ningún servidor, así que valen tanto las fotos personales como el material de trabajo. El tamaño en píxeles se mantiene, se aplica la rotación guardada en el archivo y las zonas transparentes no se rellenan. Puedes convertir varias imágenes a la vez y se descargan en un solo archivo ZIP.",
+      "benefits": [
+        {
+          "title": "Se conserva la transparencia",
+          "text": "Si un WebP, AVIF o GIF tenía zonas transparentes, siguen siéndolo en el PNG en lugar de volverse negras o blancas."
+        },
+        {
+          "title": "Sin subir nada a un servidor",
+          "text": "Todo ocurre en tu dispositivo. No hace falta registrarse."
+        },
+        {
+          "title": "Rotación correcta",
+          "text": "Una foto del móvil no acaba tumbada de lado: se aplica la orientación guardada en el archivo."
+        },
+        {
+          "title": "Muchos formatos y archivos",
+          "text": "JPG, WebP, BMP, GIF, AVIF, HEIC y HEIF; hasta 20 archivos a la vez, y varios resultados en un solo ZIP."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo convertir una imagen a PNG",
+          "steps": [
+            "Arrastra los archivos al área de carga o haz clic en ella y elige las imágenes. Se admiten JPG, WebP, BMP, GIF, AVIF y HEIC de iPhone.",
+            "Espera unos segundos: cada archivo se procesa por separado y puedes ver lo que ocurre con él.",
+            "Comprueba en la lista el tamaño antes y después: un PNG suele pesar más, y es normal.",
+            "Descarga el resultado: un único PNG o un ZIP si añadiste varios archivos."
+          ]
+        },
+        {
+          "title": "PNG o JPG: cuál elegir",
+          "text": "PNG comprime la imagen sin pérdida, por lo que es ideal para capturas de pantalla, logotipos, esquemas, interfaces y todo lo que tenga texto nítido, bordes marcados o fondo transparente. Con las fotografías corrientes pasa otra cosa: en PNG suelen pesar bastante más que en JPG o WebP, porque están llenas de transiciones suaves de color. Si preparas una foto para una web, un correo o un mensajero y el peso importa, quédate con JPG o WebP, y elige PNG cuando necesites transparencia o exactitud de cada píxel. Convertir un JPG a PNG no recupera el detalle que ya se perdió al comprimir el JPG: los artefactos permanecen, pero a partir de ahí puedes editar y volver a guardar el archivo sin perder calidad una segunda vez."
+        },
+        {
+          "title": "Sobre la transparencia",
+          "text": "WebP, AVIF y GIF pueden contener zonas transparentes, y un PNG las conserva. JPG y un BMP normal no tienen transparencia, así que el PNG que salga de ellos tampoco tendrá fondo transparente: donde el original tenía un color, se queda ese color. Si necesitas quitar el fondo de una foto, el sitio tiene una herramienta aparte para eliminar fondos."
+        },
+        {
+          "title": "Conviene saber",
+          "text": "De un GIF o WebP animado solo se toma el primer fotograma. Los metadatos de la foto, incluidos EXIF y las coordenadas GPS, no pasan al PNG. Los archivos HEIC pueden hacerse muy grandes al convertirlos a PNG. El límite es de 30 MB por archivo y 20 archivos a la vez; las imágenes muy grandes en móviles poco potentes pueden no procesarse, y verás un mensaje al respecto. Si un archivo AVIF no se abre, tu navegador no admite ese formato."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La conversión se ejecuta localmente en tu navegador, con la potencia de tu propio dispositivo. Los archivos no se envían a un servidor, no se guardan y no están disponibles para nosotros. La página funciona sin registro."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿PNG hará más pequeña mi foto?",
+          "a": "En la mayoría de los casos no. PNG guarda la imagen sin pérdida, así que las fotografías en este formato suelen pesar más que en JPG o WebP. Para reducir el peso, quédate con JPG o WebP o usa la compresión."
+        },
+        {
+          "q": "¿El fondo será transparente al convertir un JPG a PNG?",
+          "a": "No. JPG no tiene transparencia, así que el color de fondo seguirá igual en el PNG. Para hacerlo transparente hace falta otro tratamiento: eliminar el fondo."
+        },
+        {
+          "q": "¿Se pierde calidad al convertir?",
+          "a": "El paso a PNG en sí no pierde nada: los datos de los píxeles se conservan exactamente. Pero si el original era un JPG o WebP comprimido, sus pérdidas ya estaban en el archivo y PNG no puede repararlas."
+        },
+        {
+          "q": "¿Puedo convertir un HEIC de iPhone a PNG?",
+          "a": "Sí. Añade un archivo .heic o .heif: la página lo reconoce y lo convierte. Ten en cuenta que un PNG hecho a partir de una foto así puede ser muy grande."
+        },
+        {
+          "q": "¿Qué pasa con la animación de un GIF?",
+          "a": "Solo se guarda el primer fotograma, como un PNG normal. Esta página no conserva la animación."
+        },
+        {
+          "q": "¿El PNG contiene el lugar donde se tomó la foto?",
+          "a": "No. Los metadatos, incluidos EXIF y GPS, no pasan al PNG. Pero si tu objetivo es precisamente eliminar los metadatos de una foto, es mejor usar una herramienta específica."
+        }
+      ]
+    },
+    "removeExif": {
+      "title": "Por qué eliminar EXIF y metadatos de las fotos",
+      "text1": "Cada foto de un smartphone o de una cámara lleva más información de la que ves en pantalla. El archivo guarda el modelo de la cámara, la fecha y la hora de la toma, los ajustes del objetivo, a veces el número de serie del dispositivo, el nombre del autor y el del programa con el que se editó la foto. Lo más delicado son las coordenadas GPS: indican dónde se tomó exactamente la imagen, por ejemplo tu casa o tu lugar de trabajo. Estos datos se llaman metadatos, y su formato más habitual es EXIF.",
+      "text2": "Esta página muestra qué se ha encontrado en cada foto —cámara, fecha, coordenadas, programa, autor— y elimina los metadatos en un solo paso. Todo ocurre en tu navegador: los archivos no se suben a ningún servidor. En JPEG, PNG y WebP los datos de los píxeles no se recodifican, así que la calidad no cambia.",
+      "benefits": [
+        {
+          "title": "Ves qué había en el archivo",
+          "text": "Cámara, fecha de la foto, programa, autor, número de serie y, como aviso aparte, las coordenadas GPS."
+        },
+        {
+          "title": "Sin pérdida de calidad",
+          "text": "Del archivo solo se recortan los bloques auxiliares; la imagen sigue siendo exactamente los mismos bytes."
+        },
+        {
+          "title": "Sin subir nada a un servidor",
+          "text": "Los archivos no salen de tu dispositivo y no hace falta registrarse."
+        },
+        {
+          "title": "JPEG, PNG y WebP",
+          "text": "Hasta 20 archivos a la vez; varios resultados se descargan en un solo ZIP."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo eliminar los metadatos de una foto",
+          "steps": [
+            "Arrastra las fotos al área de carga o haz clic en ella y elige los archivos. Se admiten JPEG, PNG y WebP.",
+            "Espera un momento: de cada archivo obtienes un resumen con lo que se encontró y lo que se eliminó, incluidas las coordenadas GPS si las había.",
+            "Comprueba el tamaño antes y después y descarga el resultado: un archivo o un ZIP. Los archivos limpios llevan el sufijo «-clean» en el nombre."
+          ]
+        },
+        {
+          "title": "Qué se elimina exactamente",
+          "text": "De un JPEG se eliminan los bloques EXIF (cámara, fecha, ajustes, GPS, miniatura incrustada), XMP, IPTC y otros datos de Photoshop, los comentarios y todo lo que esté escrito después del final de la imagen; por ejemplo, las imágenes adicionales que algunos teléfonos guardan dentro del archivo. De un PNG se eliminan los campos de texto, los datos EXIF y la fecha de modificación, y de un WebP los bloques EXIF y XMP. El perfil de color incrustado (ICC) se conserva para que los colores no cambien."
+        },
+        {
+          "title": "Cómo funciona sin perder calidad",
+          "text": "La forma habitual de «limpiar» una foto es abrirla y guardarla de nuevo, y cada guardado daña un poco un JPEG. Aquí es distinto: el archivo se divide en bloques, se recortan los de metadatos y los datos comprimidos de la imagen se copian sin cambios. Por eso los píxeles de antes y después coinciden exactamente."
+        },
+        {
+          "title": "La etiqueta de rotación y el modo de recodificación",
+          "text": "La mayoría de las fotos verticales de los smartphones se guardan tumbadas, y una etiqueta especial de rotación en EXIF indica cómo mostrarlas correctamente. Si se elimina junto con el resto, la foto se abre de lado. Por eso, por defecto, en un JPEG dejamos solo esa etiqueta: no tiene nada personal. Si necesitas quitar absolutamente todo, activa la recodificación completa: la foto se gira físicamente y la etiqueta desaparece. El precio es que JPEG y WebP se guardan de nuevo con calidad del 92 % y el perfil de color propio se sustituye por el sRGB estándar (los colores se recalculan, no se pierden)."
+        },
+        {
+          "title": "Limitaciones que conviene conocer",
+          "text": "Eliminar los metadatos no es anonimato. Las caras, los carteles, las matrículas y los puntos de referencia siguen en la propia imagen, y el nombre del archivo puede contener una fecha o un lugar. El formato HEIC no se admite: convierte antes esas fotos a JPG. El límite es de 30 MB por archivo y 20 archivos a la vez. Las imágenes adicionales que los teléfonos guardan tras la principal (profundidad, mapa HDR) se eliminan junto con el resto de los datos, así que en pantallas HDR la foto puede verse algo distinta. Los PNG y WebP animados solo se pueden limpiar sin recodificar; de lo contrario solo se guardaría el primer fotograma."
+        },
+        {
+          "title": "Privacidad",
+          "text": "El procesamiento se hace localmente en tu navegador. Los archivos no se envían a un servidor, no se guardan y no están disponibles para nosotros. La biblioteca que lee los metadatos se carga solo en esta página y se ejecuta en tu propio dispositivo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Empeora la calidad de la foto al eliminar el EXIF?",
+          "a": "No. La imagen no se recodifica: del archivo solo se recortan los bloques auxiliares y los datos comprimidos de los píxeles siguen igual. La calidad solo cambia si activas tú mismo la recodificación completa."
+        },
+        {
+          "q": "¿Se pueden recuperar los metadatos eliminados?",
+          "a": "Del archivo limpio no: los bloques no están ocultos, sino que no existen en el archivo nuevo. El original sigue en tu poder, así que si puedes necesitar esos datos, guárdalo aparte."
+        },
+        {
+          "q": "¿Qué se elimina exactamente de una foto?",
+          "a": "EXIF (cámara, fecha, ajustes, coordenadas GPS, miniatura), XMP, IPTC, comentarios y campos de texto de PNG. El perfil de color ICC se conserva."
+        },
+        {
+          "q": "¿Las redes sociales y los mensajeros quitan los metadatos por sí solos?",
+          "a": "Algunos servicios quitan los metadatos al publicar, pero no todos ni siempre: cuando la foto se envía como archivo, por correo o a un almacenamiento en la nube, los datos suelen quedarse. Es más seguro limpiar el archivo tú mismo antes de enviarlo."
+        },
+        {
+          "q": "¿Qué formatos se admiten?",
+          "a": "JPEG, PNG y WebP. Convierte antes a JPG las fotos de iPhone en formato HEIC."
+        },
+        {
+          "q": "¿Mis fotos se quedan en mi dispositivo?",
+          "a": "Sí. Todo se ejecuta en el navegador: los archivos no se suben a ningún servidor y no se guardan."
+        }
+      ]
+    },
+    "photoToPdf": {
+      "title": "Por qué combinar fotos en un solo archivo PDF",
+      "text1": "El PDF sigue siendo el formato universal para enviar documentos: se abre igual en un ordenador, un teléfono o un cliente de correo, y sus páginas no se dispersan como las fotos sueltas en un chat. Un PDF es fácil de adjuntar a un correo, imprimir o subir a un portal que solo acepta un documento en lugar de una decena de imágenes sueltas. Lo más habitual es reunir en un PDF escaneos de documentos, fotos de páginas de un cuaderno o un libro, recibos para un informe de gastos o fotos de productos para un catálogo.",
+      "text2": "Esta herramienta combina varias fotos en un solo PDF directamente en tu navegador: añade los archivos, ordénalos como los necesites, elige el tamaño de página y los márgenes, y descarga el documento terminado. Las fotos nunca se suben a un servidor ni se guardan en ningún sitio.",
+      "benefits": [
+        {
+          "title": "Orden de páginas bajo tu control",
+          "text": "Usa las flechas ↑↓ o arrastra las fotos hasta el orden en que deben aparecer en el documento."
+        },
+        {
+          "title": "Sin pérdida de calidad cuando es posible",
+          "text": "Un JPEG sin rotar y un PNG normal se incrustan en el PDF tal cual, sin volver a comprimirlos."
+        },
+        {
+          "title": "Sin subir nada a un servidor",
+          "text": "Todo el PDF se genera en tu navegador; los archivos nunca salen de tu dispositivo."
+        },
+        {
+          "title": "Tamaños de página flexibles",
+          "text": "A4 con márgenes para imprimir, o una página del tamaño exacto de la foto cuando necesitas mantener sus dimensiones."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo combinar fotos en un PDF",
+          "steps": [
+            "Arrastra las fotos al área de carga o haz clic en ella y elige los archivos. Se admiten JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF (fotos de iPhone).",
+            "Ordena las fotos como las necesites: con las flechas ↑↓ junto a cada archivo o arrastrándolas en la lista.",
+            "Elige el tamaño de página y los márgenes en los ajustes sobre el área de carga.",
+            "Pulsa «Crear PDF» y descarga el archivo terminado cuando esté listo."
+          ]
+        },
+        {
+          "title": "Tamaño de página: A4 o tamaño de foto",
+          "text": "Una página A4 es adecuada para imprimir y para documentos que se esperan en un tamaño estándar: cada foto se ajusta a la hoja conservando sus proporciones, y la orientación (vertical u horizontal) se elige automáticamente según la forma de la propia foto. «Tamaño de foto» hace que la página tenga exactamente el tamaño de la imagen (más los márgenes, si están activados) — útil cuando importa conservar las proporciones originales sin añadir bandas blancas alrededor de la foto."
+        },
+        {
+          "title": "Márgenes de página",
+          "text": "Un margen de 0 mm hace que la foto ocupe casi toda la página. Un margen de 10 mm añade un pequeño borde por todos los lados, como en la mayoría de los documentos de oficina; resulta útil si el PDF se va a imprimir o archivar."
+        },
+        {
+          "title": "Cómo se conserva la calidad",
+          "text": "Para un JPEG sin etiqueta de rotación y para un PNG normal, la herramienta incrusta en el PDF los bytes originales de la imagen, sin volver a comprimirlos ni recodificarlos. Si un JPEG lleva una etiqueta de rotación (típico en fotos verticales de smartphones) o el formato no es compatible directamente (WebP, BMP, GIF, AVIF, HEIC/HEIF), la foto primero se corrige a la orientación correcta y se recodifica como JPEG con calidad del 92 %, igual que en otras herramientas del sitio. En ambos casos, la transparencia del PNG se rellena de blanco, ya que una página impresa no tiene transparencia."
+        },
+        {
+          "title": "Límites que conviene conocer",
+          "text": "El límite es de 30 MB por archivo y hasta 20 archivos a la vez; si todo el álbum supera los 200 MB aparece un aviso, pero el proceso termina igualmente. Fotos muy grandes o un número elevado de páginas pueden generar un PDF pesado y tardar más en dispositivos menos potentes. La herramienta no añade numeración de páginas, marcas de agua ni pies de foto: solo las fotografías, una por página."
+        },
+        {
+          "title": "Privacidad",
+          "text": "Todo el PDF se genera de forma local en tu navegador. Las fotos nunca se envían a un servidor, no se guardan y no tenemos acceso a ellas; al cerrar la página no queda ningún rastro, salvo el archivo que hayas descargado en tu dispositivo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo cambiar el orden de las fotos después de añadirlas?",
+          "a": "Sí. Mientras el PDF no se haya creado, puedes reordenar las fotos con las flechas ↑↓ junto a cada archivo o arrastrándolas en la lista."
+        },
+        {
+          "q": "¿La calidad de las fotos empeora en el PDF?",
+          "a": "Un JPEG sin rotar y un PNG normal se incrustan sin recodificar. Las fotos rotadas y formatos como WebP o HEIC se recodifican como JPEG con calidad del 92 % para mantener la orientación correcta."
+        },
+        {
+          "q": "¿Qué tamaño de página debo elegir?",
+          "a": "A4 para imprimir o documentos de tamaño estándar; «tamaño de foto» cuando necesitas conservar las proporciones originales sin márgenes blancos alrededor."
+        },
+        {
+          "q": "¿Cuántas fotos puedo añadir?",
+          "a": "Hasta 20 archivos a la vez, de hasta 30 MB cada uno. Si el tamaño total supera los 200 MB aparece un aviso, pero el proceso se completa igualmente."
+        },
+        {
+          "q": "¿Puedo añadir solo una foto?",
+          "a": "Sí, obtendrás un PDF de una página; es útil, por ejemplo, para enviar la foto de un documento como PDF."
+        },
+        {
+          "q": "¿Mis fotos se quedan en un servidor?",
+          "a": "No. El PDF se genera en tu navegador; los archivos nunca se suben a ningún sitio."
+        }
+      ]
+    }
   },
   "errors": {
     "fileInvalidType": "«{{name}}» no es un tipo de archivo compatible.",
@@ -652,7 +1099,8 @@
       "title": "Algo salió mal",
       "text": "Esta página no está disponible temporalmente. Recárgala; normalmente basta con eso.",
       "reload": "Recargar"
-    }
+    },
+    "mergeFailed": "No se pudo crear el archivo. Comprueba que ningún archivo esté dañado e inténtalo de nuevo."
   },
   "notFound": {
     "title": "Página no encontrada",
@@ -668,5 +1116,40 @@
   },
   "related": {
     "title": "Herramientas relacionadas"
+  },
+  "photoToPdf": {
+    "titlePart2": "Combina tus fotos en un",
+    "titleGradient": "PDF online",
+    "text1": "Añade una o varias fotos, ordena las páginas con las flechas o arrastrando — y obtén un solo archivo PDF en un clic.",
+    "text2": "Elige el tamaño de página (A4 o tamaño de foto) y los márgenes. Todo ocurre en tu navegador, sin subir archivos a un servidor.",
+    "dropzone": "Arrastra las fotos aquí o haz clic para añadirlas",
+    "panel": {
+      "emptyState": "Añade fotos",
+      "addMore": "Añadir más fotos",
+      "addMoreAria": "Añadir más fotos",
+      "selected": "Fotos seleccionadas:",
+      "download": "Descargar PDF",
+      "remove": "Eliminar",
+      "create": "Crear PDF"
+    },
+    "options": {
+      "title": "Ajustes del PDF",
+      "pageSize": "Tamaño de página",
+      "pageSizeA4": "A4",
+      "pageSizePhoto": "Tamaño de foto",
+      "margin": "Márgenes",
+      "marginNone": "Sin márgenes",
+      "margin10": "10 mm",
+      "hint": "Puedes reordenar las páginas con las flechas ↑↓ o arrastrando los elementos en la lista de archivos de abajo."
+    },
+    "status": {
+      "page": "Página {{current}} de {{total}}"
+    },
+    "warnings": {
+      "tooHeavy": "El tamaño total de las fotos supera los 200 MB: crear y descargar el PDF puede tardar más."
+    },
+    "errors": {
+      "encodeFailed": "No se pudo procesar «{{name}}» para el PDF. Puede que la imagen sea demasiado grande para tu dispositivo."
+    }
   }
 }

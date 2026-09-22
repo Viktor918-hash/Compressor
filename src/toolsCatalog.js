@@ -4,7 +4,27 @@
 // nameKey/descKey — ключі перекладу (translation.json).
 export const TOOLS = [
   { slug: "home", nameKey: "header.compress", descKey: "header.compressDesc" },
+  {
+    slug: "compressToSize",
+    nameKey: "header.compressToSize",
+    descKey: "header.compressToSizeDesc",
+  },
   { slug: "convert", nameKey: "header.convert", descKey: "header.convertDesc" },
+  {
+    slug: "convertToPng",
+    nameKey: "header.convertToPng",
+    descKey: "header.convertToPngDesc",
+  },
+  {
+    slug: "removeExif",
+    nameKey: "header.removeExif",
+    descKey: "header.removeExifDesc",
+  },
+  {
+    slug: "photoToPdf",
+    nameKey: "header.photoToPdf",
+    descKey: "header.photoToPdfDesc",
+  },
   { slug: "webp", nameKey: "header.webp", descKey: "header.webpDesc" },
   { slug: "resize", nameKey: "header.resize", descKey: "header.resizeDesc" },
   { slug: "presets", nameKey: "presets.navTitle", descKey: "header.prest" },
@@ -35,13 +55,29 @@ export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
 // Які інструменти доречно радити на сторінці кожного інструмента
 // (за змістом: фото → фото, документи → документи).
 export const RELATED = {
-  home: ["convert", "webp", "resize", "removeBg"],
-  convert: ["webp", "home", "resize", "presets"],
-  webp: ["convert", "home", "resize", "presets"],
-  resize: ["home", "convert", "webp", "presets"],
-  presets: ["resize", "home", "removeBg", "convert"],
-  removeBg: ["presets", "resize", "home", "convert"],
+  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf"],
+  convert: ["webp", "home", "resize", "presets", "convertToPng"],
+  webp: ["convert", "home", "resize", "presets", "convertToPng"],
+  resize: ["home", "convert", "webp", "presets", "compressToSize"],
+  presets: ["resize", "home", "removeBg", "convert", "compressToSize"],
+  removeBg: ["presets", "resize", "home", "convert", "convertToPng"],
   wordToPdf: ["pdfToWord", "imageToText", "home"],
   pdfToWord: ["wordToPdf", "imageToText", "home"],
   imageToText: ["pdfToWord", "wordToPdf", "home", "resize"],
+  compressToSize: ["home", "resize", "convert", "webp", "removeExif", "photoToPdf"],
+  convertToPng: ["convert", "webp", "removeBg", "home", "removeExif", "photoToPdf"],
+  removeExif: ["compressToSize", "resize", "convert", "home"],
+  photoToPdf: ["compressToSize", "convertToPng", "removeExif", "wordToPdf", "home"],
 };
+
+// Тільки для e2e-збірки (VITE_E2E_STUB=1): заглушка з підмножиною мов, щоб
+// перевірити, що Footer / "Схожі інструменти" не показують її там, де її
+// немає (ru/es). У звичайній збірці цей блок статично відкидається.
+if (import.meta.env.VITE_E2E_STUB === "1") {
+  TOOLS.push({
+    slug: "e2eMerge",
+    nameKey: "e2e.mergeStub",
+    descKey: "e2e.mergeStubDesc",
+  });
+  RELATED.resize = [...RELATED.resize, "e2eMerge"];
+}

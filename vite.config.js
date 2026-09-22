@@ -3,11 +3,12 @@ import react from "@vitejs/plugin-react";
 import prerender from "@prerenderer/rollup-plugin";
 import chromium from "@sparticuz/chromium";
 import { ROUTE_PATHS } from "./src/routes.config.js";
+import { SITE_LANGS } from "./src/utils/routeLangs.js";
 
 // Мовні префікси, для яких генеруються prerender-сторінки. Мають
 // відповідати мовам, які реально обробляються в SeoHead/hreflang
 // (src/components/Seo/SeoHead.jsx) і usePageLang (src/hooks/usePageLang.js).
-const LANGS = ["uk", "en", "ru", "es"];
+const LANGS = SITE_LANGS;
 
 // PRERENDER_ROUTES тепер похідний від ROUTE_PATHS (src/routes.config.js) —
 // того самого джерела даних, яке src/routes.jsx використовує для ROUTES.

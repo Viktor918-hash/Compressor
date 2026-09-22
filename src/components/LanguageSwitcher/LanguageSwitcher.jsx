@@ -4,6 +4,7 @@ import { ROUTES } from "../../routes";
 import "./LanguageSwitcher.css";
 import { useTranslation } from "react-i18next";
 import { preloadLocales } from "../../i18n/i18n";
+import { switchLanguageTarget, langFromPath } from "../../utils/routeLangs";
 
 // Відредагуйте список під ваші мови (код має збігатися з тим, що в i18n.resources)
 const LANGUAGES = [
@@ -24,13 +25,7 @@ export default function LanguageSwitcher() {
 
   // Мова визначається з URL, а не з i18n.language напряму — так кнопка
   // завжди показує мову ЦІЄЇ конкретної сторінки, без затримки/розсинхрону.
-  const currentLangCode = location.pathname.startsWith("/es")
-    ? "es"
-    : location.pathname.startsWith("/en")
-    ? "en"
-    : location.pathname.startsWith("/ru")
-    ? "ru"
-    : "uk";
+  const currentLangCode = langFromPath(location.pathname);
 
   const currentLang =
     LANGUAGES.find((l) => l.code === currentLangCode) || LANGUAGES[0];
@@ -91,15 +86,9 @@ export default function LanguageSwitcher() {
       // в App.jsx, коли зміниться URL. НЕ викликаємо i18n.changeLanguage()
       // напряму, бо це підмінить мову на поточному URL без зміни адреси
       // (саме та проблема, через яку Google бачив лише одну версію сайту).
-      const route = ROUTES.find(
-        (r) =>
-          r.uk === location.pathname ||
-          r.en === location.pathname ||
-          r.ru === location.pathname ||
-          r.es === location.pathname
-      );
-      const fallbackPaths = { uk: "/", en: "/en", ru: "/ru", es: "/es" };
-      const targetPath = route ? route[code] : fallbackPaths[code];
+      // Якщо сторінки в обраній мові немає (інструмент лише в частині мов) —
+      // ведемо на головну цієї мови.
+      const targetPath = switchLanguageTarget(ROUTES, location.pathname, code);
       navigate(targetPath);
     }
     setIsOpen(false);

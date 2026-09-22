@@ -4,9 +4,12 @@ import { OPEN_CONSENT_EVENT } from "../../utils/consent";
 import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { TOOLS } from "../../toolsCatalog";
+import { usePageLang } from "../../hooks/usePageLang";
+import { hasLang } from "../../utils/routeLangs";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const lang = usePageLang();
   return (
     <footer className="footer">
       <div className="footer__wrapper container">
@@ -17,7 +20,7 @@ const Footer = () => {
           <ul className="footer__nav-list">
             {TOOLS.map(({ slug, nameKey }) => {
               const route = ROUTES.find((r) => r.slug === slug);
-              if (!route) return null;
+              if (!route || !hasLang(route, lang)) return null;
               return (
                 <li key={slug}>
                   <LocalizedLink to={route.uk} className="footer__nav-link">

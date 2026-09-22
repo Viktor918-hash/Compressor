@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { PAGE_META } from "../../seoMeta";
 import { toolBySlug } from "../../toolsCatalog";
+import { HOME_PATHS, hreflangEntries, langUrl } from "../../utils/routeLangs";
 
 const SITE_URL = "https://compressphoto.org";
 
@@ -69,14 +70,9 @@ const SeoHead = ({
   jsonLd,
 }) => {
   const { t } = useTranslation();
-  const canonicalPath =
-    lang === "es"
-      ? route.es
-      : lang === "en"
-      ? route.en
-      : lang === "ru"
-      ? route.ru
-      : route.uk;
+  // Якщо в маршруту немає URL для цієї мови (сторінка існує не в усіх
+  // мовах) — запасний en → uk, щоб canonical ніколи не був "undefined"
+  const canonicalPath = langUrl(route, lang);
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 
   const pageMeta = PAGE_META[route?.slug]?.[lang];
@@ -113,7 +109,7 @@ const SeoHead = ({
       }
     );
   } else if (tool && robots.startsWith("index")) {
-    const homeRoute = { uk: "/", en: "/en", ru: "/ru", es: "/es" };
+    const homeRoute = HOME_PATHS;
     jsonLdList.push({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -145,16 +141,15 @@ const SeoHead = ({
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* hreflang для локалізації */}
-      <link rel="alternate" hrefLang="uk" href={`${SITE_URL}${route.uk}`} />
-      <link rel="alternate" hrefLang="en" href={`${SITE_URL}${route.en}`} />
-      <link rel="alternate" hrefLang="ru" href={`${SITE_URL}${route.ru}`} />
-      <link rel="alternate" hrefLang="es" href={`${SITE_URL}${route.es}`} />
-      <link
-        rel="alternate"
-        hrefLang="x-default"
-        href={`${SITE_URL}${route.en}`}
-      />
+      {/* hreflang: лише мови, для яких сторінка існує, + x-default (en → uk) */}
+      {hreflangEntries(route).map(({ hrefLang, path }) => (
+        <link
+          key={hrefLang}
+          rel="alternate"
+          hrefLang={hrefLang}
+          href={`${SITE_URL}${path}`}
+        />
+      ))}
 
       {/* Open Graph (Facebook, Telegram, Viber, LinkedIn) */}
       <meta property="og:site_name" content="CompressPhoto" />

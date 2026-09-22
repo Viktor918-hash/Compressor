@@ -72,4 +72,33 @@ export const ROUTE_PATHS = [
     ru: "/ru/image-to-text",
     es: "/es/imagen-a-texto",
   },
+  // Нові інструменти: uk + en + ru + es (ru/es — мої переклади, бажано вичитати носієм)
+  {
+    slug: "compressToSize",
+    uk: "/compress-image-to-size",
+    en: "/en/compress-image-to-size",
+    ru: "/ru/compress-image-to-size",
+    es: "/es/comprimir-imagen-a-kb",
+  },
+  {
+    slug: "convertToPng",
+    uk: "/convert-to-png",
+    en: "/en/convert-to-png",
+    ru: "/ru/convert-to-png",
+    es: "/es/convertir-a-png",
+  },
+  {
+    slug: "removeExif",
+    uk: "/remove-photo-metadata",
+    en: "/en/remove-photo-metadata",
+    ru: "/ru/remove-photo-metadata",
+    es: "/es/eliminar-metadatos-foto",
+  },
+  {
+    slug: "photoToPdf",
+    uk: "/photo-to-pdf",
+    en: "/en/photo-to-pdf",
+    ru: "/ru/photo-to-pdf",
+    es: "/es/foto-a-pdf",
+  },
 ];

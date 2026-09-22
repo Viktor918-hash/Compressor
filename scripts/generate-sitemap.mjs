@@ -10,9 +10,9 @@ import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { ROUTE_PATHS } from "../src/routes.config.js";
+import { SITE_LANGS, hreflangEntries } from "../src/utils/routeLangs.js";
 
 const SITE_URL = "https://compressphoto.org";
-const LANGS = ["uk", "en", "ru", "es"];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const isDate = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s);
@@ -34,14 +34,14 @@ function resolveLastmod() {
   return today;
 }
 
-export function buildSitemap(lastmod = resolveLastmod()) {
+export function buildSitemap(lastmod = resolveLastmod(), routes = ROUTE_PATHS) {
   const urls = [];
-  for (const route of ROUTE_PATHS) {
-    const alternates = LANGS.filter((l) => route[l])
-      .map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_URL}${route[l]}" />`)
-      .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${route.en}" />`)
+  for (const route of routes) {
+    // hreflang лише для мов, що мають URL; x-default = en, а якщо його немає — uk
+    const alternates = hreflangEntries(route)
+      .map(({ hrefLang, path }) => `    <xhtml:link rel="alternate" hreflang="${hrefLang}" href="${SITE_URL}${path}" />`)
       .join("\n");
-    for (const l of LANGS) {
+    for (const l of SITE_LANGS) {
       if (!route[l]) continue;
       urls.push(`  <url>\n    <loc>${SITE_URL}${route[l]}</loc>\n    <lastmod>${lastmod}</lastmod>\n${alternates}\n  </url>`);
     }

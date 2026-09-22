@@ -75,6 +75,38 @@
     color: #6B7280;
 }
 
+/* ---------- Розділи: як користуватись, обмеження тощо ---------- */
+
+.seo-content__section {
+    max-width: 820px;
+    margin: 40px auto 0;
+}
+
+.seo-content__section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.seo-content__section .seo-content__text {
+    text-align: left;
+    margin: 0 0 12px;
+}
+
+.seo-content__steps {
+    margin: 0;
+    padding-left: 24px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #6B7280;
+}
+
+.seo-content__steps li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
 /* ---------- FAQ-акордеон ---------- */
 
 .seo-content__faq {

@@ -496,3 +496,109 @@ __________________________МОБАЙЛ______________________________ */
 .side-panel__file-progress::-moz-progress-bar {
     background: #4F7CFF;
 }
+
+/* ==== Режим злиття (Panel mode="merge") ==== */
+.side-panel__merge-info {
+    margin: 8px 0 4px;
+}
+
+.side-panel__hint {
+    margin: 0 0 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #6b7280;
+}
+
+.side-panel__hint--warn {
+    color: #b45309;
+}
+
+.side-panel__merge-error {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.side-panel__merge-error .error-text {
+    margin: 0;
+    font-size: 13px;
+}
+
+.side-panel__merge-result {
+    margin: 8px 0 0;
+    padding: 10px 12px;
+    background: #EEF2FF;
+    border-radius: 8px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #374151;
+}
+
+.side-panel__file-index {
+    width: 18px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.side-panel__move {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.side-panel__move-btn {
+    background: none;
+    border: none;
+    padding: 2px 6px;
+    color: #4F7CFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.side-panel__move-btn:hover:not(:disabled) {
+    background: #EEF2FF;
+}
+
+.side-panel__move-btn:disabled,
+.side-panel__remove-btn:disabled,
+.side-panel__add-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.side-panel__file-item[draggable="true"] {
+    cursor: grab;
+}
+
+.side-panel__file-item--dragging {
+    opacity: 0.45;
+}
+
+.side-panel__file-item--over {
+    box-shadow: 0 2px 0 0 #4F7CFF;
+}
+
+@media (max-width: 768px) {
+    /* більші цілі для дотику: на мобільному перетягування недоступне,
+       порядок змінюють саме стрілками */
+    .side-panel__move-btn {
+        padding: 5px 10px;
+    }
+}
+
+/* Додатковий рядок під результатом (напр. «Якість 72% · 1920×1440») */
+.side-panel__file-note {
+    font-size: 12px;
+    line-height: 1.3;
+    color: #4b5563;
+}

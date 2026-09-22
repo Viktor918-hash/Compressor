@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
+import { switchLanguageTarget, langFromPath } from "../../utils/routeLangs";
 import "./LanguageSuggestionBanner.css";
 import { getConsent, CONSENT_EVENT } from "../../utils/consent";
 
@@ -44,13 +45,7 @@ const LanguageSuggestionBanner = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
 
-  const currentLangCode = location.pathname.startsWith("/es")
-    ? "es"
-    : location.pathname.startsWith("/en")
-    ? "en"
-    : location.pathname.startsWith("/ru")
-    ? "ru"
-    : "uk";
+  const currentLangCode = langFromPath(location.pathname);
 
   const browserLang =
     typeof navigator !== "undefined" ? navigator.language?.toLowerCase() : "";
@@ -79,14 +74,8 @@ const LanguageSuggestionBanner = () => {
   }, [shouldSuggest, consentChosen]);
 
   const switchLanguage = () => {
-    const currentRoute = ROUTES.find(
-      (r) =>
-        r.uk === location.pathname ||
-        r.en === location.pathname ||
-        r.ru === location.pathname ||
-        r.es === location.pathname
-    );
-    const targetPath = currentRoute?.[suggestedLangCode];
+    // відповідник сторінки в запропонованій мові, а якщо його немає — головна
+    const targetPath = switchLanguageTarget(ROUTES, location.pathname, suggestedLangCode);
     if (targetPath) navigate(targetPath);
     setVisible(false);
   };

@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { RELATED, toolBySlug } from "../../toolsCatalog";
+import { usePageLang } from "../../hooks/usePageLang";
+import { hasLang } from "../../utils/routeLangs";
 import "./RelatedTools.css";
 
 /**
@@ -10,7 +12,11 @@ import "./RelatedTools.css";
  */
 const RelatedTools = ({ current }) => {
   const { t } = useTranslation();
-  const slugs = RELATED[current] || [];
+  const lang = usePageLang();
+  // Радимо лише ті інструменти, які існують у мові цієї сторінки
+  const slugs = (RELATED[current] || []).filter((slug) =>
+    hasLang(ROUTES.find((r) => r.slug === slug), lang)
+  );
   if (slugs.length === 0) return null;
 
   return (

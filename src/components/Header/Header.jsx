@@ -11,6 +11,10 @@ import {
   FiUser,
   FiFileText,
   FiType,
+  FiTarget,
+  FiLayers,
+  FiShield,
+  FiCamera,
 } from "react-icons/fi";
 import { FaCompress } from "react-icons/fa";
 import { TbResize, TbEraser } from "react-icons/tb";
@@ -126,7 +130,7 @@ const Header = () => {
         <div className="header__content"></div>
 
         <nav className="header__nav" aria-label={t("header.mainNav")}>
-          <LocalizedLink to="/" className="header__logo-link">
+          <LocalizedLink hideIfMissing to="/" className="header__logo-link">
             <img
               className="header__logo"
               src="/logoImg/compressphoto_header_logo_2.svg"
@@ -164,7 +168,7 @@ const Header = () => {
                   <span className="dropdown-panel__col-title">
                     {t("header.catCompress")}
                   </span>
-                  <LocalizedLink to="/" className="dropdown-panel__item">
+                  <LocalizedLink hideIfMissing to="/" className="dropdown-panel__item">
                     <FaCompress size={20} className="dropdown-panel__icon" />
                     <div>
                       <span className="dropdown-panel__title">
@@ -177,6 +181,22 @@ const Header = () => {
                   </LocalizedLink>
 
                   <LocalizedLink
+                    hideIfMissing
+                    to="/compress-image-to-size"
+                    className="dropdown-panel__item"
+                  >
+                    <FiTarget size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.compressToSize")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.compressToSizeDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+
+                  <LocalizedLink hideIfMissing
                     to="/convert-to-jpg"
                     className="dropdown-panel__item"
                   >
@@ -190,7 +210,7 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/convert-to-webp"
                     className="dropdown-panel__item"
                   >
@@ -207,13 +227,41 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/convert-to-png"
+                    className="dropdown-panel__item"
+                  >
+                    <FiLayers size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.convertToPng")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.convertToPngDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/remove-photo-metadata"
+                    className="dropdown-panel__item"
+                  >
+                    <FiShield size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.removeExif")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.removeExifDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
                 </div>
 
                 <div className="dropdown-panel__col">
                   <span className="dropdown-panel__col-title">
                     {t("header.catEdit")}
                   </span>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/resize-image"
                     className="dropdown-panel__item"
                   >
@@ -227,7 +275,7 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/photo-presets"
                     className="dropdown-panel__item"
                   >
@@ -241,7 +289,7 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/remove-background"
                     className="dropdown-panel__item"
                   >
@@ -261,7 +309,7 @@ const Header = () => {
                   <span className="dropdown-panel__col-title">
                     {t("header.catDocs")}
                   </span>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/convert-word-to-pdf"
                     className="dropdown-panel__item"
                   >
@@ -275,7 +323,7 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
                     to="/convert-pdf-to-word"
                     className="dropdown-panel__item"
                   >
@@ -289,7 +337,21 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
-                  <LocalizedLink
+                  <LocalizedLink hideIfMissing
+                    to="/photo-to-pdf"
+                    className="dropdown-panel__item"
+                  >
+                    <FiCamera size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.photoToPdf")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.photoToPdfDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
                     to="/image-to-text"
                     className="dropdown-panel__item"
                   >
@@ -307,7 +369,7 @@ const Header = () => {
               </div>
             </li>
             <li className="header__list header__list--secondary">
-              <LocalizedLink to="/photo-presets" className="nav__link">
+              <LocalizedLink hideIfMissing to="/photo-presets" className="nav__link">
                 {t("presets.navTitle")}
               </LocalizedLink>
             </li>
@@ -430,7 +492,7 @@ const Header = () => {
           <span className="mobile-menu__section-title">
             {t("header.tools")}
           </span>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -439,6 +501,15 @@ const Header = () => {
             {t("header.compress")}
           </LocalizedLink>
           <LocalizedLink
+            hideIfMissing
+            to="/compress-image-to-size"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiTarget size={18} className="mobile-menu__icon" />
+            {t("header.compressToSize")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
             to="/convert-to-jpg"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -446,7 +517,7 @@ const Header = () => {
             <FiRepeat size={18} className="mobile-menu__icon" />
             {t("header.convert")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/convert-to-webp"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -454,7 +525,23 @@ const Header = () => {
             <FiImage size={18} className="mobile-menu__icon" />
             {t("header.webp", "У WebP")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
+            to="/convert-to-png"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiLayers size={18} className="mobile-menu__icon" />
+            {t("header.convertToPng")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/remove-photo-metadata"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiShield size={18} className="mobile-menu__icon" />
+            {t("header.removeExif")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
             to="/resize-image"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -462,7 +549,7 @@ const Header = () => {
             <TbResize size={18} className="mobile-menu__icon" />
             {t("header.resize")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/photo-presets"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -470,7 +557,7 @@ const Header = () => {
             <FiSliders size={18} className="mobile-menu__icon" />
             {t("presets.navTitle")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/convert-word-to-pdf"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -478,7 +565,7 @@ const Header = () => {
             <FiFileText size={18} className="mobile-menu__icon" />
             {t("header.wordToPdf")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/convert-pdf-to-word"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -486,7 +573,15 @@ const Header = () => {
             <FiFileText size={18} className="mobile-menu__icon" />
             {t("header.pdfToWord")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
+            to="/photo-to-pdf"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiCamera size={18} className="mobile-menu__icon" />
+            {t("header.photoToPdf")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
             to="/remove-background"
             className="mobile-menu__item"
             onClick={closeMenu}
@@ -494,7 +589,7 @@ const Header = () => {
             <TbEraser size={18} className="mobile-menu__icon" />
             {t("header.removeBg")}
           </LocalizedLink>
-          <LocalizedLink
+          <LocalizedLink hideIfMissing
             to="/image-to-text"
             className="mobile-menu__item"
             onClick={closeMenu}

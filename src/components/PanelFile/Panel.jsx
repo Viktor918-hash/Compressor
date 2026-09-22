@@ -7,6 +7,8 @@ import {
   FiFileText,
   FiRefreshCw,
   FiAlertCircle,
+  FiChevronUp,
+  FiChevronDown,
 } from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
@@ -38,6 +40,14 @@ const triggerDownload = (href, filename) => {
 
 const fmtSize = (bytes) => (bytes / 1024 / 1024).toFixed(2) + " MB";
 
+const IDLE_MERGE = {
+  status: "idle",
+  progressText: null,
+  progressValue: null,
+  result: null,
+  error: null,
+};
+
 const newId = () =>
   typeof crypto !== "undefined" && crypto.randomUUID
     ? crypto.randomUUID()
@@ -51,6 +61,15 @@ const newId = () =>
  * processFile отримує другим аргументом { signal } — AbortSignal, який
  * спрацьовує при "Скасувати"/закритті панелі (не всі обробники його
  * підтримують; результат "скасованого" файлу в будь-якому разі відкидається).
+ *
+ * РЕЖИМ ЗЛИТТЯ (mode="merge"): N файлів → ОДИН результат (об'єднати PDF,
+ * зібрати зображення в PDF тощо). Файли НЕ обробляються по одному: вони
+ * лишаються у списку зі статусом "ready", користувач упорядковує їх
+ * (стрілки ↑↓, перетягування) і натискає "Створити" — тоді викликається
+ * processAll(files, { signal, onProgress }) → Promise<{ blob, name }>,
+ * де files — File[] у поточному порядку списку. Результат один, завантажується
+ * одним файлом. Будь-яка зміна списку скидає готовий результат.
+ * Звичайний режим (mode не задано) працює як і раніше.
  */
 const Panel = ({
   acceptedTypes,
@@ -84,8 +103,20 @@ const Panel = ({
   formats, // [{ id: 'txt', label: '.txt' }, { id: 'doc', label: '.doc' }]
   defaultFormatId,
   buildOutput, // (raw, formatId, originalName) => Blob
+
+  // ── Необов'язкові підписи результату (напр. «стиснути до N КБ») ──
+  formatSize, // (bytes) => string — свій формат розміру в рядку «було → стало» (за замовчуванням — МБ)
+  resultNote, // (file, resultBlob) => string | null — додатковий рядок під результатом (якість, роздільність…)
+
+  // ── Режим злиття: N файлів → один результат ──
+  mode = "single", // "single" | "merge"
+  processAll, // async (files: File[], { signal, onProgress }) => { blob: Blob, name: string }
+  mergeButtonText, // текст кнопки "Створити" (за замовчуванням — panel.mergeCreate)
+  mergeMinFiles = 2, // мінімум файлів для запуску
+  mergeWarning, // (files: File[]) => string | null — необов'язкове попередження (напр. "загалом > 200 МБ"), показується під списком, поки merge.status === "idle"
 }) => {
   const { t } = useTranslation();
+  const fmtFileSize = formatSize || fmtSize;
   const hasFormatSwitcher =
     Array.isArray(formats) &&
     formats.length > 1 &&
@@ -98,6 +129,11 @@ const Panel = ({
   const [showPanel, setShowPanel] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const [tick, setTick] = useState(0); // щоб черга перезапускалась після завершення файлу
+  const isMerge = mode === "merge";
+  // Стан злиття: idle → running → done | error. result: { blob, name, url, size }
+  const [merge, setMerge] = useState(IDLE_MERGE);
+  const [dragId, setDragId] = useState(null); // файл, який зараз перетягують
+  const [overId, setOverId] = useState(null); // файл під курсором під час перетягування
 
   // "Сесія" обробки: збільшується при закритті панелі, "Скасувати" і
   // розмонтуванні, щоб результат файлу, який ще обробляється, відкидався
@@ -106,6 +142,9 @@ const Panel = ({
   const runningRef = useRef(false);
   const controllerRef = useRef(null);
   const itemsRef = useRef(items);
+  const mergeRef = useRef(merge);
+  const listRef = useRef(null);
+  const pendingFocusRef = useRef(null); // { id, dir } — повернути фокус на кнопку після переміщення
   // Найсвіжіші пропси для черги (щоб не перезапускати ефект щоразу, коли
   // батьківський компонент створює нову функцію-обробник)
   const latest = useRef({});
@@ -114,8 +153,14 @@ const Panel = ({
     itemsRef.current = items;
   }, [items]);
   useEffect(() => {
+    mergeRef.current = merge;
+  }, [merge]);
+  useEffect(() => {
     latest.current = {
       processFile,
+      resultNote,
+      processAll,
+      mergeMinFiles,
       getOutputName,
       buildOutput,
       hasFormatSwitcher,
@@ -132,6 +177,9 @@ const Panel = ({
       sessionRef.current++;
       controllerRef.current?.abort();
       itemsRef.current.forEach((f) => f.url && URL.revokeObjectURL(f.url));
+      if (mergeRef.current.result?.url) {
+        URL.revokeObjectURL(mergeRef.current.result.url);
+      }
     };
   }, []);
 
@@ -146,6 +194,7 @@ const Panel = ({
 
   // ── Черга: бере наступний файл зі статусом "queued" ────────────────────
   useEffect(() => {
+    if (isMerge) return; // у режимі злиття файли не обробляються по одному
     if (runningRef.current) return;
     const next = items.find((i) => i.status === "queued");
     if (!next) return;
@@ -212,7 +261,12 @@ const Panel = ({
             processed: result,
             processedSize: result.size,
             url,
-            outputName: cur.getOutputName ? cur.getOutputName(file.name) : file.name,
+            // 3-й аргумент — результат: ім'я може залежати від того, що саме
+            // повернув обробник (напр. файл, що вже влізав, лишається як був)
+            outputName: cur.getOutputName
+              ? cur.getOutputName(file.name, undefined, result)
+              : file.name,
+            note: cur.resultNote?.(file, result) || null,
           });
           // 📊 ВІДСТЕЖЕННЯ УСПІШНОГО СТИСНЕННЯ / КОНВЕРТАЦІЇ КОЖНОГО ФАЙЛА
           trackGaEvent("photo_compressed", {
@@ -251,7 +305,7 @@ const Panel = ({
         setTick((n) => n + 1);
       }
     })();
-  }, [items, tick, patchItem]);
+  }, [items, tick, patchItem, isMerge]);
 
   const isProcessing = items.some(
     (i) => i.status === "queued" || i.status === "processing"
@@ -264,16 +318,29 @@ const Panel = ({
     (i) => i.status === "done" || i.status === "error"
   ).length;
 
+  const mergeRunning = merge.status === "running";
+
   // Якщо закрити вкладку посеред обробки — браузер попередить про втрату
+  const busy = isProcessing || mergeRunning;
   useEffect(() => {
-    if (!isProcessing) return undefined;
+    if (!busy) return undefined;
     const warn = (e) => {
       e.preventDefault();
       e.returnValue = "";
     };
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
-  }, [isProcessing]);
+  }, [busy]);
+
+  // Будь-яка зміна списку (додати / видалити / змінити порядок) робить
+  // готовий результат недійсним: звільняємо його URL і повертаємо "Створити".
+  const invalidateMerge = useCallback(() => {
+    if (!isMerge) return;
+    const { result, status } = mergeRef.current;
+    if (result?.url) URL.revokeObjectURL(result.url);
+    if (status === "done" || status === "error") setMerge(IDLE_MERGE);
+    setDownloaded(false);
+  }, [isMerge]);
 
   // Причина відхилення файлу самим react-dropzone (тип не з accept тощо)
   const describeRejection = useCallback(
@@ -313,6 +380,9 @@ const Panel = ({
         return;
       }
 
+      // Поки триває злиття, склад списку не змінюємо (результат би не збігся)
+      if (isMerge && mergeRef.current.status === "running") return;
+
       // Приймаємо перші N файлів, решту чесно позначаємо як пропущені —
       // замість того, щоб відхиляти всю партію.
       const withinLimit = acceptedFiles.slice(0, availableSlots);
@@ -346,6 +416,23 @@ const Panel = ({
       setShowPanel(true);
       setDownloaded(false);
 
+      if (isMerge) {
+        invalidateMerge();
+        setItems((prev) => [
+          ...prev,
+          ...filesToProcess.map((file) => ({
+            id: newId(),
+            file,
+            status: "ready",
+            // прев'ю для зображень (звільняється при видаленні / закритті)
+            url: file.type?.startsWith("image/")
+              ? URL.createObjectURL(file)
+              : undefined,
+          })),
+        ]);
+        return;
+      }
+
       // 📊 ВІДСТЕЖЕННЯ ПОЧАТКУ ОБРОБКИ
       trackGaEvent("photo_process_start", {
         files_count: filesToProcess.length,
@@ -360,7 +447,7 @@ const Panel = ({
         })),
       ]);
     },
-    [maxFiles, maxFileSize, describeRejection, t]
+    [maxFiles, maxFileSize, describeRejection, t, isMerge, invalidateMerge]
   );
 
   const getUniqueFileName = (name, usedNames) => {
@@ -461,6 +548,8 @@ const Panel = ({
     sessionRef.current++; // відкидаємо результати файлів, що ще обробляються
     controllerRef.current?.abort();
     items.forEach((f) => f.url && URL.revokeObjectURL(f.url));
+    if (merge.result?.url) URL.revokeObjectURL(merge.result.url);
+    setMerge(IDLE_MERGE);
     setItems([]);
     setErrors([]);
     setShowPanel(false);
@@ -475,6 +564,12 @@ const Panel = ({
   const handleCancel = () => {
     sessionRef.current++;
     controllerRef.current?.abort();
+    if (isMerge) {
+      // Злиття: файли ще не оброблені, тож НІЧОГО не видаляємо зі списку —
+      // просто зупиняємо створення й повертаємо кнопку "Створити".
+      setMerge(IDLE_MERGE);
+      return;
+    }
     setItems((prev) =>
       prev.filter((i) => i.status === "done" || i.status === "error")
     );
@@ -491,6 +586,7 @@ const Panel = ({
   };
 
   const handleRemoveFile = (id) => {
+    invalidateMerge();
     setItems((prev) => {
       const fileToRemove = prev.find((f) => f.id === id);
       if (fileToRemove?.url) {
@@ -498,6 +594,150 @@ const Panel = ({
       }
       return prev.filter((f) => f.id !== id);
     });
+  };
+
+  // ── Режим злиття: порядок, створення, завантаження ─────────────────────
+  const moveItem = (id, delta) => {
+    const from = itemsRef.current.findIndex((i) => i.id === id);
+    const to = from + delta;
+    if (from < 0 || to < 0 || to >= itemsRef.current.length) return;
+    invalidateMerge();
+    pendingFocusRef.current = { id, dir: delta < 0 ? "up" : "down" };
+    setItems((prev) => {
+      const a = prev.findIndex((i) => i.id === id);
+      const b = a + delta;
+      if (a < 0 || b < 0 || b >= prev.length) return prev;
+      const next = [...prev];
+      [next[a], next[b]] = [next[b], next[a]];
+      return next;
+    });
+  };
+
+  // Після переміщення DOM-вузол міг втратити фокус — повертаємо його на
+  // ту саму кнопку (або на протилежну, якщо файл дійшов до краю списку).
+  useEffect(() => {
+    const target = pendingFocusRef.current;
+    if (!target) return;
+    pendingFocusRef.current = null;
+    const li = listRef.current?.querySelector(`[data-item-id="${target.id}"]`);
+    const btn = li?.querySelector(`[data-move="${target.dir}"]:not(:disabled)`);
+    (btn || li?.querySelector("[data-move]:not(:disabled)"))?.focus();
+  }, [items]);
+
+  const moveItemTo = (fromId, toId) => {
+    if (fromId === toId) return;
+    const from = itemsRef.current.findIndex((i) => i.id === fromId);
+    const to = itemsRef.current.findIndex((i) => i.id === toId);
+    if (from < 0 || to < 0) return;
+    invalidateMerge();
+    setItems((prev) => {
+      const a = prev.findIndex((i) => i.id === fromId);
+      const b = prev.findIndex((i) => i.id === toId);
+      if (a < 0 || b < 0) return prev;
+      const next = [...prev];
+      const [moved] = next.splice(a, 1);
+      next.splice(b, 0, moved);
+      return next;
+    });
+  };
+
+  const endDrag = () => {
+    setDragId(null);
+    setOverId(null);
+  };
+
+  const handleMerge = async () => {
+    const cur = latest.current;
+    const files = itemsRef.current.map((i) => i.file);
+    if (
+      !isMerge ||
+      typeof cur.processAll !== "function" ||
+      mergeRef.current.status === "running" ||
+      files.length < cur.mergeMinFiles
+    ) {
+      return;
+    }
+
+    if (mergeRef.current.result?.url) {
+      URL.revokeObjectURL(mergeRef.current.result.url);
+    }
+    const controller = new AbortController();
+    controllerRef.current = controller;
+    const session = ++sessionRef.current;
+    const isStale = () => session !== sessionRef.current || controller.signal.aborted;
+
+    setDownloaded(false);
+    setMerge({ ...IDLE_MERGE, status: "running" });
+    // 📊 без імен файлів — лише кількість
+    trackGaEvent("merge_start", { files_count: files.length });
+
+    try {
+      let lastKey = "";
+      const onProgress = (p) => {
+        if (isStale()) return;
+        const pct =
+          typeof p?.value === "number"
+            ? Math.round(Math.min(1, Math.max(0, p.value)) * 100)
+            : null;
+        const key = `${p?.text ?? ""}|${pct}`;
+        if (key === lastKey) return;
+        lastKey = key;
+        setMerge((prev) =>
+          prev.status === "running"
+            ? {
+                ...prev,
+                progressText: p?.text ?? null,
+                progressValue: pct === null ? null : pct / 100,
+              }
+            : prev
+        );
+      };
+
+      const out = await cur.processAll(files, {
+        signal: controller.signal,
+        onProgress,
+      });
+      // Скасовано / панель закрита / список змінився, поки йшла робота —
+      // результат відкидаємо (URL для нього ще не створено).
+      if (isStale()) return;
+      if (!(out?.blob instanceof Blob)) {
+        throw new Error("processAll must resolve to { blob, name }");
+      }
+      const url = URL.createObjectURL(out.blob);
+      setMerge({
+        ...IDLE_MERGE,
+        status: "done",
+        result: {
+          blob: out.blob,
+          name: out.name || "merged",
+          url,
+          size: out.blob.size,
+        },
+      });
+      trackGaEvent("merge_done", {
+        files_count: files.length,
+        result_size_mb: (out.blob.size / 1024 / 1024).toFixed(2),
+      });
+    } catch (error) {
+      if (isStale()) return;
+      if (error?.code === "LIMIT_REACHED") cur.onLimitReached?.(error);
+      else console.error("processAll failed:", error);
+      setMerge({
+        ...IDLE_MERGE,
+        status: "error",
+        error:
+          error?.userFacing && error?.message
+            ? error.message
+            : cur.t("errors.mergeFailed"),
+      });
+    }
+  };
+
+  const handleDownloadMerge = () => {
+    const { result } = mergeRef.current;
+    if (!result) return;
+    triggerDownload(result.url, result.name);
+    setDownloaded(true);
   };
 
   useEffect(() => {
@@ -511,6 +751,11 @@ const Panel = ({
       document.body.style.overflow = "";
     };
   }, [showPanel]);
+
+  const warningText = useMemo(() => {
+    if (typeof mergeWarning !== "function" || merge.status !== "idle") return null;
+    return mergeWarning(items.map((i) => i.file)) || null;
+  }, [mergeWarning, items, merge.status]);
 
   const visibleErrors = errors.slice(0, MAX_VISIBLE_ERRORS);
   const hiddenErrors = errors.length - visibleErrors.length;
@@ -585,7 +830,11 @@ const Panel = ({
             </div>
           )}
           <h2 className="side-panel__title">
-            {downloaded ? t("panel.fileDownload") : t("panel.fileRedi")}
+            {downloaded
+              ? t("panel.fileDownload")
+              : isMerge && merge.status !== "done"
+                ? t("panel.mergeTitle")
+                : t("panel.fileRedi")}
           </h2>
         </div>
 
@@ -609,7 +858,73 @@ const Panel = ({
           </div>
         )}
 
-        {items.length > 0 && (
+        {isMerge && items.length > 0 && (
+          <div className="side-panel__merge-info">
+            {items.length > 1 && (
+              <p className="side-panel__hint">{t("panel.orderHint")}</p>
+            )}
+            {items.length < mergeMinFiles && merge.status === "idle" && (
+              <p className="side-panel__hint side-panel__hint--warn" role="status">
+                {t("panel.mergeNeedMore", { min: mergeMinFiles })}
+              </p>
+            )}
+            {warningText && (
+              <p className="side-panel__hint side-panel__hint--warn" role="status">
+                {warningText}
+              </p>
+            )}
+            {mergeRunning && (
+              <div className="side-panel__progress">
+                <div className="side-panel__progress-row" aria-live="polite">
+                  <span>{merge.progressText || t("panel.mergeWorking")}</span>
+                  <button
+                    type="button"
+                    className="side-panel__cancel-btn"
+                    onClick={handleCancel}
+                  >
+                    {t("panel.cancel")}
+                  </button>
+                </div>
+                <progress
+                  className="side-panel__progress-bar"
+                  max={1}
+                  // без value — «невизначений» прогрес, якщо обробник його не звітує
+                  {...(typeof merge.progressValue === "number"
+                    ? { value: merge.progressValue }
+                    : {})}
+                  aria-label={merge.progressText || t("panel.mergeWorking")}
+                />
+              </div>
+            )}
+            {merge.status === "error" && (
+              <div className="side-panel__merge-error" role="alert">
+                <p className="error-text">{merge.error}</p>
+                <button
+                  type="button"
+                  className="side-panel__cancel-btn"
+                  onClick={handleMerge}
+                >
+                  {t("panel.retry")}
+                </button>
+              </div>
+            )}
+            {merge.status === "done" && merge.result && (
+              <p className="side-panel__merge-result" role="status">
+                <span className="side-panel__filename" title={merge.result.name}>
+                  {merge.result.name}
+                </span>
+                <span>
+                  {t("panel.mergeTotal", {
+                    from: fmtSize(items.reduce((sum, i) => sum + i.file.size, 0)),
+                    to: fmtSize(merge.result.size),
+                  })}
+                </span>
+              </p>
+            )}
+          </div>
+        )}
+
+        {!isMerge && items.length > 0 && (
           <div className="side-panel__progress">
             <div className="side-panel__progress-row" aria-live="polite">
               <span>
@@ -650,6 +965,7 @@ const Panel = ({
             <button
               className="side-panel__add-btn"
               onClick={open}
+              disabled={mergeRunning}
               aria-label={addMoreAriaLabel || t("panel.addMoreAria")}
             >
               <TbPhotoPlus size={24} className="side-panel_icon" />
@@ -667,11 +983,57 @@ const Panel = ({
           {selectedLabel || t("panel.selected")} {items.length}/{maxFiles}
         </p>
 
-        <ul className="side-panel__filelist">
-          {items.map((item) => {
+        <ul className="side-panel__filelist" ref={listRef}>
+          {items.map((item, index) => {
             const { id, file, url, status } = item;
+            const canDrag = isMerge && !mergeRunning && items.length > 1;
             return (
-              <li key={id} className="side-panel__file-item">
+              <li
+                key={id}
+                data-item-id={id}
+                className={`side-panel__file-item${
+                  dragId === id ? " side-panel__file-item--dragging" : ""
+                }${
+                  dragId && overId === id && dragId !== id
+                    ? " side-panel__file-item--over"
+                    : ""
+                }`}
+                draggable={canDrag || undefined}
+                onDragStart={
+                  canDrag
+                    ? (e) => {
+                        setDragId(id);
+                        e.dataTransfer.effectAllowed = "move";
+                        // Firefox не починає перетягування без setData
+                        e.dataTransfer.setData("text/plain", id);
+                      }
+                    : undefined
+                }
+                onDragOver={
+                  canDrag && dragId
+                    ? (e) => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = "move";
+                        if (overId !== id) setOverId(id);
+                      }
+                    : undefined
+                }
+                onDrop={
+                  canDrag && dragId
+                    ? (e) => {
+                        e.preventDefault();
+                        moveItemTo(dragId, id);
+                        endDrag();
+                      }
+                    : undefined
+                }
+                onDragEnd={canDrag ? endDrag : undefined}
+              >
+                {isMerge && (
+                  <span className="side-panel__file-index" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                )}
                 {/* У мультиформатному режимі (наприклад, OCR) url відсутній —
                     оброблений файл це текст/doc, а не картинка, тож завжди
                     показуємо іконку файлу замість зламаного прев'ю. */}
@@ -698,13 +1060,17 @@ const Panel = ({
                   <span
                     className={`side-panel__file-status side-panel__file-status--${status}`}
                   >
+                    {status === "ready" && fmtSize(file.size)}
                     {status === "queued" && t("panel.status.queued")}
                     {status === "processing" &&
                       (item.progressText || t("panel.status.processing"))}
                     {status === "done" &&
-                      `${fmtSize(file.size)} → ${fmtSize(item.processedSize)}`}
+                      `${fmtFileSize(file.size)} → ${fmtFileSize(item.processedSize)}`}
                     {status === "error" && item.error}
                   </span>
+                  {status === "done" && item.note && (
+                    <span className="side-panel__file-note">{item.note}</span>
+                  )}
                   {status === "processing" &&
                     typeof item.progressValue === "number" && (
                       <progress
@@ -726,8 +1092,35 @@ const Panel = ({
                     <FiRefreshCw size={16} />
                   </button>
                 )}
+                {isMerge && (
+                  <span className="side-panel__move">
+                    <button
+                      type="button"
+                      className="side-panel__move-btn"
+                      data-move="up"
+                      onClick={() => moveItem(id, -1)}
+                      disabled={index === 0 || mergeRunning}
+                      aria-label={t("panel.moveUp", { name: file.name })}
+                      title={t("panel.moveUp", { name: file.name })}
+                    >
+                      <FiChevronUp size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      className="side-panel__move-btn"
+                      data-move="down"
+                      onClick={() => moveItem(id, 1)}
+                      disabled={index === items.length - 1 || mergeRunning}
+                      aria-label={t("panel.moveDown", { name: file.name })}
+                      title={t("panel.moveDown", { name: file.name })}
+                    >
+                      <FiChevronDown size={16} />
+                    </button>
+                  </span>
+                )}
                 <button
                   className="side-panel__remove-btn"
+                  disabled={isMerge && mergeRunning}
                   onClick={() => handleRemoveFile(id)}
                   aria-label={
                     removeAriaLabel
@@ -762,17 +1155,41 @@ const Panel = ({
           </div>
         )}
 
-        <button
-          className={`side-panel__download-btn ${
-            doneItems.length === 0 ? "side-panel__download-btn--empty" : ""
-          }`}
-          onClick={handleDownloadAll}
-          disabled={doneItems.length === 0 || isProcessing}
-        >
-          {doneItems.length > 1
-            ? downloadManyText || t("panel.upLoadPhotos")
-            : downloadOneText || t("panel.upLoadPhoto")}
-        </button>
+        {isMerge ? (
+          merge.status === "done" ? (
+            <button
+              type="button"
+              className="side-panel__download-btn"
+              onClick={handleDownloadMerge}
+            >
+              {downloadOneText || t("panel.upLoadPhoto")}
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={`side-panel__download-btn ${
+                items.length === 0 ? "side-panel__download-btn--empty" : ""
+              }`}
+              data-merge-create
+              onClick={handleMerge}
+              disabled={items.length < mergeMinFiles || mergeRunning}
+            >
+              {mergeButtonText || t("panel.mergeCreate")}
+            </button>
+          )
+        ) : (
+          <button
+            className={`side-panel__download-btn ${
+              doneItems.length === 0 ? "side-panel__download-btn--empty" : ""
+            }`}
+            onClick={handleDownloadAll}
+            disabled={doneItems.length === 0 || isProcessing}
+          >
+            {doneItems.length > 1
+              ? downloadManyText || t("panel.upLoadPhotos")
+              : downloadOneText || t("panel.upLoadPhoto")}
+          </button>
+        )}
       </aside>
     </main>
   );

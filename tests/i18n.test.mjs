@@ -5,6 +5,9 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ROUTE_PATHS } from "../src/routes.config.js";
+import { PAGE_META } from "../src/seoMeta.js";
+import { makeRequiredIn } from "./helpers/requiredLangs.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const LANGS = ["uk", "en", "ru", "es"];
@@ -17,13 +20,38 @@ const flatten = (obj, prefix = "") =>
 
 const locales = Object.fromEntries(LANGS.map((l) => [l, new Set(flatten(load(l)))]));
 
-test("усі мови мають однаковий набір ключів", () => {
-  const base = locales.uk;
-  for (const l of LANGS.slice(1)) {
-    const missing = [...base].filter((k) => !locales[l].has(k));
-    const extra = [...locales[l]].filter((k) => !base.has(k));
-    assert.deepEqual({ lang: l, missing, extra }, { lang: l, missing: [], extra: [] });
+// Маршрут може існувати не в усіх мовах (наприклад, { slug, uk, en } без ru/es).
+// Ключі такого інструмента обов'язкові лише для мов, у яких він є:
+//   <slug>.*, seoContent.<slug>.*, header.<slug>, header.<slug>Desc.
+// Усе інше перевіряється як раніше — в усіх 4 мовах.
+const { ownerOf, requiredIn } = makeRequiredIn(ROUTE_PATHS, LANGS);
+
+test("усі мови мають однаковий набір ключів (крім ключів інструментів, яких у цій мові немає)", () => {
+  const all = new Set(LANGS.flatMap((l) => [...locales[l]]));
+  const problems = [];
+  for (const key of all) {
+    const required = requiredIn(key);
+    for (const l of LANGS) {
+      const has = locales[l].has(key);
+      // Ключ, якого не вимагає жодна перевірка, у "зайвих" мовах теж допустимий
+      // (напр. частковий переклад, який ще не підключений до маршруту).
+      if (required.includes(l) && !has) problems.push(`${l}: немає ${key}`);
+      if (!required.includes(l) && has && !ownerOf(key)) problems.push(`${l}: зайвий ${key}`);
+    }
   }
+  assert.deepEqual(problems, []);
+});
+
+test("кожен маршрут має SEO-текст і метадані в кожній мові, де він існує", () => {
+  const problems = [];
+  for (const r of ROUTE_PATHS) {
+    for (const l of LANGS) {
+      if (!r[l]) continue;
+      if (!locales[l].has(`seoContent.${r.slug}.title`)) problems.push(`${l}: seoContent.${r.slug}`);
+      if (!PAGE_META[r.slug]?.[l]?.title) problems.push(`${l}: PAGE_META.${r.slug}`);
+    }
+  }
+  assert.deepEqual(problems, []);
 });
 
 function walk(dir) {
@@ -43,7 +71,7 @@ test("ключі з t(\"…\") у коді існують у всіх мовах
   }
   const problems = [];
   for (const [key, file] of used) {
-    for (const l of LANGS) if (!locales[l].has(key)) problems.push(`${l}: ${key} (${file})`);
+    for (const l of requiredIn(key)) if (!locales[l].has(key)) problems.push(`${l}: ${key} (${file})`);
   }
   assert.deepEqual(problems, []);
 });

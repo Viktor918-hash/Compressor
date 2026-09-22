@@ -5,6 +5,7 @@ import i18n, { setLanguage } from "./i18n/i18n";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ROUTES } from "./routes.jsx";
+import { routesForLang } from "./utils/routeLangs";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer.jsx";
 import LanguageSuggestionBanner from "./components/LanguageSuggestion/LanguageSuggestionBanner";
@@ -61,7 +62,7 @@ function App() {
             {/* key: після переходу на іншу сторінку межа помилок скидається */}
             <ErrorBoundary key={location.pathname}>
             <Routes>
-              {ROUTES.map(({ slug, uk, Component }) => (
+              {routesForLang(ROUTES, "uk").map(({ slug, uk, Component }) => (
                 <Route
                   key={`uk-${slug}`}
                   path={uk}
@@ -72,7 +73,7 @@ function App() {
                   }
                 />
               ))}
-              {ROUTES.map(({ slug, en, Component }) => (
+              {routesForLang(ROUTES, "en").map(({ slug, en, Component }) => (
                 <Route
                   key={`en-${slug}`}
                   path={en}
@@ -83,7 +84,7 @@ function App() {
                   }
                 />
               ))}
-              {ROUTES.map(({ slug, ru, Component }) => (
+              {routesForLang(ROUTES, "ru").map(({ slug, ru, Component }) => (
                 <Route
                   key={`ru-${slug}`}
                   path={ru}
@@ -94,7 +95,7 @@ function App() {
                   }
                 />
               ))}
-              {ROUTES.map(({ slug, es, Component }) => (
+              {routesForLang(ROUTES, "es").map(({ slug, es, Component }) => (
                 <Route
                   key={`es-${slug}`}
                   path={es}

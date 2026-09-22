@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import Hero from "./components/Hero/Hero.jsx";
 import Convert from "./components/Convertal/Convert.jsx";
 import ConvertWebp from "./components/ConvertWebP/Convertwebp.jsx";
@@ -7,6 +8,10 @@ import WordToPdf from "./components/WordToPdf/WordToPdf.jsx";
 import PdfToWord from "./components/PdfToWord/PdfToWord.jsx";
 import RemoveBg from "./components/RemoveBg/RemoveBg.jsx";
 import ImageToText from "./components/ImageToText/ImageToText.jsx";
+import CompressToSize from "./components/CompressToSize/CompressToSize.jsx";
+import ConvertPng from "./components/ConvertPng/ConvertPng.jsx";
+import RemoveExif from "./components/RemoveExif/RemoveExif.jsx";
+import PhotoToPdf from "./components/PhotoToPdf/PhotoToPdf.jsx";
 import { ROUTE_PATHS } from "./routes.config.js";
 
 // Прив'язка React-компонента до кожного slug'а з routes.config.js.
@@ -23,12 +28,41 @@ const SLUG_COMPONENTS = {
   pdfToWord: PdfToWord,
   removeBg: RemoveBg,
   imageToText: ImageToText,
+  compressToSize: CompressToSize,
+  convertToPng: ConvertPng,
+  removeExif: RemoveExif,
+  photoToPdf: PhotoToPdf,
 };
 
 // Форма кожного елемента ROUTES лишається такою ж, як і раніше:
 // { slug, uk, en, ru, es, Component } — жодних змін для App.jsx,
 // SeoHead, LocalizedLink, LanguageSwitcher та інших споживачів ROUTES.
-export const ROUTES = ROUTE_PATHS.map((routePath) => ({
-  ...routePath,
-  Component: SLUG_COMPONENTS[routePath.slug],
-}));
+// ── Тільки для e2e-збірки (VITE_E2E_STUB=1) ─────────────────────────────
+// Сторінка-заглушка для перевірки Panel mode="merge" і маршруту з
+// підмножиною мов (uk + en, без ru/es). У звичайній збірці умова
+// статично хибна, тож і заглушка, і її чанк відкидаються при збірці.
+// НЕ додавайте її в routes.config.js — там лише реальні сторінки.
+const E2E_STUB = import.meta.env.VITE_E2E_STUB === "1";
+const LazyMergeStub = E2E_STUB ? lazy(() => import("./e2e/MergeStub.jsx")) : null;
+const E2E_ROUTES = E2E_STUB
+  ? [
+      {
+        slug: "e2eMerge",
+        uk: "/__e2e-merge",
+        en: "/en/__e2e-merge",
+        Component: () => (
+          <Suspense fallback={null}>
+            <LazyMergeStub />
+          </Suspense>
+        ),
+      },
+    ]
+  : [];
+
+export const ROUTES = [
+  ...ROUTE_PATHS.map((routePath) => ({
+    ...routePath,
+    Component: SLUG_COMPONENTS[routePath.slug],
+  })),
+  ...E2E_ROUTES,
+];

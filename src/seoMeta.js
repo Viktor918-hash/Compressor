@@ -204,4 +204,93 @@ export const PAGE_META = {
         "Convierte cualquier foto, escaneo o captura de pantalla en texto editable directamente en tu navegador. Compatible con español, inglés, ucraniano y ruso. Tus archivos nunca salen de tu dispositivo.",
     },
   },
+  // Нові інструменти: ru/es — мої переклади, бажано вичитати носієм
+  compressToSize: {
+    uk: {
+      title: "Зменшити фото до 200 КБ онлайн — до будь-якого розміру",
+      description:
+        "Стисніть фото до потрібного розміру: 50, 100, 200 КБ або свій ліміт. Прямо в браузері, без завантаження файлів на сервер і без реєстрації.",
+    },
+    en: {
+      title: "Compress Image to 200 KB Online — Any Target Size",
+      description:
+        "Shrink a photo to an exact size: 50, 100, 200 KB or your own limit. Runs in your browser — files never leave your device, no sign-up needed.",
+    },
+    ru: {
+      title: "Уменьшить фото до 200 КБ онлайн — до любого размера",
+      description:
+        "Сожмите фото до нужного размера: 50, 100, 200 КБ или свой лимит. Прямо в браузере, без загрузки файлов на сервер и без регистрации.",
+    },
+    es: {
+      title: "Comprimir imagen a 200 KB online — a cualquier tamaño",
+      description:
+        "Reduce una foto al tamaño exacto que necesitas: 50, 100, 200 KB o tu propio límite. Funciona en el navegador: tus archivos no se suben a ningún servidor.",
+    },
+  },
+  convertToPng: {
+    uk: {
+      title: "Конвертувати в PNG онлайн: JPG, WebP, HEIC у PNG",
+      description:
+        "Перетворіть фото у PNG онлайн: JPG, WebP, BMP, GIF, AVIF і HEIC з iPhone. Прозорість зберігається, файли не йдуть на сервер, реєстрація не потрібна.",
+    },
+    en: {
+      title: "Convert Image to PNG Online — JPG, WebP, HEIC to PNG",
+      description:
+        "Convert JPG, WebP, BMP, GIF, AVIF and iPhone HEIC photos to PNG online. Transparency is kept, files never leave your browser, no sign-up needed.",
+    },
+    ru: {
+      title: "Конвертировать в PNG онлайн: JPG, WebP, HEIC в PNG",
+      description:
+        "Преобразуйте фото в PNG онлайн: JPG, WebP, BMP, GIF, AVIF и HEIC с iPhone. Прозрачность сохраняется, файлы не уходят на сервер, регистрация не нужна.",
+    },
+    es: {
+      title: "Convertir imagen a PNG online: JPG, WebP, HEIC a PNG",
+      description:
+        "Convierte fotos JPG, WebP, BMP, GIF, AVIF y HEIC de iPhone a PNG online. Conserva la transparencia, sin subir archivos a servidores ni registro.",
+    },
+  },
+  removeExif: {
+    uk: {
+      title: "Видалити EXIF та GPS з фото онлайн без втрати якості",
+      description:
+        "Дізнайтеся, які метадані приховано у фото (камера, дата, GPS), і видаліть їх без перекодування та втрати якості. У браузері, без завантаження на сервер.",
+    },
+    en: {
+      title: "Remove EXIF Data from Photos Online — No Quality Loss",
+      description:
+        "See what metadata is hidden in a photo (camera, date, GPS) and remove it without re-encoding or losing quality. Runs in your browser; files stay on your device.",
+    },
+    ru: {
+      title: "Удалить EXIF и GPS из фото онлайн без потери качества",
+      description:
+        "Узнайте, какие метаданные скрыты в фото (камера, дата, GPS), и удалите их без перекодирования и потери качества. В браузере, без загрузки на сервер.",
+    },
+    es: {
+      title: "Eliminar EXIF y GPS de fotos online sin perder calidad",
+      description:
+        "Descubre qué metadatos hay ocultos en una foto (cámara, fecha, GPS) y elimínalos sin recodificar ni perder calidad. En tu navegador, sin subir archivos.",
+    },
+  },
+  photoToPdf: {
+    uk: {
+      title: "Фото в PDF онлайн: об'єднати кілька фото в один файл",
+      description:
+        "Перетворіть фото у PDF прямо в браузері: оберіть порядок сторінок, розмір A4 чи розмір фото, поля 0 або 10 мм. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Photos to PDF Online — Combine Multiple Photos into One File",
+      description:
+        "Turn photos into a single PDF in your browser: set the page order, A4 or photo-size pages, and 0 or 10 mm margins. Nothing is uploaded to a server.",
+    },
+    ru: {
+      title: "Фото в PDF онлайн: объединить несколько фото в один файл",
+      description:
+        "Превратите фото в PDF прямо в браузере: выберите порядок страниц, размер A4 или размер фото, поля 0 или 10 мм. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Fotos a PDF online: combina varias fotos en un solo archivo",
+      description:
+        "Convierte tus fotos en un PDF en el navegador: elige el orden de páginas, tamaño A4 o de foto, y márgenes de 0 o 10 mm. Sin subir archivos.",
+    },
+  },
 };

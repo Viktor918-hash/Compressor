@@ -32,6 +32,12 @@ const SeoContent = ({ pageKey }) => {
   const text2 = t(`seoContent.${pageKey}.text2`);
   const benefits = t(`seoContent.${pageKey}.benefits`, { returnObjects: true });
   const faq = t(`seoContent.${pageKey}.faq`, { returnObjects: true });
+  // Необов'язкові розділи (як користуватись, коли потрібно, обмеження,
+  // приватність): [{ title, text?, steps?: string[] }]
+  const sections = t(`seoContent.${pageKey}.sections`, {
+    returnObjects: true,
+    defaultValue: [],
+  });
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -75,6 +81,21 @@ const SeoContent = ({ pageKey }) => {
             })}
           </div>
         )}
+
+        {Array.isArray(sections) &&
+          sections.map((section) => (
+            <div className="seo-content__section" key={section.title}>
+              <h3 className="seo-content__section-title">{section.title}</h3>
+              {section.text && <p className="seo-content__text">{section.text}</p>}
+              {Array.isArray(section.steps) && section.steps.length > 0 && (
+                <ol className="seo-content__steps">
+                  {section.steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          ))}
 
         {Array.isArray(faq) && faq.length > 0 && (
           <div className="seo-content__faq">

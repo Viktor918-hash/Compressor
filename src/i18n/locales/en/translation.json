@@ -3,8 +3,14 @@
     "tools": "Image Tools",
     "compress": "Compress Photo",
     "compressDesc": "Reduce JPG, PNG, WebP size",
+    "compressToSize": "Compress to a Size",
+    "compressToSizeDesc": "Fit a photo under a size limit",
     "convert": "Convert to JPG",
     "convertDesc": "PNG, WebP, HEIC and others to JPG",
+    "convertToPng": "Convert to PNG",
+    "convertToPngDesc": "JPG, WebP, HEIC and others to PNG",
+    "removeExif": "Remove EXIF",
+    "removeExifDesc": "Strip metadata and GPS from photos",
     "resize": "Resize Photo",
     "resizeDesc": "Crop or scale to any size",
     "howItWorks": "How it works",
@@ -31,7 +37,9 @@
     "imageToText": "Image to Text",
     "imageToTextDesc": "Extract text from a photo or screenshot",
     "signOut": "Sign out",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "photoToPdf": "Photos to PDF",
+    "photoToPdfDesc": "Combine several photos into one PDF file"
   },
   "hero": {
     "titlePart1": "Heavy photos - now",
@@ -102,7 +110,15 @@
       "processing": "Processing…"
     },
     "hideSettings": "Hide settings",
-    "showSettings": "Show settings"
+    "showSettings": "Show settings",
+    "moveUp": "Move up: {{name}}",
+    "moveDown": "Move down: {{name}}",
+    "orderHint": "File order = order in the result. Drag a file or use the arrows.",
+    "mergeWorking": "Creating the file…",
+    "mergeNeedMore": "Minimum number of files: {{min}}.",
+    "mergeTotal": "Total: {{from}} → {{to}}",
+    "mergeCreate": "Create",
+    "mergeTitle": "Prepare your file"
   },
   "convertWebp": {
     "titlePart2": "Convert photos to ",
@@ -253,6 +269,125 @@
     },
     "errors": {
       "modelLoad": "Couldn't load the language model. Check your internet connection and try again."
+    }
+  },
+  "compressToSize": {
+    "titlePart2": "Compress an image to a target size",
+    "titleGradient": "in KB online",
+    "text1": "Say how many KB or MB the photo may weigh — and get a file that is not larger than that.",
+    "text2": "Quality and resolution are chosen automatically, and your files never leave your device.",
+    "dropzone": "Drag & drop photos here or click to compress them to a target size",
+    "panel": {
+      "emptyState": "Add a photo",
+      "addMore": "Add another photo",
+      "addMoreAria": "Add another photo",
+      "selected": "Photos selected:",
+      "downloadOne": "Download photo",
+      "downloadMany": "Download photos (ZIP)",
+      "remove": "Remove"
+    },
+    "target": {
+      "title": "Target file size",
+      "presets": "Preset sizes",
+      "custom": "Custom size",
+      "unit": "Unit",
+      "hint": "The file will not be larger than this value. We count 1 KB = 1000 bytes, so it fits the limit under both Windows and macOS rules."
+    },
+    "units": {
+      "kb": "KB",
+      "mb": "MB"
+    },
+    "format": {
+      "title": "Output format"
+    },
+    "status": {
+      "preparing": "Preparing image…",
+      "encoding": "Finding the quality: {{quality}}% → {{size}} (target {{target}})"
+    },
+    "note": {
+      "same": "Quality {{quality}}% · {{width}}×{{height}}",
+      "resized": "Quality {{quality}}% · {{width}}×{{height}} (reduced from {{fromWidth}}×{{fromHeight}})",
+      "unchanged": "The file is already within the target — returned unchanged."
+    },
+    "errors": {
+      "badTarget": "Enter a target size of at least 1 KB.",
+      "unreachable": "Couldn't get down to {{target}}. The smallest result was {{best}} ({{width}}×{{height}}). Choose a larger size.",
+      "formatUnsupported": "This browser can't save WebP. Choose JPEG or open the page in another browser."
+    }
+  },
+  "convertToPng": {
+    "titlePart2": "Convert images",
+    "titleGradient": "to PNG",
+    "text1": "Turn JPG, WebP, BMP, GIF, AVIF, HEIC and HEIF into PNG right in your browser.",
+    "text2": "Transparency is kept and your files never leave your device. You can add several images at once.",
+    "dropzone": "Drag & drop files here or click to convert them to PNG",
+    "panel": {
+      "emptyState": "Add images",
+      "addMore": "Add more images",
+      "addMoreAria": "Add more images",
+      "selected": "Files selected:",
+      "downloadOne": "Download PNG",
+      "downloadMany": "Download PNG (ZIP)",
+      "remove": "Remove"
+    },
+    "note": {
+      "larger": "PNG keeps every pixel without loss, so the file is larger than the original."
+    },
+    "errors": {
+      "encodeFailed": "Could not create a PNG from \"{{name}}\". The image may be too large for your device."
+    }
+  },
+  "removeExif": {
+    "titlePart2": "Remove EXIF and metadata",
+    "titleGradient": "from photos online",
+    "text1": "See what is hidden in your photo — camera, date, GPS coordinates — and remove it in one click.",
+    "text2": "Pixels are not re-encoded, so quality stays the same, and your files never leave your device.",
+    "dropzone": "Drag & drop photos here or click to remove their metadata",
+    "panel": {
+      "emptyState": "Add photos",
+      "addMore": "Add more photos",
+      "addMoreAria": "Add more photos",
+      "selected": "Photos selected:",
+      "downloadOne": "Download clean photo",
+      "downloadMany": "Download clean photos (ZIP)",
+      "remove": "Remove"
+    },
+    "option": {
+      "reencode": "Re-encode the photo completely (also removes the rotation tag; the colour profile becomes standard sRGB)",
+      "hint": "Without it the pixels stay untouched and a JPEG keeps only its rotation tag. Re-encoding slightly lowers JPEG and WebP quality (to 92%) but leaves no tags or service blocks (except possibly the standard sRGB profile that the browser itself adds)."
+    },
+    "kind": {
+      "gps": "GPS coordinates",
+      "exif": "EXIF",
+      "thumbnail": "embedded thumbnail",
+      "xmp": "XMP",
+      "iptc": "IPTC / Photoshop",
+      "comment": "comments",
+      "text": "text fields",
+      "time": "modification time",
+      "other": "auxiliary blocks",
+      "trailing": "data after the end of the image"
+    },
+    "found": {
+      "camera": "Camera",
+      "date": "Date taken",
+      "software": "Software",
+      "author": "Author",
+      "serial": "Serial number"
+    },
+    "note": {
+      "none": "No metadata found — the file was returned unchanged.",
+      "removed": "Removed: {{list}}. The image was not re-encoded.",
+      "orientationKept": "Only the rotation tag was kept so the photo does not end up on its side.",
+      "reencoded": "The photo was re-encoded (quality {{quality}}%): all metadata, including the rotation tag, was removed.",
+      "reencodedLossless": "The image was re-encoded losslessly: all metadata was removed.",
+      "fallback": "Quick cleaning did not work, so the photo was re-encoded.",
+      "gps": "The file contained the location where it was taken: {{lat}}, {{lon}} — removed."
+    },
+    "errors": {
+      "encodeFailed": "Couldn't save \"{{name}}\" without metadata. The image may be too large for your device.",
+      "formatUnsupported": "This browser can't save WebP. Turn off re-encoding or open the page in another browser.",
+      "animated": "\"{{name}}\" is an animated image: re-encoding would keep only the first frame. Turn off re-encoding and the metadata will be removed without losing the animation."
     }
   },
   "seoContent": {
@@ -625,7 +760,319 @@
         }
       ]
     },
-    "faqTitle": "Frequently asked questions"
+    "faqTitle": "Frequently asked questions",
+    "compressToSize": {
+      "title": "Why compress a photo to an exact size",
+      "text1": "Many application forms, online accounts, mail services and classified-ad sites accept a photo only up to a certain size — 200 KB, for example. Ordinary compression doesn't help here: you can't tell how large the result will be, so you end up guessing where to put a quality slider. This tool works the other way round. You set the limit, and it finds the quality — and, if needed, the resolution — that keeps the file within it.",
+      "text2": "Everything happens in your browser: the photo is not uploaded to a server, so it is fine for a scanned document or a passport-style picture as well. The result is saved as JPEG or WebP, and for every file you see the size before and after, the quality that was used and the final resolution.",
+      "benefits": [
+        {
+          "title": "Exactly within the limit",
+          "text": "Enter a number in KB or MB — the file will not exceed it, and the quality will be the highest that fits."
+        },
+        {
+          "title": "No server upload",
+          "text": "Files never leave your device, and no sign-up is needed."
+        },
+        {
+          "title": "An honest result",
+          "text": "You see before → after, the quality and the resolution. If the target can't be reached, we say so plainly."
+        },
+        {
+          "title": "Several photos at once",
+          "text": "Up to 20 photos at a time with the same limit; several files download as one ZIP archive."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to compress a photo to the size you need",
+          "steps": [
+            "Choose the target size: click one of the presets (50, 100, 200, 500 or 1000 KB) or type your own number and pick KB or MB.",
+            "Pick the output format. JPEG is accepted almost everywhere; WebP usually gives a smaller file at the same quality but is not supported by every service.",
+            "Drop your photos into the upload area or click it to choose files. JPG, PNG, WebP, BMP and iPhone HEIC are supported.",
+            "Wait until it finishes: for each file the tool shows which quality it is currently trying.",
+            "Check the size and resolution in the list and download the result — a single file, or a ZIP archive if you added several photos."
+          ]
+        },
+        {
+          "title": "How the size is found",
+          "text": "The tool first tries a high quality, 95%. If the file is larger than the target, it checks the lower bound, 30%, and then uses a binary search to find the highest quality at which the file still fits; for one resolution that is at most eight attempts. If even 30% is not enough, the resolution is reduced in steps of 85%, but never below 600 pixels on the longer side. That way you get the largest resolution and the highest quality that fit the limit, instead of a file that was shrunk \"just in case\". Sizes are counted in thousands of bytes (1 KB = 1000 bytes), so the file fits the limit however your service counts."
+        },
+        {
+          "title": "When you need it",
+          "text": "Photos for online application forms and personal accounts, job applications and CVs, e-mails with an attachment limit, forums, classified ads and CRM systems that refuse large files. It also helps when you need to quickly reduce the weight of a picture for a messenger or a website and you know exactly how much it is allowed to weigh."
+        },
+        {
+          "title": "Limitations worth knowing",
+          "text": "A very small limit for a large, detailed photo can't be met without a visible loss of sharpness. If compressing to the size you asked for is impossible even at a resolution of 600 pixels, we will not hand you a ruined file — we will show the smallest size we managed to reach. Transparency is not kept: transparent areas of a PNG become white. Metadata (such as the date a photo was taken or its location) and the embedded colour profile are not carried into the result. If a JPG, PNG or WebP file is already not larger than the target, it is returned unchanged. A single file may be up to 30 MB, and up to 20 files can be processed at a time. Speed depends on your device: large pictures take longer on a slow phone."
+        },
+        {
+          "title": "Privacy",
+          "text": "Compression runs locally in your browser, using your own device. Files are not sent to a server, are not stored and are not available to us. The page works without sign-up, and the contents of your photos are not passed to any analytics service."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How do I compress an image to 200 KB?",
+          "a": "Choose 200 KB among the presets, add your photo and download the result. The tool picks the quality itself and, if necessary, lowers the resolution a little."
+        },
+        {
+          "q": "Can I compress a photo to 100 KB without losing quality?",
+          "a": "Not entirely without loss — JPEG and WebP are lossy formats. We look for the highest quality at which the file fits the limit. For simple images the difference is barely visible, while very detailed photos will show artifacts at a small limit."
+        },
+        {
+          "q": "What happens if the photo is already smaller than the limit?",
+          "a": "If a JPG, PNG or WebP file is already not larger than the target, we return it unchanged and tell you so — needless compression would only lower the quality."
+        },
+        {
+          "q": "Why can't my photo be compressed to the size I need?",
+          "a": "Sometimes the target is too small for that picture. We lower the quality to 30% and the resolution down to 600 pixels on the longer side, and then stop. You will see the smallest size that was reached — choose a larger limit or a simpler image."
+        },
+        {
+          "q": "Can I compress an iPhone photo in HEIC format?",
+          "a": "Yes, HEIC is recognised and converted to JPEG or WebP. The extra module needed for it is loaded only on this page, and only when you add a HEIC file."
+        },
+        {
+          "q": "Is it safe to use this for photos of documents?",
+          "a": "Files never leave your device: processing happens in the browser. We can't see or store your photos."
+        }
+      ]
+    },
+    "convertToPng": {
+      "title": "Why convert an image to PNG",
+      "text1": "PNG is a lossless format with true transparency. It is the one people ask for when it comes to logos, screenshots, diagrams, graphics for websites and presentations, and mockups in design tools. Often, though, the image reaches you in a different shape: a WebP saved from a browser, an iPhone HEIC, an AVIF from a modern website or a GIF. This page quickly turns such files into a PNG that opens anywhere.",
+      "text2": "The conversion runs in your browser: files are not uploaded to a server, so personal photos and work material are both fine. The size in pixels stays the same, the rotation stored in the file is applied, and transparent areas are not filled in. Several images can be converted at once and download as a single ZIP archive.",
+      "benefits": [
+        {
+          "title": "Transparency is kept",
+          "text": "If a WebP, AVIF or GIF had transparent areas, they stay transparent in the PNG instead of turning black or white."
+        },
+        {
+          "title": "No server upload",
+          "text": "Everything happens on your device. No sign-up is needed."
+        },
+        {
+          "title": "Correct rotation",
+          "text": "A phone photo does not end up lying on its side: the orientation stored in the file is applied."
+        },
+        {
+          "title": "Many formats and files",
+          "text": "JPG, WebP, BMP, GIF, AVIF, HEIC and HEIF; up to 20 files at a time, several results in one ZIP."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to convert an image to PNG",
+          "steps": [
+            "Drop your files into the upload area or click it and choose images. JPG, WebP, BMP, GIF, AVIF and iPhone HEIC are supported.",
+            "Wait a few seconds — each file is processed separately, and you can see what is happening to it.",
+            "Check the size before and after in the list: a PNG is often larger, and that is normal.",
+            "Download the result — a single PNG, or a ZIP archive if you added several files."
+          ]
+        },
+        {
+          "title": "PNG or JPG: which to choose",
+          "text": "PNG compresses an image without loss, which makes it a good fit for screenshots, logos, diagrams, interfaces and anything with crisp text, sharp edges or a transparent background. Ordinary photographs are a different story: as PNG they are usually noticeably heavier than as JPG or WebP, because they are full of smooth colour transitions. If you are preparing a photo for a website, an e-mail or a messenger and weight matters, keep JPG or WebP, and pick PNG when you need transparency or pixel-exact accuracy. Converting a JPG to PNG does not bring back detail that was already lost when the JPG was compressed: the artifacts stay, but from then on you can edit and re-save the file without losing quality a second time."
+        },
+        {
+          "title": "About transparency",
+          "text": "WebP, AVIF and GIF can contain transparent areas, and a PNG keeps them. JPG and ordinary BMP have no transparency, so the PNG made from them will not have a transparent background either: wherever the original had a colour, it stays. If you need to remove the background from a photo, the site has a separate background-removal tool for that."
+        },
+        {
+          "title": "Good to know",
+          "text": "For an animated GIF or WebP only the first frame is taken. Photo metadata, including EXIF and GPS coordinates, is not carried over into the PNG. HEIC files can become very large once turned into PNG. The limit is 30 MB per file and 20 files at a time; very large images on weak phones may fail to process, and you will see a message about it. If an AVIF file does not open, your browser does not support that format."
+        },
+        {
+          "title": "Privacy",
+          "text": "The conversion runs locally in your browser, using your own device. Files are not sent to a server, are not stored and are not available to us. The page works without sign-up."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Will PNG make my photo smaller?",
+          "a": "Mostly not. PNG stores the image without loss, so photographs in it are usually heavier than as JPG or WebP. To reduce the weight, keep JPG or WebP or use compression."
+        },
+        {
+          "q": "Will the background become transparent when I convert a JPG to PNG?",
+          "a": "No. JPG has no transparency, so the background colour stays the same in the PNG. Making it transparent takes separate processing — background removal."
+        },
+        {
+          "q": "Is quality lost during conversion?",
+          "a": "The move to PNG itself loses nothing: the pixel data is preserved exactly. But if the original was a compressed JPG or WebP, its losses were already in the file, and PNG cannot repair them."
+        },
+        {
+          "q": "Can I convert an iPhone HEIC to PNG?",
+          "a": "Yes. Add a .heic or .heif file — the page recognises it and converts it. Keep in mind that a PNG made from such a photo can be very large."
+        },
+        {
+          "q": "What happens to a GIF animation?",
+          "a": "Only the first frame is saved, as an ordinary PNG. This page does not preserve animation."
+        },
+        {
+          "q": "Does the PNG contain the location where the photo was taken?",
+          "a": "No. Metadata, including EXIF and GPS, is not carried over into the PNG. But if your goal is specifically to strip metadata from a photo, a dedicated tool is the better choice."
+        }
+      ]
+    },
+    "removeExif": {
+      "title": "Why remove EXIF and metadata from photos",
+      "text1": "Every photo from a smartphone or a camera carries more than you can see on the screen. The file records the camera model, the date and time it was taken, lens settings, sometimes the device's serial number, the author's name and the name of the program used to edit the photo. The most sensitive part is the GPS coordinates: they show where exactly the picture was taken, including your home or workplace. This data is called metadata, and its most common format is EXIF.",
+      "text2": "This page shows what was found in each photo — camera, date, coordinates, software, author — and removes the metadata in one step. Everything happens in your browser: files are not uploaded to a server. For JPEG, PNG and WebP the pixel data is not re-encoded, so quality does not change.",
+      "benefits": [
+        {
+          "title": "See what was in the file",
+          "text": "Camera, date taken, software, author, serial number and — as a separate warning — GPS coordinates."
+        },
+        {
+          "title": "No loss of quality",
+          "text": "Only the auxiliary blocks are cut out of the file; the image itself stays byte for byte the same."
+        },
+        {
+          "title": "No server upload",
+          "text": "Files never leave your device and no sign-up is needed."
+        },
+        {
+          "title": "JPEG, PNG and WebP",
+          "text": "Up to 20 files at a time; several results download as one ZIP archive."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to remove metadata from a photo",
+          "steps": [
+            "Drop your photos into the upload area or click it and choose files. JPEG, PNG and WebP are supported.",
+            "Wait a moment: for each file you get a summary — what was found and what was removed, including GPS coordinates if there were any.",
+            "Check the size before and after and download the result — a single file or a ZIP archive. Cleaned files get a \"-clean\" suffix in their name."
+          ]
+        },
+        {
+          "title": "What exactly is removed",
+          "text": "From a JPEG the tool removes the EXIF blocks (camera, date, settings, GPS, the embedded thumbnail), XMP, IPTC and other Photoshop data, comments, and everything written after the end of the image — for example the extra pictures some phones store inside the file. From a PNG it removes text fields, EXIF data and the modification time, and from a WebP the EXIF and XMP blocks. The embedded colour profile (ICC) is kept so the colours do not change."
+        },
+        {
+          "title": "How it works without losing quality",
+          "text": "The usual way to \"clean\" a photo is to open it and save it again, and every such save slightly damages a JPEG. This works differently: the file is split into blocks, the metadata blocks are cut out, and the compressed image data is copied unchanged. That is why the pixels before and after match exactly."
+        },
+        {
+          "title": "The rotation tag and the re-encoding mode",
+          "text": "Most portrait photos from smartphones are stored lying on their side, and a special rotation tag in EXIF tells viewers how to show them correctly. If it is deleted together with the rest, the photo opens sideways. So by default we keep only that tag in a JPEG — there is nothing personal in it. If you need to remove absolutely everything, turn on full re-encoding: the photo is physically rotated and the tag disappears. The price is that JPEG and WebP are saved again at 92% quality and the original colour profile is replaced with standard sRGB (the colours are recalculated, not lost)."
+        },
+        {
+          "title": "Limitations worth knowing",
+          "text": "Removing metadata is not anonymity. Faces, signs, car plates and landmarks remain in the picture itself, and the file name may contain a date or a place. HEIC is not supported: convert such photos to JPG first. The limit is 30 MB per file and 20 files at a time. Extra pictures that phones store after the main one (depth, an HDR map) are removed together with the other data, so on HDR displays the photo may look slightly different. Animated PNG and WebP can only be cleaned without re-encoding — otherwise only the first frame would be saved."
+        },
+        {
+          "title": "Privacy",
+          "text": "Processing happens locally in your browser. Files are not sent to a server, are not stored and are not available to us. The library that reads the metadata is loaded only on this page and runs on your own device."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Does removing EXIF reduce the quality of the photo?",
+          "a": "No. The image is not re-encoded: only auxiliary blocks are cut out of the file and the compressed pixel data stays the same. Quality changes only if you turn on full re-encoding yourself."
+        },
+        {
+          "q": "Can the removed metadata be recovered?",
+          "a": "Not from the cleaned file: the blocks are not hidden, they are physically absent from the new file. You still have the original, so if you may need that data, keep it separately."
+        },
+        {
+          "q": "What exactly is removed from a photo?",
+          "a": "EXIF (camera, date, settings, GPS coordinates, thumbnail), XMP, IPTC, comments and PNG text fields. The ICC colour profile is kept."
+        },
+        {
+          "q": "Do social networks and messengers strip metadata by themselves?",
+          "a": "Some services remove metadata when you publish, but not all of them and not always: when a photo is sent as a file, by e-mail or to cloud storage, the data usually stays. It is safer to clean the file yourself before sending it."
+        },
+        {
+          "q": "Which formats are supported?",
+          "a": "JPEG, PNG and WebP. Convert iPhone photos in HEIC format to JPG first."
+        },
+        {
+          "q": "Do my photos stay on my device?",
+          "a": "Yes. Everything runs in the browser: files are not uploaded to a server and are not stored."
+        }
+      ]
+    },
+    "photoToPdf": {
+      "title": "Why combine photos into a single PDF file",
+      "text1": "PDF remains the universal format for sending documents: it opens the same way on a computer, a phone, or inside an email client, and its pages don't get scattered the way separate photos do in a chat. A PDF is easy to attach to an email, print, or upload to a portal that accepts only one document instead of a dozen separate images. People most often combine scanned documents, photographed notebook or book pages, receipts for an expense report, or product photos for a catalog into one PDF.",
+      "text2": "This tool combines several photos into one PDF right in your browser: add the files, arrange them in the order you need, choose a page size and margins, and download the finished document. Photos are never uploaded to a server or stored anywhere.",
+      "benefits": [
+        {
+          "title": "Page order under your control",
+          "text": "Use the ↑↓ arrows or drag photos into the order they should appear in the document."
+        },
+        {
+          "title": "No quality loss where possible",
+          "text": "An unrotated JPEG and a plain PNG are embedded into the PDF as they are, without re-compression."
+        },
+        {
+          "title": "Nothing uploaded to a server",
+          "text": "The whole PDF is built in your browser; the files never leave your device."
+        },
+        {
+          "title": "Flexible page sizes",
+          "text": "A4 with margins for printing, or a page sized to match the photo when you need the exact shot dimensions."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to combine photos into a PDF",
+          "steps": [
+            "Drag photos into the upload area or click it and choose files. JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF (iPhone photos) are all supported.",
+            "Arrange the photos in the order you need: use the ↑↓ arrows next to each file or drag them in the list.",
+            "Choose the page size and margins in the settings above the upload area.",
+            "Click \"Create PDF\" and download the finished file once it's ready."
+          ]
+        },
+        {
+          "title": "Page size: A4 or photo size",
+          "text": "An A4 page suits printing and documents expected in a standard size: each photo is fitted onto the sheet while keeping its proportions, and the orientation (portrait or landscape) is chosen automatically from the shape of the photo itself. \"Photo size\" makes the page exactly the size of the image (plus margins, if enabled) — handy when it matters to keep the original proportions without adding white bars around the shot."
+        },
+        {
+          "title": "Page margins",
+          "text": "A 0 mm margin means the photo fills almost the entire page. A 10 mm margin adds a small border on every side, similar to most office documents — useful if the PDF will be printed or filed."
+        },
+        {
+          "title": "How quality is preserved",
+          "text": "For a JPEG without a rotation tag and for a plain PNG, the tool embeds the original image bytes into the PDF — with no re-compression or re-encoding. If a JPEG carries a rotation tag (typical for portrait photos from smartphones) or the format isn't supported directly (WebP, BMP, GIF, AVIF, HEIC/HEIF), the photo is first corrected to the right orientation and re-encoded as JPEG at 92% quality, the same way other tools on the site do it. In both cases PNG transparency is filled with white, since a printed page has no transparency."
+        },
+        {
+          "title": "Limits worth knowing about",
+          "text": "The limit is 30 MB per file and up to 20 files at once; if the whole album is over 200 MB, a warning appears but processing still finishes. Very large photos or a large number of pages can produce a heavy PDF and take longer on slower devices. The tool doesn't add page numbers, watermarks, or captions — just the photos themselves, one per page."
+        },
+        {
+          "title": "Privacy",
+          "text": "The whole PDF is assembled locally in your browser. Photos are never sent to a server, never stored, and never accessible to us; once you close the page, nothing remains except the file you downloaded to your device."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I change the photo order after adding files?",
+          "a": "Yes. As long as the PDF hasn't been created yet, you can reorder photos with the ↑↓ arrows next to each file or by dragging them in the list."
+        },
+        {
+          "q": "Does the photo quality get worse in the PDF?",
+          "a": "An unrotated JPEG and a plain PNG are embedded without re-encoding. Rotated photos and formats like WebP or HEIC are re-encoded as JPEG at 92% quality to keep the correct orientation."
+        },
+        {
+          "q": "Which page size should I choose?",
+          "a": "A4 for printing or documents expected in a standard size; \"photo size\" when you need to keep the original shot proportions without white margins around it."
+        },
+        {
+          "q": "How many photos can I add?",
+          "a": "Up to 20 files at once, up to 30 MB each. If the total size is over 200 MB, a warning appears, but processing still completes."
+        },
+        {
+          "q": "Can I add just one photo?",
+          "a": "Yes, you'll get a one-page PDF — useful, for example, to send a photo of a document as a PDF."
+        },
+        {
+          "q": "Do my photos stay on a server?",
+          "a": "No. The PDF is built in your browser; the files are never uploaded anywhere."
+        }
+      ]
+    }
   },
   "errors": {
     "fileInvalidType": "\"{{name}}\" is not a supported file type.",
@@ -652,7 +1099,8 @@
       "title": "Something went wrong",
       "text": "This page is temporarily unavailable. Reload it — that usually fixes it.",
       "reload": "Reload"
-    }
+    },
+    "mergeFailed": "Couldn't create the file. Make sure none of the files are damaged and try again."
   },
   "notFound": {
     "title": "Page not found",
@@ -668,5 +1116,40 @@
   },
   "related": {
     "title": "Related tools"
+  },
+  "photoToPdf": {
+    "titlePart2": "Combine Photos into One",
+    "titleGradient": "PDF File Online",
+    "text1": "Add one or several photos, set the page order with the arrows or by dragging — and get a single PDF file in one click.",
+    "text2": "Choose the page size (A4 or photo size) and margins. Everything happens in your browser; nothing is uploaded to a server.",
+    "dropzone": "Drag photos here or click to add them",
+    "panel": {
+      "emptyState": "Add photos",
+      "addMore": "Add more photos",
+      "addMoreAria": "Add more photos",
+      "selected": "Photos selected:",
+      "download": "Download PDF",
+      "remove": "Remove",
+      "create": "Create PDF"
+    },
+    "options": {
+      "title": "PDF settings",
+      "pageSize": "Page size",
+      "pageSizeA4": "A4",
+      "pageSizePhoto": "Photo size",
+      "margin": "Margins",
+      "marginNone": "No margins",
+      "margin10": "10 mm",
+      "hint": "You can reorder pages with the ↑↓ arrows or by dragging items in the file list below."
+    },
+    "status": {
+      "page": "Page {{current}} of {{total}}"
+    },
+    "warnings": {
+      "tooHeavy": "The total size of the photos is over 200 MB — creating and downloading the PDF may take longer."
+    },
+    "errors": {
+      "encodeFailed": "Couldn't process \"{{name}}\" for the PDF. The image may be too large for your device."
+    }
   }
 }
