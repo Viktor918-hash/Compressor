@@ -1,11 +1,11 @@
-<svg viewBox="30 35 150 150" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bigImg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4F7CFF"/>
-      <stop offset="100%" stop-color="#1E3FCC"/>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E3FE0"/>
+      <stop offset="100%" stop-color="#14C4BE"/>
     </linearGradient>
   </defs>
-  <rect x="30" y="35" width="150" height="150" rx="26" fill="url(#bigImg)"/>
-  <circle cx="70" cy="82" r="14" fill="white" opacity="0.95"/>
-  <path d="M45 152 L90 97 L120 132 L145 102 L165 152 Z" fill="white" opacity="0.95"/>
+  <rect x="0" y="0" width="512" height="512" rx="96" fill="url(#g)"/>
+  <circle cx="160" cy="160" r="48" fill="#ffffff" opacity="0.95"/>
+  <path d="M51 400 L205 211 L307 331 L393 229 L461 400 Z" fill="#ffffff" opacity="0.95"/>
 </svg>
