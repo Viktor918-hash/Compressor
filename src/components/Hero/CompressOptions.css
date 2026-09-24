@@ -38,52 +38,11 @@
     color: var(--color-primary-700);
 }
 
-/* У reset.css для input задано appearance: none — тож повзунок і чекбокс
-   малюємо самі. */
-.compress-options__range {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 24px;
-    background: transparent;
-    cursor: pointer;
-    margin: 0;
-}
-
-.compress-options__range::-webkit-slider-runnable-track {
-    height: 6px;
-    border-radius: 3px;
-    background: #dbe3f5;
-}
-
-.compress-options__range::-moz-range-track {
-    height: 6px;
-    border-radius: 3px;
-    background: #dbe3f5;
-}
-
-.compress-options__range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    margin-top: -8px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    background: var(--color-primary-600);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-}
-
-.compress-options__range::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    background: var(--color-primary-600);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-}
-
-.compress-options__range:focus-visible,
+/* Сам вигляд повзунка (.range-input) — у спільному styles/range.css,
+   підключеному глобально для всього сайту (те саме, що на пресетах,
+   водяному знаку й пензлі видалення фону). У reset.css для input задано
+   appearance: none — тож чекбокс далі малюємо системним, лише фокус
+   нижче. */
 .compress-options__check input:focus-visible,
 .compress-options__select:focus-visible {
     outline: 2px solid var(--color-primary-600);

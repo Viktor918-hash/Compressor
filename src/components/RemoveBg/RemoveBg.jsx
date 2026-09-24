@@ -52,6 +52,9 @@ const MAX_PROCESS_DIMENSION = isMobile ? 1024 : 1600;
 const MIN_BRUSH = 8;
 const MAX_BRUSH = 120;
 
+// Частка заповнення для .range-input (styles/range.css) — 0–100%.
+const rangeProgress = (value, min, max) => `${((value - min) / (max - min)) * 100}%`;
+
 const RemoveBg = () => {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("idle"); // idle | processing | ready | error
@@ -608,11 +611,13 @@ const RemoveBg = () => {
               <div className="removebg-slider-row">
                 <input
                   type="range"
+                  className="range-input"
                   min={MIN_BRUSH}
                   max={MAX_BRUSH}
                   value={brushSize}
                   onChange={(e) => setBrushSize(Number(e.target.value))}
                   disabled={status !== "ready"}
+                  style={{ "--progress": rangeProgress(brushSize, MIN_BRUSH, MAX_BRUSH) }}
                 />
                 <span className="removebg-slider-value">{brushSize}px</span>
               </div>

@@ -6,6 +6,9 @@ const MIN_QUALITY = 40;
 const MAX_QUALITY = 95;
 const SIDE_CHOICES = [3840, 2560, 1920, 1280];
 
+// Частка заповнення для .range-input (styles/range.css) — 0–100%.
+const rangeProgress = (value, min, max) => `${((value - min) / (max - min)) * 100}%`;
+
 /**
  * Налаштування стиснення: якість (повзунок) і розмір.
  * За замовчуванням розмір зображення НЕ змінюється — стискається лише
@@ -31,13 +34,14 @@ const CompressOptions = ({ value, onChange }) => {
         </label>
         <input
           id={`${uid}-q`}
-          className="compress-options__range"
+          className="compress-options__range range-input"
           type="range"
           min={MIN_QUALITY}
           max={MAX_QUALITY}
           step={5}
           value={quality}
           onChange={(e) => set({ quality: Number(e.target.value) })}
+          style={{ "--progress": rangeProgress(quality, MIN_QUALITY, MAX_QUALITY) }}
         />
       </div>
 

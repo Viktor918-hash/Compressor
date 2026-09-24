@@ -35,6 +35,9 @@ import {
 const SITE_URL = "https://compressphoto.org";
 const MAX_FILE_SIZE = 30 * 1024 * 1024;
 
+// Частка заповнення для .range-input (styles/range.css) — 0–100%.
+const rangeProgress = (value, min, max) => `${((value - min) / (max - min)) * 100}%`;
+
 const FORMATS = [
   { label: "JPG", value: "image/jpeg", ext: "jpg" },
   { label: "PNG", value: "image/png", ext: "png" },
@@ -444,11 +447,12 @@ const Watermark = () => {
                     </p>
                     <input
                       type="range"
-                      className="wm-range"
+                      className="wm-range range-input"
                       min={2}
                       max={15}
                       value={fontPercent}
                       onChange={(e) => { setFontPercent(clampFontPercent(Number(e.target.value))); setDownloaded(false); }}
+                      style={{ "--progress": rangeProgress(fontPercent, 2, 15) }}
                     />
                   </div>
                   <div className="resize-block">
@@ -466,11 +470,12 @@ const Watermark = () => {
                     </p>
                     <input
                       type="range"
-                      className="wm-range"
+                      className="wm-range range-input"
                       min={5}
                       max={100}
                       value={Math.round(textOpacity * 100)}
                       onChange={(e) => { setTextOpacity(clampOpacity(Number(e.target.value) / 100)); setDownloaded(false); }}
+                      style={{ "--progress": rangeProgress(Math.round(textOpacity * 100), 5, 100) }}
                     />
                   </div>
                 </>
@@ -500,11 +505,12 @@ const Watermark = () => {
                     </p>
                     <input
                       type="range"
-                      className="wm-range"
+                      className="wm-range range-input"
                       min={5}
                       max={60}
                       value={logoScalePercent}
                       onChange={(e) => { setLogoScalePercent(clampScalePercent(Number(e.target.value))); setDownloaded(false); }}
+                      style={{ "--progress": rangeProgress(logoScalePercent, 5, 60) }}
                     />
                   </div>
                   <div className="resize-block">
@@ -513,11 +519,12 @@ const Watermark = () => {
                     </p>
                     <input
                       type="range"
-                      className="wm-range"
+                      className="wm-range range-input"
                       min={5}
                       max={100}
                       value={Math.round(logoOpacity * 100)}
                       onChange={(e) => { setLogoOpacity(clampOpacity(Number(e.target.value) / 100)); setDownloaded(false); }}
+                      style={{ "--progress": rangeProgress(Math.round(logoOpacity * 100), 5, 100) }}
                     />
                   </div>
                 </>

@@ -170,9 +170,11 @@
     gap: 10px;
 }
 
-.removebg-slider-row input[type="range"] {
+/* Сам вигляд повзунка (.range-input) — у спільному styles/range.css,
+   підключеному глобально. Тут лишається лише розтягнення на всю ширину
+   рядка. */
+.removebg-slider-row .range-input {
     flex: 1;
-    accent-color: var(--color-primary-600);
 }
 
 .removebg-slider-value {
