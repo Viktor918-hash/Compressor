@@ -61,7 +61,7 @@ p.panel__files {
 
 .side-panel__back-btn:hover {
     background-color: #EFF6FF;
-    color: #2563EB;
+    color: var(--color-primary-700);
     transition: 0.3s;
 }
 
@@ -113,6 +113,33 @@ p.panel__files {
     text-align: center;
     color: #888;
     font-size: 16px;
+    margin: 0;
+}
+
+/* Порожній стан панелі (розділ 2.4 дизайн-документа): іконка + текст +
+   рядок довіри, а не голий рядок тексту як було. */
+.side-panel__empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3, 12px);
+    padding: var(--space-6, 24px) var(--space-2, 8px);
+}
+
+.side-panel__empty-icon {
+    padding: 14px;
+    border-radius: var(--radius-full, 999px);
+    color: var(--color-primary-500, #6366F1);
+    background: var(--color-primary-50, #EEF2FF);
+    flex-shrink: 0;
+}
+
+.side-panel__empty-trust {
+    margin: 0;
+    text-align: center;
+    color: var(--color-text-secondary, #4B5563);
+    font-size: var(--fs-xs, .75rem);
+    line-height: var(--lh-normal, 1.55);
 }
 
 
@@ -150,7 +177,7 @@ p.panel__files {
     padding: 12px 0;
     width: 100%;
     border-radius: 10px;
-    background: #4f7cff;
+    background: var(--color-primary-600);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -165,7 +192,7 @@ p.panel__files {
 
 
 .side-panel__add-btn:hover {
-    background-color: #3152C7;
+    background-color: var(--color-primary-700);
 }
 
 .side-panel__format-switch {
@@ -187,7 +214,7 @@ p.panel__files {
     border: 1px solid #d7dfff;
     border-radius: 8px;
     background: #fff;
-    color: #4F7CFF;
+    color: var(--color-primary-600);
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;
@@ -199,15 +226,15 @@ p.panel__files {
 }
 
 .side-panel__format-btn--active {
-    background: #4f7cff;
-    border-color: #4f7cff;
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
     color: #fff;
 }
 
 .side-panel__download-btn {
     width: 100%;
     padding: 18px;
-    background: #4f7cff;
+    background: var(--color-primary-600);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -219,7 +246,7 @@ p.panel__files {
 }
 
 .side-panel__download-btn:hover {
-    background-color: #3152C7;
+    background-color: var(--color-primary-700);
 }
 
 .side-panel__download-btn:disabled {
@@ -261,7 +288,7 @@ p.panel__files {
     align-items: center;
     justify-content: center;
     background: #EEF2FF;
-    color: #4F7CFF;
+    color: var(--color-primary-600);
 }
 
 .side-panel__file-info {
@@ -286,7 +313,7 @@ p.panel__files {
 }
 
 .side-panel__file-status--processing {
-    color: #4F7CFF;
+    color: var(--color-primary-600);
 }
 
 .side-panel__file-status--error {
@@ -301,7 +328,7 @@ p.panel__files {
 .side-panel__retry-btn {
     background: none;
     border: none;
-    color: #4F7CFF;
+    color: var(--color-primary-600);
     cursor: pointer;
     padding: 8px;
     display: flex;
@@ -353,21 +380,21 @@ p.panel__files {
     overflow: hidden;
     appearance: none;
     -webkit-appearance: none;
-    background: #E5E7EB;
-    accent-color: #4F7CFF;
+    background: var(--color-border);
+    accent-color: var(--color-primary-600);
 }
 
 .side-panel__progress-bar::-webkit-progress-bar {
-    background: #E5E7EB;
+    background: var(--color-border);
 }
 
 .side-panel__progress-bar::-webkit-progress-value {
-    background: #4F7CFF;
+    background: var(--color-primary-600);
     transition: width 0.2s ease;
 }
 
 .side-panel__progress-bar::-moz-progress-bar {
-    background: #4F7CFF;
+    background: var(--color-primary-600);
 }
 
 .side-panel__remove-btn {
@@ -415,20 +442,46 @@ __________________________МОБАЙЛ______________________________ */
 /* ==== МОБІЛЬНА АДАПТАЦІЯ ==== */
 @media (max-width: 768px) {
 
-    /* панель стає повноекранною, а не бічною */
+    /* панель стає нижньою шторкою (bottom sheet), а не бічною і не
+       повноекранною — фото в прев'ю завжди лишається видимим зверху.
+       Анімація й далі через top (не transform): у панелі є нащадки з
+       position:fixed (.side-panel__download-btn, .side__panel-wrapper),
+       а transform на предку створив би для них новий containing block
+       і зламав би їхнє позиціювання відносно вʼюпорта. */
     .side-panel {
         right: auto;
         left: 0;
-        top: 100vh;
-        /* сховано знизу */
+        top: 100dvh;
+        /* сховано під нижнім краєм екрана */
         width: 100%;
-        height: 100vh;
-        border-radius: 0;
+        max-width: 100%;
+        /* раніше лишався max-width:90vw від десктопної версії — панель
+           через це займала ~90% ширини навіть на мобільному замість 100% */
+        height: 78dvh;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+        overflow-y: auto;
+        padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px));
         transition: top 0.3s ease;
     }
 
     .side-panel--open {
-        top: 0;
+        /* top:22dvh + height:78dvh = торкається низу екрана, а зверху
+           завжди лишається ~22% висоти з видимим фото (раніше панель
+           займала всю height:100vh і повністю ховала прев'ю) */
+        top: 22dvh;
+    }
+
+    /* «ручка» зверху шторки — візуальна підказка, що це можна закрити */
+    .side-panel::before {
+        content: "";
+        display: block;
+        flex-shrink: 0;
+        width: 40px;
+        height: 4px;
+        margin: 0 auto 10px;
+        border-radius: 2px;
+        background: var(--color-border, #d1d5db);
     }
 
     /* кнопка "+" стає плаваючою круглою кнопкою */
@@ -481,20 +534,20 @@ __________________________МОБАЙЛ______________________________ */
     overflow: hidden;
     -webkit-appearance: none;
     appearance: none;
-    background: #E5E7EB;
+    background: var(--color-border);
 }
 
 .side-panel__file-progress::-webkit-progress-bar {
-    background: #E5E7EB;
+    background: var(--color-border);
 }
 
 .side-panel__file-progress::-webkit-progress-value {
-    background: #4F7CFF;
+    background: var(--color-primary-600);
     transition: width 0.15s ease;
 }
 
 .side-panel__file-progress::-moz-progress-bar {
-    background: #4F7CFF;
+    background: var(--color-primary-600);
 }
 
 /* ==== Режим злиття (Panel mode="merge") ==== */
@@ -557,7 +610,7 @@ __________________________МОБАЙЛ______________________________ */
     background: none;
     border: none;
     padding: 2px 6px;
-    color: #4F7CFF;
+    color: var(--color-primary-600);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -585,7 +638,7 @@ __________________________МОБАЙЛ______________________________ */
 }
 
 .side-panel__file-item--over {
-    box-shadow: 0 2px 0 0 #4F7CFF;
+    box-shadow: 0 2px 0 0 var(--color-primary-600);
 }
 
 @media (max-width: 768px) {

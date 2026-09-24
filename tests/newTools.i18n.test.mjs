@@ -13,6 +13,9 @@ const TOOLS = {
   convertToPng: { ru: "/ru/convert-to-png", es: "/es/convertir-a-png", sections: 5 },
   removeExif: { ru: "/ru/remove-photo-metadata", es: "/es/eliminar-metadatos-foto", sections: 6 },
   photoToPdf: { ru: "/ru/photo-to-pdf", es: "/es/foto-a-pdf", sections: 6 },
+  cropImage: { ru: "/ru/crop-image", es: "/es/recortar-imagen", sections: 6 },
+  rotateImage: { ru: "/ru/rotate-image", es: "/es/girar-imagen", sections: 5 },
+  addWatermark: { ru: "/ru/add-watermark", es: "/es/marca-de-agua", sections: 6 },
 };
 const read = (l) => JSON.parse(readFileSync(`src/i18n/locales/${l}/translation.json`, "utf8"));
 const words = (s) => (String(s).match(/[\p{L}\p{N}'’-]+/gu) || []).length;

@@ -48,6 +48,21 @@ export const TOOLS = [
     nameKey: "header.imageToText",
     descKey: "header.imageToTextDesc",
   },
+  {
+    slug: "cropImage",
+    nameKey: "header.cropImage",
+    descKey: "header.cropImageDesc",
+  },
+  {
+    slug: "rotateImage",
+    nameKey: "header.rotateImage",
+    descKey: "header.rotateImageDesc",
+  },
+  {
+    slug: "addWatermark",
+    nameKey: "header.addWatermark",
+    descKey: "header.addWatermarkDesc",
+  },
 ];
 
 export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
@@ -55,10 +70,10 @@ export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
 // Які інструменти доречно радити на сторінці кожного інструмента
 // (за змістом: фото → фото, документи → документи).
 export const RELATED = {
-  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf"],
+  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf", "cropImage", "rotateImage", "addWatermark"],
   convert: ["webp", "home", "resize", "presets", "convertToPng"],
   webp: ["convert", "home", "resize", "presets", "convertToPng"],
-  resize: ["home", "convert", "webp", "presets", "compressToSize"],
+  resize: ["home", "convert", "webp", "presets", "compressToSize", "cropImage", "rotateImage"],
   presets: ["resize", "home", "removeBg", "convert", "compressToSize"],
   removeBg: ["presets", "resize", "home", "convert", "convertToPng"],
   wordToPdf: ["pdfToWord", "imageToText", "home"],
@@ -68,6 +83,9 @@ export const RELATED = {
   convertToPng: ["convert", "webp", "removeBg", "home", "removeExif", "photoToPdf"],
   removeExif: ["compressToSize", "resize", "convert", "home"],
   photoToPdf: ["compressToSize", "convertToPng", "removeExif", "wordToPdf", "home"],
+  cropImage: ["resize", "rotateImage", "compressToSize", "convertToPng", "removeExif", "home"],
+  rotateImage: ["cropImage", "addWatermark", "resize", "compressToSize", "convertToPng", "home"],
+  addWatermark: ["rotateImage", "cropImage", "resize", "compressToSize", "home"],
 };
 
 // Тільки для e2e-збірки (VITE_E2E_STUB=1): заглушка з підмножиною мов, щоб

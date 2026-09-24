@@ -39,13 +39,13 @@
 }
 
 .ocr-langs__chip input:checked+span {
-    background: #4F7CFF;
-    border-color: #4F7CFF;
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
     color: #fff;
 }
 
 .ocr-langs__chip input:focus-visible+span {
-    outline: 2px solid #4F7CFF;
+    outline: 2px solid var(--color-primary-600);
     outline-offset: 2px;
 }
 

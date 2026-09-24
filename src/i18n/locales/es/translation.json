@@ -39,7 +39,34 @@
     "signOut": "Cerrar sesión",
     "mainNav": "Navegación principal",
     "photoToPdf": "Fotos a PDF",
-    "photoToPdfDesc": "Combinar varias fotos en un solo archivo PDF"
+    "photoToPdfDesc": "Combinar varias fotos en un solo archivo PDF",
+    "cropImage": "Recortar imagen",
+    "cropImageDesc": "Marco libre o proporciones predefinidas",
+    "rotateImage": "Girar Imagen",
+    "rotateImageDesc": "Girar 90°/180° o voltear en horizontal/vertical",
+    "addWatermark": "Marca de Agua",
+    "addWatermarkDesc": "Texto o logo sobre una foto, en cualquier posición"
+  },
+  "home": {
+    "categories": {
+      "title": "Todas las herramientas para fotos y documentos",
+      "compress": {
+        "title": "Comprimir",
+        "subtitle": "Reduce el peso del archivo sin pérdida visible de calidad."
+      },
+      "convert": {
+        "title": "Convertir",
+        "subtitle": "Cambia una imagen o documento al formato que necesitas."
+      },
+      "edit": {
+        "title": "Editar",
+        "subtitle": "Tamaño, recorte, giro, marca de agua, fondo, metadatos — directo en tu navegador."
+      },
+      "docs": {
+        "title": "Documentos y texto",
+        "subtitle": "Word, PDF, reconocimiento de texto y ajustes prediseñados para fotos."
+      }
+    }
   },
   "hero": {
     "titlePart1": "Fotos pesadas, ahora",
@@ -94,6 +121,7 @@
     "fileRedi": "Listo para descargar",
     "processing": "Procesando archivos…",
     "adFile": "Añadir un archivo",
+    "emptyTrust": "Sin registro · sin instalación · los archivos no salen de tu dispositivo",
     "selected": "Fotos seleccionadas:",
     "upLoadPhotos": "Descargar fotos",
     "upLoadPhoto": "Descargar",
@@ -1072,6 +1100,242 @@
           "a": "No. El PDF se genera en tu navegador; los archivos nunca se suben a ningún sitio."
         }
       ]
+    },
+    "cropImage": {
+      "title": "Por qué recortar una foto online",
+      "text1": "Recortar es una de las formas más simples de mejorar una foto: eliminar bordes que distraen, centrar la atención en el sujeto o ajustar la imagen a una proporción concreta — un cuadrado para la foto de perfil, un formato ancho para una portada o un encuadre vertical para una historia. Lo más habitual es recortar antes de publicar en Instagram, Facebook o YouTube, para un avatar o la portada de un sitio web, o simplemente para quitar personas u objetos en los bordes del encuadre.",
+      "text2": "Esta herramienta permite recortar una foto directamente en el navegador: arrastra el marco de selección o sus esquinas con el ratón o el dedo, elige una proporción predefinida de la lista o déjala libre, y descarga el resultado en JPG, PNG o WebP. La foto nunca se sube a un servidor ni se guarda en ningún sitio.",
+      "benefits": [
+        {
+          "title": "Marco de selección preciso",
+          "text": "Arrastra todo el marco o solo una esquina con el ratón o el dedo y ve el resultado al instante sobre la propia foto, sin adivinar ni repetir intentos."
+        },
+        {
+          "title": "Proporciones listas para redes sociales",
+          "text": "1:1 para la foto de perfil, 9:16 para historias y Reels, 16:9 para la portada de un vídeo — además de otras proporciones habituales, o un marco libre cuando necesites una forma exacta y personalizada."
+        },
+        {
+          "title": "Sin pérdida de calidad",
+          "text": "Recortar solo selecciona una parte de la imagen, no la comprime: los píxeles dentro del marco quedan tan nítidos como en el original. Tú eliges el formato de salida y la compresión."
+        },
+        {
+          "title": "Nada se sube a un servidor",
+          "text": "Todo el recorte ocurre en tu navegador, en tu propio dispositivo; la foto nunca se envía ni se guarda en ningún otro lugar."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo recortar una foto",
+          "steps": [
+            "Arrastra una foto al área de carga o haz clic en ella y elige un archivo. Se admiten JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF (fotos de iPhone).",
+            "Elige una proporción predefinida en los ajustes, o déjala en «Libre» para una forma personalizada.",
+            "Arrastra el marco para mover la selección, o sus esquinas para cambiar el tamaño.",
+            "Elige el formato de salida (JPG, PNG o WebP) y pulsa «Recortar y descargar»."
+          ]
+        },
+        {
+          "title": "Proporciones predefinidas y selección libre",
+          "text": "La lista de proporciones cubre los casos más comunes: un cuadrado 1:1 para avatares y perfiles de redes sociales, 4:3 y 3:2 para encuadres fotográficos clásicos, y 16:9 y 9:16 para vídeo e historias verticales — cada una disponible en ambas orientaciones. Si ninguna encaja, elige «Libre» y arrastra las esquinas para definir la forma que necesites."
+        },
+        {
+          "title": "Formatos de salida: JPG, PNG, WebP",
+          "text": "El formato de salida es independiente del formato del archivo que subiste. JPG es ideal para fotografías y da el tamaño de archivo más pequeño; PNG conserva la transparencia si el original la tenía; WebP combina un tamaño reducido con soporte de transparencia, aunque no todas las aplicaciones antiguas lo abren."
+        },
+        {
+          "title": "¿Se pierde calidad al recortar?",
+          "text": "El recorte en sí no toca los píxeles dentro del área seleccionada — quedan tan nítidos como en el original. Solo puede haber alguna pérdida al codificar el resultado final en JPG o WebP (formatos con compresión), igual que al guardar cualquier foto en esos formatos; PNG se codifica sin ninguna pérdida."
+        },
+        {
+          "title": "Formatos de carga admitidos",
+          "text": "La herramienta acepta JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF — el formato en el que los iPhone guardan las fotos por defecto. Sea cual sea el formato de origen, siempre puedes guardar el resultado como JPG, PNG o WebP."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La foto se procesa por completo en tu navegador: nunca se sube a un servidor, no se guarda ni se envía a ningún sitio, ni siquiera de forma temporal. Al cerrar la pestaña desaparece cualquier rastro del archivo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo recortar una foto desde el móvil?",
+          "a": "Sí, puedes arrastrar el marco y sus esquinas con el dedo igual que con el ratón en un ordenador; la interfaz está pensada para pantallas táctiles."
+        },
+        {
+          "q": "¿Puedo recortar una foto en forma de círculo?",
+          "a": "Por ahora el marco de selección es solo rectangular. Un recorte circular podría ser una herramienta aparte en el futuro."
+        },
+        {
+          "q": "¿Se reduce la calidad después de recortar?",
+          "a": "Los píxeles dentro del marco no cambian con el recorte en sí. Solo puede haber alguna pérdida al guardar en JPG o WebP, formatos con compresión; elige PNG si necesitas un recorte sin ninguna pérdida."
+        },
+        {
+          "q": "¿Cuántas fotos puedo recortar seguidas?",
+          "a": "Las que quieras — la herramienta procesa una foto a la vez: sube la siguiente justo después de descargar el resultado de la anterior."
+        },
+        {
+          "q": "¿Qué formatos de foto son compatibles?",
+          "a": "Al subir: JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF. Puedes guardar el resultado como JPG, PNG o WebP."
+        },
+        {
+          "q": "¿Hay un límite de tamaño de archivo?",
+          "a": "Sí, hasta 30 MB por archivo — más que suficiente para fotos de cualquier móvil o cámara moderna."
+        }
+      ]
+    },
+    "rotateImage": {
+      "title": "Por qué girar o voltear una foto online",
+      "text1": "Una foto tomada con el móvil o la cámara a veces queda de lado o al revés — la cámara confundió la orientación al disparar, o el archivo se abre en una app que ignora la etiqueta de rotación. Girar esa foto 90°, 180° o hacia el otro lado es una de las correcciones más simples que mejoran notablemente cómo se percibe la imagen. Voltear (un espejo horizontal o vertical) sirve para algo distinto: corregir un texto «al revés» captado en un espejo o un escaparate, girar un retrato para que la mirada de la persona apunte hacia el texto de un diseño, o simplemente elegir la composición que se vea más natural.",
+      "text2": "Esta herramienta gira y voltea fotos directamente en tu navegador: sube una foto, pulsa los botones de rotación o volteo — la vista previa se actualiza al instante, así que ves el resultado enseguida. Cuando la orientación te convenza, descarga el archivo en JPG, PNG o WebP. Nada se sube a un servidor ni se guarda en ningún sitio.",
+      "benefits": [
+        {
+          "title": "Resultado instantáneo",
+          "text": "La rotación y el volteo se aplican en el momento en que pulsas un botón — sin espera de procesamiento, la vista previa se actualiza en tiempo real."
+        },
+        {
+          "title": "Rotación y volteo juntos",
+          "text": "Combina ambas acciones en cualquier orden y cuantas veces quieras — por ejemplo, girar 90° y además voltear en horizontal — para llegar exactamente a la orientación que necesitas."
+        },
+        {
+          "title": "Sin pérdida de calidad en 90°/180°",
+          "text": "Girar 90°, 180° o 270° y voltear solo mueven los mismos píxeles de sitio en lugar de recalcularlos, así que la nitidez de la imagen no cambia."
+        },
+        {
+          "title": "Nada se sube a un servidor",
+          "text": "Todo el procesamiento ocurre en tu propio navegador, en tu propio dispositivo; la foto nunca se envía a ningún sitio ni se guarda de nuestro lado."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo girar o voltear una foto",
+          "steps": [
+            "Arrastra una foto al área de carga, o haz clic en ella para elegir un archivo. Se admiten JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF (fotos de iPhone).",
+            "Pulsa «Izquierda 90°» o «Derecha 90°» para girar la foto — la vista previa se actualiza al instante; pulsar el mismo botón dos veces seguidas da una rotación de 180°.",
+            "Si lo necesitas, activa el volteo horizontal o vertical — los botones de encendido/apagado se pueden combinar con la rotación.",
+            "Elige el formato de salida (JPG, PNG o WebP) y pulsa «Descargar»."
+          ]
+        },
+        {
+          "title": "Rotación de 90°, 180° y volteo",
+          "text": "Los botones «Izquierda 90°» y «Derecha 90°» giran la imagen un cuarto de vuelta en la dirección elegida; pulsando uno de ellos dos veces se obtiene una rotación de 180°. El volteo horizontal refleja la foto de izquierda a derecha, y el vertical de arriba a abajo; ambos indicadores son independientes de la rotación y pueden activarse a la vez que ella, así que cualquier orientación que necesites está a unos pocos clics."
+        },
+        {
+          "title": "Formatos de salida: JPG, PNG, WebP",
+          "text": "Elige el formato del resultado con independencia del formato del archivo original. JPG es ideal para fotografías y da el tamaño de archivo más pequeño; PNG conserva la transparencia si el original la tenía; WebP combina un tamaño reducido con soporte de transparencia, aunque no se abre en todos los programas antiguos."
+        },
+        {
+          "title": "¿Se pierde calidad al girar una foto?",
+          "text": "Girar 90°, 180° o 270° y voltear solo reordenan los píxeles, sin recalcularlos ni mezclarlos, así que la nitidez se mantiene igual que en el original. Solo puede haber alguna pérdida durante la codificación final a JPG o WebP (formatos con compresión), igual que al guardar cualquier foto en esos formatos; PNG se codifica sin pérdidas."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La foto se procesa completamente en tu navegador: nunca se sube a un servidor, nunca se guarda y nunca se transmite a ningún sitio, ni siquiera temporalmente. Al cerrar la pestaña desaparece cualquier rastro del trabajo con la foto."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo girar una foto en un ángulo cualquiera, no solo 90°?",
+          "a": "Por ahora solo están disponibles los pasos de 90° (y sus combinaciones hasta 270°) más el volteo. Un ángulo de rotación libre podría ser una herramienta aparte en el futuro."
+        },
+        {
+          "q": "¿Cuál es la diferencia entre girar y voltear?",
+          "a": "Girar rota toda la imagen alrededor de su centro 90°, 180° o 270°. Voltear refleja la foto sobre un eje — izquierda-derecha (horizontal) o arriba-abajo (vertical) — sin girarla."
+        },
+        {
+          "q": "¿Se reduce la calidad de la foto al girarla?",
+          "a": "No, girar 90°, 180° o 270° y voltear solo reordenan los píxeles de sitio. Solo puede haber alguna pérdida al guardar en JPG o WebP — formatos con compresión; elige PNG si necesitas que quede totalmente sin pérdidas."
+        },
+        {
+          "q": "¿Puedo girar y voltear una foto al mismo tiempo?",
+          "a": "Sí, ambas acciones son independientes: puedes girar primero y voltear después (o al revés), y deshacer o repetir cualquiera de las dos en cualquier momento — la vista previa siempre muestra el resultado actual."
+        },
+        {
+          "q": "¿Qué formatos de foto son compatibles?",
+          "a": "En la entrada: JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF. El resultado se puede guardar en JPG, PNG o WebP."
+        },
+        {
+          "q": "¿Hay un límite de tamaño de archivo?",
+          "a": "Sí, hasta 30 MB por archivo — más que suficiente para fotos de cualquier móvil o cámara moderna."
+        }
+      ]
+    },
+    "addWatermark": {
+      "title": "Por qué añadir una marca de agua a una foto",
+      "text1": "Una marca de agua — un texto o logo superpuesto a una foto — protege las imágenes originales de un uso sin permiso y, al mismo tiempo, recuerda a quien la ve de dónde viene. Los fotógrafos ponen una firma o el nombre del estudio en su portafolio antes de publicarlo en redes sociales; los vendedores de marketplaces añaden un logo a las fotos de sus productos para que la competencia no las copie; los blogueros marcan capturas de pantalla y fotogramas de vídeo con su propia marca. Un texto grande en el centro disuade por completo el robo de la foto, mientras que una marca discreta en una esquina, o casi transparente, mantiene la imagen limpia pero legalmente identificada.",
+      "text2": "Esta herramienta añade un texto o tu propio logo a una foto directamente en el navegador: escribe el texto o sube una imagen, elige una posición — una de las cuatro esquinas, el centro o un patrón repetido en \"mosaico\" por todo el fotograma — y ajusta tamaño y opacidad. La vista previa se actualiza al instante, así que ves el resultado antes de descargar. El archivo final se guarda en JPG, PNG o WebP; nada se sube a un servidor ni se guarda en ningún sitio.",
+      "benefits": [
+        {
+          "title": "Texto o tu propio logo",
+          "text": "Escribe un texto o sube una imagen de tu logo — ambas opciones usan los mismos controles de posición, tamaño y opacidad."
+        },
+        {
+          "title": "Una sola marca o un mosaico completo",
+          "text": "Una sola marca en una esquina o el centro protege menos que un patrón repetido por toda la foto — un mosaico es mucho más difícil de recortar."
+        },
+        {
+          "title": "Vista previa en vivo",
+          "text": "Cada cambio de texto, color, tamaño, opacidad o posición se refleja al instante en la vista previa — sin adivinar cómo quedará después de descargar."
+        },
+        {
+          "title": "Nada se sube a un servidor",
+          "text": "Todo el procesamiento ocurre en tu propio navegador, en tu propio dispositivo; la foto y el logo nunca se envían a ningún sitio ni se guardan de nuestro lado."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo añadir una marca de agua a una foto",
+          "steps": [
+            "Arrastra una foto al área de carga, o haz clic en ella para elegir un archivo. Se admiten JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF (fotos de iPhone).",
+            "Elige el tipo de marca de agua — texto o imagen (sube un archivo de logo con su propio botón).",
+            "Ajusta el tamaño, el color (para el texto) y la opacidad — la vista previa se actualiza al instante.",
+            "Elige una posición — una de las cuatro esquinas, el centro o \"Mosaico\" — y el formato de salida, luego pulsa \"Descargar\"."
+          ]
+        },
+        {
+          "title": "Marca de agua de texto o logo",
+          "text": "Una marca de texto es ideal cuando basta con un nombre, una firma o un enlace corto — solo hay que escribir el texto y elegir color y tamaño de fuente. Un logo transmite la marca con más claridad: sube un PNG con fondo transparente para el resultado más limpio (sin un rectángulo blanco alrededor de la marca), o cualquier otro formato como una foto o una captura de pantalla. Ambas opciones se escalan según el tamaño de la propia foto, así que se ven proporcionadas tanto en imágenes pequeñas como grandes."
+        },
+        {
+          "title": "Posición y mosaico",
+          "text": "Las cinco posiciones fijas — cuatro esquinas y el centro — sirven para una marca discreta que casi no se nota y no molesta al ver la foto. El modo \"Mosaico\" repite la marca de agua por todo el fotograma a intervalos regulares — la protección más fiable contra el robo, ya que ninguna parte de la foto se puede recortar sin perder la marca, aunque resulta más visible."
+        },
+        {
+          "title": "Opacidad y tamaño",
+          "text": "La opacidad va del 5% (casi invisible) al 100% (sólida y bien legible). El tamaño de la fuente o del logo se calcula como un porcentaje del tamaño de la propia foto, así que las proporciones se mantienen igual tanto si subes una foto de 800×600 como una de 6000×4000 píxeles."
+        },
+        {
+          "title": "Formatos de salida: JPG, PNG, WebP",
+          "text": "Elige el formato del resultado con independencia del formato del archivo original. JPG es ideal para fotografías y da el tamaño de archivo más pequeño; PNG conserva la transparencia si el original la tenía; WebP combina un tamaño reducido con soporte de transparencia, aunque no se abre en todos los programas antiguos."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La foto y el logo se procesan completamente en tu navegador: nunca se suben a un servidor, nunca se guardan y nunca se transmiten a ningún sitio, ni siquiera temporalmente. Al cerrar la pestaña desaparece cualquier rastro del trabajo con la foto."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo hacer la marca de agua casi invisible?",
+          "a": "Sí, el control de opacidad baja hasta el 5% — la marca sigue presente en el archivo pero apenas se nota."
+        },
+        {
+          "q": "¿Puedo usar mi propio logo en lugar de texto?",
+          "a": "Sí, elige el tipo \"Imagen\" y sube un archivo de logo — un PNG con fondo transparente funciona mejor, para que no quede un rectángulo blanco alrededor de la marca."
+        },
+        {
+          "q": "¿Qué hace el modo \"Mosaico\"?",
+          "a": "La marca de agua se repite por toda la foto a intervalos regulares en lugar de un solo texto en una esquina — una protección mucho más fuerte contra recortar o retocar la marca."
+        },
+        {
+          "q": "¿Se reduce la calidad de la foto al añadir una marca de agua?",
+          "a": "Aplicar la marca en sí no cambia el resto de la imagen. Solo puede haber alguna pérdida al guardar en JPG o WebP — formatos con compresión; elige PNG si necesitas que quede totalmente sin pérdidas."
+        },
+        {
+          "q": "¿Qué formatos de foto son compatibles?",
+          "a": "En la entrada: JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF. El resultado se puede guardar en JPG, PNG o WebP."
+        },
+        {
+          "q": "¿Hay un límite de tamaño de archivo?",
+          "a": "Sí, hasta 30 MB por archivo — más que suficiente para fotos de cualquier móvil o cámara moderna."
+        }
+      ]
     }
   },
   "errors": {
@@ -1150,6 +1414,88 @@
     },
     "errors": {
       "encodeFailed": "No se pudo procesar «{{name}}» para el PDF. Puede que la imagen sea demasiado grande para tu dispositivo."
+    }
+  },
+  "cropImage": {
+    "titlePart1": "Recortar",
+    "titleGradient": "Imagen",
+    "subtitle": "Elige una selección — libre o una proporción predefinida — y descarga la foto recortada. Todo ocurre en tu navegador.",
+    "dropzone": "Elige una foto",
+    "dropText2": "Suelta la foto para subirla",
+    "original": "Original",
+    "selection": "Selección",
+    "aspectRatio": "Proporción",
+    "ratios": {
+      "free": "Libre"
+    },
+    "format": "Formato de salida",
+    "crop": "Recortar y descargar",
+    "processing": "Procesando…",
+    "downloadedTitle": "¡Listo!",
+    "settingsTitle": "Ajustes de recorte",
+    "hint": "Arrastra el marco o sus esquinas para ajustar la selección.",
+    "errors": {
+      "cropFailed": "No se pudo recortar la foto. Inténtalo de nuevo o con otro formato."
+    }
+  },
+  "rotateImage": {
+    "titlePart1": "Girar",
+    "titleGradient": "una Imagen",
+    "subtitle": "Gira una foto 90° o 180°, o voltéala en horizontal y vertical — directamente en el navegador, sin subir nada a ningún servidor.",
+    "dropzone": "Elige una foto",
+    "dropText2": "Suelta aquí para subir tu foto",
+    "original": "Original",
+    "result": "Resultado",
+    "rotate": "Rotación",
+    "rotateLeft": "Izquierda 90°",
+    "rotateRight": "Derecha 90°",
+    "flip": "Voltear",
+    "flipHorizontal": "Horizontal",
+    "flipVertical": "Vertical",
+    "format": "Formato de salida",
+    "download": "Descargar",
+    "processing": "Procesando…",
+    "downloadedTitle": "¡Listo!",
+    "settingsTitle": "Ajustes de rotación",
+    "hint": "Cada clic actualiza la vista previa al instante — combina rotación y volteo en cualquier orden.",
+    "errors": {
+      "rotateFailed": "No se pudo procesar la foto. Inténtalo de nuevo o prueba otro formato."
+    }
+  },
+  "addWatermark": {
+    "titlePart1": "Marca de Agua",
+    "titleGradient": "en una Foto",
+    "subtitle": "Añade un texto o tu propio logo a una foto — elige posición, opacidad y tamaño directamente en el navegador, sin subir nada a ningún servidor.",
+    "dropzone": "Elige una foto",
+    "dropText2": "Suelta aquí para subir tu foto",
+    "type": "Tipo de marca de agua",
+    "typeText": "Texto",
+    "typeImage": "Imagen",
+    "text": "Texto",
+    "textPlaceholder": "© Tu Nombre",
+    "fontSize": "Tamaño de fuente",
+    "color": "Color",
+    "opacity": "Opacidad",
+    "logo": "Logo",
+    "logoUpload": "Subir logo",
+    "logoChange": "Cambiar logo",
+    "scale": "Tamaño",
+    "position": "Posición",
+    "positions": {
+      "topLeft": "Arriba izquierda",
+      "topRight": "Arriba derecha",
+      "center": "Centro",
+      "bottomLeft": "Abajo izquierda",
+      "bottomRight": "Abajo derecha",
+      "tile": "Mosaico"
+    },
+    "format": "Formato de salida",
+    "download": "Descargar",
+    "processing": "Procesando…",
+    "downloadedTitle": "¡Listo!",
+    "settingsTitle": "Ajustes de la marca de agua",
+    "errors": {
+      "watermarkFailed": "No se pudo procesar la foto. Inténtalo de nuevo o prueba otro formato."
     }
   }
 }

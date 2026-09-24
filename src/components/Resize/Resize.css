@@ -27,7 +27,7 @@
 
 .resize-crop-frame {
     position: absolute;
-    outline: 2px solid #4f7cff;
+    outline: 2px solid var(--color-primary-600);
     box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.55);
     background: transparent;
     cursor: grab;
@@ -88,15 +88,16 @@
 
 .resize-block input[type="number"] {
     padding: 10px 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     font-size: 15px;
     width: 100%;
 }
 
 .resize-block input[type="number"]:focus {
-    outline: none;
-    border-color: #4f7cff;
+    /* outline не глушимо — глобальний :focus-visible (reset.css) має
+       лишатися видимим для клавіатурної навігації (WCAG 2.4.7) */
+    border-color: var(--color-primary-600);
 }
 
 .resize-checkbox {
@@ -116,7 +117,7 @@
 
 .resize-format-btn {
     padding: 8px 14px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     background: #fff;
     font-size: 14px;
@@ -125,12 +126,12 @@
 }
 
 .resize-format-btn:hover {
-    border-color: #4f7cff;
+    border-color: var(--color-primary-600);
 }
 
 .resize-format-btn--active {
-    background: #4f7cff;
-    border-color: #4f7cff;
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
     color: #fff;
 }
 
@@ -146,7 +147,7 @@
     align-items: flex-start;
     gap: 4px;
     padding: 10px 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     background: #fff;
     cursor: pointer;
@@ -155,7 +156,7 @@
 }
 
 .resize-preset-btn:hover {
-    border-color: #4f7cff;
+    border-color: var(--color-primary-600);
     background: #f5f7ff;
 }
 
@@ -182,7 +183,7 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: #4f7cff;
+        background: var(--color-primary-600);
         color: #fff;
         border: none;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
@@ -192,19 +193,19 @@
     }
 
     .resize-toggle-btn:hover {
-        background: #3152c7;
+        background: var(--color-primary-700);
     }
 
     /* панель ховаємо/показуємо через opacity+visibility, а не display —
-     це анімується плавно і не конфліктує з transform, який вже може
-     використовуватись у sidePanel.css для виїзду панелі */
+     це анімується плавно і не конфліктує з top-анімацією виїзду
+     панелі знизу (bottom sheet), яка задана в sidePanel.css */
     .side-panel {
         transition: opacity 0.25s ease, visibility 0.25s ease;
-        max-height: 100dvh;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch;
-
-        /* щоб контент не ховався під плаваючою кнопкою */
+        /* max-height/height не чіпаємо тут — висоту й позицію шторки
+           задає sidePanel.css (height:78dvh), щоб прев'ю фото завжди
+           лишалось видимим зверху */
     }
 
     .side-panel.side-panel--mobile-collapsed {

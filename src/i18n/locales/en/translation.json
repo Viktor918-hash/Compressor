@@ -39,7 +39,34 @@
     "signOut": "Sign out",
     "mainNav": "Main navigation",
     "photoToPdf": "Photos to PDF",
-    "photoToPdfDesc": "Combine several photos into one PDF file"
+    "photoToPdfDesc": "Combine several photos into one PDF file",
+    "cropImage": "Crop Image",
+    "cropImageDesc": "Freeform frame or ready-made ratios",
+    "rotateImage": "Rotate Image",
+    "rotateImageDesc": "Rotate 90°/180° or flip horizontally/vertically",
+    "addWatermark": "Watermark",
+    "addWatermarkDesc": "Text or logo over a photo, any position"
+  },
+  "home": {
+    "categories": {
+      "title": "All tools for photos and documents",
+      "compress": {
+        "title": "Compress",
+        "subtitle": "Shrink the file size without a visible drop in quality."
+      },
+      "convert": {
+        "title": "Convert",
+        "subtitle": "Change an image or document to the format you need."
+      },
+      "edit": {
+        "title": "Edit",
+        "subtitle": "Resize, crop, rotate, watermark, background, metadata — right in your browser."
+      },
+      "docs": {
+        "title": "Documents & text",
+        "subtitle": "Word, PDF, text recognition, and ready-made photo presets."
+      }
+    }
   },
   "hero": {
     "titlePart1": "Heavy photos - now",
@@ -94,6 +121,7 @@
     "fileRedi": "Ready to download",
     "processing": "Processing files…",
     "adFile": "Add a file",
+    "emptyTrust": "No sign-up · nothing to install · files never leave your device",
     "selected": "Selected photos:",
     "upLoadPhotos": "Download photos",
     "upLoadPhoto": "Download",
@@ -1072,6 +1100,242 @@
           "a": "No. The PDF is built in your browser; the files are never uploaded anywhere."
         }
       ]
+    },
+    "cropImage": {
+      "title": "Why crop a photo online",
+      "text1": "Cropping is one of the simplest ways to improve a photo: trim distracting edges, draw attention to the subject, or fit the shot to a specific ratio — a square for a profile picture, a wide frame for a cover image, or a vertical crop for a Story. People most often crop before posting to Instagram, Facebook, or YouTube, for an avatar or a website banner, or simply to cut out people or objects at the edge of the frame.",
+      "text2": "This tool lets you crop a photo right in your browser: drag the selection frame or its corners with a mouse or a finger, pick a ready-made ratio from the list or leave it freeform, then download the result as JPG, PNG, or WebP. The photo is never uploaded to a server and isn't stored anywhere.",
+      "benefits": [
+        {
+          "title": "Precise selection frame",
+          "text": "Drag the whole frame or just one corner with a mouse or a finger and see the result update instantly on the photo itself — no guessing and no repeated attempts."
+        },
+        {
+          "title": "Ready-made social ratios",
+          "text": "1:1 for a profile picture, 9:16 for Stories and Reels, 16:9 for a video cover — plus the other common ratios, or a freeform frame when you need an exact custom shape."
+        },
+        {
+          "title": "No quality loss",
+          "text": "Cropping just selects part of the image rather than compressing it: the pixels inside the frame stay exactly as sharp as the original. You choose the output format and compression yourself."
+        },
+        {
+          "title": "Nothing is uploaded",
+          "text": "The whole crop happens in your browser, on your own device; the photo is never sent anywhere or stored."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to crop a photo",
+          "steps": [
+            "Drag a photo into the upload area or click it and choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
+            "Pick a ready-made ratio in the settings, or leave it on “Free” for a custom shape.",
+            "Drag the frame to move the selection, or its corners to resize it.",
+            "Choose the output format (JPG, PNG, or WebP) and click “Crop & Download”."
+          ]
+        },
+        {
+          "title": "Ready-made ratios and freeform selection",
+          "text": "The ratio list covers the most common cases: a 1:1 square for avatars and social profiles, 4:3 and 3:2 for classic photo framing, and 16:9 and 9:16 for video and vertical Stories — each available in both orientations. If none of them fit, pick “Free” and drag the corners to set any shape you need."
+        },
+        {
+          "title": "Output formats: JPG, PNG, WebP",
+          "text": "The output format is separate from the format of the file you uploaded. JPG suits photos and gives the smallest file size; PNG keeps transparency if the original had it; WebP combines a small size with transparency support, though it isn't supported by every older app."
+        },
+        {
+          "title": "Does cropping reduce quality",
+          "text": "Cropping itself doesn't touch the pixels inside the selected area — they stay exactly as sharp as in the original. Some loss is only possible during the final encoding to JPG or WebP (lossy formats), the same as saving any photo in those formats; PNG encodes without any loss at all."
+        },
+        {
+          "title": "Supported upload formats",
+          "text": "The tool accepts JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF — the format iPhones save photos in by default. Whatever the source format, you can always save the result as JPG, PNG, or WebP."
+        },
+        {
+          "title": "Privacy",
+          "text": "The photo is processed entirely in your browser: it is never uploaded to a server, stored, or sent anywhere, even temporarily. Close the tab and every trace of the file is gone."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I crop a photo on my phone?",
+          "a": "Yes — you can drag the frame and its corners with a finger just like with a mouse on a computer; the interface is built for touch screens."
+        },
+        {
+          "q": "Can I crop a photo into a circle?",
+          "a": "Right now the selection frame is rectangular only. A circular crop could be a separate tool down the line."
+        },
+        {
+          "q": "Will cropping reduce the quality?",
+          "a": "The pixels inside the frame aren't changed by the crop itself. Some loss is possible only when saving as JPG or WebP, which are lossy formats — pick PNG if you need a crop with absolutely no loss."
+        },
+        {
+          "q": "How many photos can I crop in a row?",
+          "a": "As many as you like — the tool handles one photo at a time: just upload the next one right after downloading the previous result."
+        },
+        {
+          "q": "Which photo formats are supported?",
+          "a": "On upload: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. You can save the result as JPG, PNG, or WebP."
+        },
+        {
+          "q": "Is there a file size limit?",
+          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+        }
+      ]
+    },
+    "rotateImage": {
+      "title": "Why rotate or flip a photo online",
+      "text1": "A photo from a phone or camera sometimes ends up sideways or upside down — the camera got the orientation wrong while shooting, or the file is opened in an app that ignores the rotation tag. Rotating such a shot by 90°, 180°, or the other way is one of the simplest fixes that noticeably improves how a photo reads. Flipping (a horizontal or vertical mirror) is useful for something different: fixing \"backwards\" text captured through a mirror or shop window, turning a portrait so the subject's gaze points toward text in a layout, or just picking whichever composition looks more natural.",
+      "text2": "This tool rotates and flips photos right in your browser: upload a photo, click the rotate or flip buttons — the preview updates instantly, so you see the result right away. Once the orientation looks right, download the file as JPG, PNG, or WebP. Nothing gets uploaded to a server or stored anywhere.",
+      "benefits": [
+        {
+          "title": "Instant result",
+          "text": "Rotation and flipping apply the moment you click a button — no processing wait, the preview updates in real time."
+        },
+        {
+          "title": "Rotate and flip together",
+          "text": "Combine both actions in any order and any number of times — for example, rotate 90° and also flip horizontally — to land on exactly the orientation you need."
+        },
+        {
+          "title": "No quality loss at 90°/180°",
+          "text": "Rotating by 90°, 180°, or 270° and flipping only move the same pixels around rather than recalculating them, so image sharpness stays the same."
+        },
+        {
+          "title": "Nothing uploaded to a server",
+          "text": "All processing happens right in your browser on your own device; the photo is never sent anywhere or stored on our side."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to rotate or flip a photo",
+          "steps": [
+            "Drag a photo into the upload area, or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
+            "Click \"Left 90°\" or \"Right 90°\" to rotate the photo — the preview updates instantly; clicking one twice in a row gives you a 180° rotation.",
+            "If needed, turn on a horizontal or vertical flip — the toggle buttons can be combined with rotation in any way.",
+            "Pick the output format (JPG, PNG, or WebP) and click \"Download\"."
+          ]
+        },
+        {
+          "title": "90°, 180° rotation and flipping",
+          "text": "The \"Left 90°\" and \"Right 90°\" buttons turn the image a quarter turn in the chosen direction; clicking one twice gives a 180° rotation. A horizontal flip mirrors the photo left-right, a vertical flip mirrors it top-bottom; both flags are independent of rotation and can be switched on at the same time as it, so any orientation you need is a few clicks away."
+        },
+        {
+          "title": "Output formats: JPG, PNG, WebP",
+          "text": "Choose the result format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any; WebP combines a small size with transparency support, though it doesn't open in every older program."
+        },
+        {
+          "title": "Does rotating hurt image quality",
+          "text": "Rotating by 90°, 180°, or 270° and flipping only rearrange pixels without recalculating or blending them, so sharpness stays exactly the same as the original. Some loss is possible only during the final encode to JPG or WebP (lossy formats), the same as saving any photo in those formats; PNG encodes losslessly."
+        },
+        {
+          "title": "Privacy",
+          "text": "The photo is processed entirely in your browser: it is never uploaded to a server, never stored, and never transmitted anywhere, even temporarily. Close the tab and every trace of the work is gone."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I rotate a photo by an arbitrary angle, not just 90°?",
+          "a": "Right now only 90° steps (and their combinations up to 270°) plus flipping are available. Arbitrary-angle rotation could be a separate tool down the line."
+        },
+        {
+          "q": "What's the difference between rotating and flipping?",
+          "a": "Rotating turns the whole image around its center by 90°, 180°, or 270°. Flipping mirrors the photo along one axis — left-right (horizontal) or top-bottom (vertical) — without turning it."
+        },
+        {
+          "q": "Will rotating reduce photo quality?",
+          "a": "No, rotating by 90°, 180°, or 270° and flipping only rearrange pixels. Some loss is possible only when saving as JPG or WebP — lossy formats; pick PNG if you need it completely lossless."
+        },
+        {
+          "q": "Can I rotate and flip a photo at the same time?",
+          "a": "Yes, the two actions are independent: rotate first and flip after (or the other way around), and undo or repeat either one at any point — the preview always shows the current result."
+        },
+        {
+          "q": "Which photo formats are supported?",
+          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. The result can be saved as JPG, PNG, or WebP."
+        },
+        {
+          "q": "Is there a file size limit?",
+          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+        }
+      ]
+    },
+    "addWatermark": {
+      "title": "Why add a watermark to a photo",
+      "text1": "A watermark — a caption or logo laid over a photo — protects original photos from being used without permission while also reminding the viewer where the image came from. Photographers stamp a signature or studio name on a portfolio before posting to social media; marketplace sellers add a logo to product photos so competitors can't copy them; bloggers brand screenshots and video stills with their own mark. A bold caption across the center scares off casual theft entirely, while a subtle mark in a corner or a barely-visible overlay keeps the photo looking clean while still being legally marked.",
+      "text2": "This tool adds a text watermark or your own logo to a photo right in your browser: type a caption or upload an image, pick a position — one of four corners, the center, or a repeating \"tile\" pattern across the whole frame — and adjust size and opacity. The preview updates instantly, so you see the result before downloading. The finished file saves as JPG, PNG, or WebP; nothing gets uploaded to a server or stored anywhere.",
+      "benefits": [
+        {
+          "title": "Text or your own logo",
+          "text": "Type a caption or upload an image of your logo — both work with the same position, size, and opacity controls."
+        },
+        {
+          "title": "One mark or a full tiled pattern",
+          "text": "A single watermark in a corner or center protects less than a repeating tile across the whole photo — a tiled pattern is much harder to crop out."
+        },
+        {
+          "title": "Live preview",
+          "text": "Every change to text, color, size, opacity, or position shows up instantly in the preview — no guessing how it'll look after downloading."
+        },
+        {
+          "title": "Nothing uploaded to a server",
+          "text": "All processing happens right in your browser on your own device; the photo and logo are never sent anywhere or stored on our side."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to add a watermark to a photo",
+          "steps": [
+            "Drag a photo into the upload area, or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
+            "Pick the watermark type — text or image (upload a logo file with its own button).",
+            "Adjust size, color (for text), and opacity — the preview updates instantly.",
+            "Choose a position — one of four corners, the center, or \"Tile\" — and the output format, then click \"Download\"."
+          ]
+        },
+        {
+          "title": "Text watermark or logo",
+          "text": "A text watermark suits cases where a name, caption, or short link is enough — just type the text and pick a color and font size. A logo makes the brand clearer: upload a PNG with a transparent background for the cleanest result (no white box around the mark), or any other format such as a photo or screenshot. Both scale relative to the photo's own size, so they look proportional on both small and large images."
+        },
+        {
+          "title": "Position and tiling",
+          "text": "The five fixed positions — four corners and center — suit a soft, barely-noticeable caption that doesn't get in the way of viewing the photo. \"Tile\" mode repeats the watermark across the whole frame at even intervals — the most reliable protection against theft, since no part of the photo can be cropped away without losing the mark, though it's more noticeable."
+        },
+        {
+          "title": "Opacity and size",
+          "text": "Opacity ranges from 5% (barely visible) to 100% (solid and clearly readable). Font or logo size is calculated as a percentage of the photo's own dimensions, so proportions stay consistent whether you upload an 800×600 shot or a 6000×4000 one."
+        },
+        {
+          "title": "Output formats: JPG, PNG, WebP",
+          "text": "Choose the result format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any; WebP combines a small size with transparency support, though it doesn't open in every older program."
+        },
+        {
+          "title": "Privacy",
+          "text": "The photo and logo are processed entirely in your browser: neither is ever uploaded to a server, stored, or transmitted anywhere, even temporarily. Close the tab and every trace of the work is gone."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I make the watermark nearly invisible?",
+          "a": "Yes, the opacity slider goes down to 5% — the mark stays embedded in the file but is barely noticeable."
+        },
+        {
+          "q": "Can I use my own logo instead of text?",
+          "a": "Yes, pick the \"Image\" type and upload a logo file — a PNG with a transparent background works best, so there's no white box around the mark."
+        },
+        {
+          "q": "What does \"Tile\" mode do?",
+          "a": "The watermark repeats across the whole photo at even intervals instead of a single caption in one corner — a much stronger deterrent against cropping or retouching the mark out."
+        },
+        {
+          "q": "Will adding a watermark reduce photo quality?",
+          "a": "Applying the mark itself doesn't change the rest of the image. Some loss is possible only when saving as JPG or WebP — lossy formats; pick PNG if you need it completely lossless."
+        },
+        {
+          "q": "Which photo formats are supported?",
+          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. The result can be saved as JPG, PNG, or WebP."
+        },
+        {
+          "q": "Is there a file size limit?",
+          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+        }
+      ]
     }
   },
   "errors": {
@@ -1150,6 +1414,88 @@
     },
     "errors": {
       "encodeFailed": "Couldn't process \"{{name}}\" for the PDF. The image may be too large for your device."
+    }
+  },
+  "cropImage": {
+    "titlePart1": "Crop",
+    "titleGradient": "Image",
+    "subtitle": "Pick a selection — freeform or a ready-made ratio — and download the cropped photo. Everything happens right in your browser.",
+    "dropzone": "Choose a photo",
+    "dropText2": "Drop the photo to upload it",
+    "original": "Original",
+    "selection": "Selection",
+    "aspectRatio": "Aspect ratio",
+    "ratios": {
+      "free": "Free"
+    },
+    "format": "Output format",
+    "crop": "Crop & Download",
+    "processing": "Processing…",
+    "downloadedTitle": "Done!",
+    "settingsTitle": "Crop settings",
+    "hint": "Drag the frame or its corners to adjust the selection.",
+    "errors": {
+      "cropFailed": "Couldn't crop the photo. Try again or pick a different format."
+    }
+  },
+  "rotateImage": {
+    "titlePart1": "Rotate",
+    "titleGradient": "an Image",
+    "subtitle": "Rotate a photo 90° or 180°, or flip it horizontally and vertically — right in your browser, nothing gets uploaded.",
+    "dropzone": "Choose a photo",
+    "dropText2": "Drop to upload your photo",
+    "original": "Original",
+    "result": "Result",
+    "rotate": "Rotation",
+    "rotateLeft": "Left 90°",
+    "rotateRight": "Right 90°",
+    "flip": "Flip",
+    "flipHorizontal": "Horizontal",
+    "flipVertical": "Vertical",
+    "format": "Output format",
+    "download": "Download",
+    "processing": "Processing…",
+    "downloadedTitle": "Done!",
+    "settingsTitle": "Rotation settings",
+    "hint": "Every click updates the preview instantly — combine rotation and flipping in any order.",
+    "errors": {
+      "rotateFailed": "Couldn't process the photo. Try again or a different format."
+    }
+  },
+  "addWatermark": {
+    "titlePart1": "Watermark",
+    "titleGradient": "a Photo",
+    "subtitle": "Add a text caption or your own logo to a photo — choose position, opacity, and size right in your browser, nothing gets uploaded.",
+    "dropzone": "Choose a photo",
+    "dropText2": "Drop to upload your photo",
+    "type": "Watermark type",
+    "typeText": "Text",
+    "typeImage": "Image",
+    "text": "Text",
+    "textPlaceholder": "© Your Name",
+    "fontSize": "Font size",
+    "color": "Color",
+    "opacity": "Opacity",
+    "logo": "Logo",
+    "logoUpload": "Upload logo",
+    "logoChange": "Change logo",
+    "scale": "Size",
+    "position": "Position",
+    "positions": {
+      "topLeft": "Top left",
+      "topRight": "Top right",
+      "center": "Center",
+      "bottomLeft": "Bottom left",
+      "bottomRight": "Bottom right",
+      "tile": "Tile"
+    },
+    "format": "Output format",
+    "download": "Download",
+    "processing": "Processing…",
+    "downloadedTitle": "Done!",
+    "settingsTitle": "Watermark settings",
+    "errors": {
+      "watermarkFailed": "Couldn't process the photo. Try again or a different format."
     }
   }
 }

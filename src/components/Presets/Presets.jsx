@@ -269,6 +269,7 @@ const Presets = () => {
                 {t("presets.dropzone")}
               </span>
             </div>
+            <p className="presets-dropzone__trust">{t("panel.emptyTrust")}</p>
           </div>
         )}
 

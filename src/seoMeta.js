@@ -293,4 +293,70 @@ export const PAGE_META = {
         "Convierte tus fotos en un PDF en el navegador: elige el orden de páginas, tamaño A4 o de foto, y márgenes de 0 o 10 mm. Sin subir archivos.",
     },
   },
+  cropImage: {
+    uk: {
+      title: "Обрізати фото онлайн безкоштовно, без втрати якості",
+      description:
+        "Обріжте фото прямо в браузері: довільна рамка або готові пропорції 1:1, 4:3, 16:9 та інші. Точне перетягування, JPG/PNG/WebP. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Crop Image Online Free — Fast, No Quality Loss",
+      description:
+        "Crop a photo in your browser: freeform selection or ready ratios like 1:1, 4:3, 16:9. Drag to fine-tune, export as JPG, PNG or WebP. Nothing gets uploaded.",
+    },
+    ru: {
+      title: "Обрезать фото онлайн бесплатно — без потери качества",
+      description:
+        "Обрежьте фото прямо в браузере: произвольная рамка или готовые пропорции 1:1, 4:3, 16:9 и другие. Точное перетаскивание, JPG/PNG/WebP. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Recortar Imagen Online Gratis — Sin Perder Calidad",
+      description:
+        "Recorta una foto en el navegador: selección libre o proporciones como 1:1, 4:3, 16:9. Arrastra para ajustar y exporta en JPG, PNG o WebP. Sin subir archivos.",
+    },
+  },
+  rotateImage: {
+    uk: {
+      title: "Повернути й віддзеркалити фото онлайн безкоштовно",
+      description:
+        "Поверніть фото на 90°/180° або віддзеркальте по горизонталі чи вертикалі прямо в браузері. Швидко, без втрати якості, JPG/PNG/WebP. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Rotate & Flip Image Online Free — No Quality Loss",
+      description:
+        "Rotate a photo 90°/180° or flip it horizontally or vertically right in your browser. Fast, lossless for 90° turns, export as JPG, PNG or WebP. Nothing uploaded.",
+    },
+    ru: {
+      title: "Повернуть фото онлайн бесплатно — без потери качества",
+      description:
+        "Поверните фото на 90°/180° или отразите по горизонтали и вертикали прямо в браузере. Быстро, без потери качества, JPG/PNG/WebP. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Girar y Voltear Imagen Online Gratis — Sin Perder Calidad",
+      description:
+        "Gira una foto 90°/180° o voltéala en horizontal o vertical directamente en el navegador. Rápido, sin pérdida de calidad, exporta en JPG, PNG o WebP.",
+    },
+  },
+  addWatermark: {
+    uk: {
+      title: "Додати водяний знак на фото онлайн безкоштовно",
+      description:
+        "Додайте текстовий водяний знак або лого на фото прямо в браузері: позиція, прозорість, розмір, повторення по кадру. JPG/PNG/WebP. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Add Watermark to Photo Online Free",
+      description:
+        "Add a text watermark or your own logo to a photo in your browser: choose position, opacity, size, and tiling. Export as JPG, PNG or WebP. Nothing is uploaded.",
+    },
+    ru: {
+      title: "Добавить водяной знак на фото онлайн бесплатно",
+      description:
+        "Добавьте текстовый водяной знак или лого на фото прямо в браузере: позиция, прозрачность, размер, повтор по кадру. JPG/PNG/WebP. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Añadir Marca de Agua a Foto Online Gratis",
+      description:
+        "Añade una marca de agua de texto o tu logo a una foto en el navegador: posición, opacidad, tamaño y repetición en mosaico. Exporta en JPG, PNG o WebP.",
+    },
+  },
 };

@@ -289,11 +289,13 @@ const overlayStyle = {
 const modalStyle = {
   background: "#fff",
   padding: "30px",
-  borderRadius: "12px",
+  borderRadius: "var(--radius-md, 12px)",
+  boxShadow: "var(--shadow-lg, 0 16px 40px rgba(17,24,39,.14))",
   width: "100%",
   maxWidth: "400px",
   position: "relative",
   boxSizing: "border-box",
+  fontFamily: "var(--font-ui)",
 };
 const closeButtonStyle = {
   position: "absolute",
@@ -312,8 +314,8 @@ const oauthContainerStyle = {
 };
 const googleButtonStyle = {
   padding: "10px",
-  border: "1px solid #ccc",
-  borderRadius: "6px",
+  border: "1px solid var(--color-border-strong, #ccc)",
+  borderRadius: "var(--radius-sm, 8px)",
   background: "#fff",
   cursor: "pointer",
   fontWeight: "500",
@@ -321,31 +323,34 @@ const googleButtonStyle = {
 const dividerStyle = {
   margin: "20px 0",
   textAlign: "center",
-  borderBottom: "1px solid #eee",
+  borderBottom: "1px solid var(--color-border, #eee)",
   lineHeight: "0.1em",
 };
 const formStyle = { display: "flex", flexDirection: "column", gap: "12px" };
 const inputStyle = {
   padding: "12px",
-  borderRadius: "6px",
-  border: "1px solid #ccc",
+  borderRadius: "var(--radius-sm, 8px)",
+  border: "1px solid var(--color-border-strong, #ccc)",
   fontSize: "14px",
 };
 const inputErrorStyle = {
   ...inputStyle,
-  border: "1px solid #dc2626",
-  background: "#fef2f2",
+  border: "1px solid var(--color-danger-600, #dc2626)",
+  background: "var(--color-danger-50, #fef2f2)",
 };
 const fieldErrorTextStyle = {
-  color: "#dc2626",
+  color: "var(--color-danger-600, #dc2626)",
   fontSize: "12px",
   marginTop: "-6px",
 };
 const submitButtonStyle = {
   padding: "12px",
-  borderRadius: "6px",
+  borderRadius: "var(--radius-sm, 8px)",
   border: "none",
-  background: "#2563eb",
+  // було #2563eb (той самий "старий синій" з розділу 2.1 документа,
+  // просто в inline JS-стилі, тож скрипт кроку 2 — regex по .css — його
+  // не бачив) — тепер той самий токен, що й скрізь на сайті.
+  background: "var(--color-primary-600, #4338CA)",
   color: "#fff",
   fontSize: "16px",
   fontWeight: "bold",
@@ -359,24 +364,26 @@ const switchContainerStyle = {
 const linkButtonStyle = {
   background: "none",
   border: "none",
-  color: "#2563eb",
+  color: "var(--color-primary-600, #4338CA)",
   cursor: "pointer",
   textDecoration: "underline",
   padding: 0,
 };
 const errorStyle = {
-  background: "#fee2e2",
-  color: "#dc2626",
+  background: "var(--color-danger-50, #fee2e2)",
+  color: "var(--color-danger-600, #dc2626)",
   padding: "10px",
-  borderRadius: "6px",
+  borderRadius: "var(--radius-sm, 8px)",
   marginBottom: "12px",
   fontSize: "14px",
 };
 const successStyle = {
-  background: "#d1fae5",
-  color: "#059669",
+  background: "var(--color-success-50, #d1fae5)",
+  // --color-success-600 у tokens.css позначений лише для іконок/великих
+  // ділянок (не AA для тексту) — тут текст, тому 700-й відтінок.
+  color: "var(--color-success-700, #047857)",
   padding: "10px",
-  borderRadius: "6px",
+  borderRadius: "var(--radius-sm, 8px)",
   marginBottom: "12px",
   fontSize: "14px",
 };

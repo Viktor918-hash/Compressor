@@ -15,7 +15,7 @@
     font-weight: 600;
     color: #111827;
     margin-bottom: 20px;
-    background-image: linear-gradient(90deg, #1E3FCC, #12A8C7);
+    background-image: linear-gradient(90deg, var(--color-primary-600), var(--color-accent-600));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(135deg, #1E3FCC, #12A8C7);
+    background-image: linear-gradient(135deg, var(--color-primary-600), var(--color-accent-600));
 }
 
 .seo-content__benefit-title {
@@ -155,7 +155,7 @@
 
 .seo-content__faq-chevron {
     flex-shrink: 0;
-    color: #4F7CFF;
+    color: var(--color-primary-600);
     transition: transform 0.2s ease;
 }
 

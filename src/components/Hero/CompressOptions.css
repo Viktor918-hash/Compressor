@@ -35,7 +35,7 @@
 }
 
 .compress-options__value {
-    color: #3152C7;
+    color: var(--color-primary-700);
 }
 
 /* У reset.css для input задано appearance: none — тож повзунок і чекбокс
@@ -70,7 +70,7 @@
     margin-top: -8px;
     border-radius: 50%;
     border: 3px solid #fff;
-    background: #4F7CFF;
+    background: var(--color-primary-600);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
@@ -79,14 +79,14 @@
     height: 16px;
     border-radius: 50%;
     border: 3px solid #fff;
-    background: #4F7CFF;
+    background: var(--color-primary-600);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
 .compress-options__range:focus-visible,
 .compress-options__check input:focus-visible,
 .compress-options__select:focus-visible {
-    outline: 2px solid #4F7CFF;
+    outline: 2px solid var(--color-primary-600);
     outline-offset: 3px;
 }
 
@@ -125,8 +125,8 @@
 }
 
 .compress-options__check input:checked {
-    background: #4F7CFF;
-    border-color: #4F7CFF;
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
 }
 
 .compress-options__check input:checked::after {

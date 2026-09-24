@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
+import ToolsCategories from "../ToolsCategories/ToolsCategories";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 import { PAGE_META } from "../../seoMeta";
@@ -81,6 +82,7 @@ const Hero = () => {
         <p className="main__text">{t("hero.text1")}</p>
         <p className="main__text">{t("hero.text2")}</p>
       </Panel>
+      <ToolsCategories />
       <SeoContent pageKey="home" />
     </>
   );

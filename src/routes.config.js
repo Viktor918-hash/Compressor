@@ -101,4 +101,25 @@ export const ROUTE_PATHS = [
     ru: "/ru/photo-to-pdf",
     es: "/es/foto-a-pdf",
   },
+  {
+    slug: "cropImage",
+    uk: "/crop-image",
+    en: "/en/crop-image",
+    ru: "/ru/crop-image",
+    es: "/es/recortar-imagen",
+  },
+  {
+    slug: "rotateImage",
+    uk: "/rotate-image",
+    en: "/en/rotate-image",
+    ru: "/ru/rotate-image",
+    es: "/es/girar-imagen",
+  },
+  {
+    slug: "addWatermark",
+    uk: "/add-watermark",
+    en: "/en/add-watermark",
+    ru: "/ru/add-watermark",
+    es: "/es/marca-de-agua",
+  },
 ];

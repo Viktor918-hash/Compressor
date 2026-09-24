@@ -58,6 +58,9 @@ const WordToPdf = () => {
         // тримаємось з запасом нижче нього.
         maxFileSize={4 * 1024 * 1024}
         showStats={false}
+        // Файл реально йде на CloudConvert (бекенд) — не показуємо рядок
+        // "файли не йдуть на сервер", це було б неправдою.
+        showEmptyTrust={false}
         emptyStateText={t("wordToPdf.panel.emptyState")}
         addMoreText={t("wordToPdf.panel.addMore")}
         addMoreAriaLabel={t("wordToPdf.panel.addMoreAria")}

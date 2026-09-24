@@ -49,6 +49,11 @@
       "source": "/en/word-to-pdf",
       "destination": "/en/convert-word-to-pdf",
       "permanent": true
+    },
+    {
+      "source": "/ru/onvert-to-jpg",
+      "destination": "/ru/convert-to-jpg",
+      "permanent": true
     }
   ],
   "functions": {

@@ -9,6 +9,7 @@ import {
   FiAlertCircle,
   FiChevronUp,
   FiChevronDown,
+  FiUploadCloud,
 } from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
@@ -84,6 +85,12 @@ const Panel = ({
   // (як було для перших конвертерів), але сторінки на кшталт Word→PDF можуть
   // передати свої, щоб не писало "Додайте фото" для .docx файлу.
   emptyStateText,
+  // Рядок довіри під порожнім станом ("без реєстрації / без встановлення…").
+  // За замовчуванням показаний — вірний для клієнтських інструментів
+  // (canvas/WASM, файл не йде на сервер). Сторінки, що реально шлють файл
+  // на бекенд (Word↔PDF через CloudConvert), передають false, щоб не
+  // стверджувати неправду.
+  showEmptyTrust = true,
   addMoreText,
   addMoreAriaLabel,
   selectedLabel,
@@ -791,7 +798,7 @@ const Panel = ({
             <div className="input__download">
               <FiDownload
                 size={35}
-                color="#4F7CFF"
+                color="var(--color-primary-600)"
                 className="download__icon"
                 aria-hidden="true"
               />
@@ -805,6 +812,9 @@ const Panel = ({
                 {dropzoneText}
               </button>
             </div>
+            {showEmptyTrust && (
+              <p className="photo__input__trust">{t("panel.emptyTrust")}</p>
+            )}
           </div>
 
           {options}
@@ -841,9 +851,21 @@ const Panel = ({
         {showPanel && errorBlock}
 
         {items.length === 0 && (
-          <p className="side-panel__empty">
-            {emptyStateText || t("panel.adFile")}
-          </p>
+          <div className="side-panel__empty-state">
+            <FiUploadCloud
+              size={28}
+              className="side-panel__empty-icon"
+              aria-hidden="true"
+            />
+            <p className="side-panel__empty">
+              {emptyStateText || t("panel.adFile")}
+            </p>
+            {showEmptyTrust && (
+              <p className="side-panel__empty-trust">
+                {t("panel.emptyTrust")}
+              </p>
+            )}
+          </div>
         )}
 
         {doneItems.length > 0 && showStats && (

@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import "./styles/tokens.css";
 import "./components/resetCSS/reset.css";
 import App from "./App.jsx";
 import { i18nReady } from "./i18n/i18n.js";

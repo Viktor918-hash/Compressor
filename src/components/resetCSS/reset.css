@@ -22,7 +22,7 @@
 }
 
 :focus-visible {
-    outline: 2px solid #4a4af4;
+    outline: 2px solid var(--color-primary-500, #4a4af4);
     outline-offset: 2px;
 }
 

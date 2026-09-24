@@ -11,6 +11,11 @@
   <meta name="theme-color" content="#ffffff" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
+  <!-- Self-hosted (жодних сторонніх доменів) — найважливіші підмножини
+       Inter для першого рендеру: latin (усі 4 мови) і cyrillic (uk/ru). -->
+  <link rel="preload" as="font" href="/fonts/inter-latin-wght-normal.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/inter-cyrillic-wght-normal.woff2" type="font/woff2" crossorigin>
+
 
   <!-- Google Analytics: скрипт gtag.js НЕ вантажиться до згоди користувача
        (див. src/utils/consent.js). Тут лише "заглушка" з consent = denied. -->

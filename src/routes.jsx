@@ -12,6 +12,9 @@ import CompressToSize from "./components/CompressToSize/CompressToSize.jsx";
 import ConvertPng from "./components/ConvertPng/ConvertPng.jsx";
 import RemoveExif from "./components/RemoveExif/RemoveExif.jsx";
 import PhotoToPdf from "./components/PhotoToPdf/PhotoToPdf.jsx";
+import CropImage from "./components/CropImage/CropImage.jsx";
+import RotateImage from "./components/RotateImage/RotateImage.jsx";
+import Watermark from "./components/Watermark/Watermark.jsx";
 import { ROUTE_PATHS } from "./routes.config.js";
 
 // Прив'язка React-компонента до кожного slug'а з routes.config.js.
@@ -32,6 +35,9 @@ const SLUG_COMPONENTS = {
   convertToPng: ConvertPng,
   removeExif: RemoveExif,
   photoToPdf: PhotoToPdf,
+  cropImage: CropImage,
+  rotateImage: RotateImage,
+  addWatermark: Watermark,
 };
 
 // Форма кожного елемента ROUTES лишається такою ж, як і раніше:

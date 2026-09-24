@@ -3,7 +3,7 @@ import "../Hero/sidePanel.css";
 import "./Resize.css";
 import { useState, useCallback, useRef, useMemo, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { FiDownload, FiArrowLeft, FiX, FiSettings } from "react-icons/fi";
+import { FiDownload, FiArrowLeft, FiX, FiSettings, FiUploadCloud } from "react-icons/fi";
 import { TbArrowsMove } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 import SeoHead from "../Seo/SeoHead";
@@ -384,7 +384,7 @@ const Resize = () => {
                 <div className="input__download">
                   <FiDownload
                     size={35}
-                    color="#4F7CFF"
+                    color="var(--color-primary-600)"
                     className="download__icon"
                   />
                 </div>
@@ -397,6 +397,7 @@ const Resize = () => {
                     {t("resize.dropzone")}
                   </button>
                 </div>
+                <p className="photo__input__trust">{t("panel.emptyTrust")}</p>
               </div>
 
               {/* помилка до завантаження файлу (не той тип / не вдалося відкрити) */}
@@ -486,7 +487,17 @@ const Resize = () => {
         </div>
 
         {!file ? (
-          <p className="side-panel__empty">{t("panel.adFile")} </p>
+          <div className="side-panel__empty-state">
+            <FiUploadCloud
+              size={28}
+              className="side-panel__empty-icon"
+              aria-hidden="true"
+            />
+            <p className="side-panel__empty">{t("panel.adFile")} </p>
+            <p className="side-panel__empty-trust">
+              {t("panel.emptyTrust")}
+            </p>
+          </div>
         ) : (
           <div className="resize-controls">
             <div className="resize-block">

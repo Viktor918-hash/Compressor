@@ -1,0 +1,84 @@
+/* ---- прев'ю фото з водяним знаком ---- */
+.wm-preview-area {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.wm-preview-wrap {
+    position: relative;
+    /* Той самий фікс, що й у CropImage.css/RotateImage.css: width як
+       мінімум із трьох меж, щоб max-height:65vh не «виграв» у aspect-ratio
+       раніше за ширину для вузьких/високих фото. */
+    --ar: 1;
+    width: min(100%, 520px, calc(65vh * var(--ar)));
+    max-height: 65vh;
+    overflow: hidden;
+    border-radius: 12px;
+    user-select: none;
+}
+
+.wm-preview-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* ---- елементи керування водяним знаком ---- */
+.wm-text-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.wm-text-input:focus {
+    /* outline не глушимо — глобальний :focus-visible (reset.css) має
+       лишатися видимим для клавіатурної навігації (WCAG 2.4.7) */
+    border-color: var(--color-primary-600);
+}
+
+.wm-range {
+    width: 100%;
+    height: 44px;
+    /* висота 44px — тач-ціль WCAG 2.5.5/2.5.8, сама «доріжка» лишається
+       тонкою (це лише клікабельна висота елемента) */
+    accent-color: var(--color-primary-600);
+    cursor: pointer;
+}
+
+.wm-color-input {
+    width: 48px;
+    height: 44px;
+    /* висота 44px — тач-ціль WCAG 2.5.5/2.5.8 */
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm, 8px);
+    cursor: pointer;
+    background: none;
+}
+
+.wm-hidden-input {
+    display: none;
+}
+
+.wm-logo-dims {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.wm-position-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.wm-position-group .resize-format-btn {
+    width: 100%;
+}

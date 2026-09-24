@@ -1,10 +1,22 @@
 import { useTranslation } from "react-i18next";
+import { FiMinimize2, FiRepeat, FiEdit3, FiFileText } from "react-icons/fi";
 import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { RELATED, toolBySlug } from "../../toolsCatalog";
+import { categoryForSlug } from "../../toolsCategories";
 import { usePageLang } from "../../hooks/usePageLang";
 import { hasLang } from "../../utils/routeLangs";
 import "./RelatedTools.css";
+
+// Ті самі іконки й кольори категорій, що й на сітці головної сторінки
+// (ToolsCategories) — щоб картки "Схожих інструментів" виглядали як
+// продовження того самого блоку, а не окремий плоский список.
+const CATEGORY_ICONS = {
+  compress: FiMinimize2,
+  convert: FiRepeat,
+  edit: FiEdit3,
+  docs: FiFileText,
+};
 
 /**
  * Блок "Схожі інструменти" під SEO-текстом: звичайні <a href> з описовим
@@ -29,11 +41,26 @@ const RelatedTools = ({ current }) => {
           const tool = toolBySlug(slug);
           const route = ROUTES.find((r) => r.slug === slug);
           if (!tool || !route) return null;
+          const category = categoryForSlug(slug);
+          const colorVar = category?.colorVar || "primary";
+          const Icon = CATEGORY_ICONS[category?.id] || FiMinimize2;
           return (
             <li key={slug}>
-              <LocalizedLink to={route.uk} className="related-tools__item">
-                <span className="related-tools__name">{t(tool.nameKey)}</span>
-                <span className="related-tools__desc">{t(tool.descKey)}</span>
+              <LocalizedLink
+                to={route.uk}
+                className={`related-tools__item related-tools__item--${colorVar}`}
+              >
+                <span className="related-tools__icon" aria-hidden="true">
+                  <Icon size={18} />
+                </span>
+                <span className="related-tools__text">
+                  <span className="related-tools__name">
+                    {t(tool.nameKey)}
+                  </span>
+                  <span className="related-tools__desc">
+                    {t(tool.descKey)}
+                  </span>
+                </span>
               </LocalizedLink>
             </li>
           );

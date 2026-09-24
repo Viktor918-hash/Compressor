@@ -44,7 +44,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  accent-color: #4f7cff;
+  accent-color: var(--color-primary-600);
 }
 
 .meta-option__hint {

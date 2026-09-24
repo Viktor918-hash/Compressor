@@ -15,6 +15,9 @@ import {
   FiLayers,
   FiShield,
   FiCamera,
+  FiCrop,
+  FiRotateCw,
+  FiDroplet,
 } from "react-icons/fi";
 import { FaCompress } from "react-icons/fa";
 import { TbResize, TbEraser } from "react-icons/tb";
@@ -276,6 +279,48 @@ const Header = () => {
                     </div>
                   </LocalizedLink>
                   <LocalizedLink hideIfMissing
+                    to="/crop-image"
+                    className="dropdown-panel__item"
+                  >
+                    <FiCrop size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.cropImage")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.cropImageDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/rotate-image"
+                    className="dropdown-panel__item"
+                  >
+                    <FiRotateCw size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.rotateImage")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.rotateImageDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/add-watermark"
+                    className="dropdown-panel__item"
+                  >
+                    <FiDroplet size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.addWatermark")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.addWatermarkDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
                     to="/photo-presets"
                     className="dropdown-panel__item"
                   >
@@ -392,7 +437,9 @@ const Header = () => {
                   <span
                     className="pro-badge"
                     style={{
-                      background: "#f59e0b",
+                      // було #f59e0b — токенізовано під той самий амбер,
+                      // що й категорія "Документи" на головній (розділ 5)
+                      background: "var(--color-warning-600, #B45309)",
                       color: "#fff",
                       padding: "2px 6px",
                       borderRadius: "4px",
@@ -548,6 +595,30 @@ const Header = () => {
           >
             <TbResize size={18} className="mobile-menu__icon" />
             {t("header.resize")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/crop-image"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiCrop size={18} className="mobile-menu__icon" />
+            {t("header.cropImage")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/rotate-image"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiRotateCw size={18} className="mobile-menu__icon" />
+            {t("header.rotateImage")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/add-watermark"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiDroplet size={18} className="mobile-menu__icon" />
+            {t("header.addWatermark")}
           </LocalizedLink>
           <LocalizedLink hideIfMissing
             to="/photo-presets"
