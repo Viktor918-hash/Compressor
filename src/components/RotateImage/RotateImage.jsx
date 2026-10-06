@@ -99,17 +99,31 @@ const RotateImage = () => {
         decodedRef.current = decoded;
         setFile(f);
         setNatural({ width: decoded.width, height: decoded.height });
-        const t0 = initialTransform();
-        setTransform(t0);
+        setTransform(initialTransform());
         setMobileSettingsOpen(false);
-        // canvas ще не змонтований у цьому ж рендері — малюємо наступного тіку
-        requestAnimationFrame(() => drawPreview(decoded, t0));
       } catch {
         setError(t("errors.imageDecodeFailed", { name: f.name }));
       }
     },
-    [t, releaseDecoded, drawPreview]
+    [t, releaseDecoded]
   );
+
+  // canvas монтується лише коли з'являється `file` (умовний рендер нижче) —
+  // requestAnimationFrame одразу після setFile у loadFile() ненадійний: між
+  // await decodeImage() і setState ми вже поза синхронним React-обробником,
+  // і rAF може спрацювати до того, як React встигне закомітити <canvas> у
+  // DOM (canvasRef.current ще null — drawPreview тихо виходить, прев'ю
+  // лишається порожнім аж до першого поворот/фліп). useEffect гарантовано
+  // виконується вже ПІСЛЯ коміту DOM, тож canvasRef.current точно готовий.
+  useEffect(() => {
+    if (!file) return;
+    const decoded = decodedRef.current;
+    if (decoded) drawPreview(decoded, transform);
+    // Навмисно без `transform` у залежностях: це лише початкове малювання
+    // при завантаженні нового файлу; наступні перемальовування при зміні
+    // transform роблять handleRotate*/handleFlip* напряму (applyTransform).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [file, drawPreview]);
 
   const onDrop = useCallback((accepted) => { if (accepted[0]) loadFile(accepted[0]); }, [loadFile]);
 

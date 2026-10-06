@@ -103,14 +103,29 @@ const BlackAndWhite = () => {
         setNatural({ width: decoded.width, height: decoded.height });
         setIntensity(DEFAULT_INTENSITY);
         setMobileSettingsOpen(false);
-        // canvas ще не змонтований у цьому ж рендері — малюємо наступного тіку
-        requestAnimationFrame(() => drawPreview(decoded, DEFAULT_INTENSITY));
       } catch {
         setError(t("errors.imageDecodeFailed", { name: f.name }));
       }
     },
-    [t, releaseDecoded, drawPreview]
+    [t, releaseDecoded]
   );
+
+  // canvas монтується лише коли з'являється `file` (умовний рендер нижче) —
+  // requestAnimationFrame одразу після setFile у loadFile() ненадійний: між
+  // await decodeImage() і setState ми вже поза синхронним React-обробником,
+  // і rAF може спрацювати до того, як React встигне закомітити <canvas> у
+  // DOM (canvasRef.current ще null — drawPreview тихо виходить, прев'ю
+  // лишається порожнім аж до першої зміни повзунка). useEffect гарантовано
+  // виконується вже ПІСЛЯ коміту DOM.
+  useEffect(() => {
+    if (!file) return;
+    const decoded = decodedRef.current;
+    if (decoded) drawPreview(decoded, intensity);
+    // Навмисно без `intensity` у залежностях: це лише початкове малювання
+    // при завантаженні нового файлу; зміну повзунка малює
+    // handleIntensityChange напряму.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [file, drawPreview]);
 
   const onDrop = useCallback((accepted) => { if (accepted[0]) loadFile(accepted[0]); }, [loadFile]);
 

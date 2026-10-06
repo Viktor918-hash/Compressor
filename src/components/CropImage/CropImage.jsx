@@ -93,14 +93,25 @@ const CropImage = () => {
         setRatioId("free");
         setRect(initialRect(decoded.width, decoded.height, null));
         setMobileSettingsOpen(false);
-        // canvas ще не змонтований у цьому ж рендері — малюємо наступного тіку
-        requestAnimationFrame(() => drawPreview(decoded));
       } catch {
         setError(t("errors.imageDecodeFailed", { name: f.name }));
       }
     },
-    [t, releaseDecoded, drawPreview]
+    [t, releaseDecoded]
   );
+
+  // canvas монтується лише коли з'являється `file` (умовний рендер нижче) —
+  // requestAnimationFrame одразу після setFile у loadFile() ненадійний: між
+  // await decodeImage() і setState ми вже поза синхронним React-обробником,
+  // і rAF може спрацювати до того, як React встигне закомітити <canvas> у
+  // DOM (canvasRef.current ще null — drawPreview тихо виходить, прев'ю
+  // лишається порожнім аж до першої взаємодії з рамкою). useEffect
+  // гарантовано виконується вже ПІСЛЯ коміту DOM.
+  useEffect(() => {
+    if (!file) return;
+    const decoded = decodedRef.current;
+    if (decoded) drawPreview(decoded);
+  }, [file, drawPreview]);
 
   const onDrop = useCallback((accepted) => { if (accepted[0]) loadFile(accepted[0]); }, [loadFile]);
 
