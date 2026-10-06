@@ -63,6 +63,16 @@ export const TOOLS = [
     nameKey: "header.addWatermark",
     descKey: "header.addWatermarkDesc",
   },
+  {
+    slug: "blackAndWhite",
+    nameKey: "header.blackAndWhite",
+    descKey: "header.blackAndWhiteDesc",
+  },
+  {
+    slug: "circleCrop",
+    nameKey: "header.circleCrop",
+    descKey: "header.circleCropDesc",
+  },
 ];
 
 export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
@@ -70,7 +80,7 @@ export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
 // Які інструменти доречно радити на сторінці кожного інструмента
 // (за змістом: фото → фото, документи → документи).
 export const RELATED = {
-  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf", "cropImage", "rotateImage", "addWatermark"],
+  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf", "cropImage", "rotateImage", "addWatermark", "blackAndWhite", "circleCrop"],
   convert: ["webp", "home", "resize", "presets", "convertToPng"],
   webp: ["convert", "home", "resize", "presets", "convertToPng"],
   resize: ["home", "convert", "webp", "presets", "compressToSize", "cropImage", "rotateImage"],
@@ -86,6 +96,8 @@ export const RELATED = {
   cropImage: ["resize", "rotateImage", "compressToSize", "convertToPng", "removeExif", "home"],
   rotateImage: ["cropImage", "addWatermark", "resize", "compressToSize", "convertToPng", "home"],
   addWatermark: ["rotateImage", "cropImage", "resize", "compressToSize", "home"],
+  blackAndWhite: ["rotateImage", "cropImage", "addWatermark", "resize", "compressToSize", "home"],
+  circleCrop: ["cropImage", "rotateImage", "addWatermark", "resize", "compressToSize", "home"],
 };
 
 // Тільки для e2e-збірки (VITE_E2E_STUB=1): заглушка з підмножиною мов, щоб

@@ -45,7 +45,11 @@
     "rotateImage": "Rotate Image",
     "rotateImageDesc": "Rotate 90°/180° or flip horizontally/vertically",
     "addWatermark": "Watermark",
-    "addWatermarkDesc": "Text or logo over a photo, any position"
+    "addWatermarkDesc": "Text or logo over a photo, any position",
+    "blackAndWhite": "Black & White Photo",
+    "blackAndWhiteDesc": "Convert a photo to black and white with adjustable intensity",
+    "circleCrop": "Circle Crop Photo",
+    "circleCropDesc": "Crop a photo into a perfect circle for an avatar or logo"
   },
   "home": {
     "categories": {
@@ -204,7 +208,8 @@
   },
   "footer": {
     "title": "Your reliable assistant",
-    "tools": "Tools"
+    "tools": "Tools",
+    "legal": "Legal"
   },
   "auth": {
     "titleLogin": "Account Login",
@@ -1336,6 +1341,171 @@
           "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
         }
       ]
+    },
+    "privacy": {
+      "title": "Privacy Policy"
+    },
+    "terms": {
+      "title": "Terms of Service"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "about": {
+      "title": "About CompressPhoto"
+    },
+    "blackAndWhite": {
+      "title": "Why convert a photo to black and white online",
+      "text1": "A black and white photo isn't just nostalgia for old prints: the effect strips away color noise and leaves only shape, light and shadow, which often reads as more striking than the color original. Portrait photographers use it to hide uneven skin tone or an off white balance; designers use it to unify a batch of photos shot under different lighting into one consistent style; on documents and résumés, a black and white photo looks restrained and professional. There's a practical reason too: when lighting is mixed (daylight next to a warm lamp), the color version often looks unnatural, while the black and white version looks perfectly natural — even artistic.",
+      "text2": "This tool converts a photo to black and white right in your browser: upload a photo and drag the intensity slider — at 100% the photo becomes fully black and white, and at in-between values the colors stay but are muted, which often looks softer than an abrupt switch. The preview updates instantly with every move of the slider, so you see the result right away. Once you like it, download the file as JPG, PNG or WebP. The photo is never uploaded to a server and isn't stored anywhere.",
+      "benefits": [
+        {
+          "title": "Instant result",
+          "text": "The effect is applied the moment you move the slider — the preview updates in real time, with no separate \"apply\" step or processing wait."
+        },
+        {
+          "title": "Adjustable intensity",
+          "text": "Unlike a simple on/off toggle, a 0-100% slider lets you dial in exactly the right amount of desaturation — from a light color tone-down to a fully black and white photo."
+        },
+        {
+          "title": "No loss of pixel detail",
+          "text": "The black and white conversion only recalculates each pixel's color based on its brightness — pixel positions and image detail are untouched."
+        },
+        {
+          "title": "Nothing uploaded to a server",
+          "text": "All processing happens right in your browser, on your own device; the photo is never sent anywhere or stored on the site's side."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to convert a photo to black and white",
+          "steps": [
+            "Drag a photo into the upload area or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF (iPhone photos) are all supported.",
+            "Drag the intensity slider right to strengthen the effect, or left to keep more color — the preview updates right away.",
+            "Set the slider to 100% for the classic, fully black and white look.",
+            "Pick an output format (JPG, PNG or WebP) and click \"Download\"."
+          ]
+        },
+        {
+          "title": "Effect intensity: from partial to full desaturation",
+          "text": "The intensity slider isn't just a color/black-and-white switch: at 100% the photo becomes the classic black and white look, while at in-between values (say, 40-60%) the colors stay visible but muted, which often suits portraits or photos with a busy background better, where removing color entirely throws away too much information. Experiment with the value until the preview shows the balance you want."
+        },
+        {
+          "title": "Output formats: JPG, PNG, WebP",
+          "text": "Choose the output format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any (say, a PNG logo); WebP combines a small size with transparency support, though it doesn't open in every older program."
+        },
+        {
+          "title": "Does black and white conversion lose quality",
+          "text": "Converting to black and white recalculates each pixel's brightness using a standard formula (the same weights TVs and video codecs use for a black and white signal), rather than changing or blending neighboring pixels, so sharpness and detail aren't lost. Some loss is possible only during final encoding to JPG or WebP — lossy formats, same as saving any photo in them; pick PNG if you need zero loss."
+        },
+        {
+          "title": "Privacy",
+          "text": "The photo is processed entirely in your browser: it's never uploaded to a server, never stored, and never sent anywhere, even temporarily. Close the tab and every trace of working with the photo is gone."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I make a photo only partially black and white?",
+          "a": "Yes, that's exactly what the intensity slider is for: at an in-between value (say, 50%) the colors stay, just muted, instead of being removed entirely."
+        },
+        {
+          "q": "What's the difference between black and white and a sepia effect?",
+          "a": "This tool does true desaturation (grayscale shades based on brightness), not the warm brown tone of sepia — they're different effects; sepia could become a separate tool in the future."
+        },
+        {
+          "q": "Will the photo lose quality after converting to black and white?",
+          "a": "No, only each pixel's color changes based on its brightness; pixel positions and detail stay the same. A small loss is possible only when saving as JPG or WebP."
+        },
+        {
+          "q": "Which photo formats are supported?",
+          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF. The result can be saved as JPG, PNG or WebP."
+        },
+        {
+          "q": "Is there a file size limit?",
+          "a": "Yes, up to 30MB per file — plenty for photos from any modern phone or camera."
+        },
+        {
+          "q": "Is the photo stored on a server?",
+          "a": "No, everything happens in your browser; the photo is never sent to or stored on the site's server."
+        }
+      ]
+    },
+    "circleCrop": {
+      "title": "Circle Crop Photo Online: Avatar, Logo, Round Picture",
+      "text1": "Circle crop turns any straight photo into a perfect circle — exactly the shape social media avatars, messenger profile pictures, and round logos need. The tool runs right in your browser: upload a photo, drag the selection frame over the face or object you want, and download the result with a single click.",
+      "text2": "Unlike regular rectangular cropping, the frame here always stays a perfect circle no matter what aspect ratio the original photo has. You can export the result as PNG or WebP with a transparent background around the circle (so it sits cleanly on any site or app background), or as JPG with a white backdrop if transparency isn't needed.",
+      "benefits": [
+        {
+          "title": "A perfect circle",
+          "text": "The selection frame always stays an exact circle, never an oval, no matter the original photo's aspect ratio or how you drag it."
+        },
+        {
+          "title": "Transparent PNG/WebP background",
+          "text": "Everything outside the circle becomes transparent in PNG or WebP — drop the circle onto any background with no white corners around it."
+        },
+        {
+          "title": "No quality loss",
+          "text": "Cropping doesn't compress or re-encode the pixels inside the circle — they stay exactly as in the original until you export to your chosen format."
+        },
+        {
+          "title": "Everything in the browser",
+          "text": "The photo is processed locally on your browser's canvas — nothing is uploaded to a server, and the file goes nowhere until you click Download yourself."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Why you'd want a circle-cropped photo",
+          "text": "A round shape is the standard for social media avatars (Facebook, Instagram, LinkedIn, Telegram, Discord), messenger and video-call profile pictures (Zoom, Google Meet), and round logos or app icons. If you upload a plain rectangular photo as an avatar, the platform will crop it into a circle automatically anyway — often cutting off a face or logo awkwardly. Cropping it into a circle yourself beforehand gives you control over exactly what stays in frame."
+        },
+        {
+          "title": "How to circle-crop a photo online",
+          "steps": [
+            "Upload a photo — drag a file into the browser window or pick one from your device.",
+            "A circular frame appears centered on the preview — drag it to the right spot with a finger or your mouse.",
+            "Drag any of the four corner handles to make the circle bigger or smaller — the shape always stays a perfect circle.",
+            "Pick an output format: PNG or WebP for a transparent background around the circle, or JPG if transparency isn't needed.",
+            "Click \"Crop and download\" — the finished file saves to your device right away."
+          ]
+        },
+        {
+          "title": "PNG with transparency or JPG with white",
+          "text": "PNG and WebP support transparency (an alpha channel) — everything left outside the circle becomes fully transparent, so the circle can sit on a dark, light or colored background without a white square around it. JPG doesn't support transparency, so wherever the background should be transparent it gets filled with white instead — fine if the circle will sit on a white background, or for simple printing."
+        },
+        {
+          "title": "Which platforms a circle crop works for",
+          "text": "Circle cropping suits avatars for Facebook, Instagram, X (Twitter), LinkedIn, Telegram, Discord, Slack and WhatsApp; profile pictures in Zoom, Google Meet and Skype; round app icons on iOS and Android; and company logos that are traditionally round, such as seals, badges and community icons."
+        },
+        {
+          "title": "Privacy and processing speed",
+          "text": "Everything happens locally on your browser's canvas — the photo is never uploaded to any server, and the crop itself takes a fraction of a second even for large photos straight from a phone. Once you close the tab or pick a new photo, the processed image simply disappears from the browser's memory — no copy is kept on compressphoto.org's servers."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is the photo uploaded to a server?",
+          "a": "No. All processing happens locally in your browser on a canvas element — the photo is never sent to compressphoto.org's servers or anyone else's."
+        },
+        {
+          "q": "Which format should I pick — PNG or JPG?",
+          "a": "PNG or WebP if you need a transparent background around the circle (usually the right choice for avatars and logos). JPG if the background should be white or file size matters for printing."
+        },
+        {
+          "q": "Can I crop into an oval instead of a circle?",
+          "a": "No, the frame always stays a perfect circle. If you need a freeform or rectangular shape, use the regular Crop Image tool instead."
+        },
+        {
+          "q": "Does this work on a phone?",
+          "a": "Yes, dragging the frame and corner handles supports touch exactly like a mouse — everything works in a mobile browser with no app to install."
+        },
+        {
+          "q": "What's the maximum photo resolution it can handle?",
+          "a": "The limit comes from the browser itself (typically up to around 16,000 pixels per side) — more than enough for photos from modern phones and cameras."
+        },
+        {
+          "q": "Is it free and registration-free?",
+          "a": "Yes, the tool is completely free, requires no sign-up, and has no limit on how many photos you can crop."
+        }
+      ]
     }
   },
   "errors": {
@@ -1496,6 +1666,42 @@
     "settingsTitle": "Watermark settings",
     "errors": {
       "watermarkFailed": "Couldn't process the photo. Try again or a different format."
+    }
+  },
+  "blackAndWhite": {
+    "titlePart1": "Black & White",
+    "titleGradient": "Photo",
+    "subtitle": "Convert a photo to black and white right in your browser — with an intensity slider from partial desaturation to fully black and white, nothing uploaded.",
+    "dropzone": "Choose a photo",
+    "dropText2": "Drop the photo to upload",
+    "original": "Size",
+    "intensity": "Effect intensity",
+    "format": "Output format",
+    "download": "Download",
+    "processing": "Processing…",
+    "downloadedTitle": "Done!",
+    "settingsTitle": "Effect settings",
+    "hint": "Drag the intensity slider — the preview updates instantly, and you can stop at any in-between value.",
+    "errors": {
+      "processFailed": "Couldn't process the photo. Try again or a different format."
+    }
+  },
+  "circleCrop": {
+    "titlePart1": "Circle Crop",
+    "titleGradient": "Photo",
+    "subtitle": "Crop a photo into a perfect circle right in your browser — great for avatars, profile pictures or logos. Drag the frame to pick the area, nothing gets uploaded.",
+    "dropzone": "Choose a photo",
+    "dropText2": "Drop to upload your photo",
+    "original": "Original",
+    "selection": "Selection diameter",
+    "format": "Output format",
+    "crop": "Crop and download",
+    "processing": "Processing…",
+    "downloadedTitle": "Done!",
+    "settingsTitle": "Crop settings",
+    "hint": "Drag the circle or its corners to adjust the selection — the shape always stays a perfect circle.",
+    "errors": {
+      "cropFailed": "Couldn't crop the photo. Try again or pick a different format."
     }
   }
 }

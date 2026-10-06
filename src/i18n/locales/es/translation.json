@@ -45,7 +45,11 @@
     "rotateImage": "Girar Imagen",
     "rotateImageDesc": "Girar 90°/180° o voltear en horizontal/vertical",
     "addWatermark": "Marca de Agua",
-    "addWatermarkDesc": "Texto o logo sobre una foto, en cualquier posición"
+    "addWatermarkDesc": "Texto o logo sobre una foto, en cualquier posición",
+    "blackAndWhite": "Foto en Blanco y Negro",
+    "blackAndWhiteDesc": "Convierte una foto a blanco y negro con intensidad ajustable",
+    "circleCrop": "Recorte Circular de Fotos",
+    "circleCropDesc": "Recorta una foto en círculo para avatar o logo"
   },
   "home": {
     "categories": {
@@ -204,7 +208,8 @@
   },
   "footer": {
     "title": "Tu asistente de confianza",
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "legal": "Legal"
   },
   "auth": {
     "titleLogin": "Iniciar sesión en tu cuenta",
@@ -1336,6 +1341,159 @@
           "a": "Sí, hasta 30 MB por archivo — más que suficiente para fotos de cualquier móvil o cámara moderna."
         }
       ]
+    },
+    "blackAndWhite": {
+      "title": "Por qué convertir una foto a blanco y negro online",
+      "text1": "Una foto en blanco y negro no es solo nostalgia por las fotos antiguas: el efecto elimina el ruido de color y deja solo la forma, la luz y la sombra, por lo que a menudo resulta más impactante que el original a color. Los fotógrafos de retratos lo usan para disimular un tono de piel irregular o un balance de blancos fallido; los diseñadores, para unificar en un solo estilo una serie de fotos tomadas con luces distintas; en documentos y currículums, una foto en blanco y negro luce sobria y profesional. También hay una razón práctica: cuando la iluminación de la foto es mixta (luz de día junto a una lámpara cálida), la versión a color suele verse poco natural, mientras que la versión en blanco y negro se ve perfectamente natural, e incluso artística.",
+      "text2": "Esta herramienta convierte una foto a blanco y negro directamente en tu navegador: sube una foto y arrastra el control de intensidad — al 100% la foto se vuelve completamente en blanco y negro, y en valores intermedios los colores se mantienen, pero atenuados, lo que a menudo luce más suave que un cambio abrupto. La vista previa se actualiza al instante con cada movimiento del control, así que ves el resultado de inmediato. Cuando te guste, descarga el archivo en JPG, PNG o WebP. La foto nunca se sube a un servidor ni se guarda en ningún lugar.",
+      "benefits": [
+        {
+          "title": "Resultado instantáneo",
+          "text": "El efecto se aplica en el momento en que mueves el control — la vista previa se actualiza en tiempo real, sin un paso separado de \"aplicar\" ni espera de procesamiento."
+        },
+        {
+          "title": "Intensidad ajustable",
+          "text": "A diferencia de un simple interruptor de encendido/apagado, un control del 0% al 100% te permite ajustar exactamente el nivel de desaturación — desde un ligero atenuado del color hasta una foto completamente en blanco y negro."
+        },
+        {
+          "title": "Sin pérdida de detalle de píxeles",
+          "text": "La conversión a blanco y negro solo recalcula el color de cada píxel según su luminosidad — la posición de los píxeles y el detalle de la imagen no se tocan."
+        },
+        {
+          "title": "Nada se sube a un servidor",
+          "text": "Todo el procesamiento ocurre en tu propio navegador, en tu propio dispositivo; la foto nunca se envía a ningún lugar ni se guarda del lado del sitio."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo convertir una foto a blanco y negro",
+          "steps": [
+            "Arrastra una foto al área de carga o haz clic en ella para elegir un archivo. Se admiten JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF (fotos de iPhone).",
+            "Arrastra el control de intensidad hacia la derecha para intensificar el efecto, o hacia la izquierda para conservar más color — la vista previa se actualiza al instante.",
+            "Pon el control al 100% para el clásico look completamente en blanco y negro.",
+            "Elige un formato de salida (JPG, PNG o WebP) y haz clic en \"Descargar\"."
+          ]
+        },
+        {
+          "title": "Intensidad del efecto: de la desaturación parcial a la total",
+          "text": "El control de intensidad no es solo un interruptor de color/blanco y negro: al 100% la foto adopta el clásico look en blanco y negro, mientras que en valores intermedios (por ejemplo, 40-60%) los colores siguen siendo visibles pero atenuados, lo que a menudo conviene más a retratos o fotos con un fondo recargado, donde quitar el color por completo elimina demasiada información. Experimenta con el valor hasta que la vista previa muestre el equilibrio que buscas."
+        },
+        {
+          "title": "Formatos de salida: JPG, PNG, WebP",
+          "text": "Elige el formato del resultado de forma independiente al formato del archivo original. JPG es ideal para fotografías y da el tamaño de archivo más pequeño; PNG conserva la transparencia si el original la tenía (por ejemplo, un logo en PNG); WebP combina un tamaño reducido con soporte de transparencia, aunque no se abre en todos los programas antiguos."
+        },
+        {
+          "title": "¿Se pierde calidad al convertir a blanco y negro?",
+          "text": "Convertir a blanco y negro recalcula la luminosidad de cada píxel con una fórmula estándar (los mismos pesos que usan los televisores y los códecs de video para la señal en blanco y negro), en lugar de cambiar o mezclar píxeles vecinos, así que la nitidez y el detalle no se pierden. Solo es posible alguna pérdida durante la codificación final a JPG o WebP — formatos con compresión, igual que al guardar cualquier foto en ellos; elige PNG si necesitas cero pérdida."
+        },
+        {
+          "title": "Privacidad",
+          "text": "La foto se procesa por completo en tu navegador: nunca se sube a un servidor, nunca se guarda y nunca se envía a ningún lugar, ni siquiera temporalmente. Al cerrar la pestaña, desaparece todo rastro de haber trabajado con la foto."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo dejar una foto solo parcialmente en blanco y negro?",
+          "a": "Sí, para eso está el control de intensidad: en un valor intermedio (por ejemplo, 50%) los colores se mantienen, solo atenuados, en lugar de eliminarse por completo."
+        },
+        {
+          "q": "¿Cuál es la diferencia entre blanco y negro y un efecto sepia?",
+          "a": "Esta herramienta hace una desaturación real (tonos de gris según la luminosidad), no el tono marrón cálido del sepia — son efectos distintos; el sepia podría ser una herramienta separada en el futuro."
+        },
+        {
+          "q": "¿La foto perderá calidad al convertirla a blanco y negro?",
+          "a": "No, solo cambia el color de cada píxel según su luminosidad; la posición de los píxeles y el detalle se mantienen igual. Solo puede haber una pequeña pérdida al guardar en JPG o WebP."
+        },
+        {
+          "q": "¿Qué formatos de foto son compatibles?",
+          "a": "De entrada: JPEG, PNG, WebP, BMP, GIF, AVIF y HEIC/HEIF. El resultado se puede guardar en JPG, PNG o WebP."
+        },
+        {
+          "q": "¿Hay un límite de tamaño de archivo?",
+          "a": "Sí, hasta 30 MB por archivo, suficiente para fotos de cualquier teléfono o cámara moderna."
+        },
+        {
+          "q": "¿La foto se guarda en un servidor?",
+          "a": "No, todo ocurre en tu navegador; la foto nunca se envía ni se guarda en el servidor del sitio."
+        }
+      ]
+    },
+    "circleCrop": {
+      "title": "Recorte Circular de Fotos Online: Avatar, Logo, Foto Redonda",
+      "text1": "El recorte circular convierte cualquier foto recta en un círculo perfecto — justo la forma que necesitan los avatares de redes sociales, las fotos de perfil en mensajería y los logos redondos. La herramienta funciona directamente en tu navegador: sube una foto, arrastra el marco de selección sobre la cara u objeto que quieras y descarga el resultado con un solo clic.",
+      "text2": "A diferencia del recorte rectangular habitual, aquí el marco siempre permanece como un círculo perfecto, sin importar la proporción de la foto original. Puedes exportar el resultado en PNG o WebP con fondo transparente alrededor del círculo (para que quede limpio sobre cualquier fondo de sitio o app) o en JPG con fondo blanco, si no necesitas transparencia.",
+      "benefits": [
+        {
+          "title": "Un círculo perfecto",
+          "text": "El marco de selección siempre permanece como un círculo exacto, nunca un óvalo, sin importar la proporción de la foto original ni cómo lo arrastres."
+        },
+        {
+          "title": "Fondo transparente en PNG/WebP",
+          "text": "Todo lo que queda fuera del círculo se vuelve transparente en PNG o WebP: coloca el círculo sobre cualquier fondo sin esquinas blancas alrededor."
+        },
+        {
+          "title": "Sin pérdida de calidad",
+          "text": "El recorte no comprime ni recodifica los píxeles dentro del círculo — se mantienen igual que en el original hasta que exportas al formato elegido."
+        },
+        {
+          "title": "Todo en el navegador",
+          "text": "La foto se procesa localmente en el canvas de tu navegador — no se sube nada a ningún servidor, y el archivo no va a ninguna parte hasta que pulsas Descargar."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Para qué sirve el recorte circular de fotos",
+          "text": "La forma redonda es el estándar para avatares en redes sociales (Facebook, Instagram, LinkedIn, Telegram, Discord), fotos de perfil en mensajería y videollamadas (Zoom, Google Meet), y para logos o iconos de apps redondos. Si subes una foto rectangular normal como avatar, la plataforma la recortará en círculo automáticamente de todos modos — a menudo cortando mal la cara o el logo. Recortarla tú mismo en círculo de antemano te da control sobre lo que queda exactamente en el encuadre."
+        },
+        {
+          "title": "Cómo recortar una foto en círculo online",
+          "steps": [
+            "Sube una foto: arrastra un archivo a la ventana del navegador o elígelo desde tu dispositivo.",
+            "Aparecerá un marco circular centrado sobre la vista previa — arrástralo al lugar correcto con el dedo o el ratón.",
+            "Arrastra cualquiera de las cuatro esquinas para hacer el círculo más grande o más pequeño — la forma siempre sigue siendo un círculo perfecto.",
+            "Elige un formato de salida: PNG o WebP para fondo transparente alrededor del círculo, o JPG si no necesitas transparencia.",
+            "Pulsa «Recortar y descargar» — el archivo final se guarda en tu dispositivo de inmediato."
+          ]
+        },
+        {
+          "title": "PNG con transparencia o JPG con blanco",
+          "text": "PNG y WebP admiten transparencia (canal alfa) — todo lo que queda fuera del círculo se vuelve completamente transparente, por lo que el círculo puede colocarse sobre un fondo oscuro, claro o de color sin un cuadrado blanco alrededor. JPG no admite transparencia, así que donde debería haber fondo transparente se rellena con blanco en su lugar — adecuado si el círculo irá sobre fondo blanco, o para impresión sencilla."
+        },
+        {
+          "title": "Para qué plataformas funciona el recorte circular",
+          "text": "El recorte circular sirve para avatares de Facebook, Instagram, X (Twitter), LinkedIn, Telegram, Discord, Slack y WhatsApp; fotos de perfil en Zoom, Google Meet y Skype; iconos redondos de apps en iOS y Android; y logos de empresas que tradicionalmente son redondos, como sellos, insignias e iconos de comunidades."
+        },
+        {
+          "title": "Privacidad y velocidad de procesamiento",
+          "text": "Todo ocurre localmente en el canvas de tu navegador — la foto nunca se sube a ningún servidor, y el recorte en sí tarda una fracción de segundo incluso con fotos grandes tomadas con el móvil. En cuanto cierras la pestaña o eliges otra foto, la imagen procesada simplemente desaparece de la memoria del navegador — no queda ninguna copia en los servidores de compressphoto.org."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿La foto se sube a un servidor?",
+          "a": "No. Todo el procesamiento ocurre localmente en tu navegador sobre un elemento canvas — la foto nunca se envía a los servidores de compressphoto.org ni a terceros."
+        },
+        {
+          "q": "¿Qué formato elijo, PNG o JPG?",
+          "a": "PNG o WebP si necesitas fondo transparente alrededor del círculo (suele ser la opción correcta para avatares y logos). JPG si el fondo debe ser blanco o el tamaño del archivo importa para imprimir."
+        },
+        {
+          "q": "¿Puedo recortar en óvalo en lugar de círculo?",
+          "a": "No, el marco siempre permanece como un círculo perfecto. Si necesitas una forma libre o rectangular, usa la herramienta normal de Recortar Imagen."
+        },
+        {
+          "q": "¿Funciona en el móvil?",
+          "a": "Sí, arrastrar el marco y las esquinas admite el tacto igual que el ratón — todo funciona en un navegador móvil sin instalar ninguna app."
+        },
+        {
+          "q": "¿Cuál es la resolución máxima de foto que puede procesar?",
+          "a": "El límite lo pone el propio navegador (normalmente hasta unos 16.000 píxeles por lado) — más que suficiente para fotos de teléfonos y cámaras actuales."
+        },
+        {
+          "q": "¿Es gratis y sin registro?",
+          "a": "Sí, la herramienta es completamente gratuita, no requiere registro y no tiene límite en la cantidad de fotos que puedes recortar."
+        }
+      ]
     }
   },
   "errors": {
@@ -1496,6 +1654,42 @@
     "settingsTitle": "Ajustes de la marca de agua",
     "errors": {
       "watermarkFailed": "No se pudo procesar la foto. Inténtalo de nuevo o prueba otro formato."
+    }
+  },
+  "blackAndWhite": {
+    "titlePart1": "Blanco y",
+    "titleGradient": "Negro",
+    "subtitle": "Convierte una foto a blanco y negro directamente en el navegador — con un control de intensidad desde el desaturado parcial hasta el blanco y negro completo, sin subir nada.",
+    "dropzone": "Elige una foto",
+    "dropText2": "Suelta la foto para subirla",
+    "original": "Tamaño",
+    "intensity": "Intensidad del efecto",
+    "format": "Formato de salida",
+    "download": "Descargar",
+    "processing": "Procesando…",
+    "downloadedTitle": "¡Listo!",
+    "settingsTitle": "Ajustes del efecto",
+    "hint": "Arrastra el control de intensidad — la vista previa se actualiza al instante, y puedes detenerte en cualquier valor intermedio.",
+    "errors": {
+      "processFailed": "No se pudo procesar la foto. Prueba de nuevo o con otro formato."
+    }
+  },
+  "circleCrop": {
+    "titlePart1": "Recorte Circular",
+    "titleGradient": "de Fotos",
+    "subtitle": "Recorta una foto en un círculo perfecto directamente en el navegador — ideal para avatares, fotos de perfil o logos. Arrastra el marco para elegir el área, sin subir nada.",
+    "dropzone": "Elige una foto",
+    "dropText2": "Suelta para subir tu foto",
+    "original": "Original",
+    "selection": "Diámetro de selección",
+    "format": "Formato de salida",
+    "crop": "Recortar y descargar",
+    "processing": "Procesando…",
+    "downloadedTitle": "¡Listo!",
+    "settingsTitle": "Ajustes de recorte",
+    "hint": "Arrastra el círculo o sus esquinas para ajustar la selección — la forma siempre sigue siendo un círculo perfecto.",
+    "errors": {
+      "cropFailed": "No se pudo recortar la foto. Prueba de nuevo u otro formato."
     }
   }
 }

@@ -359,4 +359,96 @@ export const PAGE_META = {
         "Añade una marca de agua de texto o tu logo a una foto en el navegador: posición, opacidad, tamaño y repetición en mosaico. Exporta en JPG, PNG o WebP.",
     },
   },
+  blackAndWhite: {
+    uk: {
+      title: "Чорно-біле фото онлайн безкоштовно",
+      description:
+        "Переведіть фото в чорно-біле прямо в браузері з повзунком інтенсивності 0–100%. JPG/PNG/WebP, без втрати якості позицій пікселів. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Black and White Photo Online Free",
+      description:
+        "Turn a photo black and white right in your browser with a 0-100% intensity slider for partial desaturation too. Export as JPG, PNG or WebP. Nothing uploaded.",
+    },
+    ru: {
+      title: "Чёрно-белое фото онлайн бесплатно",
+      description:
+        "Сделайте фото чёрно-белым прямо в браузере с помощью ползунка интенсивности 0–100% — доступно и частичное обесцвечивание. JPG/PNG/WebP. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Foto en Blanco y Negro Online Gratis",
+      description:
+        "Convierte una foto a blanco y negro en el navegador con un control de intensidad del 0 al 100% para un desaturado parcial. Exporta en JPG, PNG o WebP.",
+    },
+  },
+  circleCrop: {
+    uk: {
+      title: "Кругла обрізка фото онлайн безкоштовно",
+      description:
+        "Обріжте фото в ідеальне коло прямо в браузері — аватар, профіль чи лого. PNG з прозорим фоном або JPG/WebP. Без завантаження на сервер.",
+    },
+    en: {
+      title: "Circle Crop Photo Online Free",
+      description:
+        "Crop a photo into a perfect circle in your browser — great for avatars or logos. Export as PNG with transparency or JPG/WebP. Nothing uploaded.",
+    },
+    ru: {
+      title: "Круглая обрезка фото онлайн бесплатно",
+      description:
+        "Обрежьте фото в идеальный круг прямо в браузере — аватар, профиль или лого. PNG с прозрачным фоном или JPG/WebP. Без загрузки на сервер.",
+    },
+    es: {
+      title: "Recorte Circular de Fotos Online Gratis",
+      description:
+        "Recorta una foto en un círculo perfecto en el navegador: ideal para avatares o logos. Exporta en PNG con transparencia o en JPG/WebP.",
+    },
+  },
+  // Довір-сторінки: лише uk+en (ru/es — пізніше). noindex не ставимо —
+  // Google навпаки любить бачити Privacy/Terms/Contact на сайтах.
+  privacy: {
+    uk: {
+      title: "Політика конфіденційності — CompressPhoto",
+      description:
+        "Які дані отримує CompressPhoto і що з ними відбувається: обробка файлів у браузері, Word↔PDF через CloudConvert, акаунти через Supabase, аналітика лише за згодою.",
+    },
+    en: {
+      title: "Privacy Policy — CompressPhoto",
+      description:
+        "What data CompressPhoto collects and what happens to it: in-browser file processing, Word↔PDF via CloudConvert, accounts via Supabase, consent-gated analytics.",
+    },
+  },
+  terms: {
+    uk: {
+      title: "Умови використання — CompressPhoto",
+      description:
+        "Умови використання безкоштовних онлайн-інструментів CompressPhoto: ліміти, відмова від відповідальності, права на ваші файли.",
+    },
+    en: {
+      title: "Terms of Service — CompressPhoto",
+      description:
+        "Terms of use for CompressPhoto's free online tools: limits, disclaimer, and your rights over your own files.",
+    },
+  },
+  contact: {
+    uk: {
+      title: "Контакти — CompressPhoto",
+      description: "Напишіть нам: питання, пропозиції, звіти про помилки чи запити щодо приватності.",
+    },
+    en: {
+      title: "Contact — CompressPhoto",
+      description: "Get in touch: questions, suggestions, bug reports, or privacy requests.",
+    },
+  },
+  about: {
+    uk: {
+      title: "Про CompressPhoto",
+      description:
+        "CompressPhoto — безкоштовні онлайн-інструменти для фото й документів, що обробляють файли прямо у браузері, без завантаження на сервер.",
+    },
+    en: {
+      title: "About CompressPhoto",
+      description:
+        "CompressPhoto is a free online toolkit for photos and documents that processes files right in your browser, with nothing uploaded to a server.",
+    },
+  },
 };

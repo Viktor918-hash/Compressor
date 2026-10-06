@@ -173,7 +173,7 @@ with sync_playwright() as p:
     check("S1b no 'undefined' anywhere in the document", "undefined" not in html.lower().replace("undefined behavior",""), [m for m in re.findall(r".{30}undefined.{30}",html)][:3])
     canon=pg.get_attribute('link[rel=canonical]',"href"); check("S1c canonical (uk)", canon=="https://compressphoto.org/__e2e-merge", canon)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S2 footer on uk shows the stub (14 links) with uk href", len(ftr)==14 and "/__e2e-merge" in ftr, ftr)
+    check("S2 footer on uk shows the stub (23 links: 18 tools + stub + 4 legal)", len(ftr)==23 and "/__e2e-merge" in ftr, ftr)
     # language switcher
     def switch(code):
         pg.locator(".ls-trigger:visible").first.click(); pg.locator(f".ls-option:has(.ls-option-code:text-is('{code}'))").first.click(); pg.wait_for_timeout(600)
@@ -182,21 +182,23 @@ with sync_playwright() as p:
     check("S3c en page canonical", pg.get_attribute('link[rel=canonical]',"href")=="https://compressphoto.org/en/__e2e-merge")
     switch("RU"); check("S4 switcher en→ru: tool has no ru → goes to /ru home", pg.url==B+"/ru", pg.url)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S4b ru footer hides the stub (13 links, no __e2e)", len(ftr)==13 and not any("__e2e" in h for h in ftr), ftr)
+    check("S4b ru footer hides the stub (18 links, no __e2e)", len(ftr)==18 and not any("__e2e" in h for h in ftr), ftr)
     pg.goto(B+"/es"); pg.wait_for_selector("h1"); pg.wait_for_timeout(400)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S4c es footer hides the stub", len(ftr)==13 and not any("__e2e" in h for h in ftr), ftr)
+    check("S4c es footer hides the stub", len(ftr)==18 and not any("__e2e" in h for h in ftr), ftr)
     pg.goto(B+"/__e2e-merge"); pg.wait_for_selector("h1"); pg.wait_for_timeout(400); switch("ES")
     check("S4d switcher uk→es → /es home", pg.url==B+"/es", pg.url)
     # related tools
     for path,expect in [("/resize-image","/__e2e-merge"),("/en/resize-image","/en/__e2e-merge")]:
         pg.goto(B+path); pg.wait_for_selector(".related-tools__item"); pg.wait_for_timeout(300)
         hs=pg.eval_on_selector_all(".related-tools__item","els=>els.map(e=>e.getAttribute('href'))")
-        check(f"S5 related on {path} lists the stub with correct href", expect in hs and len(hs)==6, hs)
+        # RELATED.resize зараз має 7 реальних записів (виросло з 5 за кілька
+        # раундів додавання інструментів) + заглушка e2eMerge на uk/en = 8.
+        check(f"S5 related on {path} lists the stub with correct href", expect in hs and len(hs)==8, hs)
     for path in ["/ru/resize-image","/es/redimensionar-imagen"]:
         pg.goto(B+path); pg.wait_for_selector(".related-tools__item"); pg.wait_for_timeout(300)
         hs=pg.eval_on_selector_all(".related-tools__item","els=>els.map(e=>e.getAttribute('href'))")
-        check(f"S5b related on {path} hides the stub", len(hs)==5 and not any("__e2e" in h for h in hs), hs)
+        check(f"S5b related on {path} hides the stub", len(hs)==7 and not any("__e2e" in h for h in hs), hs)
     # header links to real tools still fine on ru
     hh=pg.eval_on_selector_all("header a[href]","els=>els.map(e=>e.getAttribute('href'))")
     check("S6 header on /es has only /es links (+ no undefined)", all(h.startswith("/es") or h.startswith("http") or h.startswith("#") for h in hh) and not any("undefined" in h for h in hh), hh[:25])

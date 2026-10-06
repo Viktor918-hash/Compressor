@@ -15,6 +15,9 @@ import PhotoToPdf from "./components/PhotoToPdf/PhotoToPdf.jsx";
 import CropImage from "./components/CropImage/CropImage.jsx";
 import RotateImage from "./components/RotateImage/RotateImage.jsx";
 import Watermark from "./components/Watermark/Watermark.jsx";
+import BlackAndWhite from "./components/BlackAndWhite/BlackAndWhite.jsx";
+import CircleCrop from "./components/CircleCrop/CircleCrop.jsx";
+import { Privacy, Terms, Contact, About } from "./components/Legal/LegalPages.jsx";
 import { ROUTE_PATHS } from "./routes.config.js";
 
 // Прив'язка React-компонента до кожного slug'а з routes.config.js.
@@ -38,6 +41,12 @@ const SLUG_COMPONENTS = {
   cropImage: CropImage,
   rotateImage: RotateImage,
   addWatermark: Watermark,
+  blackAndWhite: BlackAndWhite,
+  circleCrop: CircleCrop,
+  privacy: Privacy,
+  terms: Terms,
+  contact: Contact,
+  about: About,
 };
 
 // Форма кожного елемента ROUTES лишається такою ж, як і раніше:

@@ -16,6 +16,8 @@ const TOOLS = {
   cropImage: { ru: "/ru/crop-image", es: "/es/recortar-imagen", sections: 6 },
   rotateImage: { ru: "/ru/rotate-image", es: "/es/girar-imagen", sections: 5 },
   addWatermark: { ru: "/ru/add-watermark", es: "/es/marca-de-agua", sections: 6 },
+  blackAndWhite: { ru: "/ru/black-and-white", es: "/es/foto-en-blanco-y-negro", sections: 5 },
+  circleCrop: { ru: "/ru/circle-crop", es: "/es/recorte-circular", sections: 5 },
 };
 const read = (l) => JSON.parse(readFileSync(`src/i18n/locales/${l}/translation.json`, "utf8"));
 const words = (s) => (String(s).match(/[\p{L}\p{N}'’-]+/gu) || []).length;

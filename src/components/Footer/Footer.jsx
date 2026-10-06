@@ -6,6 +6,9 @@ import { ROUTES } from "../../routes";
 import { TOOLS } from "../../toolsCatalog";
 import { usePageLang } from "../../hooks/usePageLang";
 import { hasLang } from "../../utils/routeLangs";
+import { LEGAL_CONTENT } from "../Legal/legalContent";
+
+const LEGAL_SLUGS = ["privacy", "terms", "contact", "about"];
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -25,6 +28,25 @@ const Footer = () => {
                 <li key={slug}>
                   <LocalizedLink to={route.uk} className="footer__nav-link">
                     {t(nameKey)}
+                  </LocalizedLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* Довір-сторінки: Privacy/Terms/Contact/About — лише uk+en наразі */}
+        <nav className="footer__nav" aria-label={t("footer.legal")}>
+          <h2 className="footer__nav-title">{t("footer.legal")}</h2>
+          <ul className="footer__nav-list">
+            {LEGAL_SLUGS.map((slug) => {
+              const route = ROUTES.find((r) => r.slug === slug);
+              if (!route || !hasLang(route, lang)) return null;
+              const label = LEGAL_CONTENT[slug]?.[lang]?.title || LEGAL_CONTENT[slug]?.uk?.title;
+              return (
+                <li key={slug}>
+                  <LocalizedLink to={route.uk} className="footer__nav-link">
+                    {label}
                   </LocalizedLink>
                 </li>
               );

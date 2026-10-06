@@ -122,4 +122,24 @@ export const ROUTE_PATHS = [
     ru: "/ru/add-watermark",
     es: "/es/marca-de-agua",
   },
+  {
+    slug: "blackAndWhite",
+    uk: "/black-and-white",
+    en: "/en/black-and-white",
+    ru: "/ru/black-and-white",
+    es: "/es/foto-en-blanco-y-negro",
+  },
+  {
+    slug: "circleCrop",
+    uk: "/circle-crop",
+    en: "/en/circle-crop",
+    ru: "/ru/circle-crop",
+    es: "/es/recorte-circular",
+  },
+  // Довір-сторінки (uk+en спершу, як і для інструментів; ru/es — пізніше).
+  // Не інструменти: без header.*/TOOLS-запису, посилання лише у футері.
+  { slug: "privacy", uk: "/privacy", en: "/en/privacy" },
+  { slug: "terms", uk: "/terms", en: "/en/terms" },
+  { slug: "contact", uk: "/contact", en: "/en/contact" },
+  { slug: "about", uk: "/about", en: "/en/about" },
 ];

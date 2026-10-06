@@ -1,0 +1,95 @@
+/* ---- прев'ю фото + кругла рамка виділення ----
+   Та сама техніка, що й у CropImage.css (position:absolute + box-shadow
+   0 0 0 2000px для затемнення поза рамкою), але border-radius:50% на
+   рамці перетворює прямокутний виріз на круглий — box-shadow автоматично
+   огинає скруглені кути, тож затемнення поза колом лишається рівним. */
+.circle-preview-area {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.circle-preview-wrap {
+    position: relative;
+    /* той самий формула ширини, що й crop-preview-wrap/rotate-preview-wrap —
+       див. детальний коментар у CropImage.css */
+    --ar: 1;
+    width: min(100%, 520px, calc(65vh * var(--ar)));
+    max-height: 65vh;
+    overflow: hidden;
+    border-radius: 12px;
+    user-select: none;
+    touch-action: none;
+}
+
+.circle-preview-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.circle-frame {
+    position: absolute;
+    border-radius: 50%;
+    outline: 2px solid var(--color-primary-600);
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.55);
+    background: transparent;
+    cursor: grab;
+    touch-action: none;
+}
+
+.circle-frame:active {
+    cursor: grabbing;
+}
+
+.circle-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--color-primary-600);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    transform: translate(-50%, -50%);
+    touch-action: none;
+}
+
+.circle-handle--nw {
+    left: 0;
+    top: 0;
+    cursor: nwse-resize;
+}
+
+.circle-handle--se {
+    left: 100%;
+    top: 100%;
+    cursor: nwse-resize;
+}
+
+.circle-handle--ne {
+    left: 100%;
+    top: 0;
+    cursor: nesw-resize;
+}
+
+.circle-handle--sw {
+    left: 0;
+    top: 100%;
+    cursor: nesw-resize;
+}
+
+.circle-hint {
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+}
+
+@media (max-width: 520px) {
+    .circle-handle {
+        width: 22px;
+        height: 22px;
+    }
+}
