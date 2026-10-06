@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useId } from "react";
 import "./Header.css";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdGradient } from "react-icons/md";
 import {
   FiRepeat,
   FiX,
@@ -18,6 +18,7 @@ import {
   FiCrop,
   FiRotateCw,
   FiDroplet,
+  FiCircle,
 } from "react-icons/fi";
 import { FaCompress } from "react-icons/fa";
 import { TbResize, TbEraser } from "react-icons/tb";
@@ -321,6 +322,34 @@ const Header = () => {
                     </div>
                   </LocalizedLink>
                   <LocalizedLink hideIfMissing
+                    to="/black-and-white"
+                    className="dropdown-panel__item"
+                  >
+                    <MdGradient size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.blackAndWhite")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.blackAndWhiteDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/circle-crop"
+                    className="dropdown-panel__item"
+                  >
+                    <FiCircle size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.circleCrop")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.circleCropDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
                     to="/photo-presets"
                     className="dropdown-panel__item"
                   >
@@ -619,6 +648,22 @@ const Header = () => {
           >
             <FiDroplet size={18} className="mobile-menu__icon" />
             {t("header.addWatermark")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/black-and-white"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <MdGradient size={18} className="mobile-menu__icon" />
+            {t("header.blackAndWhite")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/circle-crop"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiCircle size={18} className="mobile-menu__icon" />
+            {t("header.circleCrop")}
           </LocalizedLink>
           <LocalizedLink hideIfMissing
             to="/photo-presets"
