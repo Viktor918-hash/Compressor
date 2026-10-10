@@ -19,6 +19,7 @@ import {
   FiRotateCw,
   FiDroplet,
   FiCircle,
+  FiVideo,
 } from "react-icons/fi";
 import { FaCompress } from "react-icons/fa";
 import { TbResize, TbEraser } from "react-icons/tb";
@@ -350,6 +351,20 @@ const Header = () => {
                     </div>
                   </LocalizedLink>
                   <LocalizedLink hideIfMissing
+                    to="/compress-video"
+                    className="dropdown-panel__item"
+                  >
+                    <FiVideo size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.compressVideo")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.compressVideoDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
                     to="/photo-presets"
                     className="dropdown-panel__item"
                   >
@@ -664,6 +679,14 @@ const Header = () => {
           >
             <FiCircle size={18} className="mobile-menu__icon" />
             {t("header.circleCrop")}
+          </LocalizedLink>
+          <LocalizedLink hideIfMissing
+            to="/compress-video"
+            className="mobile-menu__item"
+            onClick={closeMenu}
+          >
+            <FiVideo size={18} className="mobile-menu__icon" />
+            {t("header.compressVideo")}
           </LocalizedLink>
           <LocalizedLink hideIfMissing
             to="/photo-presets"

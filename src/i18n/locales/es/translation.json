@@ -49,7 +49,9 @@
     "blackAndWhite": "Foto en Blanco y Negro",
     "blackAndWhiteDesc": "Convierte una foto a blanco y negro con intensidad ajustable",
     "circleCrop": "Recorte Circular de Fotos",
-    "circleCropDesc": "Recorta una foto en círculo para avatar o logo"
+    "circleCropDesc": "Recorta una foto en círculo para avatar o logo",
+    "compressVideo": "Comprimir Video",
+    "compressVideoDesc": "Reducir MP4, MOV, AVI, WebM, MKV"
   },
   "home": {
     "categories": {
@@ -248,6 +250,8 @@
     "dropzone": "Arrastra y suelta un archivo aquí o haz clic para convertirlo a PDF",
     "limit": "Has agotado todas tus conversiones gratuitas de hoy. ¡Regístrate para obtener más!",
     "limit2": "Has alcanzado tu límite diario de conversiones. Por favor, inténtalo de nuevo mañana.",
+    "uploading": "Subiendo archivo…",
+    "processing": "Convirtiendo…",
     "text3": "Ya no es necesario convertir cada documento uno por uno: convierta varios archivos al mismo tiempo.",
     "panel": {
       "emptyState": "Añadir un archivo",
@@ -1494,6 +1498,82 @@
           "a": "Sí, la herramienta es completamente gratuita, no requiere registro y no tiene límite en la cantidad de fotos que puedes recortar."
         }
       ]
+    },
+    "compressVideo": {
+      "title": "Comprimir Video Online: MP4, MOV, AVI, WebM y MKV sin perder calidad de visualización",
+      "text1": "Un video de un teléfono o cámara actual puede pesar fácilmente cientos de megabytes tras solo unos segundos de grabación — enviar un archivo así por una app de mensajería, adjuntarlo a un correo o subirlo a una web se convierte rápidamente en un problema. Las plataformas o bien lo comprimen ellas mismas con su propio algoritmo (y a menudo empeoran la calidad), o simplemente rechazan el archivo. Esta herramienta reduce el tamaño del video directamente online, manteniendo una calidad suficiente para verlo en pantalla, no para edición profesional.",
+      "text2": "Hay dos modos: «Recomendado» — un clic, y elegimos una resolución sensata por ti (normalmente hasta 720p, lo que reduce notablemente el tamaño sin perder nitidez en una pantalla normal), o «Tamaño personalizado» — elige tú mismo una altura de cuadro concreta (1080p, 720p, 480p o 360p) si sabes exactamente a qué plataforma va destinado el archivo. La herramienta nunca permite reducir un video por debajo de su propia resolución — escalarlo hacia arriba solo aumentaría el archivo sin ningún beneficio real.",
+      "benefits": [
+        {
+          "title": "Archivos notablemente más pequeños",
+          "text": "Reducir la resolución del cuadro es la forma más fiable de comprimir significativamente un video, sea cual sea el códec o el bitrate con el que se grabó originalmente."
+        },
+        {
+          "title": "Recomendado o personalizado",
+          "text": "Un clic para el caso típico («Recomendado»), o control total sobre el resultado — 1080p, 720p, 480p o 360p, según a dónde vaya el archivo."
+        },
+        {
+          "title": "Hasta 200MB por archivo",
+          "text": "La subida va directamente al servicio de procesamiento, así que incluso los archivos grandes de un teléfono o cámara no chocan con los límites típicos de los formularios web."
+        },
+        {
+          "title": "Sin instalar programas",
+          "text": "Todo ocurre en una pestaña del navegador — no hace falta instalar ningún conversor de escritorio ni app móvil."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Por qué comprimir un video antes de enviarlo",
+          "text": "La mayoría de apps de mensajería (WhatsApp, Telegram, Viber) y los servicios de correo limitan el tamaño de los adjuntos — y si un video supera ese límite, o el envío simplemente no empieza, o la plataforma lo comprime automáticamente con su propio algoritmo, a menudo con una pérdida de calidad notable o incluso cambiando el formato. Al comprimir el video tú mismo de antemano, controlas exactamente qué resolución y calidad recibe el destinatario, y puedes estar seguro de que el archivo llegará a la primera."
+        },
+        {
+          "title": "Cómo comprimir un video online, paso a paso",
+          "steps": [
+            "Sube el archivo de video — arrástralo a la ventana del navegador o elígelo desde tu dispositivo (hasta 200MB, formatos MP4, MOV, AVI, WebM, MKV).",
+            "Elige un modo: «Recomendado» para un resultado típico en un clic, o «Tamaño personalizado» para fijar tú mismo la resolución.",
+            "Inicia el proceso — el archivo se sube al servidor de procesamiento, y verás el progreso tanto de la subida como de la compresión.",
+            "Cuando la compresión termine, descarga el archivo MP4 final a tu dispositivo con un clic."
+          ]
+        },
+        {
+          "title": "Qué ocurre exactamente durante la compresión",
+          "text": "La herramienta reconvierte el video a MP4 con el códec H.264 — el formato más ampliamente compatible, reproducible en prácticamente cualquier teléfono, navegador o plataforma sin códecs adicionales. Si se fija una resolución objetivo menor que la original, el cuadro se escala proporcionalmente (sin distorsión), y se elige automáticamente un nuevo bitrate acorde a esa resolución — es esta reducción de píxeles la que aporta la mayor parte del ahorro de tamaño."
+        },
+        {
+          "title": "Formatos admitidos y límites",
+          "text": "Se aceptan como entrada MP4, MOV (QuickTime), AVI, WebM y MKV — los formatos más comunes de teléfonos, cámaras y grabaciones de pantalla. El tamaño máximo por archivo es de 200MB, y el número de compresiones gratuitas al día es limitado (mayor para usuarios registrados). Son límites de negocio deliberados, ligados al tiempo que tarda en procesarse un video en el servidor, no una restricción técnica arbitraria — para la gran mayoría de clips cortos (de pocos minutos) esto es más que suficiente."
+        },
+        {
+          "title": "Privacidad: qué ocurre con tu archivo",
+          "text": "A diferencia de las herramientas de edición de fotos de este sitio, que funcionan totalmente en local sobre el canvas del navegador, comprimir video requiere procesamiento real en el servidor — esa cantidad de cálculo no la puede hacer el navegador por sí solo. El archivo se sube temporalmente a un servicio de procesamiento solo para la conversión, el resultado se te devuelve, y ni el archivo original ni el comprimido se almacenan en los servidores de compressphoto.org — el servicio de procesamiento elimina su copia al terminar la tarea."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿El video se sube a un servidor?",
+          "a": "Sí — a diferencia de los editores de fotos de este sitio, comprimir video requiere cálculos reales que un navegador no puede hacer por sí solo. El archivo se envía a un servicio de procesamiento solo para la conversión y no se conserva al terminar la tarea."
+        },
+        {
+          "q": "¿Qué formatos de video son compatibles?",
+          "a": "Entrada: MP4, MOV, AVI, WebM, MKV. La salida siempre es MP4 con códec H.264 — la opción más compatible para reproducirse en cualquier dispositivo."
+        },
+        {
+          "q": "¿Cuál es la diferencia entre «Recomendado» y «Tamaño personalizado»?",
+          "a": "«Recomendado» elige automáticamente una resolución (normalmente hasta 720p) sin pasos adicionales. «Tamaño personalizado» te permite indicar explícitamente 1080p, 720p, 480p o 360p si sabes exactamente para qué plataforma preparas el archivo."
+        },
+        {
+          "q": "¿Puedo escalar un video a una resolución mayor?",
+          "a": "No. Si la resolución elegida es mayor que la original, la herramienta simplemente deja la resolución original sin cambios — escalar hacia arriba no añade detalle real, solo aumenta el tamaño del archivo."
+        },
+        {
+          "q": "¿Cuál es el tamaño máximo y cuántas compresiones gratuitas hay al día?",
+          "a": "Hasta 200MB por archivo. El número de compresiones gratuitas al día es limitado; los usuarios registrados obtienen un límite diario mayor que los invitados."
+        },
+        {
+          "q": "¿Por qué comprimir un video tarda más que comprimir una foto?",
+          "a": "El video se procesa en un servidor, no en el navegador, y la reconversión es mucho más pesada computacionalmente que procesar una sola imagen — para archivos más largos o grandes, la espera puede ser de un minuto o más."
+        }
+      ]
     }
   },
   "errors": {
@@ -1511,8 +1591,9 @@
     "server": {
       "EMPTY_FILE": "El archivo está vacío.",
       "INVALID_FILE_TYPE": "El archivo no parece tener el formato de documento esperado. Comprueba que no esté dañado.",
-      "FILE_TOO_LARGE": "El archivo es demasiado grande. El tamaño máximo es 4 MB.",
+      "FILE_TOO_LARGE": "El archivo es demasiado grande. El tamaño máximo es 50 MB.",
       "RESULT_TOO_LARGE": "El archivo convertido es demasiado grande para descargarlo (más de 4 MB). Prueba con un documento más pequeño.",
+      "UPLOAD_FAILED": "No se pudo subir el archivo. Comprueba tu conexión a internet e inténtalo de nuevo.",
       "SERVICE_UNAVAILABLE": "El servicio no está disponible temporalmente. Inténtalo más tarde.",
       "CONVERSION_TIMEOUT": "La conversión tarda demasiado. Inténtalo de nuevo o usa un archivo más pequeño.",
       "CONVERSION_FAILED": "No se pudo convertir el archivo. Inténtalo de nuevo más tarde."
@@ -1690,6 +1771,36 @@
     "hint": "Arrastra el círculo o sus esquinas para ajustar la selección — la forma siempre sigue siendo un círculo perfecto.",
     "errors": {
       "cropFailed": "No se pudo recortar la foto. Prueba de nuevo u otro formato."
+    }
+  },
+  "compressVideo": {
+    "titlePart2": "Reduce el Tamaño de tu Video",
+    "titleGradient": "Online",
+    "text1": "Sube un video MP4, MOV, AVI, WebM o MKV — lo comprimimos y te devolvemos un archivo listo para enviar o publicar.",
+    "text2": "Elige la compresión recomendada con un clic, o fija tu propia resolución — el códec y la velocidad de procesamiento los gestiona el servidor.",
+    "dropzone": "Arrastra un video aquí o haz clic para comprimirlo",
+    "limit": "Has usado todas tus compresiones gratuitas de hoy. ¡Regístrate para obtener más!",
+    "limit2": "Has usado el límite diario de compresiones de video. Por favor, inténtalo de nuevo mañana.",
+    "uploading": "Subiendo video…",
+    "processing": "Comprimiendo video…",
+    "panel": {
+      "emptyState": "Añade un video",
+      "addMore": "Añadir otro video",
+      "addMoreAria": "Añadir otro video",
+      "selected": "Videos seleccionados:",
+      "downloadOne": "Descargar video",
+      "downloadMany": "Descargar videos",
+      "remove": "Eliminar"
+    },
+    "resolution": {
+      "title": "Resolución de salida",
+      "recommended": "Recomendado",
+      "recommendedHint": "Lo limitaremos automáticamente a 720p si el original es mayor — más que suficiente para apps de mensajería y redes sociales, con un archivo notablemente más ligero.",
+      "customHint": "El valor elegido solo se aplica si el original es mayor — no se puede reducir un video por debajo de su propia resolución (escalarlo hacia arriba no ayudaría)."
+    },
+    "note": {
+      "sameResolution": "Comprimido sin cambiar la resolución ({{width}}×{{height}})",
+      "resized": "Resolución reducida: {{fromWidth}}×{{fromHeight}} → {{width}}×{{height}}"
     }
   }
 }

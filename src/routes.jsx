@@ -17,6 +17,7 @@ import RotateImage from "./components/RotateImage/RotateImage.jsx";
 import Watermark from "./components/Watermark/Watermark.jsx";
 import BlackAndWhite from "./components/BlackAndWhite/BlackAndWhite.jsx";
 import CircleCrop from "./components/CircleCrop/CircleCrop.jsx";
+import CompressVideo from "./components/CompressVideo/CompressVideo.jsx";
 import { Privacy, Terms, Contact, About } from "./components/Legal/LegalPages.jsx";
 import { ROUTE_PATHS } from "./routes.config.js";
 
@@ -43,6 +44,7 @@ const SLUG_COMPONENTS = {
   addWatermark: Watermark,
   blackAndWhite: BlackAndWhite,
   circleCrop: CircleCrop,
+  compressVideo: CompressVideo,
   privacy: Privacy,
   terms: Terms,
   contact: Contact,

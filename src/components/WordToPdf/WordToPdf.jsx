@@ -54,9 +54,11 @@ const WordToPdf = () => {
         onLimitReached={handleLimitReached}
         dropzoneText={t("wordToPdf.dropzone")}
         maxFiles={10}
-        // Vercel Functions мають жорсткий ліміт розміру тіла запиту ~4.5MB —
-        // тримаємось з запасом нижче нього.
-        maxFileSize={4 * 1024 * 1024}
+        // P0-6 (раунд 20): файл тепер вантажиться напряму в CloudConvert,
+        // не через нашу Vercel-функцію — ліміт 4,5 МБ тіла запиту більше
+        // не застосовується. 50 МБ — бізнес-параметр (не технічний), див.
+        // claude/compressphoto-cloudconvert-direct-upload-spec.md.
+        maxFileSize={50 * 1024 * 1024}
         showStats={false}
         // Файл реально йде на CloudConvert (бекенд) — не показуємо рядок
         // "файли не йдуть на сервер", це було б неправдою.

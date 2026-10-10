@@ -403,6 +403,28 @@ export const PAGE_META = {
         "Recorta una foto en un círculo perfecto en el navegador: ideal para avatares o logos. Exporta en PNG con transparencia o en JPG/WebP.",
     },
   },
+  compressVideo: {
+    uk: {
+      title: "Стиснути відео онлайн безкоштовно (MP4, MOV, AVI)",
+      description:
+        "Зменшіть розмір відео MP4, MOV, AVI, WebM чи MKV онлайн — рекомендоване стиснення або свій розмір кадру. До 200 МБ, без встановлення програм.",
+    },
+    en: {
+      title: "Compress Video Online Free (MP4, MOV, AVI)",
+      description:
+        "Shrink MP4, MOV, AVI, WebM or MKV video files online — pick recommended compression or choose your own resolution. Up to 200MB, nothing to install.",
+    },
+    ru: {
+      title: "Сжать видео онлайн бесплатно (MP4, MOV, AVI)",
+      description:
+        "Уменьшите размер видео MP4, MOV, AVI, WebM или MKV онлайн — рекомендованное сжатие или свой размер кадра. До 200 МБ, без установки программ.",
+    },
+    es: {
+      title: "Comprimir Video Online Gratis (MP4, MOV, AVI)",
+      description:
+        "Reduce el tamaño de video MP4, MOV, AVI, WebM o MKV online: compresión recomendada o tu propia resolución. Hasta 200MB, sin instalar programas.",
+    },
+  },
   // Довір-сторінки: лише uk+en (ru/es — пізніше). noindex не ставимо —
   // Google навпаки любить бачити Privacy/Terms/Contact на сайтах.
   privacy: {

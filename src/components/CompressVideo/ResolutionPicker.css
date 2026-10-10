@@ -1,0 +1,57 @@
+.resolution-picker {
+    max-width: 560px;
+    margin: 28px auto 0;
+    padding: 14px 20px 16px;
+    border: 1px solid #dfe3ea;
+    border-radius: 12px;
+    background: #fff;
+    text-align: left;
+}
+
+.resolution-picker__title {
+    padding: 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.resolution-picker__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.resolution-picker__chip {
+    padding: 7px 14px;
+    border: 1px solid #cbd2dc;
+    border-radius: 999px;
+    background: #fff;
+    font: inherit;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.resolution-picker__chip:hover {
+    border-color: var(--color-primary-600);
+}
+
+.resolution-picker__chip--active {
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+    color: #fff;
+}
+
+.resolution-picker__chip:focus-visible {
+    outline: 2px solid var(--color-primary-600);
+    outline-offset: 2px;
+}
+
+.resolution-picker__hint {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #6B7280;
+}

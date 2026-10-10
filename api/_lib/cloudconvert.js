@@ -178,3 +178,166 @@ async function convertViaCloudConvert(fileBuffer, filename, outputFormat) {
     throw err;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// P0-6: прямий upload/download у CloudConvert (раунд 20) — на відміну від
+// convertViaCloudConvert() вище (import/base64 — файл іде через ТІЛО нашого
+// запиту/відповіді), тут наша функція ніколи не бачить байти файлу: клієнт
+// вантажить напряму на presigned URL CloudConvert, і скачує результат
+// напряму з CloudConvert. Це знімає ліміт Vercel-функції 4,5 МБ з обох
+// боків. Стара convertViaCloudConvert() лишається недоторканою й
+// використовується старими /api/word-to-pdf.js, /api/pdf-to-word.js —
+// вони не видаляються (запасний шлях, поки новий не перевірений живим
+// трафіком на реальному CloudConvert-акаунті).
+
+function authHeadersFor(apiKey) {
+  return { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" };
+}
+
+/**
+ * Створює job із трьох тасків (import/upload → convert → export/url) і
+ * повертає presigned upload-форму для прямого завантаження клієнтом.
+ * Кидає ConvertError так само, як convertViaCloudConvert().
+ *
+ * convertOptions — додаткові поля для convert-таска понад
+ * input/input_format/output_format. Використовується для відео-стиснення
+ * (video_codec, width, height — див. createVideoDirectUploadJob нижче);
+ * для word/pdf лишається {} як і раніше.
+ */
+export async function createDirectUploadJob({ inputFormat, outputFormat, convertOptions }) {
+  const apiKey = process.env.CLOUDCONVERT_API_KEY;
+  if (!apiKey) {
+    throw new ConvertError(
+      "SERVICE_UNAVAILABLE",
+      "CLOUDCONVERT_API_KEY не налаштований на сервері",
+      503
+    );
+  }
+  const authHeaders = authHeadersFor(apiKey);
+
+  const convertTask = {
+    operation: "convert",
+    input: "upload-file",
+    output_format: outputFormat,
+    ...convertOptions,
+  };
+  if (inputFormat) convertTask.input_format = inputFormat;
+
+  const createJobRes = await timedFetch(
+    `${CLOUDCONVERT_API}/jobs`,
+    {
+      method: "POST",
+      headers: authHeaders,
+      body: JSON.stringify({
+        tasks: {
+          "upload-file": { operation: "import/upload" },
+          "convert-file": convertTask,
+          "export-file": { operation: "export/url", input: "convert-file" },
+        },
+      }),
+    },
+    20_000
+  );
+
+  if (!createJobRes.ok) {
+    const errText = await createJobRes.text().catch(() => "");
+    console.error("CloudConvert create direct-upload job failed:", createJobRes.status, errText);
+    throw new ConvertError("CONVERSION_FAILED", "CloudConvert create job failed", 502);
+  }
+
+  const createJobData = await createJobRes.json();
+  const jobId = createJobData?.data?.id;
+  const uploadTask = (createJobData?.data?.tasks || []).find(
+    (task) => task.name === "upload-file"
+  );
+  const form = uploadTask?.result?.form;
+
+  if (!jobId || !form?.url) {
+    if (jobId) await cancelJob(jobId, authHeaders);
+    throw new ConvertError("CONVERSION_FAILED", "CloudConvert returned no upload form", 502);
+  }
+
+  return { jobId, uploadUrl: form.url, uploadParameters: form.parameters || {} };
+}
+
+/**
+ * Опитує стан job, створеного createDirectUploadJob(). НЕ кидає помилку
+ * на статус "error" з боку CloudConvert — повертає { status: "error" },
+ * щоб викликач (api/convert/status.js) віддав клієнту звичний JSON-код,
+ * а не 502 на кожен проміжний опит.
+ */
+export async function getDirectUploadStatus(jobId) {
+  const apiKey = process.env.CLOUDCONVERT_API_KEY;
+  if (!apiKey) {
+    throw new ConvertError(
+      "SERVICE_UNAVAILABLE",
+      "CLOUDCONVERT_API_KEY не налаштований на сервері",
+      503
+    );
+  }
+
+  const statusRes = await timedFetch(
+    `${CLOUDCONVERT_API}/jobs/${jobId}?include=tasks`,
+    { headers: { Authorization: `Bearer ${apiKey}` } },
+    8_000
+  );
+  if (!statusRes.ok) {
+    throw new ConvertError("CONVERSION_FAILED", "CloudConvert status check failed", 502);
+  }
+
+  const statusData = await statusRes.json();
+  const tasks = statusData?.data?.tasks || [];
+
+  const errored = tasks.find((task) => task.status === "error");
+  if (errored) {
+    console.error("CloudConvert task error:", errored.name, errored.code, errored.message);
+    return { status: "error" };
+  }
+
+  const exportTask = tasks.find(
+    (task) => task.name === "export-file" && task.status === "finished"
+  );
+  if (exportTask) {
+    const downloadUrl = exportTask.result?.files?.[0]?.url;
+    if (!downloadUrl) return { status: "error" };
+    return { status: "finished", downloadUrl };
+  }
+
+  const uploadTask = tasks.find((task) => task.name === "upload-file");
+  if (uploadTask && uploadTask.status !== "finished") {
+    return { status: "waiting" };
+  }
+
+  return { status: "processing" };
+}
+
+/** Скасовує job на CloudConvert (best-effort — помилки не кидає). */
+export async function cancelDirectUploadJob(jobId) {
+  const apiKey = process.env.CLOUDCONVERT_API_KEY;
+  if (!apiKey || !jobId) return;
+  await cancelJob(jobId, { Authorization: `Bearer ${apiKey}` });
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Відео-стиснення (раунд 20+): той самий прямий upload/download, що й для
+// word/pdf, — createDirectUploadJob() вище нічим не відрізняється. Єдина
+// різниця — convert-таск отримує додаткові параметри.
+//
+// З офіційного прикладу CloudConvert підтверджені лише ці параметри для
+// відео-convert-таска: video_codec, width, height (див.
+// claude/compressphoto-video-compressor-spec.md). Параметри якості/бітрейту
+// (crf, video_bitrate тощо) НЕ підтверджені документацією, яку вдалось
+// отримати, — тож свідомо не вгадуємо їх. Стиснення досягається лише
+// зменшенням роздільності (width/height), що завжди зменшує розмір файлу,
+// незалежно від того, який бітрейт обере сам CloudConvert за замовчуванням.
+//
+// width/height обчислюються на клієнті з реальних розмірів відео
+// (ResolutionPicker.jsx) і завжди парні числа (вимога H264-енкодерів).
+export function buildVideoConvertOptions({ width, height } = {}) {
+  const options = { video_codec: "x264" };
+  if (Number.isInteger(width) && Number.isInteger(height) && width > 0 && height > 0) {
+    options.width = width;
+    options.height = height;
+  }
+  return options;
+}

@@ -18,6 +18,7 @@ const TOOLS = {
   addWatermark: { ru: "/ru/add-watermark", es: "/es/marca-de-agua", sections: 6 },
   blackAndWhite: { ru: "/ru/black-and-white", es: "/es/foto-en-blanco-y-negro", sections: 5 },
   circleCrop: { ru: "/ru/circle-crop", es: "/es/recorte-circular", sections: 5 },
+  compressVideo: { ru: "/ru/compress-video", es: "/es/comprimir-video", sections: 5 },
 };
 const read = (l) => JSON.parse(readFileSync(`src/i18n/locales/${l}/translation.json`, "utf8"));
 const words = (s) => (String(s).match(/[\p{L}\p{N}'’-]+/gu) || []).length;

@@ -136,6 +136,13 @@ export const ROUTE_PATHS = [
     ru: "/ru/circle-crop",
     es: "/es/recorte-circular",
   },
+  {
+    slug: "compressVideo",
+    uk: "/compress-video",
+    en: "/en/compress-video",
+    ru: "/ru/compress-video",
+    es: "/es/comprimir-video",
+  },
   // Довір-сторінки (uk+en спершу, як і для інструментів; ru/es — пізніше).
   // Не інструменти: без header.*/TOOLS-запису, посилання лише у футері.
   { slug: "privacy", uk: "/privacy", en: "/en/privacy" },
