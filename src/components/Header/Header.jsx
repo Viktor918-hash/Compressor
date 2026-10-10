@@ -46,6 +46,22 @@ const Header = () => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  // Мобільне/планшетне бургер-меню: замість одного довгого списку —
+  // категорії-акордеон (ті самі заголовки, що й у десктопному
+  // dropdown-panel: catCompress/catVideo/catEdit/catDocs). Клік по
+  // заголовку розкриває/згортає список інструментів під ним; кілька
+  // категорій можуть бути розкриті одночасно.
+  const mobileCategoriesId = useId();
+  const [openCategories, setOpenCategories] = useState(() => new Set());
+  const toggleCategory = (key) => {
+    setOpenCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
+
   // Випадне меню "Інструменти": відкривається кліком/Enter/Space (а не лише
   // наведенням мишки), закривається Escape, кліком поза меню й виходом фокуса.
   const [isToolsOpen, setIsToolsOpen] = useState(false);
@@ -128,6 +144,102 @@ const Header = () => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
+
+  // Той самий набір інструментів, що й у трьох(+1) колонках десктопного
+  // dropdown-panel вище, тільки згрупований для акордеону мобільного меню.
+  const MOBILE_CATEGORIES = [
+    {
+      key: "catCompress",
+      title: t("header.catCompress"),
+      items: [
+        { to: "/", icon: FaCompress, label: t("header.compress") },
+        {
+          to: "/compress-image-to-size",
+          icon: FiTarget,
+          label: t("header.compressToSize"),
+        },
+        { to: "/convert-to-jpg", icon: FiRepeat, label: t("header.convert") },
+        {
+          to: "/convert-to-webp",
+          icon: FiImage,
+          label: t("header.webp", "У WebP"),
+        },
+        {
+          to: "/convert-to-png",
+          icon: FiLayers,
+          label: t("header.convertToPng"),
+        },
+        {
+          to: "/remove-photo-metadata",
+          icon: FiShield,
+          label: t("header.removeExif"),
+        },
+      ],
+    },
+    {
+      key: "catVideo",
+      title: t("header.catVideo"),
+      items: [
+        {
+          to: "/compress-video",
+          icon: FiVideo,
+          label: t("header.compressVideo"),
+        },
+      ],
+    },
+    {
+      key: "catEdit",
+      title: t("header.catEdit"),
+      items: [
+        { to: "/resize-image", icon: TbResize, label: t("header.resize") },
+        { to: "/crop-image", icon: FiCrop, label: t("header.cropImage") },
+        {
+          to: "/rotate-image",
+          icon: FiRotateCw,
+          label: t("header.rotateImage"),
+        },
+        {
+          to: "/add-watermark",
+          icon: FiDroplet,
+          label: t("header.addWatermark"),
+        },
+        {
+          to: "/black-and-white",
+          icon: MdGradient,
+          label: t("header.blackAndWhite"),
+        },
+        { to: "/circle-crop", icon: FiCircle, label: t("header.circleCrop") },
+        {
+          to: "/photo-presets",
+          icon: FiSliders,
+          label: t("presets.navTitle"),
+        },
+        {
+          to: "/remove-background",
+          icon: TbEraser,
+          label: t("header.removeBg"),
+        },
+      ],
+    },
+    {
+      key: "catDocs",
+      title: t("header.catDocs"),
+      items: [
+        {
+          to: "/convert-word-to-pdf",
+          icon: FiFileText,
+          label: t("header.wordToPdf"),
+        },
+        {
+          to: "/convert-pdf-to-word",
+          icon: FiFileText,
+          label: t("header.pdfToWord"),
+        },
+        { to: "/photo-to-pdf", icon: FiCamera, label: t("header.photoToPdf") },
+        { to: "/image-to-text", icon: FiType, label: t("header.imageToText") },
+      ],
+    },
+  ];
 
   return (
     <header className="header">
@@ -351,20 +463,6 @@ const Header = () => {
                     </div>
                   </LocalizedLink>
                   <LocalizedLink hideIfMissing
-                    to="/compress-video"
-                    className="dropdown-panel__item"
-                  >
-                    <FiVideo size={20} className="dropdown-panel__icon" />
-                    <div>
-                      <span className="dropdown-panel__title">
-                        {t("header.compressVideo")}
-                      </span>
-                      <span className="dropdown-panel__desc">
-                        {t("header.compressVideoDesc")}
-                      </span>
-                    </div>
-                  </LocalizedLink>
-                  <LocalizedLink hideIfMissing
                     to="/photo-presets"
                     className="dropdown-panel__item"
                   >
@@ -451,6 +549,26 @@ const Header = () => {
                       </span>
                       <span className="dropdown-panel__desc">
                         {t("header.imageToTextDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                </div>
+
+                <div className="dropdown-panel__col">
+                  <span className="dropdown-panel__col-title">
+                    {t("header.catVideo")}
+                  </span>
+                  <LocalizedLink hideIfMissing
+                    to="/compress-video"
+                    className="dropdown-panel__item"
+                  >
+                    <FiVideo size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.compressVideo")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.compressVideoDesc")}
                       </span>
                     </div>
                   </LocalizedLink>
@@ -583,159 +701,46 @@ const Header = () => {
           <span className="mobile-menu__section-title">
             {t("header.tools")}
           </span>
-          <LocalizedLink hideIfMissing
-            to="/"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FaCompress size={18} className="mobile-menu__icon" />
-            {t("header.compress")}
-          </LocalizedLink>
-          <LocalizedLink
-            hideIfMissing
-            to="/compress-image-to-size"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiTarget size={18} className="mobile-menu__icon" />
-            {t("header.compressToSize")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/convert-to-jpg"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiRepeat size={18} className="mobile-menu__icon" />
-            {t("header.convert")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/convert-to-webp"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiImage size={18} className="mobile-menu__icon" />
-            {t("header.webp", "У WebP")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/convert-to-png"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiLayers size={18} className="mobile-menu__icon" />
-            {t("header.convertToPng")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/remove-photo-metadata"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiShield size={18} className="mobile-menu__icon" />
-            {t("header.removeExif")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/resize-image"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <TbResize size={18} className="mobile-menu__icon" />
-            {t("header.resize")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/crop-image"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiCrop size={18} className="mobile-menu__icon" />
-            {t("header.cropImage")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/rotate-image"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiRotateCw size={18} className="mobile-menu__icon" />
-            {t("header.rotateImage")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/add-watermark"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiDroplet size={18} className="mobile-menu__icon" />
-            {t("header.addWatermark")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/black-and-white"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <MdGradient size={18} className="mobile-menu__icon" />
-            {t("header.blackAndWhite")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/circle-crop"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiCircle size={18} className="mobile-menu__icon" />
-            {t("header.circleCrop")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/compress-video"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiVideo size={18} className="mobile-menu__icon" />
-            {t("header.compressVideo")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/photo-presets"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiSliders size={18} className="mobile-menu__icon" />
-            {t("presets.navTitle")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/convert-word-to-pdf"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiFileText size={18} className="mobile-menu__icon" />
-            {t("header.wordToPdf")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/convert-pdf-to-word"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiFileText size={18} className="mobile-menu__icon" />
-            {t("header.pdfToWord")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/photo-to-pdf"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiCamera size={18} className="mobile-menu__icon" />
-            {t("header.photoToPdf")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/remove-background"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <TbEraser size={18} className="mobile-menu__icon" />
-            {t("header.removeBg")}
-          </LocalizedLink>
-          <LocalizedLink hideIfMissing
-            to="/image-to-text"
-            className="mobile-menu__item"
-            onClick={closeMenu}
-          >
-            <FiType size={18} className="mobile-menu__icon" />
-            {t("header.imageToText")}
-          </LocalizedLink>
+          {MOBILE_CATEGORIES.map((category) => {
+            const isOpen = openCategories.has(category.key);
+            const panelId = `${mobileCategoriesId}-${category.key}`;
+            return (
+              <div key={category.key} className="mobile-menu__category">
+                <button
+                  type="button"
+                  className="mobile-menu__category-header"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => toggleCategory(category.key)}
+                >
+                  <span>{category.title}</span>
+                  <MdKeyboardArrowDown
+                    size={20}
+                    aria-hidden="true"
+                    className={`mobile-menu__category-chevron${
+                      isOpen ? " mobile-menu__category-chevron--open" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div id={panelId} className="mobile-menu__category-items">
+                    {category.items.map(({ to, icon: Icon, label }) => (
+                      <LocalizedLink
+                        key={to}
+                        hideIfMissing
+                        to={to}
+                        className="mobile-menu__item"
+                        onClick={closeMenu}
+                      >
+                        <Icon size={18} className="mobile-menu__icon" />
+                        {label}
+                      </LocalizedLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div className="mobile-menu__item mobile-menu__language">

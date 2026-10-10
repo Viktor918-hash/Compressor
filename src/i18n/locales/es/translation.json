@@ -34,6 +34,7 @@
     "catCompress": "Compresión y formatos",
     "catEdit": "Editar fotos",
     "catDocs": "Documentos",
+    "catVideo": "Herramientas de video",
     "imageToText": "Imagen a texto",
     "imageToTextDesc": "Extraer texto de una foto o captura",
     "signOut": "Cerrar sesión",
@@ -1777,7 +1778,7 @@
     "titlePart2": "Reduce el Tamaño de tu Video",
     "titleGradient": "Online",
     "text1": "Sube un video MP4, MOV, AVI, WebM o MKV — lo comprimimos y te devolvemos un archivo listo para enviar o publicar.",
-    "text2": "Elige la compresión recomendada con un clic, o fija tu propia resolución — el códec y la velocidad de procesamiento los gestiona el servidor.",
+    "text2": "Elige la compresión recomendada con un clic, o indica el tamaño de archivo que quieres en megabytes — calcularemos la resolución y el códec automáticamente.",
     "dropzone": "Arrastra un video aquí o haz clic para comprimirlo",
     "limit": "Has usado todas tus compresiones gratuitas de hoy. ¡Regístrate para obtener más!",
     "limit2": "Has usado el límite diario de compresiones de video. Por favor, inténtalo de nuevo mañana.",
@@ -1792,15 +1793,22 @@
       "downloadMany": "Descargar videos",
       "remove": "Eliminar"
     },
-    "resolution": {
-      "title": "Resolución de salida",
-      "recommended": "Recomendado",
-      "recommendedHint": "Lo limitaremos automáticamente a 720p si el original es mayor — más que suficiente para apps de mensajería y redes sociales, con un archivo notablemente más ligero.",
-      "customHint": "El valor elegido solo se aplica si el original es mayor — no se puede reducir un video por debajo de su propia resolución (escalarlo hacia arriba no ayudaría)."
-    },
     "note": {
       "sameResolution": "Comprimido sin cambiar la resolución ({{width}}×{{height}})",
-      "resized": "Resolución reducida: {{fromWidth}}×{{fromHeight}} → {{width}}×{{height}}"
+      "resized": "Resolución reducida: {{fromWidth}}×{{fromHeight}} → {{width}}×{{height}}",
+      "targetApprox": "Objetivo: {{target}} (aproximado) → obtenido: {{actual}}."
+    },
+    "size": {
+      "title": "Tamaño de archivo objetivo",
+      "recommended": "Recomendado",
+      "custom": "Tamaño personalizado",
+      "mb": "MB",
+      "recommendedHint": "Reduce automáticamente a 720p si el original es más grande — suficiente para mensajería y redes sociales, con un archivo notablemente más ligero y sin pérdida visible de calidad.",
+      "customHint": "Indica cuántos megabytes quieres que pese el resultado — elegiremos la resolución que más se acerque (no garantizamos una coincidencia exacta: cuánto se comprime un video depende de su contenido)."
+    },
+    "errors": {
+      "badTarget": "Indica un tamaño objetivo en megabytes — un número positivo mayor que cero.",
+      "targetTooLarge": "El tamaño indicado ({{target}}) es mayor que el propio archivo ({{fileSize}}). No se puede comprimir un video a un tamaño mayor que el original — elige un valor menor."
     }
   }
 }

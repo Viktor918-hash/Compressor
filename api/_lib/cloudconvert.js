@@ -332,7 +332,7 @@ export async function cancelDirectUploadJob(jobId) {
 // незалежно від того, який бітрейт обере сам CloudConvert за замовчуванням.
 //
 // width/height обчислюються на клієнті з реальних розмірів відео
-// (ResolutionPicker.jsx) і завжди парні числа (вимога H264-енкодерів).
+// (CompressVideo/convertCompressVideo.js) і завжди парні числа (вимога H264-енкодерів).
 export function buildVideoConvertOptions({ width, height } = {}) {
   const options = { video_codec: "x264" };
   if (Number.isInteger(width) && Number.isInteger(height) && width > 0 && height > 0) {

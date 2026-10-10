@@ -34,6 +34,7 @@
     "catCompress": "Compress & Formats",
     "catEdit": "Edit Photos",
     "catDocs": "Documents",
+    "catVideo": "Video Tools",
     "imageToText": "Image to Text",
     "imageToTextDesc": "Extract text from a photo or screenshot",
     "signOut": "Sign out",
@@ -1789,7 +1790,7 @@
     "titlePart2": "Shrink Your Video",
     "titleGradient": "Online",
     "text1": "Upload an MP4, MOV, AVI, WebM or MKV video — we'll compress it and hand back a finished file that's easy to send or publish.",
-    "text2": "Pick recommended compression with one click, or set your own resolution — the codec and processing speed are handled on the server.",
+    "text2": "Pick one-click recommended compression, or enter the file size you want in megabytes — we'll work out the resolution and codec automatically.",
     "dropzone": "Drag a video here or click to compress it",
     "limit": "You've used all your free compressions for today. Sign up to get more!",
     "limit2": "You've used today's video compression limit. Please try again tomorrow.",
@@ -1804,15 +1805,22 @@
       "downloadMany": "Download videos",
       "remove": "Remove"
     },
-    "resolution": {
-      "title": "Output resolution",
-      "recommended": "Recommended",
-      "recommendedHint": "We'll automatically cap it at 720p if the original is larger — plenty for messaging apps and social media, with a noticeably smaller file.",
-      "customHint": "The chosen value only applies if the original is larger — a video can't be shrunk below its own resolution (upscaling it wouldn't help)."
-    },
     "note": {
       "sameResolution": "Compressed without changing resolution ({{width}}×{{height}})",
-      "resized": "Resolution reduced: {{fromWidth}}×{{fromHeight}} → {{width}}×{{height}}"
+      "resized": "Resolution reduced: {{fromWidth}}×{{fromHeight}} → {{width}}×{{height}}",
+      "targetApprox": "Target: {{target}} (approximate) → got: {{actual}}."
+    },
+    "size": {
+      "title": "Target file size",
+      "recommended": "Recommended",
+      "custom": "Custom size",
+      "mb": "MB",
+      "recommendedHint": "Automatically downscales to 720p if the original is larger — plenty for messaging apps and social media, with a noticeably smaller file and no visible quality loss.",
+      "customHint": "Enter how many megabytes you'd like the result to be — we'll pick a resolution that gets as close as possible (an exact match isn't guaranteed: how much a video compresses depends on its content)."
+    },
+    "errors": {
+      "badTarget": "Enter a target size in megabytes — a positive number greater than zero.",
+      "targetTooLarge": "The size you entered ({{target}}) is larger than the file itself ({{fileSize}}). You can't compress a video to a size bigger than the original — choose a smaller value."
     }
   }
 }

@@ -142,7 +142,7 @@ ________________________ПАНЕЛЬ СПЛИВАЮЧА________________________ 
     padding: 28px 32px;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 40px;
 
     opacity: 0;
@@ -308,6 +308,48 @@ aside.mobile-menu {
     padding: 8px 4px 4px;
 }
 
+.mobile-menu__category {
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu__category:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu__category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6b7280;
+    text-align: left;
+}
+
+.mobile-menu__category-chevron {
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+    color: #9ca3af;
+}
+
+.mobile-menu__category-chevron--open {
+    transform: rotate(180deg);
+}
+
+.mobile-menu__category-items {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4px;
+}
+
 .mobile-menu__item {
     display: flex;
     align-items: center;
@@ -431,6 +473,22 @@ aside.mobile-menu {
     }
 }
 
+/* Четверта колонка ("Інструменти для відео") має лише один пункт — на
+   вузьких десктопних/ноутбучних екранах чотирьом колонкам замало місця,
+   тож згортаємо грід у 2×2 (катCompress/catVideo зверху,
+   catEdit/catDocs знизу). */
+@media (max-width: 1150px) {
+    .dropdown-panel {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+    }
+
+    .dropdown-panel__col:nth-child(3) {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
 /* 799–900px — мегаменю ще видиме (бургер вмикається лише з 798px), тож
    докручуємо компактність, щоб три колонки впевнено вміщались без
    переповнення/горизонтального скролу на найвужчих десктопних екранах. */
@@ -443,6 +501,11 @@ aside.mobile-menu {
 
     .dropdown-panel__col:not(:first-child) {
         padding-left: 14px;
+    }
+
+    .dropdown-panel__col:nth-child(3) {
+        border-left: none;
+        padding-left: 0;
     }
 
     .dropdown-panel__col-title {

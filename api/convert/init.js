@@ -61,7 +61,7 @@ function sendError(res, status, code, extra = {}) {
  * { type: "word-to-pdf"|"pdf-to-word"|"compress-video", filename, declaredExt, fileSize,
  *   resolution?: { width, height } } — resolution лише для compress-video,
  *   задає цільову роздільність (порахована на клієнті з реальних розмірів
- *   відео, див. ResolutionPicker.jsx); якщо не передано — convert-таск
+ *   відео, див. CompressVideo/convertCompressVideo.js); якщо не передано — convert-таск
  *   іде без width/height (CloudConvert перекодує в тій же роздільності).
  *
  * declaredExt визначається на клієнті за магічними байтами файлу
