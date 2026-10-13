@@ -23,22 +23,36 @@ const SITE_URL = "https://compressphoto.org";
 // би імпорт серверного api/-модуля у клієнтський бандл.
 const MAX_VIDEO_FILE_SIZE = 200 * 1024 * 1024;
 
+// Дефолтні налаштування для щойно доданого файлу (перш ніж користувач
+// сам щось обрав для нього) — та сама "рекомендована" ціль, що й раніше,
+// просто тепер окремо для кожного файлу, а не одна спільна на всі.
+const DEFAULT_FILE_OPTIONS = { mode: "recommended", targetMB: "50" };
+
 const CompressVideo = () => {
   const { t } = useTranslation();
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "compressVideo");
   const meta = PAGE_META.compressVideo[lang];
 
-  // "recommended" (безпечний дефолт, до 720p) | "custom" (цільовий
-  // розмір файлу в МБ, яка вводить користувач у targetMB). Застосовується
-  // до кожного наступного файлу, який стає в черзі —
-  // convertCompressVideo.js сам обрізає ціль до реальної роздільності
-  // конкретного відео й ніколи не апскейлить.
-  const [mode, setMode] = useState("recommended");
-  const [targetMB, setTargetMB] = useState("50");
+  // round 28 (за прямим проханням користувача): раніше "mode"/"targetMB"
+  // були ОДНИМ спільним станом, застосованим до КОЖНОГО файлу в черзі —
+  // якщо користувач не встиг обрати ціль до того, як скинув відео,
+  // мовчки бралось "Рекомендовано"; а при кількох відео різного розміру
+  // (напр. 200 МБ і 10 МБ) один спільний "Свій розмір: 100 МБ" для
+  // меншого файлу завжди падав би помилкою "ціль більша за файл".
+  // Тепер ціль — окрема для КОЖНОГО файлу (ключ — item.id з Panel),
+  // і Panel більше не ставить файл одразу в чергу обробки: він чекає
+  // статусу "ready", поки користувач не обере ціль САМЕ для цього файлу
+  // і не натисне "Стиснути" (requireConfirm + renderItemOptions нижче).
+  const [fileOptions, setFileOptions] = useState({}); // { [itemId]: { mode, targetMB } }
 
-  const targetBytes = toVideoBytes(targetMB);
-  const targetValid = Number.isFinite(targetBytes) && targetBytes > 0;
+  const getOptionsFor = (id) => fileOptions[id] || DEFAULT_FILE_OPTIONS;
+
+  const updateOptionsFor = (id, patch) =>
+    setFileOptions((prev) => ({
+      ...prev,
+      [id]: { ...(prev[id] || DEFAULT_FILE_OPTIONS), ...patch },
+    }));
 
   // «24,3 МБ» — завжди в МБ з одним десятковим знаком (більша одиниця,
   // ніж для фото, бо відео важить у десятки/сотні разів більше).
@@ -54,7 +68,14 @@ const CompressVideo = () => {
     }
   };
 
-  const processFile = async (file, { signal, onProgress } = {}) => {
+  // id — третій ключ в об'єкті опцій, який тепер передає Panel (round 28):
+  // саме так дізнаємось, яку ціль обрав користувач для ЦЬОГО КОНКРЕТНОГО
+  // файлу (а не для черги загалом).
+  const processFile = async (file, { signal, onProgress, id } = {}) => {
+    const { mode, targetMB } = getOptionsFor(id);
+    const targetBytes = toVideoBytes(targetMB);
+    const targetValid = Number.isFinite(targetBytes) && targetBytes > 0;
+
     if (mode === "custom" && !targetValid) {
       throw userError(t("compressVideo.errors.badTarget"));
     }
@@ -74,7 +95,12 @@ const CompressVideo = () => {
         // Користувач вказав цільовий розмір, більший (або рівний) за сам
         // файл — стискати "у більший розмір" немає сенсу. Показуємо
         // червоним текстом, яка саме помилка (Panel малює userFacing-
-        // помилки для кожного файлу окремо червоним кольором).
+        // помилки для кожного файлу окремо червоним кольором). Відтепер
+        // (round 28) ця ситуація не мала б узагалі виникати, бо кнопка
+        // "Стиснути" в renderItemOptions нижче заблокована, доки ціль
+        // більша за сам файл — але перевірку лишаємо і тут (сервер-факт,
+        // а не лише UI-зручність; дані можуть застаріти, якщо файл
+        // змінився між рендером і стартом обробки).
         throw userError(
           t("compressVideo.errors.targetTooLarge", {
             target: fmtMb(error.targetBytes),
@@ -84,6 +110,54 @@ const CompressVideo = () => {
       }
       throw error; // решта — загальне повідомлення Panel
     }
+  };
+
+  // Рендериться в рядку КОЖНОГО файлу зі статусом "ready" (Panel.jsx,
+  // прокинуто через проп renderItemOptions) — вибір цілі саме для цього
+  // відео + кнопка, яка запускає обробку лише тоді, коли користувач сам
+  // підтвердив вибір (а не одразу при скиданні файлу).
+  const renderItemOptions = (item, confirm) => {
+    const { mode, targetMB } = getOptionsFor(item.id);
+    const targetBytes = toVideoBytes(targetMB);
+    const targetValid = Number.isFinite(targetBytes) && targetBytes > 0;
+    const tooLarge =
+      mode === "custom" && targetValid && targetBytes >= item.file.size;
+    const canConfirm = mode === "recommended" || (targetValid && !tooLarge);
+
+    return (
+      <>
+        <VideoSizePicker
+          compact
+          mode={mode}
+          targetMB={targetMB}
+          onModeChange={(m) => updateOptionsFor(item.id, { mode: m })}
+          onTargetChange={(v) => updateOptionsFor(item.id, { targetMB: v })}
+          invalid={mode === "custom" && !targetValid}
+        />
+        {tooLarge && (
+          <p
+            className="video-size-picker__hint video-size-picker__hint--error"
+            role="alert"
+          >
+            {t("compressVideo.errors.targetTooLarge", {
+              target: fmtMb(targetBytes),
+              fileSize: fmtMb(item.file.size),
+            })}
+          </p>
+        )}
+        <button
+          type="button"
+          className="video-size-picker__confirm-btn"
+          disabled={!canConfirm}
+          onClick={confirm}
+          aria-label={t("compressVideo.panel.compressFileAria", {
+            name: item.file.name,
+          })}
+        >
+          {t("compressVideo.panel.compressFile")}
+        </button>
+      </>
+    );
   };
 
   const resultNote = (file, blob) => {
@@ -148,15 +222,13 @@ const CompressVideo = () => {
         getOutputName={getCompressedVideoName}
         resultNote={resultNote}
         onLimitReached={handleLimitReached}
-        options={
-          <VideoSizePicker
-            mode={mode}
-            targetMB={targetMB}
-            onModeChange={setMode}
-            onTargetChange={setTargetMB}
-            invalid={mode === "custom" && !targetValid}
-          />
-        }
+        // round 28: жодного спільного пікера НАД зоною завантаження —
+        // ціль стиснення обирається окремо для кожного файлу, вже ПІСЛЯ
+        // того, як його скинуто (requireConfirm тримає файл у статусі
+        // "ready", поки користувач не натисне "Стиснути" для нього самого;
+        // renderItemOptions малює сам пікер усередині рядка файлу).
+        requireConfirm
+        renderItemOptions={renderItemOptions}
         dropzoneText={t("compressVideo.dropzone")}
         maxFiles={5}
         // P0-6: файл вантажиться напряму в CloudConvert, не через нашу

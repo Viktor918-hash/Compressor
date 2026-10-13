@@ -15,11 +15,21 @@ const SIZE_CHIPS_MB = [25, 50, 100, 200, 500];
  *
  * targetMB — рядок (щоб можна було стерти й ввести число заново).
  * invalid — true, лише коли введене число некоректне (не перевіряє його
- *   проти розміру конкретного файлу — на момент рендеру цього пікера
- *   файл ще може бути не вибраний; перевірку "ціль більша за сам файл"
- *   робить convertCompressVideo.js окремо для кожного файлу).
+ *   проти розміру конкретного файлу — виклик, що передає конкретний
+ *   file.size, сам порівнює ціль із розміром і показує окреме
+ *   повідомлення "ціль більша за файл", якщо треба).
+ * compact — вужчий вигляд (менші відступи/шрифт) для використання
+ *   всередині одного рядка файлу в бічній панелі (round 28: вибір
+ *   розміру окремо для кожного відео, а не один спільний на всі файли).
  */
-const VideoSizePicker = ({ mode, targetMB, onModeChange, onTargetChange, invalid }) => {
+const VideoSizePicker = ({
+  mode,
+  targetMB,
+  onModeChange,
+  onTargetChange,
+  invalid,
+  compact = false,
+}) => {
   const { t } = useTranslation();
   const uid = useId();
   const valueId = `${uid}-value`;
@@ -31,7 +41,9 @@ const VideoSizePicker = ({ mode, targetMB, onModeChange, onTargetChange, invalid
   };
 
   return (
-    <fieldset className="video-size-picker">
+    <fieldset
+      className={`video-size-picker${compact ? " video-size-picker--compact" : ""}`}
+    >
       <legend className="video-size-picker__title">
         {t("compressVideo.size.title")}
       </legend>

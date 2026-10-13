@@ -1803,7 +1803,9 @@
       "selected": "Обрано відео:",
       "downloadOne": "Завантажити відео",
       "downloadMany": "Завантажити відео-файли",
-      "remove": "Видалити"
+      "remove": "Видалити",
+      "compressFile": "Стиснути",
+      "compressFileAria": "Стиснути {{name}}"
     },
     "note": {
       "sameResolution": "Стиснено без зміни роздільності ({{width}}×{{height}})",

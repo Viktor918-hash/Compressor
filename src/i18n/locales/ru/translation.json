@@ -1791,7 +1791,9 @@
       "selected": "Выбрано видео:",
       "downloadOne": "Скачать видео",
       "downloadMany": "Скачать видеофайлы",
-      "remove": "Удалить"
+      "remove": "Удалить",
+      "compressFile": "Сжать",
+      "compressFileAria": "Сжать {{name}}"
     },
     "note": {
       "sameResolution": "Сжато без изменения разрешения ({{width}}×{{height}})",

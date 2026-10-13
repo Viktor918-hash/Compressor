@@ -26,9 +26,19 @@ const SITE_URL = "https://compressphoto.org";
 // примусова спроба його ініціалізувати іноді крашить вкладку без JS-помилки
 // (і try/catch це не ловить), тому на мобільних одразу форсуємо CPU/WASM.
 // На ПК нічого не змінюємо — там GPU працює добре і швидко.
+//
+// ВАЖЛИВО (фікс iPad): звичайний UA-regex "/iPad/i" НЕ ловить сучасні iPad —
+// з iPadOS 13 (2019) Safari на iPad за замовчуванням видає себе за десктопний
+// Mac Safari (немає підрядка "iPad" у navigator.userAgent взагалі), саме щоб
+// сайти показували десктопну версію. Це означає, що без додаткової перевірки
+// реальний iPad проходив би як "не мобільний" → отримував GPU/WebGPU-шлях і
+// повнорозмірне фото без downscale — те, від чого й застерігає коментар вище.
+// Надійна перевірка: справжній Mac має navigator.maxTouchPoints === 0, а iPad
+// (навіть маскуючись під Mac) — завжди > 1, бо екран сенсорний.
 const isMobile =
   typeof navigator !== "undefined" &&
-  /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
 
 // Мінімальний розмір моделі (~40MB, квантована) — швидше завантажується
 // користувачу при першому запуску, ніж дефолтна ~80MB. Обробка триває
@@ -357,26 +367,28 @@ const RemoveBg = () => {
     setDownloaded(false);
   };
 
-  const getPointFromEvent = (e) => {
-    if (e.touches && e.touches[0]) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    }
-    return { x: e.clientX, y: e.clientY };
-  };
-
+  // Малювання керується ЛИШЕ Pointer Events (onPointerDown/Move/Up), не
+  // окремими touch-обробниками. PointerEvent вже уніфікує мишу/тач/перо в
+  // один API з однаковими clientX/clientY — саме для цього він і існує.
+  // Раніше канвас мав ОДНОЧАСНО onPointerDown/onPointerMove ТА
+  // onTouchStart/onTouchMove на тих самих діях: на будь-якому сучасному
+  // тач-браузері (Safari з iOS 13+, Chrome Android) торкання генерує ОБИДВІ
+  // послідовності подій, тож paintAt() (getImageData+putImageData на всьому
+  // регіоні кисті) викликався двічі на кожен рух пальця — зайве навантаження
+  // на слабших мобільних під час малювання. `touch-action: none` у CSS
+  // лишається — він працює і для pointer-подій від тач-джерела, тож
+  // прибирання touch-обробників не повертає проблему зі скролом сторінки.
   const handlePointerDown = (e) => {
     if (status !== "ready") return;
     isPaintingRef.current = true;
-    const { x, y } = getPointFromEvent(e);
-    paintAt(x, y);
+    paintAt(e.clientX, e.clientY);
   };
 
   const handlePointerMove = (e) => {
     if (!wrapRef.current || status !== "ready") return;
     const rect = wrapRef.current.getBoundingClientRect();
-    const { x, y } = getPointFromEvent(e);
-    setCursorPos({ x: x - rect.left, y: y - rect.top });
-    if (isPaintingRef.current) paintAt(x, y);
+    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    if (isPaintingRef.current) paintAt(e.clientX, e.clientY);
   };
 
   const handlePointerUp = () => {
@@ -385,10 +397,8 @@ const RemoveBg = () => {
 
   useEffect(() => {
     window.addEventListener("pointerup", handlePointerUp);
-    window.addEventListener("touchend", handlePointerUp);
     return () => {
       window.removeEventListener("pointerup", handlePointerUp);
-      window.removeEventListener("touchend", handlePointerUp);
     };
   }, []);
 
@@ -480,8 +490,6 @@ const RemoveBg = () => {
                   className="removebg-canvas"
                   onPointerDown={handlePointerDown}
                   onPointerMove={handlePointerMove}
-                  onTouchStart={handlePointerDown}
-                  onTouchMove={handlePointerMove}
                 />
 
                 {status === "ready" && cursorPos && (

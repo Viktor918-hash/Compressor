@@ -270,9 +270,20 @@ p.panel__files {
 .side-panel__file-item {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     padding: 8px 0;
     border-bottom: 1px solid #eee;
+}
+
+/* Контрол для окремого файлу (round 28: напр. вибір цільового розміру
+   відео саме для цього файлу) — завжди на весь рядок, новим рядком під
+   thumbnail/ім'ям/розміром, саме для цього .side-panel__file-item вище
+   отримав flex-wrap: wrap (інші інструменти цей блок не рендерять, тож
+   для них нічого візуально не змінюється). */
+.side-panel__item-options {
+    flex-basis: 100%;
+    width: 100%;
 }
 
 .side-panel__thumbnail {

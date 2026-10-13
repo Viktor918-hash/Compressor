@@ -100,6 +100,24 @@ const Panel = ({
   children, // заголовок і опис сторінки — свій для Hero і для Converter
   options, // необов'язковий блок налаштувань під зоною завантаження (напр. якість стиснення)
 
+  // ── Підтвердження для кожного файлу окремо (round 28) ──────────────
+  // За замовчуванням (requireConfirm=false) поведінка не змінюється:
+  // щойно файл додано — одразу "queued", і чергова обробка підхоплює
+  // його сама. Коли requireConfirm=true (лише режим "single" — для
+  // "merge" нічого не змінюється, там і так свій "ready"→"Створити"
+  // потік), щойно доданий файл отримує статус "ready" ЗАМІСТЬ "queued"
+  // і НЕ потрапляє в чергу обробки, доки для нього не викликали confirm.
+  // renderItemOptions(item, confirm) — опційний рендер усередині рядка
+  // файлу (лише для статусу "ready", не для merge-режиму): сторінка
+  // сама малює там потрібний контрол (напр. вибір цільового розміру
+  // саме для ЦЬОГО файлу) і викликає confirm(), коли користувач готовий
+  // почати обробку — це переводить файл у "queued", і далі все йде як
+  // завжди. Застосовано вперше в CompressVideo.jsx: кілька відео різного
+  // розміру можуть потребувати різної цілі стиснення кожне, тож глобальний
+  // спільний вибір "наперед" не підходить.
+  requireConfirm = false,
+  renderItemOptions, // (item, confirm: () => void) => ReactNode
+
   // ── Опційний перемикач формату виводу (наприклад, txt/doc для OCR) ──
   // Якщо formats передано (2+ записи) і задано buildOutput, Panel сама
   // показує перемикач біля кнопки завантаження і перегенеровує вихідний
@@ -239,6 +257,10 @@ const Panel = ({
         const result = await cur.processFile(file, {
           signal: controller.signal,
           onProgress,
+          // Додатковий аргумент (round 28) — ідентифікатор саме цього
+          // елемента черги. Обробники, яким він не потрібен, просто не
+          // деструктурують його з об'єкта — зворотна сумісність повна.
+          id: next.id,
         });
         if (isStale() || controller.signal.aborted) return;
         // файл могли прибрати зі списку, поки він обробляався
@@ -445,16 +467,19 @@ const Panel = ({
         files_count: filesToProcess.length,
       });
 
+      // requireConfirm: файл чекає "ready", доки сторінка (через
+      // renderItemOptions → confirm()) не переведе його в "queued" сама —
+      // чергова обробка нижче підхоплює лише "queued".
       setItems((prev) => [
         ...prev,
         ...filesToProcess.map((file) => ({
           id: newId(),
           file,
-          status: "queued",
+          status: requireConfirm ? "ready" : "queued",
         })),
       ]);
     },
-    [maxFiles, maxFileSize, describeRejection, t, isMerge, invalidateMerge]
+    [maxFiles, maxFileSize, describeRejection, t, isMerge, invalidateMerge, requireConfirm]
   );
 
   const getUniqueFileName = (name, usedNames) => {
@@ -1103,6 +1128,13 @@ const Panel = ({
                       />
                     )}
                 </span>
+                {!isMerge && status === "ready" && renderItemOptions && (
+                  <div className="side-panel__item-options">
+                    {renderItemOptions(item, () =>
+                      patchItem(id, { status: "queued" })
+                    )}
+                  </div>
+                )}
                 {status === "error" && (
                   <button
                     type="button"

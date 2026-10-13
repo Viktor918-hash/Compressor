@@ -1791,7 +1791,9 @@
       "selected": "Videos seleccionados:",
       "downloadOne": "Descargar video",
       "downloadMany": "Descargar videos",
-      "remove": "Eliminar"
+      "remove": "Eliminar",
+      "compressFile": "Comprimir",
+      "compressFileAria": "Comprimir {{name}}"
     },
     "note": {
       "sameResolution": "Comprimido sin cambiar la resolución ({{width}}×{{height}})",

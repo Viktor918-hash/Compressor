@@ -1803,7 +1803,9 @@
       "selected": "Videos selected:",
       "downloadOne": "Download video",
       "downloadMany": "Download videos",
-      "remove": "Remove"
+      "remove": "Remove",
+      "compressFile": "Compress",
+      "compressFileAria": "Compress {{name}}"
     },
     "note": {
       "sameResolution": "Compressed without changing resolution ({{width}}×{{height}})",
