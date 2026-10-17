@@ -341,6 +341,90 @@ test("init: compress-video з непідтримуваним розширенн�
   assert.equal(rpcCalls.length, 0);
 });
 
+// ── convert-{mov,mkv,webm}-to-mp4 (раунд 24, прості конвертери формату,
+// claude/compressphoto-growth-prompt.md §3.3-А) ──────────────────────────
+// На відміну від compress-video, кожен приймає ЛИШЕ свій один формат і
+// convert-таск НІКОЛИ не отримує width/height (resolution у цих запитах
+// не передається взагалі) — лише video_codec: x264 від
+// buildVideoConvertOptions() без аргументів.
+
+for (const [type, ext] of [
+  ["convert-mov-to-mp4", "mov"],
+  ["convert-mkv-to-mp4", "mkv"],
+  ["convert-webm-to-mp4", "webm"],
+]) {
+  test(`init: ${type} успіх → convert-таск лише з video_codec: x264, без width/height`, async () => {
+    reset();
+    const r = await run(initH, {
+      type,
+      filename: `a.${ext}`,
+      declaredExt: ext,
+      fileSize: 10 * 1024 * 1024,
+    });
+    assert.equal(r.code, 200);
+    assert.deepEqual(lastCreateBody.tasks["convert-file"], {
+      operation: "convert",
+      input: "upload-file",
+      output_format: "mp4",
+      video_codec: "x264",
+      input_format: ext,
+    });
+    assert.equal(rpcCalls.length, 1);
+  });
+
+  test(`init: ${type} з іншим розширенням (не ${ext}) → 415, квота не списується`, async () => {
+    reset();
+    const other = ext === "mov" ? "mkv" : "mov";
+    const r = await run(initH, {
+      type,
+      filename: `a.${other}`,
+      declaredExt: other,
+      fileSize: 10 * 1024 * 1024,
+    });
+    assert.deepEqual([r.code, r.body.error], [415, "INVALID_FILE_TYPE"]);
+    assert.equal(rpcCalls.length, 0);
+    assert.equal(ccCalls.length, 0);
+  });
+
+  test(`init: ${type}, fileSize > 200 МБ → 413, CloudConvert не викликається`, async () => {
+    reset();
+    const r = await run(initH, {
+      type,
+      filename: `a.${ext}`,
+      declaredExt: ext,
+      fileSize: 201 * 1024 * 1024,
+    });
+    assert.deepEqual([r.code, r.body.error], [413, "FILE_TOO_LARGE"]);
+    assert.equal(ccCalls.length, 0);
+  });
+
+  test(`init: ${type}, resolution у тілі запиту ігнорується (ці інструменти її не підтримують, але сервер не падає)`, async () => {
+    reset();
+    const r = await run(initH, {
+      type,
+      filename: `a.${ext}`,
+      declaredExt: ext,
+      fileSize: 10 * 1024 * 1024,
+      resolution: { width: 640, height: 360 },
+    });
+    assert.equal(r.code, 200);
+    // isVideo: true технічно пропускає resolution крізь ту саму перевірку,
+    // що й compress-video, — якщо хтось випадково передасть валідні
+    // width/height, вони так само потраплять у convert-таск. Це свідомо
+    // не заборонено (однакова логіка з compress-video), бо наш клієнт
+    // просто ніколи не надсилає це поле для convert-*-to-mp4.
+    assert.deepEqual(lastCreateBody.tasks["convert-file"], {
+      operation: "convert",
+      input: "upload-file",
+      output_format: "mp4",
+      video_codec: "x264",
+      width: 640,
+      height: 360,
+      input_format: ext,
+    });
+  });
+}
+
 test("status: job завершено → finished + downloadUrl", async () => {
   reset();
   const r = await run(statusH, null, {}, "GET", { jobId: "550e8400-e29b-41d4-a716-446655440000" });

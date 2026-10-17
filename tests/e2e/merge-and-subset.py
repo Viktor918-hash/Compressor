@@ -173,7 +173,9 @@ with sync_playwright() as p:
     check("S1b no 'undefined' anywhere in the document", "undefined" not in html.lower().replace("undefined behavior",""), [m for m in re.findall(r".{30}undefined.{30}",html)][:3])
     canon=pg.get_attribute('link[rel=canonical]',"href"); check("S1c canonical (uk)", canon=="https://compressphoto.org/__e2e-merge", canon)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S2 footer on uk shows the stub (23 links: 18 tools + stub + 4 legal)", len(ftr)==23 and "/__e2e-merge" in ftr, ftr)
+    # Раунд 24: TOOLS виросло з 18 до 22 (додано convertMovToMp4/
+    # convertMkvToMp4/convertWebmToMp4 — три конвертери формату відео).
+    check("S2 footer on uk shows the stub (27 links: 22 tools + stub + 4 legal)", len(ftr)==27 and "/__e2e-merge" in ftr, ftr)
     # language switcher
     def switch(code):
         pg.locator(".ls-trigger:visible").first.click(); pg.locator(f".ls-option:has(.ls-option-code:text-is('{code}'))").first.click(); pg.wait_for_timeout(600)
@@ -182,10 +184,10 @@ with sync_playwright() as p:
     check("S3c en page canonical", pg.get_attribute('link[rel=canonical]',"href")=="https://compressphoto.org/en/__e2e-merge")
     switch("RU"); check("S4 switcher en→ru: tool has no ru → goes to /ru home", pg.url==B+"/ru", pg.url)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S4b ru footer hides the stub (18 links, no __e2e)", len(ftr)==18 and not any("__e2e" in h for h in ftr), ftr)
+    check("S4b ru footer hides the stub (22 links, no __e2e)", len(ftr)==22 and not any("__e2e" in h for h in ftr), ftr)
     pg.goto(B+"/es"); pg.wait_for_selector("h1"); pg.wait_for_timeout(400)
     ftr=pg.eval_on_selector_all(".footer__nav-link","els=>els.map(e=>e.getAttribute('href'))")
-    check("S4c es footer hides the stub", len(ftr)==18 and not any("__e2e" in h for h in ftr), ftr)
+    check("S4c es footer hides the stub", len(ftr)==22 and not any("__e2e" in h for h in ftr), ftr)
     pg.goto(B+"/__e2e-merge"); pg.wait_for_selector("h1"); pg.wait_for_timeout(400); switch("ES")
     check("S4d switcher uk→es → /es home", pg.url==B+"/es", pg.url)
     # related tools

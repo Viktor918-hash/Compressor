@@ -18,6 +18,9 @@ import Watermark from "./components/Watermark/Watermark.jsx";
 import BlackAndWhite from "./components/BlackAndWhite/BlackAndWhite.jsx";
 import CircleCrop from "./components/CircleCrop/CircleCrop.jsx";
 import CompressVideo from "./components/CompressVideo/CompressVideo.jsx";
+import ConvertMovToMp4 from "./components/ConvertVideoFormat/ConvertMovToMp4.jsx";
+import ConvertMkvToMp4 from "./components/ConvertVideoFormat/ConvertMkvToMp4.jsx";
+import ConvertWebmToMp4 from "./components/ConvertVideoFormat/ConvertWebmToMp4.jsx";
 import { Privacy, Terms, Contact, About } from "./components/Legal/LegalPages.jsx";
 import { ROUTE_PATHS } from "./routes.config.js";
 
@@ -45,6 +48,9 @@ const SLUG_COMPONENTS = {
   blackAndWhite: BlackAndWhite,
   circleCrop: CircleCrop,
   compressVideo: CompressVideo,
+  convertMovToMp4: ConvertMovToMp4,
+  convertMkvToMp4: ConvertMkvToMp4,
+  convertWebmToMp4: ConvertWebmToMp4,
   privacy: Privacy,
   terms: Terms,
   contact: Contact,

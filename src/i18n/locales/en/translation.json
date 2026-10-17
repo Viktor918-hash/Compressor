@@ -52,7 +52,13 @@
     "circleCrop": "Circle Crop Photo",
     "circleCropDesc": "Crop a photo into a perfect circle for an avatar or logo",
     "compressVideo": "Compress Video",
-    "compressVideoDesc": "Shrink MP4, MOV, AVI, WebM, MKV"
+    "compressVideoDesc": "Shrink MP4, MOV, AVI, WebM, MKV",
+    "convertMovToMp4": "Convert MOV to MP4",
+    "convertMovToMp4Desc": "iPhone/camera video to MP4",
+    "convertMkvToMp4": "Convert MKV to MP4",
+    "convertMkvToMp4Desc": "Compatible MP4 from any MKV",
+    "convertWebmToMp4": "Convert WebM to MP4",
+    "convertWebmToMp4Desc": "WebM to MP4 for editing & slides"
   },
   "home": {
     "categories": {
@@ -1587,6 +1593,219 @@
           "a": "Video is processed on a server rather than in the browser, and re-encoding is far more computationally heavy than handling a single image — for longer or larger files, it can take a minute or more."
         }
       ]
+    },
+    "convertMovToMp4": {
+      "title": "Convert MOV to MP4 Online: iPhone Video Without Compatibility Headaches",
+      "text1": "MOV (QuickTime) is the default recording format on iPhones, iPads and Apple cameras, but outside the Apple ecosystem it causes trouble: some Windows Media Player versions can't open MOV without extra codecs, many Android or older desktop video editors reject it outright, and upload forms, websites or certain messaging apps sometimes refuse MOV files or silently re-compress them with their own algorithm. MP4 is the most widely supported video container in the world, opening without issue on any device, browser or editing program.",
+      "text2": "The tool re-encodes the video stream into H.264 inside an MP4 container — that exact combination is what guarantees near-universal compatibility. If the source iPhone video was already recorded in H.264 (the typical setting on older camera configurations), the change happens mostly at the container level with minimal impact on quality; if it was recorded in the newer HEVC (H.265, the \"High Efficiency\" setting on iPhone cameras), a real re-encode takes place — either way the result stays visually solid and ready for viewing and further editing.",
+      "benefits": [
+        {
+          "title": "Opens anywhere",
+          "text": "MP4 with H.264 is the format every phone, browser, smart TV and practically every video editor accepts without extra codecs."
+        },
+        {
+          "title": "Up to 200MB per file",
+          "text": "Upload goes straight to the processing service, so even multi-minute camera videos don't hit typical web-form limits."
+        },
+        {
+          "title": "Nothing to install",
+          "text": "Everything happens in a browser tab — no desktop converter or mobile app required."
+        },
+        {
+          "title": "Honest about re-encoding",
+          "text": "If the source codec is already H.264, changes are minimal; if it's HEVC, the video is genuinely re-encoded, and the page doesn't hide that."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Why MOV doesn't always open where you need it to",
+          "text": "MOV is Apple's own container, and while modern Windows and most current apps have learned to open it, edge cases remain: older Windows Media Player versions, some Android editing apps, corporate upload systems, or even certain messaging apps can reject MOV or throw a format error. Converting to MP4 upfront removes that uncertainty no matter where the file ends up."
+        },
+        {
+          "title": "How to convert MOV to MP4 online: step by step",
+          "steps": [
+            "Upload your .mov file — drag it into the browser window or pick it from your device (up to 200MB).",
+            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
+            "Once conversion finishes, download the ready MP4 file to your device with one click."
+          ]
+        },
+        {
+          "title": "What actually happens during conversion",
+          "text": "The tool re-encodes the video stream to H.264 inside an MP4 container. If the source is already H.264, the change happens mostly at the packaging level (minimal quality impact); if the source uses HEVC/H.265, a genuine video re-encode takes place — deliberately, not as a hidden drawback: it's the only way to guarantee the file opens on devices that don't support HEVC."
+        },
+        {
+          "title": "Limits",
+          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). These are deliberate limits tied to server-side processing time per video."
+        },
+        {
+          "title": "Privacy: what happens to your file",
+          "text": "Conversion requires real server-side processing that a browser can't perform on its own. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Does the video get uploaded to a server?",
+          "a": "Yes — format conversion requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+        },
+        {
+          "q": "Will the video quality change?",
+          "a": "If the source video is already H.264 (typical for iPhone), the change is minimal. If it's HEVC/H.265, a genuine re-encode happens — the result stays visually solid, but it isn't a bit-for-bit copy of the original."
+        },
+        {
+          "q": "How is this different from \"Compress Video\"?",
+          "a": "\"Compress Video\" lowers the resolution to meaningfully shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the frame resolution."
+        },
+        {
+          "q": "Can I upload a different format instead of MOV?",
+          "a": "This page only accepts .mov files — there are separate conversion pages for MKV and WebM, and \"Compress Video\" accepts any of 5 formats at once with compression."
+        },
+        {
+          "q": "What's the max size and how many free conversions per day?",
+          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+        }
+      ]
+    },
+    "convertMkvToMp4": {
+      "title": "Convert MKV to MP4 Online: Compatible Video for Phones, TVs and Any Player",
+      "text1": "MKV (Matroska) is an open container popular for movie rips, recordings with multiple audio tracks or subtitles, and torrent downloads — but that very flexibility is the problem: MKV can hold almost any combination of video and audio codecs, and not every device can decode all of them. Many smart TVs, older game consoles, iPhones/iPads and even some modern video editors simply won't open MKV, or they show a black screen with no picture.",
+      "text2": "MP4 with H.264 is the most widely supported combination, guaranteed to open on the vast majority of devices. The tool re-encodes the MKV video stream (often HEVC, VP9 or an older codec) to H.264 inside an MP4 container, keeping the audio and the main video track so the result stays visually solid and fully compatible.",
+      "benefits": [
+        {
+          "title": "Guaranteed compatibility",
+          "text": "MP4 with H.264 opens on smart TVs, phones, game consoles and any player — regardless of which codec the original MKV used."
+        },
+        {
+          "title": "Up to 200MB per file",
+          "text": "Upload goes straight to the processing service, so even large files with multiple audio tracks don't hit typical web-form limits."
+        },
+        {
+          "title": "Nothing to install",
+          "text": "Everything happens in a browser tab — no desktop converter or codec pack required."
+        },
+        {
+          "title": "Video and main audio preserved",
+          "text": "Only what's needed for compatibility gets re-encoded — the main video track and audio stay intact."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Why MKV won't open on a smart TV or phone",
+          "text": "MKV is an \"envelope\" container that can carry very different codecs inside: HEVC/H.265, VP9, older DivX/Xvid for video, DTS/AC3/FLAC for audio. A device needs to support EVERY one of those codecs to play the file — and if even one isn't supported, the result is a playback error or a black, silent screen. MP4/H.264 removes that uncertainty: it's a combination almost everything supports."
+        },
+        {
+          "title": "How to convert MKV to MP4 online: step by step",
+          "steps": [
+            "Upload your .mkv file — drag it into the browser window or pick it from your device (up to 200MB).",
+            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
+            "Once conversion finishes, download the ready MP4 file to your device with one click."
+          ]
+        },
+        {
+          "title": "What actually happens during conversion",
+          "text": "The tool re-encodes the video stream to H.264 inside an MP4 container. Since MKV often uses codecs MP4 doesn't natively support (HEVC, VP9), this is always a genuine video re-encode rather than simple repackaging — the result stays visually solid, though it isn't a bit-for-bit copy of the original."
+        },
+        {
+          "title": "Limits",
+          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). If the MKV contains multiple audio tracks or subtitles, only the main audio track carries over — MKV-specific subtitle tracks don't transfer to MP4 automatically."
+        },
+        {
+          "title": "Privacy: what happens to your file",
+          "text": "Conversion requires real server-side processing that a browser can't perform on its own, especially when re-encoding between codecs. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Why won't my MKV open on a smart TV or phone?",
+          "a": "MKV can carry codecs (HEVC, VP9, etc.) not every device can decode. Converting to MP4/H.264 fixes this — that combination is supported by almost any device."
+        },
+        {
+          "q": "Does the video get uploaded to a server?",
+          "a": "Yes — re-encoding a video requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+        },
+        {
+          "q": "Will all audio tracks and subtitles from the MKV be kept?",
+          "a": "The main audio track carries over into the result. MKV-specific subtitle tracks don't transfer to MP4 automatically."
+        },
+        {
+          "q": "How is this different from \"Compress Video\"?",
+          "a": "\"Compress Video\" lowers the frame resolution to shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the resolution."
+        },
+        {
+          "q": "What's the max size and how many free conversions per day?",
+          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+        }
+      ]
+    },
+    "convertWebmToMp4": {
+      "title": "Convert WebM to MP4 Online: Screen and Browser Recordings in a Compatible Format",
+      "text1": "WebM is an open, royalty-free format built on VP8/VP9 codecs, widely used by browser-based screen recorders, webcam capture tools, screencast apps and some messaging platforms. The trouble starts when that file needs to go into a presentation, open in a classic desktop video editor (iMovie, older Premiere or Vegas versions) or upload to a platform that doesn't support WebM — many of those simply don't know what to do with VP8/VP9.",
+      "text2": "MP4 with H.264 is supported almost everywhere: in presentation software (PowerPoint, Keynote), in most video editors, and on every platform. The tool re-encodes the WebM video stream to H.264 inside an MP4 container, keeping audio and picture visually solid, though without claiming a bit-for-bit match with the original.",
+      "benefits": [
+        {
+          "title": "Works in presentations and editors",
+          "text": "MP4/H.264 is the format PowerPoint, Keynote and the vast majority of editing software accept, unlike WebM."
+        },
+        {
+          "title": "Up to 200MB per file",
+          "text": "Upload goes straight to the processing service, so even long screen recordings don't hit typical web-form limits."
+        },
+        {
+          "title": "Nothing to install",
+          "text": "Everything happens in a browser tab — no desktop converter required."
+        },
+        {
+          "title": "Quality kept as high as possible",
+          "text": "Re-encoding happens only for codec compatibility — picture and sound stay visually solid."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Why WebM won't open in a presentation or older editor",
+          "text": "WebM was built specifically for the web (on VP8/VP9 codecs), and while modern browsers handle it beautifully, software outside the browser — desktop presentation apps, some video editors, older devices — is often built only for H.264/MP4 and simply doesn't recognize VP8/VP9. Converting to MP4 fixes this in one step."
+        },
+        {
+          "title": "How to convert WebM to MP4 online: step by step",
+          "steps": [
+            "Upload your .webm file — drag it into the browser window or pick it from your device (up to 200MB).",
+            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
+            "Once conversion finishes, download the ready MP4 file to your device with one click."
+          ]
+        },
+        {
+          "title": "What actually happens during conversion",
+          "text": "The tool re-encodes the video stream from VP8/VP9 to H.264 inside an MP4 container — this is always a genuine re-encode (VP8/VP9 and H.264 are fundamentally different codecs, so simple repackaging isn't possible), so the result stays visually solid but isn't a bit-for-bit copy of the original."
+        },
+        {
+          "title": "Limits",
+          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). For long, high-resolution screen recordings, it's worth keeping that limit in mind beforehand."
+        },
+        {
+          "title": "Privacy: what happens to your file",
+          "text": "Conversion requires real server-side processing that a browser can't perform on its own when re-encoding from VP8/VP9 to H.264. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Why won't WebM open in PowerPoint or Keynote?",
+          "a": "Those apps are built for H.264/MP4 and don't recognize the VP8/VP9 codecs WebM is based on. Converting to MP4 fixes it."
+        },
+        {
+          "q": "Does the video get uploaded to a server?",
+          "a": "Yes — re-encoding from VP8/VP9 to H.264 requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+        },
+        {
+          "q": "Will the video quality change?",
+          "a": "VP8/VP9 and H.264 are different codecs, so re-encoding is always genuine (not simple repackaging). The result stays visually solid, but it isn't a bit-for-bit copy of the original."
+        },
+        {
+          "q": "How is this different from \"Compress Video\"?",
+          "a": "\"Compress Video\" lowers the frame resolution to shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the resolution."
+        },
+        {
+          "q": "What's the max size and how many free conversions per day?",
+          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+        }
+      ]
     }
   },
   "errors": {
@@ -1823,6 +2042,66 @@
     "errors": {
       "badTarget": "Enter a target size in megabytes — a positive number greater than zero.",
       "targetTooLarge": "The size you entered ({{target}}) is larger than the file itself ({{fileSize}}). You can't compress a video to a size bigger than the original — choose a smaller value."
+    }
+  },
+  "convertMovToMp4": {
+    "titlePart2": "Convert MOV to",
+    "titleGradient": "MP4",
+    "text1": "Upload a MOV (QuickTime) video — the format iPhones, iPads and Apple cameras record by default — and get a ready MP4 that opens on virtually any device, platform or video editor.",
+    "text2": "Conversion runs on a processing server in a few seconds — nothing to install, and no quality loss beyond what's needed for a compatible codec.",
+    "dropzone": "Drop your MOV file here or click to convert",
+    "limit": "You've used all your free conversions for today. Sign up to get more!",
+    "limit2": "You've reached the daily video conversion limit. Please try again tomorrow.",
+    "uploading": "Uploading video…",
+    "processing": "Converting to MP4…",
+    "panel": {
+      "emptyState": "Add a MOV video",
+      "addMore": "Add another video",
+      "addMoreAria": "Add another video",
+      "selected": "Selected videos:",
+      "downloadOne": "Download MP4",
+      "downloadMany": "Download MP4 files",
+      "remove": "Remove"
+    }
+  },
+  "convertMkvToMp4": {
+    "titlePart2": "Convert MKV to",
+    "titleGradient": "MP4",
+    "text1": "Upload an MKV (Matroska) video — common for movie rips and recordings with multiple audio/subtitle tracks — and get an MP4 that opens on phones, smart TVs and any player without extra codecs.",
+    "text2": "Conversion runs on a processing server in a few seconds — nothing to install. MKV often carries video codecs (HEVC, VP9) that MP4 only partially supports, so the tool re-encodes the video to H.264 for guaranteed compatibility.",
+    "dropzone": "Drop your MKV file here or click to convert",
+    "limit": "You've used all your free conversions for today. Sign up to get more!",
+    "limit2": "You've reached the daily video conversion limit. Please try again tomorrow.",
+    "uploading": "Uploading video…",
+    "processing": "Converting to MP4…",
+    "panel": {
+      "emptyState": "Add an MKV video",
+      "addMore": "Add another video",
+      "addMoreAria": "Add another video",
+      "selected": "Selected videos:",
+      "downloadOne": "Download MP4",
+      "downloadMany": "Download MP4 files",
+      "remove": "Remove"
+    }
+  },
+  "convertWebmToMp4": {
+    "titlePart2": "Convert WebM to",
+    "titleGradient": "MP4",
+    "text1": "Upload a WebM video — the format typically used for screen recordings, webcam captures and browser-based recording tools — and get an MP4 that any video editor, presentation app or older platform without WebM support can open.",
+    "text2": "Conversion runs on a processing server in a few seconds — nothing to install. WebM and MP4 use different video codecs, so the tool re-encodes the video to H.264, the most widely supported option.",
+    "dropzone": "Drop your WebM file here or click to convert",
+    "limit": "You've used all your free conversions for today. Sign up to get more!",
+    "limit2": "You've reached the daily video conversion limit. Please try again tomorrow.",
+    "uploading": "Uploading video…",
+    "processing": "Converting to MP4…",
+    "panel": {
+      "emptyState": "Add a WebM video",
+      "addMore": "Add another video",
+      "addMoreAria": "Add another video",
+      "selected": "Selected videos:",
+      "downloadOne": "Download MP4",
+      "downloadMany": "Download MP4 files",
+      "remove": "Remove"
     }
   }
 }

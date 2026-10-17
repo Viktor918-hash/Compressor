@@ -143,6 +143,30 @@ export const ROUTE_PATHS = [
     ru: "/ru/compress-video",
     es: "/es/comprimir-video",
   },
+  // Раунд 24: три вузькі конвертери формату відео (не стиснення) — кожен
+  // під окремий пошуковий запит, узгоджено з користувачем за аналізом у
+  // claude/compressphoto-growth-prompt.md §3.3-А.
+  {
+    slug: "convertMovToMp4",
+    uk: "/convert-mov-to-mp4",
+    en: "/en/convert-mov-to-mp4",
+    ru: "/ru/convert-mov-to-mp4",
+    es: "/es/convertir-mov-a-mp4",
+  },
+  {
+    slug: "convertMkvToMp4",
+    uk: "/convert-mkv-to-mp4",
+    en: "/en/convert-mkv-to-mp4",
+    ru: "/ru/convert-mkv-to-mp4",
+    es: "/es/convertir-mkv-a-mp4",
+  },
+  {
+    slug: "convertWebmToMp4",
+    uk: "/convert-webm-to-mp4",
+    en: "/en/convert-webm-to-mp4",
+    ru: "/ru/convert-webm-to-mp4",
+    es: "/es/convertir-webm-a-mp4",
+  },
   // Довір-сторінки (uk+en спершу, як і для інструментів; ru/es — пізніше).
   // Не інструменти: без header.*/TOOLS-запису, посилання лише у футері.
   { slug: "privacy", uk: "/privacy", en: "/en/privacy" },

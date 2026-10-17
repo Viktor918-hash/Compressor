@@ -185,6 +185,21 @@ const Header = () => {
           icon: FiVideo,
           label: t("header.compressVideo"),
         },
+        {
+          to: "/convert-mov-to-mp4",
+          icon: FiRepeat,
+          label: t("header.convertMovToMp4"),
+        },
+        {
+          to: "/convert-mkv-to-mp4",
+          icon: FiRepeat,
+          label: t("header.convertMkvToMp4"),
+        },
+        {
+          to: "/convert-webm-to-mp4",
+          icon: FiRepeat,
+          label: t("header.convertWebmToMp4"),
+        },
       ],
     },
     {
@@ -569,6 +584,48 @@ const Header = () => {
                       </span>
                       <span className="dropdown-panel__desc">
                         {t("header.compressVideoDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/convert-mov-to-mp4"
+                    className="dropdown-panel__item"
+                  >
+                    <FiRepeat size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.convertMovToMp4")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.convertMovToMp4Desc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/convert-mkv-to-mp4"
+                    className="dropdown-panel__item"
+                  >
+                    <FiRepeat size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.convertMkvToMp4")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.convertMkvToMp4Desc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/convert-webm-to-mp4"
+                    className="dropdown-panel__item"
+                  >
+                    <FiRepeat size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.convertWebmToMp4")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.convertWebmToMp4Desc")}
                       </span>
                     </div>
                   </LocalizedLink>

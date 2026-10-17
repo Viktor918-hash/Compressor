@@ -40,6 +40,33 @@ const TOOLS = {
     maxFileSize: MAX_VIDEO_FILE_SIZE,
     isVideo: true,
   },
+  // Раунд 24: прості конвертери формату (MOV/MKV/WEBM → MP4) — кожен
+  // приймає ЛИШЕ свій один вхідний формат (на відміну від compress-video,
+  // яке приймає всі 5) — сторінки навмисно вузькі під конкретний
+  // пошуковий запит ("mov to mp4" тощо, див.
+  // claude/compressphoto-growth-prompt.md §3.3-А). isVideo: true лише
+  // заради того самого buildVideoConvertOptions() (video_codec: "x264" —
+  // той самий підтверджений параметр, що в compress-video, для
+  // надійної сумісності контейнера MP4) — жодного width/height ці
+  // інструменти ніколи не передають (клієнт не рахує роздільність).
+  "convert-mov-to-mp4": {
+    acceptedExt: ["mov"],
+    outputFormat: "mp4",
+    maxFileSize: MAX_VIDEO_FILE_SIZE,
+    isVideo: true,
+  },
+  "convert-mkv-to-mp4": {
+    acceptedExt: ["mkv"],
+    outputFormat: "mp4",
+    maxFileSize: MAX_VIDEO_FILE_SIZE,
+    isVideo: true,
+  },
+  "convert-webm-to-mp4": {
+    acceptedExt: ["webm"],
+    outputFormat: "mp4",
+    maxFileSize: MAX_VIDEO_FILE_SIZE,
+    isVideo: true,
+  },
 };
 
 // Розумні межі на width/height, щоб довільний JSON не пішов прямо в
@@ -58,11 +85,14 @@ function sendError(res, status, code, extra = {}) {
 /**
  * POST /api/convert/init — крок 1 прямого upload-у в CloudConvert
  * (P0-6). Тіло запиту — лише JSON-метадані (кілобайти), не сам файл:
- * { type: "word-to-pdf"|"pdf-to-word"|"compress-video", filename, declaredExt, fileSize,
+ * { type: "word-to-pdf"|"pdf-to-word"|"compress-video"|"convert-mov-to-mp4"|
+ *   "convert-mkv-to-mp4"|"convert-webm-to-mp4", filename, declaredExt, fileSize,
  *   resolution?: { width, height } } — resolution лише для compress-video,
  *   задає цільову роздільність (порахована на клієнті з реальних розмірів
  *   відео, див. CompressVideo/convertCompressVideo.js); якщо не передано — convert-таск
  *   іде без width/height (CloudConvert перекодує в тій же роздільності).
+ *   convert-*-to-mp4 (раунд 24) ніколи не передають resolution — це прості
+ *   конвертери формату, не стиснення.
  *
  * declaredExt визначається на клієнті за магічними байтами файлу
  * (src/utils/fileSignature.js) — сервер більше не бачить вміст файлу, щоб

@@ -78,6 +78,21 @@ export const TOOLS = [
     nameKey: "header.compressVideo",
     descKey: "header.compressVideoDesc",
   },
+  {
+    slug: "convertMovToMp4",
+    nameKey: "header.convertMovToMp4",
+    descKey: "header.convertMovToMp4Desc",
+  },
+  {
+    slug: "convertMkvToMp4",
+    nameKey: "header.convertMkvToMp4",
+    descKey: "header.convertMkvToMp4Desc",
+  },
+  {
+    slug: "convertWebmToMp4",
+    nameKey: "header.convertWebmToMp4",
+    descKey: "header.convertWebmToMp4Desc",
+  },
 ];
 
 export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
@@ -85,7 +100,7 @@ export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);
 // Які інструменти доречно радити на сторінці кожного інструмента
 // (за змістом: фото → фото, документи → документи).
 export const RELATED = {
-  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf", "cropImage", "rotateImage", "addWatermark", "blackAndWhite", "circleCrop", "compressVideo"],
+  home: ["convert", "webp", "resize", "removeBg", "compressToSize", "removeExif", "photoToPdf", "cropImage", "rotateImage", "addWatermark", "blackAndWhite", "circleCrop", "compressVideo", "convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4"],
   convert: ["webp", "home", "resize", "presets", "convertToPng"],
   webp: ["convert", "home", "resize", "presets", "convertToPng"],
   resize: ["home", "convert", "webp", "presets", "compressToSize", "cropImage", "rotateImage"],
@@ -103,7 +118,10 @@ export const RELATED = {
   addWatermark: ["rotateImage", "cropImage", "resize", "compressToSize", "home"],
   blackAndWhite: ["rotateImage", "cropImage", "addWatermark", "resize", "compressToSize", "home"],
   circleCrop: ["cropImage", "rotateImage", "addWatermark", "resize", "compressToSize", "home"],
-  compressVideo: ["compressToSize", "wordToPdf", "home", "resize"],
+  compressVideo: ["convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4", "compressToSize", "home"],
+  convertMovToMp4: ["convertMkvToMp4", "convertWebmToMp4", "compressVideo", "home"],
+  convertMkvToMp4: ["convertMovToMp4", "convertWebmToMp4", "compressVideo", "home"],
+  convertWebmToMp4: ["convertMovToMp4", "convertMkvToMp4", "compressVideo", "home"],
 };
 
 // Тільки для e2e-збірки (VITE_E2E_STUB=1): заглушка з підмножиною мов, щоб

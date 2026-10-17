@@ -19,6 +19,10 @@ const TOOLS = {
   blackAndWhite: { ru: "/ru/black-and-white", es: "/es/foto-en-blanco-y-negro", sections: 5 },
   circleCrop: { ru: "/ru/circle-crop", es: "/es/recorte-circular", sections: 5 },
   compressVideo: { ru: "/ru/compress-video", es: "/es/comprimir-video", sections: 5 },
+  // Раунд 24: прості конвертери формату відео (не стиснення).
+  convertMovToMp4: { ru: "/ru/convert-mov-to-mp4", es: "/es/convertir-mov-a-mp4", sections: 5 },
+  convertMkvToMp4: { ru: "/ru/convert-mkv-to-mp4", es: "/es/convertir-mkv-a-mp4", sections: 5 },
+  convertWebmToMp4: { ru: "/ru/convert-webm-to-mp4", es: "/es/convertir-webm-a-mp4", sections: 5 },
 };
 const read = (l) => JSON.parse(readFileSync(`src/i18n/locales/${l}/translation.json`, "utf8"));
 const words = (s) => (String(s).match(/[\p{L}\p{N}'’-]+/gu) || []).length;

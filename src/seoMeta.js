@@ -425,6 +425,74 @@ export const PAGE_META = {
         "Reduce el tamaño de video MP4, MOV, AVI, WebM o MKV online: compresión recomendada o tu propia resolución. Hasta 200MB, sin instalar programas.",
     },
   },
+  // Раунд 24: три вузькі конвертери формату (не стиснення) — кожен під
+  // окремий пошуковий запит, claude/compressphoto-growth-prompt.md §3.3-А.
+  convertMovToMp4: {
+    uk: {
+      title: "Конвертувати MOV в MP4 онлайн безкоштовно",
+      description:
+        "Перетворіть відео MOV (QuickTime) у MP4 прямо в браузері — без встановлення програм. Файл до 200 МБ, готовий результат за кілька секунд.",
+    },
+    en: {
+      title: "Convert MOV to MP4 Online Free",
+      description:
+        "Convert QuickTime MOV video files to MP4 online, right in your browser — nothing to install. Up to 200MB, ready in seconds.",
+    },
+    ru: {
+      title: "Конвертировать MOV в MP4 онлайн бесплатно",
+      description:
+        "Преобразуйте видео MOV (QuickTime) в MP4 прямо в браузере — без установки программ. Файл до 200 МБ, готовый результат за секунды.",
+    },
+    es: {
+      title: "Convertir MOV a MP4 Online Gratis",
+      description:
+        "Convierte archivos de video MOV (QuickTime) a MP4 online, directo en el navegador — sin instalar nada. Hasta 200MB, listo en segundos.",
+    },
+  },
+  convertMkvToMp4: {
+    uk: {
+      title: "Конвертувати MKV в MP4 онлайн безкоштовно",
+      description:
+        "Перетворіть відео MKV (Matroska) у MP4 прямо в браузері — сумісний формат для будь-якого телефона чи плеєра. До 200 МБ, без програм.",
+    },
+    en: {
+      title: "Convert MKV to MP4 Online Free",
+      description:
+        "Convert MKV (Matroska) video files to MP4 online — a universally compatible format for any phone or player. Up to 200MB, nothing to install.",
+    },
+    ru: {
+      title: "Конвертировать MKV в MP4 онлайн бесплатно",
+      description:
+        "Преобразуйте видео MKV (Matroska) в MP4 прямо в браузере — совместимый формат для любого телефона или плеера. До 200 МБ, без программ.",
+    },
+    es: {
+      title: "Convertir MKV a MP4 Online Gratis",
+      description:
+        "Convierte archivos de video MKV (Matroska) a MP4 online — un formato compatible con cualquier teléfono o reproductor. Hasta 200MB, sin instalar nada.",
+    },
+  },
+  convertWebmToMp4: {
+    uk: {
+      title: "Конвертувати WebM в MP4 онлайн безкоштовно",
+      description:
+        "Перетворіть відео WebM у MP4 прямо в браузері — зручно для монтажу, презентацій і платформ, які не підтримують WebM. До 200 МБ, без програм.",
+    },
+    en: {
+      title: "Convert WebM to MP4 Online Free",
+      description:
+        "Convert WebM video files to MP4 online — handy for editing software, presentations, and platforms that don't support WebM. Up to 200MB, nothing to install.",
+    },
+    ru: {
+      title: "Конвертировать WebM в MP4 онлайн бесплатно",
+      description:
+        "Преобразуйте видео WebM в MP4 прямо в браузере — удобно для монтажа, презентаций и платформ, не поддерживающих WebM. До 200 МБ, без программ.",
+    },
+    es: {
+      title: "Convertir WebM a MP4 Online Gratis",
+      description:
+        "Convierte archivos de video WebM a MP4 online — ideal para edición, presentaciones y plataformas que no admiten WebM. Hasta 200MB, sin instalar nada.",
+    },
+  },
   // Довір-сторінки: лише uk+en (ru/es — пізніше). noindex не ставимо —
   // Google навпаки любить бачити Privacy/Terms/Contact на сайтах.
   privacy: {
