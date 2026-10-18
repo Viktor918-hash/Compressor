@@ -5,13 +5,16 @@ import i18n, { setLanguage } from "./i18n/i18n";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ROUTES } from "./routes.jsx";
-import { routesForLang } from "./utils/routeLangs";
+import { routesForLang, findRouteByPath } from "./utils/routeLangs";
+import { toolBySlug } from "./toolsCatalog";
+import { recordRecent } from "./utils/recentTools";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer.jsx";
 import LanguageSuggestionBanner from "./components/LanguageSuggestion/LanguageSuggestionBanner";
 import ConsentBanner from "./components/ConsentBanner/ConsentBanner";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import NotFound from "./components/NotFound/NotFound";
+import ShareView from "./components/ShareView/ShareView";
 
 /**
  * Жорстко задає мову контенту для цього конкретного роута на основі URL
@@ -47,6 +50,19 @@ function PrerenderSignal() {
     });
     return () => cancelAnimationFrame(raf1);
   }, []);
+  return null;
+}
+
+/**
+ * "Ваші інструменти" (round 34): запам'ятовуємо відкриті сторінки
+ * інструментів (лише localStorage цього браузера), щоб показати їх на
+ * головній.
+ */
+function RecentToolsTracker({ pathname }) {
+  useEffect(() => {
+    const slug = findRouteByPath(ROUTES, pathname)?.slug;
+    if (slug && toolBySlug(slug)) recordRecent(slug);
+  }, [pathname]);
   return null;
 }
 
@@ -106,6 +122,24 @@ function App() {
                   }
                 />
               ))}
+              {/* Тимчасові посилання на файл (round 34) — поза ROUTES:
+                  не потрапляють у sitemap/hreflang/меню */}
+              {[
+                ["uk", "/s/:id"],
+                ["en", "/en/s/:id"],
+                ["ru", "/ru/s/:id"],
+                ["es", "/es/s/:id"],
+              ].map(([lang, path]) => (
+                <Route
+                  key={`share-${lang}`}
+                  path={path}
+                  element={
+                    <LangSync lang={lang}>
+                      <ShareView />
+                    </LangSync>
+                  }
+                />
+              ))}
               <Route path="*" element={<NotFound />} />
             </Routes>
             </ErrorBoundary>
@@ -113,6 +147,7 @@ function App() {
           <Footer />
           <ConsentBanner />
           <PrerenderSignal />
+          <RecentToolsTracker pathname={location.pathname} />
         </div>
       </AuthProvider>
     </HelmetProvider>

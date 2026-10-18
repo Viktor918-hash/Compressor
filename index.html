@@ -42,6 +42,14 @@
 <body>
 
   <div id="root"></div>
+  <script>
+    // Тимчасові посилання /s/<id> (round 34) віддаються через rewrite на
+    // пре-рендерену головну — ховаємо її вміст, поки React не відмалює
+    // сторінку посилання (інакше на мить видно головну).
+    if (/^\/(?:(?:en|ru|es)\/)?s\//.test(location.pathname)) {
+      document.getElementById("root").innerHTML = "";
+    }
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

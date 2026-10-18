@@ -666,3 +666,150 @@ __________________________МОБАЙЛ______________________________ */
     line-height: 1.3;
     color: #4b5563;
 }
+
+/* ____________ Етапи прямого вивантаження: Вивантаження → Обробка → Готово (round 33) ____________ */
+.side-panel__stages {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.side-panel__stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: var(--radius-full, 999px);
+    background: var(--color-surface-alt, #F3F4F6);
+    color: var(--color-text-muted, #6B7280);
+    white-space: nowrap;
+}
+
+.side-panel__stage--done {
+    background: var(--color-success-50, #ECFDF5);
+    color: var(--color-success-700, #047857);
+}
+
+.side-panel__stage--done::before {
+    content: "✓";
+}
+
+.side-panel__stage--active {
+    background: var(--color-primary-100, #E0E7FF);
+    color: var(--color-primary-700, #3730A3);
+    font-weight: 600;
+}
+
+/* "Біжуча" смужка для етапу без відсотка (обробка в CloudConvert).
+   prefers-reduced-motion вимикає анімацію глобально (tokens.css). */
+.side-panel__file-progress--indeterminate {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-border, #E5E7EB);
+}
+
+.side-panel__file-progress--indeterminate::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -40%;
+    width: 40%;
+    border-radius: 3px;
+    background: var(--color-primary-600, #4338CA);
+    animation: sidePanelIndeterminate 1.2s var(--ease, ease) infinite;
+}
+
+@keyframes sidePanelIndeterminate {
+    from {
+        left: -40%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+/* ____________ "Зберегти в Фото / Поділитися" (Web Share API, лише сенсорні пристрої) ____________ */
+.side-panel__share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border: 1.5px solid var(--color-primary-600, #4338CA);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--color-primary-700, #3730A3);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.side-panel__share-btn:focus-visible {
+    outline: 2px solid var(--color-primary-600, #4338CA);
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    /* обидві кнопки — плаваючі внизу, поруч: Зберегти (ліворуч) | Завантажити (праворуч) */
+    .side-panel__share-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 15px;
+        z-index: 10;
+        width: calc(50% - 22px);
+        margin: 0;
+        padding: 14px 10px;
+        border-radius: 12px;
+        font-size: 15px;
+        box-shadow: 0 4px 12px rgba(17, 24, 39, .12);
+    }
+
+    .side-panel__download-btn--with-share {
+        right: 15px;
+        width: calc(50% - 22px);
+        min-width: 0;
+        padding: 14px 10px;
+    }
+}
+
+/* ____________ Мобільна шторка: вміст не ховається під плаваючими кнопками (round 33) ____________
+   Після появи блоку "Спробуйте також" (round 32) список файлів (flex:1)
+   стискався майже до нуля, а сам блок перекривав плаваючу кнопку
+   "Завантажити". На мобільному прокручується вся шторка, а не список,
+   і знизу лишається місце під кнопки. */
+.side-panel {
+    overflow-y: auto;
+}
+
+/* щонайменше один рядок файлу видно завжди — раніше на екранах ~800 px
+   заввишки список стискався до 0 і сам файл зникав з панелі */
+.side-panel__filelist {
+    min-height: 72px;
+}
+
+@media (max-width: 768px) {
+    .side-panel {
+        padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .side-panel__filelist {
+        flex: none;
+        overflow-y: visible;
+    }
+
+    .side-panel__download-btn {
+        z-index: 10;
+    }
+}

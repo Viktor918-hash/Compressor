@@ -20,6 +20,7 @@ import {
   FiDroplet,
   FiCircle,
   FiVideo,
+  FiSearch,
 } from "react-icons/fi";
 import { FaCompress } from "react-icons/fa";
 import { TbResize, TbEraser } from "react-icons/tb";
@@ -32,6 +33,7 @@ import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { useAuth } from "../../context/AuthContext";
 import AuthModal from "../AuthModal/AuthModal";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
+import ToolSearch from "../ToolSearch/ToolSearch";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -45,6 +47,28 @@ const Header = () => {
   const { user, isPro, signOut } = useAuth();
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  // Пошук інструментів (round 33): кнопка в хедері, Ctrl/Cmd+K або "/"
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const isMacLike =
+    typeof navigator !== "undefined" &&
+    /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || "");
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      const target = e.target;
+      const typing =
+        target instanceof HTMLElement &&
+        (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
+      const isCmdK = (e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === "k";
+      const isSlash = e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey;
+      if (!isCmdK && !isSlash) return;
+      e.preventDefault();
+      setIsMenuOpen(false);
+      setIsSearchOpen(true);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   // Мобільне/планшетне бургер-меню: замість одного довгого списку —
   // категорії-акордеон (ті самі заголовки, що й у десктопному
@@ -640,6 +664,20 @@ const Header = () => {
           </ul>
 
           <div className="div__nav">
+            <button
+              type="button"
+              className="header__search-btn"
+              onClick={() => setIsSearchOpen(true)}
+              aria-label={t("header.search")}
+              aria-keyshortcuts="Control+K Meta+K /"
+              aria-haspopup="dialog"
+            >
+              <FiSearch size={18} aria-hidden="true" />
+              <span className="header__search-text">{t("header.search")}</span>
+              <kbd className="header__search-kbd" aria-hidden="true">
+                {isMacLike ? "⌘K" : "Ctrl K"}
+              </kbd>
+            </button>
             {/* 4. Відображення кнопок у десктопній версії */}
             {user ? (
               <div
@@ -852,6 +890,8 @@ const Header = () => {
           )}
         </div>
       </aside>
+
+      <ToolSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {/* 6. Модальне вікно для авторизації */}
       <AuthModal

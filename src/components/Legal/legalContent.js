@@ -14,7 +14,7 @@
 // ПЕРЕД монетизацією/збором платежів тексти має вичитати юрист.
 
 export const CONTACT_EMAIL = "petrovich4114@gmail.com";
-export const LAST_UPDATED = { uk: "4 жовтня 2026", en: "October 4, 2026" };
+export const LAST_UPDATED = { uk: "18 жовтня 2026", en: "October 18, 2026" };
 
 export const LEGAL_CONTENT = {
   privacy: {
@@ -27,7 +27,8 @@ export const LEGAL_CONTENT = {
           heading: "1. Обробка файлів",
           paragraphs: [
             "Більшість інструментів (стиснення, конвертація форматів, зміна розміру, обрізка, поворот, водяний знак, видалення фону, видалення метаданих, розпізнавання тексту, пресети) обробляють ваш файл повністю у вашому браузері. Файл не завантажується на наш сервер і не передається нам — ми фізично не маємо до нього доступу.",
-            "Виняток: конвертація Word ↔ PDF відбувається не локально. Файл тимчасово передається на наш сервер і далі — сервісу конвертації CloudConvert. Файл автоматично видаляється з серверів CloudConvert невдовзі після обробки, відповідно до стандартних налаштувань збереження CloudConvert. Ми не зберігаємо копій цих файлів і не переглядаємо їхній вміст.",
+            "Виняток 1: конвертація Word ↔ PDF, стиснення відео та конвертація відео у MP4 відбуваються не локально. Файл вивантажується напряму з вашого браузера до сервісу конвертації CloudConvert. Файл автоматично видаляється з серверів CloudConvert невдовзі після обробки, відповідно до стандартних налаштувань збереження CloudConvert. Ми не зберігаємо копій цих файлів і не переглядаємо їхній вміст.",
+            "Виняток 2: тимчасові посилання. Лише якщо ви самі натискаєте «Посилання на 2 години», готовий файл вивантажується в сховище Cloudflare R2, і будь-хто, у кого є посилання, може його завантажити. Посилання перестає працювати рівно через 2 години; файл видаляється зі сховища автоматично — під час наступного прибирання, не пізніше ніж за добу. Ми не переглядаємо вміст цих файлів, окрім випадків, коли отримуємо скаргу на незаконний вміст.",
           ],
         },
         {
@@ -45,13 +46,14 @@ export const LEGAL_CONTENT = {
         {
           heading: "4. Ліміти та анти-зловживання",
           paragraphs: [
-            "Щоб безкоштовний сервіс лишався доступним для всіх, ми рахуємо кількість конвертацій Word/PDF за технічним ідентифікатором (хеш IP-адреси). Ми не використовуємо цей ідентифікатор для профілювання — лише для лічильника «скільки конвертацій сьогодні».",
+            "Щоб безкоштовний сервіс лишався доступним для всіх, ми рахуємо кількість конвертацій (Word/PDF, відео) і тимчасових посилань за технічним ідентифікатором (хеш IP-адреси, а для зареєстрованих — ідентифікатор акаунта). Ми не використовуємо цей ідентифікатор для профілювання — лише для лічильників «скільки сьогодні».",
           ],
         },
         {
           heading: "5. Треті сторони, що отримують дані",
           list: [
-            "CloudConvert — конвертація Word↔PDF: сам файл, тимчасово.",
+            "CloudConvert — конвертація Word↔PDF і відео: сам файл, тимчасово.",
+            "Cloudflare (R2) — тимчасові посилання: сам файл, до 2 годин доступу (видалення не пізніше ніж за добу), лише якщо ви створили посилання.",
             "Supabase — акаунти й авторизація: email, хеш пароля.",
             "Vercel — хостинг сайту: стандартні серверні логи (IP, User-Agent).",
             "Google Analytics — статистика використання, лише за згодою: анонімізовані дані сесії.",
@@ -78,7 +80,8 @@ export const LEGAL_CONTENT = {
           heading: "1. File processing",
           paragraphs: [
             "Most tools (compress, convert, resize, crop, rotate, watermark, background removal, metadata removal, OCR, presets) process your file entirely in your browser. The file is never uploaded to our server and we never have access to it.",
-            "Exception: Word ↔ PDF conversion is not local. The file is temporarily sent to our server and then to CloudConvert, our document conversion provider. Files are automatically deleted from CloudConvert's servers shortly after processing, per CloudConvert's standard retention settings. We don't keep copies and don't inspect their content.",
+            "Exception 1: Word ↔ PDF conversion, video compression and video-to-MP4 conversion are not local. The file is uploaded directly from your browser to CloudConvert, our conversion provider. Files are automatically deleted from CloudConvert's servers shortly after processing, per CloudConvert's standard retention settings. We don't keep copies and don't inspect their content.",
+            "Exception 2: temporary links. Only if you click \"2-hour link\" is the processed file uploaded to Cloudflare R2 storage, where anyone with the link can download it. The link stops working exactly 2 hours later; the file is deleted from storage automatically at the next cleanup, within 24 hours at the latest. We don't inspect these files unless we receive a report about unlawful content.",
           ],
         },
         {
@@ -96,13 +99,14 @@ export const LEGAL_CONTENT = {
         {
           heading: "4. Limits & abuse prevention",
           paragraphs: [
-            "To keep the free service available to everyone, we count daily Word/PDF conversions using a technical identifier (a hashed IP address). We don't use this identifier for profiling — only for the \"conversions used today\" counter.",
+            "To keep the free service available to everyone, we count daily conversions (Word/PDF, video) and temporary links using a technical identifier (a hashed IP address, or your account ID if you're signed in). We don't use this identifier for profiling — only for the \"used today\" counters.",
           ],
         },
         {
           heading: "5. Third parties that may receive data",
           list: [
-            "CloudConvert — Word↔PDF conversion: the file itself, temporarily.",
+            "CloudConvert — Word↔PDF and video conversion: the file itself, temporarily.",
+            "Cloudflare (R2) — temporary links: the file itself, accessible for up to 2 hours (deleted within 24 hours at the latest), only if you create a link.",
             "Supabase — accounts & authentication: email, hashed password.",
             "Vercel — site hosting: standard server logs (IP, user agent).",
             "Google Analytics — usage statistics, consent-gated: anonymized session data.",
@@ -133,6 +137,7 @@ export const LEGAL_CONTENT = {
             "Сервіс безкоштовний для особистого й комерційного використання в межах звичайного обсягу.",
             "Гостьовий ліміт на конвертацію Word/PDF — 3 на добу; з акаунтом — 6 на добу. Ліміти можуть змінюватись.",
             "Заборонено: автоматизоване масове використання (боти, скрипти) з метою обійти ліміти; спроби зламати, перевантажити чи іншим чином зашкодити роботі сервісу; завантаження файлів, на які у вас немає прав, або файлів із протиправним вмістом.",
+            "Тимчасові посилання призначені лише для того, щоб передати результат обробки. За вміст файлу, яким ви ділитеся, відповідаєте ви. Ми видаляємо файл і блокуємо посилання, щойно дізнаємося про протиправний вміст (скарги — через сторінку «Контакти»).",
           ],
         },
         {
@@ -170,6 +175,7 @@ export const LEGAL_CONTENT = {
             "The service is free for personal and commercial use within normal volume.",
             "Guest users get 3 Word/PDF conversions per day; registered users get 6. Limits may change.",
             "Prohibited: automated bulk use (bots, scripts) to bypass limits; attempting to break, overload, or otherwise disrupt the service; uploading files you don't have rights to, or files with unlawful content.",
+            "Temporary links are meant only for handing over a processing result. You are responsible for the content of files you share. We delete the file and disable the link as soon as we learn about unlawful content (report it via the Contact page).",
           ],
         },
         {

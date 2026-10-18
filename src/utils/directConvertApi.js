@@ -1,6 +1,7 @@
 import { getAccessToken } from "../lib/supabaseClient";
 import i18n from "../i18n/i18n";
 import { userError } from "./userError";
+import { estimateEtaSec } from "../components/PanelFile/uploadHints";
 
 export { userError };
 
@@ -105,10 +106,32 @@ function uploadWithProgress(uploadUrl, uploadParameters, file, { signal, onProgr
     const xhr = new XMLHttpRequest();
     xhr.open("POST", uploadUrl);
 
+    // round 33: структурований прогрес етапу "upload" — Panel показує
+    // "Вивантаження 43% · 86 з 200 МБ · ще ≈ 1 хв" і крокову смужку
+    // Вивантаження → Обробка → Готово. На 200 МБ відео це найдовша фаза,
+    // і без відсотка/байтів вона виглядала як "зависло".
+    const startedAt = Date.now();
+    const total = file.size;
+    onProgress?.({
+      stage: "upload",
+      value: 0,
+      loaded: 0,
+      total,
+      etaSec: null,
+      text: i18n.t(textKeys.uploading),
+    });
+
     xhr.upload.onprogress = (e) => {
-      if (!e.lengthComputable) return;
+      const sent = e.loaded;
+      const size = e.lengthComputable && e.total ? e.total : total;
       onProgress?.({
-        value: e.loaded / e.total,
+        stage: "upload",
+        value: size ? Math.min(1, sent / size) : null,
+        // e.total включає службові поля multipart-форми (кілька КБ) —
+        // для "86 з 200 МБ" показуємо байти відносно розміру самого файлу
+        loaded: Math.min(total, Math.round(total * (size ? sent / size : 0))),
+        total,
+        etaSec: estimateEtaSec(sent, size, (Date.now() - startedAt) / 1000),
         text: i18n.t(textKeys.uploading),
       });
     };
@@ -141,12 +164,30 @@ async function pollStatus(jobId, { signal, onProgress, textKeys } = {}) {
     throw err;
   };
 
+  // Етап "processing": прогресу від CloudConvert немає, тож замість
+  // застиглого тексту показуємо лічильник часу, що тікає щосекунди
+  // (окремий таймер — опитування йде раз на 1,5 с і давало б стрибки 0:01 → 0:03).
+  const startedAt = Date.now();
+  const emitProcessing = () =>
+    onProgress?.({
+      stage: "processing",
+      value: null,
+      elapsedSec: Math.floor((Date.now() - startedAt) / 1000),
+      text: i18n.t(textKeys.processing),
+    });
+  emitProcessing();
+  const ticker = setInterval(emitProcessing, 1000);
+  try {
+    return await pollLoop();
+  } finally {
+    clearInterval(ticker);
+  }
+
+  async function pollLoop() {
   while (Date.now() < deadline) {
     checkAbort();
     await new Promise((resolve) => setTimeout(resolve, STATUS_POLL_INTERVAL_MS));
     checkAbort();
-
-    onProgress?.({ value: null, text: i18n.t(textKeys.processing) });
 
     let res;
     try {
@@ -166,6 +207,46 @@ async function pollStatus(jobId, { signal, onProgress, textKeys } = {}) {
   }
 
   throw errorFromCode("CONVERSION_TIMEOUT");
+  }
+}
+
+/**
+ * Скачування результату з прогресом етапу "download" (якщо сервер віддав
+ * Content-Length і браузер підтримує потокове читання тіла), інакше —
+ * звичайний blob() з "невизначеним" прогресом.
+ */
+async function downloadWithProgress(url, { signal, onProgress } = {}) {
+  let res;
+  try {
+    res = await fetch(url, { signal });
+  } catch (err) {
+    if (isAbort(err)) throw err;
+    throw userError(i18n.t("errors.network"), { code: "NETWORK" });
+  }
+  if (!res.ok) throw errorFromCode("CONVERSION_FAILED");
+
+  const total = Number(res.headers.get("content-length")) || 0;
+  const type = res.headers.get("content-type") || "";
+  onProgress?.({ stage: "download", value: total ? 0 : null, loaded: 0, total });
+
+  if (!total || !res.body?.getReader) return res.blob();
+
+  const reader = res.body.getReader();
+  const chunks = [];
+  let received = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    received += value.byteLength;
+    onProgress?.({
+      stage: "download",
+      value: Math.min(1, received / total),
+      loaded: received,
+      total,
+    });
+  }
+  return new Blob(chunks, type ? { type } : undefined);
 }
 
 function cancelJobBestEffort(jobId) {
@@ -226,16 +307,7 @@ export async function convertViaDirectUpload(
 
     const downloadUrl = await pollStatus(jobId, { signal, onProgress, textKeys: keys });
 
-    let fileRes;
-    try {
-      fileRes = await fetch(downloadUrl, { signal });
-    } catch (err) {
-      if (isAbort(err)) throw err;
-      throw userError(i18n.t("errors.network"), { code: "NETWORK" });
-    }
-    if (!fileRes.ok) throw errorFromCode("CONVERSION_FAILED");
-
-    return await fileRes.blob();
+    return await downloadWithProgress(downloadUrl, { signal, onProgress });
   } catch (err) {
     if (isAbort(err)) cancelJobBestEffort(jobId);
     throw err;

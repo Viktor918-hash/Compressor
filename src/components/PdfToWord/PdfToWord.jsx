@@ -44,6 +44,7 @@ const PdfToWord = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="pdfToWord"
         acceptedTypes={{
           "application/pdf": [".pdf"],
         }}

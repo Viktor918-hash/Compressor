@@ -71,6 +71,7 @@ const ConvertVideoFormat = ({
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug={routeSlug}
         acceptedTypes={acceptedTypes}
         processFile={processFile}
         getOutputName={getMp4OutputName}

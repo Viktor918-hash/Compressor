@@ -58,7 +58,13 @@
     "convertMkvToMp4": "Convertir MKV a MP4",
     "convertMkvToMp4Desc": "MP4 compatible desde cualquier MKV",
     "convertWebmToMp4": "Convertir WebM a MP4",
-    "convertWebmToMp4Desc": "WebM a MP4 para edición y presentaciones"
+    "convertWebmToMp4Desc": "WebM a MP4 para edición y presentaciones",
+    "search": "Buscar",
+    "searchAria": "Buscar herramientas",
+    "searchPlaceholder": "Busca una herramienta: comprimir, HEIC, PDF, vídeo…",
+    "searchNoResults": "No se encontró nada. Pruebe otra palabra, p. ej. «jpg» o «vídeo».",
+    "searchHint": "↑ ↓ para elegir · Enter para abrir · Esc para cerrar",
+    "searchClose": "Cerrar búsqueda"
   },
   "home": {
     "categories": {
@@ -159,7 +165,34 @@
     "mergeNeedMore": "Número mínimo de archivos: {{min}}.",
     "mergeTotal": "Total: {{from}} → {{to}}",
     "mergeCreate": "Crear",
-    "mergeTitle": "Prepara tu archivo"
+    "mergeTitle": "Prepara tu archivo",
+    "rules": "{{formats}} · hasta {{size}} MB · hasta {{count}} archivos a la vez",
+    "pickFromGallery": "Elegir de la galería",
+    "pickVideo": "Elegir vídeo",
+    "pickFile": "Elegir archivo",
+    "takePhoto": "Hacer una foto",
+    "trySample": "Probar con un ejemplo",
+    "sampleLoading": "Cargando ejemplo…",
+    "sampleFailed": "No se pudo cargar el ejemplo. Pruebe con su propio archivo.",
+    "pasteHint": "¿Captura de pantalla? Pégala sin más: {{keys}}",
+    "saveToPhotos": "Guardar en Fotos",
+    "saveVideo": "Guardar vídeo",
+    "share": "Compartir",
+    "shareFailed": "No se pudo abrir el menú de compartir. Use el botón de descarga.",
+    "stage": {
+      "upload": "Subiendo…",
+      "uploadDetail": "Subiendo {{percent}} %",
+      "bytes": "{{loaded}} de {{total}} MB",
+      "etaSec": "quedan ≈ {{s}} s",
+      "etaMin": "quedan ≈ {{m}} min {{s}} s",
+      "etaMinOnly": "quedan ≈ {{m}} min",
+      "processing": "Procesando…",
+      "download": "Obteniendo el resultado…",
+      "downloadDetail": "Obteniendo el resultado {{percent}} %",
+      "stepUpload": "Subida",
+      "stepProcessing": "Procesamiento",
+      "stepDone": "Listo"
+    }
   },
   "convertWebp": {
     "titlePart2": "Convierte fotos a ",
@@ -1838,7 +1871,10 @@
     "settings": "Configuración de cookies"
   },
   "related": {
-    "title": "Herramientas relacionadas"
+    "title": "Herramientas relacionadas",
+    "tryAlsoTitle": "¡Archivo listo! ¿Qué sigue?",
+    "tryAlsoSubtitle": "A menudo se hace justo después de esto:",
+    "mostPopular": "más usado"
   },
   "photoToPdf": {
     "titlePart2": "Combina tus fotos en un",
@@ -2091,5 +2127,63 @@
       "downloadMany": "Descargar archivos MP4",
       "remove": "Eliminar"
     }
+  },
+  "share": {
+    "button": "Enlace por 2 horas",
+    "note": "El archivo se subirá a nuestro servidor y se eliminará automáticamente a las 2 horas. Solo lo verá quien reciba el enlace.",
+    "creating": "Creando enlace… {{percent}} %",
+    "ready": "Enlace listo — válido hasta las {{time}}",
+    "linkLabel": "Enlace al archivo",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "send": "Enviar",
+    "retry": "Intentar de nuevo",
+    "errors": {
+      "EMPTY_FILE": "El archivo está vacío: no hay nada que compartir.",
+      "FILE_TOO_LARGE": "El archivo es demasiado grande para un enlace: máximo 200 MB.",
+      "INVALID_FILE_TYPE": "Este tipo de archivo no se puede compartir con un enlace.",
+      "SHARE_UNAVAILABLE": "Los enlaces no están disponibles temporalmente. Use el botón de descarga.",
+      "SERVICE_UNAVAILABLE": "El servicio no está disponible temporalmente. Inténtelo en un minuto.",
+      "UPLOAD_FAILED": "No se pudo subir el archivo. Compruebe su conexión e inténtelo de nuevo.",
+      "SHARE_FAILED": "No se pudo crear el enlace. Inténtelo de nuevo.",
+      "limitGuest": "Ha usado los 5 enlaces de hoy. Regístrese para tener 10 al día.",
+      "limitUser": "Ha usado los 10 enlaces de hoy. Inténtelo mañana."
+    },
+    "page": {
+      "metaTitle": "Archivo compartido — CompressPhoto",
+      "title": "Le han enviado un archivo",
+      "loading": "Cargando…",
+      "download": "Descargar archivo",
+      "expiresIn": "El enlace caduca en {{time}}",
+      "privacy": "El archivo se elimina automáticamente 2 horas después de crear el enlace.",
+      "kb": "KB",
+      "mb": "MB",
+      "expiredTitle": "El enlace ha caducado",
+      "expiredText": "Los archivos compartidos se guardan solo 2 horas y luego se eliminan. Pida que le vuelvan a enviar el archivo.",
+      "notFoundTitle": "Enlace no encontrado",
+      "notFoundText": "Puede que la dirección tenga un error o que el archivo aún se esté subiendo. Revise el enlace y recargue la página.",
+      "errorTitle": "No se pudo abrir el enlace",
+      "errorText": "Recargue la página un poco más tarde.",
+      "cta": "Comprima y convierta sus fotos y vídeos gratis, directamente en el navegador.",
+      "ctaButton": "Abrir CompressPhoto",
+      "report": "Denunciar contenido"
+    }
+  },
+  "recentTools": {
+    "title": "Sus herramientas",
+    "subtitle": "Abiertas recientemente, con su configuración guardada.",
+    "clear": "Borrar",
+    "clearAria": "Borrar herramientas recientes y configuración guardada",
+    "quality": "Calidad {{value}} %",
+    "originalSize": "tamaño original",
+    "maxSide": "hasta {{px}} px",
+    "target": "Objetivo {{value}} {{unit}}",
+    "pageA4": "Hoja A4",
+    "pagePhoto": "Al tamaño de la foto",
+    "margin": "márgenes de {{mm}} mm",
+    "noMargin": "sin márgenes",
+    "reencode": "recodificado",
+    "noReencode": "sin recodificar",
+    "ocrLangs": "Idiomas: {{langs}}"
   }
 }

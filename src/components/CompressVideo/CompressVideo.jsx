@@ -207,6 +207,7 @@ const CompressVideo = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="compressVideo"
         acceptedTypes={{
           "video/mp4": [".mp4"],
           "video/quicktime": [".mov"],

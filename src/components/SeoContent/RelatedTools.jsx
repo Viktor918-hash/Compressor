@@ -5,7 +5,7 @@ import { ROUTES } from "../../routes";
 import { RELATED, toolBySlug } from "../../toolsCatalog";
 import { categoryForSlug } from "../../toolsCategories";
 import { usePageLang } from "../../hooks/usePageLang";
-import { hasLang } from "../../utils/routeLangs";
+import { availableRelatedSlugs } from "./relatedToolsPicker";
 import "./RelatedTools.css";
 
 // Ті самі іконки й кольори категорій, що й на сітці головної сторінки
@@ -26,9 +26,8 @@ const RelatedTools = ({ current }) => {
   const { t } = useTranslation();
   const lang = usePageLang();
   // Радимо лише ті інструменти, які існують у мові цієї сторінки
-  const slugs = (RELATED[current] || []).filter((slug) =>
-    hasLang(ROUTES.find((r) => r.slug === slug), lang)
-  );
+  // (та сама перевірка, що й у компактному TryAlsoInline — relatedToolsPicker.js)
+  const slugs = availableRelatedSlugs(current, lang, RELATED);
   if (slugs.length === 0) return null;
 
   return (

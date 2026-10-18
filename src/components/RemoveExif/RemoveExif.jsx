@@ -1,6 +1,6 @@
 import "../Convertal/Conver.css";
 import "./RemoveExif.css";
-import { useState } from "react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import { FiAlertTriangle } from "react-icons/fi";
 import Panel from "../PanelFile/Panel";
 import { getCleanName, metaInfoOf, removeMetadata } from "./removeMetadata";
@@ -20,7 +20,8 @@ const RemoveExif = () => {
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "removeExif");
   const meta = PAGE_META.removeExif[lang];
-  const [reencode, setReencode] = useState(false);
+  // round 33: вибір "перекодувати" запам'ятовується між візитами
+  const [reencode, setReencode] = usePersistentState("removeExif.reencode", false);
 
   const processFile = async (file, { signal } = {}) => {
     try {
@@ -115,6 +116,8 @@ const RemoveExif = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="removeExif"
+        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{
           "image/jpeg": [],
           "image/png": [],

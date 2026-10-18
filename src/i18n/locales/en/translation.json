@@ -58,7 +58,13 @@
     "convertMkvToMp4": "Convert MKV to MP4",
     "convertMkvToMp4Desc": "Compatible MP4 from any MKV",
     "convertWebmToMp4": "Convert WebM to MP4",
-    "convertWebmToMp4Desc": "WebM to MP4 for editing & slides"
+    "convertWebmToMp4Desc": "WebM to MP4 for editing & slides",
+    "search": "Search",
+    "searchAria": "Search tools",
+    "searchPlaceholder": "Find a tool: compress, HEIC, PDF, video…",
+    "searchNoResults": "Nothing found. Try another word, e.g. “jpg” or “video”.",
+    "searchHint": "↑ ↓ to select · Enter to open · Esc to close",
+    "searchClose": "Close search"
   },
   "home": {
     "categories": {
@@ -159,7 +165,34 @@
     "mergeNeedMore": "Minimum number of files: {{min}}.",
     "mergeTotal": "Total: {{from}} → {{to}}",
     "mergeCreate": "Create",
-    "mergeTitle": "Prepare your file"
+    "mergeTitle": "Prepare your file",
+    "rules": "{{formats}} · up to {{size}} MB · up to {{count}} files at once",
+    "pickFromGallery": "Choose from gallery",
+    "pickVideo": "Choose video",
+    "pickFile": "Choose file",
+    "takePhoto": "Take a photo",
+    "trySample": "Try with a sample",
+    "sampleLoading": "Loading sample…",
+    "sampleFailed": "Couldn't load the sample. Try your own file.",
+    "pasteHint": "Screenshot? Just paste it: {{keys}}",
+    "saveToPhotos": "Save to Photos",
+    "saveVideo": "Save video",
+    "share": "Share",
+    "shareFailed": "Couldn't open the share menu. Use the download button instead.",
+    "stage": {
+      "upload": "Uploading…",
+      "uploadDetail": "Uploading {{percent}}%",
+      "bytes": "{{loaded}} of {{total}} MB",
+      "etaSec": "≈ {{s}} s left",
+      "etaMin": "≈ {{m}} min {{s}} s left",
+      "etaMinOnly": "≈ {{m}} min left",
+      "processing": "Processing…",
+      "download": "Getting the result…",
+      "downloadDetail": "Getting the result {{percent}}%",
+      "stepUpload": "Upload",
+      "stepProcessing": "Processing",
+      "stepDone": "Done"
+    }
   },
   "convertWebp": {
     "titlePart2": "Convert photos to ",
@@ -1850,7 +1883,10 @@
     "settings": "Cookie settings"
   },
   "related": {
-    "title": "Related tools"
+    "title": "Related tools",
+    "tryAlsoTitle": "File's ready! What's next?",
+    "tryAlsoSubtitle": "Often done right after this:",
+    "mostPopular": "most popular"
   },
   "photoToPdf": {
     "titlePart2": "Combine Photos into One",
@@ -2103,5 +2139,63 @@
       "downloadMany": "Download MP4 files",
       "remove": "Remove"
     }
+  },
+  "share": {
+    "button": "2-hour link",
+    "note": "The file will be uploaded to our server and deleted automatically after 2 hours. Only people you send the link to can see it.",
+    "creating": "Creating link… {{percent}}%",
+    "ready": "Link ready — valid until {{time}}",
+    "linkLabel": "Link to the file",
+    "copy": "Copy",
+    "copied": "Copied",
+    "send": "Send",
+    "retry": "Try again",
+    "errors": {
+      "EMPTY_FILE": "The file is empty — nothing to share.",
+      "FILE_TOO_LARGE": "The file is too large for a link: 200 MB max.",
+      "INVALID_FILE_TYPE": "This file type can't be shared via a link.",
+      "SHARE_UNAVAILABLE": "Links are temporarily unavailable. Please use the download button.",
+      "SERVICE_UNAVAILABLE": "The service is temporarily unavailable. Try again in a minute.",
+      "UPLOAD_FAILED": "Couldn't upload the file. Check your connection and try again.",
+      "SHARE_FAILED": "Couldn't create the link. Please try again.",
+      "limitGuest": "You've used all 5 links for today. Sign up to get 10 a day.",
+      "limitUser": "You've used all 10 links for today. Try again tomorrow."
+    },
+    "page": {
+      "metaTitle": "Shared file — CompressPhoto",
+      "title": "Someone sent you a file",
+      "loading": "Loading…",
+      "download": "Download file",
+      "expiresIn": "Link expires in {{time}}",
+      "privacy": "The file is deleted automatically 2 hours after the link was created.",
+      "kb": "KB",
+      "mb": "MB",
+      "expiredTitle": "This link has expired",
+      "expiredText": "Shared files are kept for only 2 hours and then deleted. Ask the sender to share the file again.",
+      "notFoundTitle": "Link not found",
+      "notFoundText": "The address may contain a typo, or the file is still uploading. Check the link and reload the page.",
+      "errorTitle": "Couldn't open the link",
+      "errorText": "Please reload the page a little later.",
+      "cta": "Compress and convert your own photos and videos — free, right in your browser.",
+      "ctaButton": "Open CompressPhoto",
+      "report": "Report this content"
+    }
+  },
+  "recentTools": {
+    "title": "Your tools",
+    "subtitle": "Recently opened — with your saved settings.",
+    "clear": "Clear",
+    "clearAria": "Clear recent tools and saved settings",
+    "quality": "Quality {{value}}%",
+    "originalSize": "original size",
+    "maxSide": "up to {{px}} px",
+    "target": "Target {{value}} {{unit}}",
+    "pageA4": "A4 page",
+    "pagePhoto": "Fit to photo",
+    "margin": "{{mm}} mm margins",
+    "noMargin": "no margins",
+    "reencode": "re-encoded",
+    "noReencode": "no re-encoding",
+    "ocrLangs": "Languages: {{langs}}"
   }
 }

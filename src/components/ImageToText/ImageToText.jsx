@@ -96,6 +96,9 @@ const ImageToText = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="imageToText"
+        sampleUrl="/samples/demo-text.png"
+        cameraCapture
         acceptedTypes={{
           "image/jpeg": [],
           "image/png": [],

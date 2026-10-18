@@ -1,0 +1,133 @@
+/* Тимчасове посилання на результат (round 34) — під кнопкою завантаження */
+.share-link {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.share-link__create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px dashed var(--color-primary-200, #C7D2FE);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-primary-700, #3730A3);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+
+.share-link__create:hover {
+  border-color: var(--color-primary-600, #4338CA);
+  background: var(--color-primary-50, #EEF2FF);
+}
+
+.share-link__create:focus-visible,
+.share-link__copy:focus-visible,
+.share-link__send:focus-visible,
+.share-link__retry:focus-visible {
+  outline: 2px solid var(--color-primary-600, #4338CA);
+  outline-offset: 2px;
+}
+
+.share-link__note {
+  margin: 6px 2px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-muted, #6B7280);
+}
+
+.share-link__working {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--color-text-secondary, #4B5563);
+}
+
+.share-link__ready {
+  padding: 12px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 12px);
+  background: #fff;
+}
+
+.share-link__ready-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-success-700, #047857);
+}
+
+.share-link__row {
+  display: flex;
+  gap: 6px;
+}
+
+.share-link__input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border-strong, #D1D5DB);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--color-surface, #F9FAFB);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text, #111827);
+}
+
+.share-link__copy,
+.share-link__send,
+.share-link__retry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  background: var(--color-primary-600, #4338CA);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.share-link__copy:hover,
+.share-link__send:hover {
+  background: var(--color-primary-700, #3730A3);
+}
+
+.share-link__send {
+  width: 100%;
+  margin-top: 8px;
+  background: #fff;
+  color: var(--color-primary-700, #3730A3);
+  border: 1px solid var(--color-primary-200, #C7D2FE);
+}
+
+.share-link__send:hover {
+  background: var(--color-primary-50, #EEF2FF);
+}
+
+.share-link__error .error-text {
+  margin: 0 0 6px;
+}
+
+.share-link__retry {
+  background: #fff;
+  color: var(--color-primary-700, #3730A3);
+  border: 1px solid var(--color-primary-200, #C7D2FE);
+}

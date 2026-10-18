@@ -44,6 +44,7 @@ const WordToPdf = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="wordToPdf"
         acceptedTypes={{
           "application/msword": [".doc"],
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document":

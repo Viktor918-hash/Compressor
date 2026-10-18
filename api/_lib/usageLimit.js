@@ -64,7 +64,10 @@ export function guestIdentifier(req) {
  *    зареєстрований користувач, ідентифікатор "user:<id>", ліміт 6/день;
  *  - інакше — гість, ідентифікатор "ip:<хеш IP>", ліміт 3/день.
  */
-async function resolveCaller(req, supabaseAdmin) {
+async function resolveCaller(req, supabaseAdmin, limits = {}) {
+  const guestLimit = limits.guestLimit ?? GUEST_DAILY_LIMIT;
+  const userLimit = limits.userLimit ?? USER_DAILY_LIMIT;
+  const prefix = limits.prefix ?? "";
   const authHeader = req.headers["authorization"] || req.headers["Authorization"];
   const token = authHeader?.startsWith("Bearer ")
     ? authHeader.slice("Bearer ".length)
@@ -74,8 +77,8 @@ async function resolveCaller(req, supabaseAdmin) {
     const { data, error } = await supabaseAdmin.auth.getUser(token);
     if (!error && data?.user?.id) {
       return {
-        identifier: `user:${data.user.id}`,
-        limit: USER_DAILY_LIMIT,
+        identifier: `${prefix}user:${data.user.id}`,
+        limit: userLimit,
         isGuest: false,
       };
     }
@@ -85,8 +88,8 @@ async function resolveCaller(req, supabaseAdmin) {
   }
 
   return {
-    identifier: guestIdentifier(req),
-    limit: GUEST_DAILY_LIMIT,
+    identifier: `${prefix}${guestIdentifier(req)}`,
+    limit: guestLimit,
     isGuest: true,
   };
 }
@@ -100,6 +103,28 @@ async function resolveCaller(req, supabaseAdmin) {
  * бо кожна конвертація коштує грошей у CloudConvert.
  */
 export async function checkAndConsumeUsage(req) {
+  return checkAndConsumeQuota(req);
+}
+
+// Ліміт тимчасових посилань на файл (round 34): окремий від конвертацій
+// лічильник у тій самій таблиці conversion_usage (той самий RPC, ідентифікатор
+// з префіксом "share:"), тож жодної нової міграції бази не потрібно.
+export const SHARE_GUEST_DAILY_LIMIT = 5;
+export const SHARE_USER_DAILY_LIMIT = 10;
+
+export function checkAndConsumeShareQuota(req) {
+  return checkAndConsumeQuota(req, {
+    prefix: "share:",
+    guestLimit: SHARE_GUEST_DAILY_LIMIT,
+    userLimit: SHARE_USER_DAILY_LIMIT,
+  });
+}
+
+/**
+ * Узагальнена версія: limits = { prefix, guestLimit, userLimit } — для
+ * окремих лічильників на різні дії (конвертації, посилання).
+ */
+export async function checkAndConsumeQuota(req, limits = {}) {
   const supabaseAdmin = getSupabaseAdmin();
   if (!supabaseAdmin) {
     return { allowed: false, remaining: 0, isGuest: true, unavailable: true };
@@ -107,7 +132,7 @@ export async function checkAndConsumeUsage(req) {
 
   let caller;
   try {
-    caller = await resolveCaller(req, supabaseAdmin);
+    caller = await resolveCaller(req, supabaseAdmin, limits);
   } catch (err) {
     console.error("resolveCaller error:", err?.message);
     return { allowed: false, remaining: 0, isGuest: true, unavailable: true };

@@ -1,5 +1,5 @@
 import "../Convertal/Conver.css";
-import { useState } from "react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import Panel from "../PanelFile/Panel";
 import TargetSizePicker from "./TargetSizePicker";
 import {
@@ -26,8 +26,17 @@ const CompressToSize = () => {
   const route = ROUTES.find((r) => r.slug === "compressToSize");
   const meta = PAGE_META.compressToSize[lang];
 
-  const [size, setSize] = useState({ value: "200", unit: "KB" });
-  const [format, setFormat] = useState("jpeg");
+  // round 33: ціль і формат запам'ятовуються між візитами
+  const [size, setSize] = usePersistentState(
+    "compressToSize.target",
+    { value: "200", unit: "KB" },
+    (v) => typeof v.value === "string" && (v.unit === "KB" || v.unit === "MB")
+  );
+  const [format, setFormat] = usePersistentState(
+    "compressToSize.format",
+    "jpeg",
+    (v) => v === "jpeg" || v === "webp"
+  );
   const targetBytes = toBytes(size.value, size.unit);
   const targetValid = Number.isFinite(targetBytes) && targetBytes >= 1000;
 
@@ -114,6 +123,8 @@ const CompressToSize = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="compressToSize"
+        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{
           "image/jpeg": [],
           "image/png": [],

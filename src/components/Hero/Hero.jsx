@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import Panel from "../PanelFile/Panel";
 import CompressOptions from "./CompressOptions";
 import imageCompression from "browser-image-compression";
@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet-async";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
 import ToolsCategories from "../ToolsCategories/ToolsCategories";
+import RecentTools from "../RecentTools/RecentTools";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 import { PAGE_META } from "../../seoMeta";
@@ -19,6 +20,15 @@ import { PAGE_META } from "../../seoMeta";
 // maxWidthOrHeight: 1920 мовчки зменшував фото 4000×3000 до 1824×1368),
 // стискається лише якість. Користувач може вимкнути це й обрати макс. сторону.
 const DEFAULT_OPTIONS = { quality: 80, keepSize: true, maxSide: 1920 };
+
+// Збережені налаштування приймаємо лише в межах того, що дозволяє UI
+// (повзунок 40–95, перемикач, список сторін) — інакше беремо дефолт.
+const isValidOptions = (o) =>
+  Number.isFinite(o.quality) &&
+  o.quality >= 40 &&
+  o.quality <= 95 &&
+  typeof o.keepSize === "boolean" &&
+  [3840, 2560, 1920, 1280].includes(o.maxSide); // = SIDE_CHOICES у CompressOptions.jsx
 
 const compressImage = async (file, { quality, keepSize, maxSide }, signal) => {
   const options = {
@@ -61,7 +71,8 @@ const Hero = () => {
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "home");
   const jsonLd = buildJsonLd(lang, route);
-  const [opts, setOpts] = useState(DEFAULT_OPTIONS);
+  // round 33: остання якість/розмір запам'ятовуються між візитами
+  const [opts, setOpts] = usePersistentState("compress", DEFAULT_OPTIONS, isValidOptions);
 
   return (
     <>
@@ -70,6 +81,8 @@ const Hero = () => {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Panel
+        currentSlug="home"
+        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{ "image/jpeg": [], "image/png": [], "image/webp": [] }}
         processFile={(file, { signal } = {}) => compressImage(file, opts, signal)}
         dropzoneText={t("hero.dropzone")}
@@ -82,6 +95,8 @@ const Hero = () => {
         <p className="main__text">{t("hero.text1")}</p>
         <p className="main__text">{t("hero.text2")}</p>
       </Panel>
+      {/* round 34: нещодавно відкриті інструменти (лише з localStorage) */}
+      <RecentTools />
       <ToolsCategories />
       <SeoContent pageKey="home" />
     </>

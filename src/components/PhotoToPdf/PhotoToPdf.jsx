@@ -1,8 +1,8 @@
 import "../Convertal/Conver.css";
-import { useState } from "react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import Panel from "../PanelFile/Panel";
 import PdfOptions from "./PdfOptions";
-import { mergeImagesToPdf, totalBytes } from "./photoToPdf";
+import { mergeImagesToPdf, totalBytes, PAGE_SIZES, MARGINS_MM } from "./photoToPdf";
 import { useTranslation } from "react-i18next";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
@@ -22,8 +22,13 @@ const PhotoToPdf = () => {
   const lang = usePageLang();
   const route = ROUTES.find((r) => r.slug === "photoToPdf");
   const meta = PAGE_META.photoToPdf[lang];
-  const [pageSize, setPageSize] = useState("a4");
-  const [marginMm, setMarginMm] = useState(0);
+  // round 33: формат сторінки й поля запам'ятовуються між візитами
+  const [pageSize, setPageSize] = usePersistentState("photoToPdf.pageSize", "a4", (v) =>
+    PAGE_SIZES.includes(v)
+  );
+  const [marginMm, setMarginMm] = usePersistentState("photoToPdf.margin", 0, (v) =>
+    MARGINS_MM.includes(v)
+  );
 
   const processAll = async (files, { signal, onProgress } = {}) => {
     try {
@@ -71,6 +76,7 @@ const PhotoToPdf = () => {
     <>
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
+        currentSlug="photoToPdf"
         mode="merge"
         processAll={processAll}
         mergeMinFiles={1}

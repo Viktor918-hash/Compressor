@@ -10,12 +10,24 @@ import {
   FiChevronUp,
   FiChevronDown,
   FiUploadCloud,
+  FiCamera,
+  FiShare,
 } from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "../analytics";
+import TryAlsoInline from "../SeoContent/TryAlsoInline";
+import ShareLinkBox from "./ShareLinkBox";
+import {
+  acceptLabels,
+  acceptKind,
+  fileMatchesAccept,
+  limitMb,
+  pastedFileName,
+  formatClock,
+} from "./uploadHints";
 
 // 📊 Події Google Analytics (лише після згоди — див. components/analytics.js).
 // УВАГА: не додавайте в params імена файлів чи інші персональні дані —
@@ -139,8 +151,27 @@ const Panel = ({
   mergeButtonText, // текст кнопки "Створити" (за замовчуванням — panel.mergeCreate)
   mergeMinFiles = 2, // мінімум файлів для запуску
   mergeWarning, // (files: File[]) => string | null — необов'язкове попередження (напр. "загалом > 200 МБ"), показується під списком, поки merge.status === "idle"
+
+  // ── "Спробуйте також" одразу під кнопкою завантаження (round 25/32) ──
+  // slug поточного інструмента (toolsCatalog.js). Без нього — безпечний
+  // no-op (сторінки, які ще не передають проп, не змінюють поведінку).
+  // Рендериться, щойно результат ГОТОВИЙ (кнопка активна), а не лише
+  // після кліку "завантажити" — див. умову нижче, біля <TryAlsoInline>.
+  currentSlug,
+
+  // ── Зона завантаження (round 33) ──────────────────────────────────
+  // sampleUrl — шлях до демо-файлу в public/ (напр. "/samples/demo-photo.jpg"):
+  // показує кнопку "Спробувати на прикладі" для тих, хто прийшов з пошуку
+  // без файлу під рукою. Без пропа кнопки немає.
+  sampleUrl,
+  // cameraCapture — на сенсорних пристроях окрема кнопка "Сфотографувати"
+  // (input capture="environment"); має сенс для OCR.
+  cameraCapture = false,
+  // Підпис головної кнопки на сенсорних пристроях (де перетягувати нікуди).
+  // За замовчуванням — за типом файлів: "Вибрати з галереї" / "Вибрати відео" / "Вибрати файл".
+  touchDropzoneText,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const fmtFileSize = formatSize || fmtSize;
   const hasFormatSwitcher =
     Array.isArray(formats) &&
@@ -246,12 +277,24 @@ const Panel = ({
           if (isStale() || controller.signal.aborted) return;
           const pct =
             typeof p?.value === "number" ? Math.round(p.value * 100) : null;
-          const key = `${p?.text ?? ""}|${pct}`;
+          // round 33: етапи прямого вивантаження в CloudConvert
+          // (stage: "upload" | "processing" | "download") + байти, оцінка
+          // часу й лічильник секунд обробки. ETA округлюємо до 5 с, щоб
+          // рядок не "тремтів" і панель не перемальовувалась на кожен пакет.
+          const eta =
+            typeof p?.etaSec === "number" ? Math.max(5, Math.round(p.etaSec / 5) * 5) : null;
+          const elapsed = typeof p?.elapsedSec === "number" ? p.elapsedSec : null;
+          const key = `${p?.stage ?? ""}|${p?.text ?? ""}|${pct}|${eta}|${elapsed}`;
           if (key === lastProgressKey) return;
           lastProgressKey = key;
           patchItem(next.id, {
             progressText: p?.text ?? null,
             progressValue: pct === null ? null : pct / 100,
+            progressStage: p?.stage ?? null,
+            progressLoaded: typeof p?.loaded === "number" ? p.loaded : null,
+            progressTotal: typeof p?.total === "number" ? p.total : null,
+            progressEta: eta,
+            progressElapsed: elapsed,
           });
         };
         const result = await cur.processFile(file, {
@@ -511,6 +554,163 @@ const Panel = ({
     noKeyboard: true,
   });
 
+  // ── Файли не через dropzone: вставка з буфера, камера, демо-фото ──────
+  // (round 33). Перевіряємо їх тією ж accept-логікою, що й react-dropzone,
+  // і віддаємо в той самий onDrop — ліміти, помилки й черга спільні.
+  const kind = acceptKind(acceptedTypes);
+  const ingestRef = useRef(null);
+  ingestRef.current = (files) => {
+    const accepted = [];
+    const rejected = [];
+    files.forEach((file) => {
+      if (fileMatchesAccept(file, acceptedTypes)) accepted.push(file);
+      else rejected.push({ file, errors: [{ code: "file-invalid-type" }] });
+    });
+    onDrop(accepted, rejected);
+  };
+
+  // Ctrl/Cmd+V: скріншот чи скопійований файл одразу йде в обробку.
+  // Текст у буфері (немає файлів) не чіпаємо — звичайна вставка в поля
+  // (напр. цільовий розмір) працює як завжди.
+  useEffect(() => {
+    const onPaste = (e) => {
+      const files = Array.from(e.clipboardData?.files || []);
+      if (files.length === 0) return;
+      e.preventDefault();
+      const now = new Date();
+      const named = files.map((f) => {
+        const name = pastedFileName(f, now);
+        return name === f.name
+          ? f
+          : new File([f], name, { type: f.type, lastModified: f.lastModified });
+      });
+      trackGaEvent("paste_upload", { files_count: named.length });
+      ingestRef.current?.(named);
+    };
+    document.addEventListener("paste", onPaste);
+    return () => document.removeEventListener("paste", onPaste);
+  }, []);
+
+  // "Спробувати на прикладі": демо-файл зі свого ж домену (public/samples)
+  const [sampleLoading, setSampleLoading] = useState(false);
+  const handleSample = async () => {
+    if (!sampleUrl || sampleLoading) return;
+    setSampleLoading(true);
+    try {
+      const res = await fetch(sampleUrl);
+      if (!res.ok) throw new Error(`sample ${res.status}`);
+      const blob = await res.blob();
+      const name = sampleUrl.split("/").pop() || "sample";
+      trackGaEvent("sample_used", { tool: currentSlug || "unknown" });
+      ingestRef.current?.([new File([blob], name, { type: blob.type })]);
+    } catch (error) {
+      console.error("sample failed:", error);
+      setErrors([t("panel.sampleFailed")]);
+    } finally {
+      setSampleLoading(false);
+    }
+  };
+
+  // "Сфотографувати" (OCR на телефоні): окремий input з capture
+  const cameraInputRef = useRef(null);
+  const handleCameraChange = (e) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = ""; // той самий кадр можна вибрати ще раз
+    if (files.length) ingestRef.current?.(files);
+  };
+
+  const formatsText = acceptLabels(acceptedTypes).join(", ");
+  const rulesText = t("panel.rules", {
+    formats: formatsText,
+    size: limitMb(maxFileSize),
+    count: maxFiles,
+  });
+  const touchLabel =
+    touchDropzoneText ||
+    (kind === "image"
+      ? t("panel.pickFromGallery")
+      : kind === "video"
+        ? t("panel.pickVideo")
+        : t("panel.pickFile"));
+  const isMacLike =
+    typeof navigator !== "undefined" &&
+    /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || "");
+
+  // ── Етапи прямого вивантаження (відео, Word/PDF) — round 33 ───────────
+  const nfMb = useMemo(
+    () => new Intl.NumberFormat(i18n.language, { maximumFractionDigits: 1 }),
+    [i18n.language]
+  );
+  const mb = (bytes) => {
+    const v = bytes / 1024 / 1024;
+    return nfMb.format(v >= 10 ? Math.round(v) : Math.round(v * 10) / 10);
+  };
+  const etaText = (sec) => {
+    if (sec < 60) return t("panel.stage.etaSec", { s: Math.round(sec) });
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return s === 0
+      ? t("panel.stage.etaMinOnly", { m })
+      : t("panel.stage.etaMin", { m, s });
+  };
+  const stageText = (item) => {
+    const pct =
+      typeof item.progressValue === "number" ? Math.round(item.progressValue * 100) : null;
+    if (item.progressStage === "upload") {
+      let text =
+        pct === null
+          ? t("panel.stage.upload")
+          : t("panel.stage.uploadDetail", { percent: pct });
+      if (item.progressTotal) {
+        text += ` · ${t("panel.stage.bytes", {
+          loaded: mb(item.progressLoaded || 0),
+          total: mb(item.progressTotal),
+        })}`;
+      }
+      if (item.progressEta) text += ` · ${etaText(item.progressEta)}`;
+      return text;
+    }
+    if (item.progressStage === "processing") {
+      const base = item.progressText || t("panel.stage.processing");
+      return typeof item.progressElapsed === "number"
+        ? `${base} ${formatClock(item.progressElapsed)}`
+        : base;
+    }
+    if (item.progressStage === "download") {
+      return pct === null
+        ? t("panel.stage.download")
+        : t("panel.stage.downloadDetail", { percent: pct });
+    }
+    return item.progressText || t("panel.status.processing");
+  };
+  const STAGE_ORDER = ["upload", "processing", "download"];
+  const renderStages = (stage) => {
+    const current = STAGE_ORDER.indexOf(stage);
+    const steps = [
+      { key: "upload", label: t("panel.stage.stepUpload") },
+      { key: "processing", label: t("panel.stage.stepProcessing") },
+      { key: "download", label: t("panel.stage.stepDone") },
+    ];
+    return (
+      <ol className="side-panel__stages" aria-hidden="true">
+        {steps.map((step, i) => (
+          <li
+            key={step.key}
+            className={`side-panel__stage${
+              i < current
+                ? " side-panel__stage--done"
+                : i === current
+                  ? " side-panel__stage--active"
+                  : ""
+            }`}
+          >
+            {step.label}
+          </li>
+        ))}
+      </ol>
+    );
+  };
+
   // У мультиформатному режимі готовий Blob і ім'я файлу залежать від
   // обраного формату, тож перераховуємо їх з "сирих" даних щоразу, коли
   // список файлів або обраний формат змінюються — без повторного OCR.
@@ -539,6 +739,37 @@ const Panel = ({
     return { totalOriginal, totalProcessed, savedBytes, savedPercent };
   }, [currentOutputs]);
 
+  // JSZip (~100 КБ) потрібен лише для кількох файлів — вантажимо його
+  // тільки тут, а не в головному бандлі. Спільне для "Завантажити" і
+  // тимчасового посилання (round 34).
+  const buildZip = async () => {
+    const { default: JSZip } = await import("jszip");
+    const zip = new JSZip();
+    const usedNames = new Set();
+    for (const { outputName, processed } of currentOutputs) {
+      zip.file(getUniqueFileName(outputName, usedNames), processed);
+    }
+    const blob = await zip.generateAsync({ type: "blob" });
+    return new Blob([blob], { type: "application/zip" });
+  };
+
+  // Що саме піде за тимчасовим посиланням: один файл як є, кілька — ZIP,
+  // у режимі злиття — готовий результат.
+  const getShareFile = async () => {
+    if (isMerge) {
+      const { result } = mergeRef.current;
+      return result ? { blob: result.blob, name: result.name } : null;
+    }
+    if (currentOutputs.length === 1) {
+      const { processed, outputName } = currentOutputs[0];
+      return { blob: processed, name: outputName };
+    }
+    if (currentOutputs.length > 1) {
+      return { blob: await buildZip(), name: "processed-files.zip" };
+    }
+    return null;
+  };
+
   const handleDownloadAll = async () => {
     if (currentOutputs.length === 0) return;
 
@@ -554,18 +785,7 @@ const Panel = ({
     }
 
     try {
-      // JSZip (~100 КБ) потрібен лише для завантаження кількох файлів —
-      // тому вантажимо його тільки тут, а не в головному бандлі.
-      const { default: JSZip } = await import("jszip");
-      const zip = new JSZip();
-      const usedNames = new Set();
-
-      for (const { outputName, processed } of currentOutputs) {
-        const uniqueName = getUniqueFileName(outputName, usedNames);
-        zip.file(uniqueName, processed);
-      }
-
-      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const zipBlob = await buildZip();
       const zipUrl = URL.createObjectURL(zipBlob);
       triggerDownload(zipUrl, "processed-files.zip");
       revokeLater(zipUrl);
@@ -573,6 +793,77 @@ const Panel = ({
     } catch (error) {
       console.error("zip failed:", error);
       pushError(t("errors.zipFailed"));
+    }
+  };
+
+  // ── "Зберегти в Фото / Поділитися" через Web Share API (round 33) ───
+  // Лише на сенсорних пристроях: на iPhone це нативне вікно "Зберегти
+  // зображення/відео" — результат потрапляє в Фото, а не у файл
+  // "Завантаження", який люди не можуть знайти. На десктопі системне
+  // вікно "Поділитися" нічого не дає — там лишається звичайне завантаження.
+  const [touchShare, setTouchShare] = useState(false);
+  useEffect(() => {
+    if (
+      typeof navigator === "undefined" ||
+      typeof navigator.share !== "function" ||
+      typeof navigator.canShare !== "function" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      return undefined;
+    }
+    const mq = window.matchMedia("(pointer: coarse)");
+    const update = () => setTouchShare(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
+
+  let shareFiles = null;
+  if (touchShare) {
+    let files = [];
+    if (isMerge) {
+      if (merge.status === "done" && merge.result) {
+        files = [
+          new File([merge.result.blob], merge.result.name, {
+            type: merge.result.blob.type,
+          }),
+        ];
+      }
+    } else if (!isProcessing && currentOutputs.length > 0) {
+      const usedNames = new Set();
+      files = currentOutputs.map(
+        ({ processed, outputName }) =>
+          new File([processed], getUniqueFileName(outputName, usedNames), {
+            type: processed.type,
+          })
+      );
+    }
+    try {
+      if (files.length > 0 && navigator.canShare({ files })) shareFiles = files;
+    } catch {
+      shareFiles = null;
+    }
+  }
+  const shareLabel = !shareFiles
+    ? null
+    : shareFiles.every((f) => f.type.startsWith("image/"))
+      ? t("panel.saveToPhotos")
+      : shareFiles.every((f) => f.type.startsWith("video/"))
+        ? t("panel.saveVideo")
+        : t("panel.share");
+
+  const handleShare = async () => {
+    if (!shareFiles) return;
+    try {
+      await navigator.share({ files: shareFiles });
+      trackGaEvent("share_result", { files_count: shareFiles.length });
+      setDownloaded(true);
+    } catch (error) {
+      // AbortError = користувач просто закрив вікно "Поділитися"
+      if (error?.name !== "AbortError") {
+        console.error("share failed:", error);
+        pushError(t("panel.shareFailed"));
+      }
     }
   };
 
@@ -613,6 +904,9 @@ const Panel = ({
       error: null,
       progressText: null,
       progressValue: null,
+      progressStage: null,
+      progressEta: null,
+      progressElapsed: null,
     });
     setDownloaded(false);
   };
@@ -834,9 +1128,60 @@ const Panel = ({
                 className="input__text input__text--button"
                 onClick={open}
               >
-                {dropzoneText}
+                {/* На сенсорних пристроях (де перетягувати нікуди) — інший
+                    підпис; перемикається чистим CSS (@media (pointer: coarse)),
+                    без JS-визначення пристрою */}
+                <span className="input__label input__label--desktop">
+                  {dropzoneText}
+                </span>
+                <span className="input__label input__label--touch">
+                  {touchLabel}
+                </span>
               </button>
             </div>
+            {formatsText && <p className="photo__input__rules">{rulesText}</p>}
+            {(sampleUrl || cameraCapture || kind === "image") && (
+              <div className="photo__input__extras">
+                {cameraCapture && (
+                  <>
+                    <button
+                      type="button"
+                      className="photo__input__extra-btn photo__input__camera"
+                      onClick={() => cameraInputRef.current?.click()}
+                    >
+                      <FiCamera size={18} aria-hidden="true" />
+                      {t("panel.takePhoto")}
+                    </button>
+                    <input
+                      ref={cameraInputRef}
+                      type="file"
+                      accept="image/*"
+                      capture="environment"
+                      className="photo__input__camera-input"
+                      tabIndex={-1}
+                      aria-hidden="true"
+                      onChange={handleCameraChange}
+                    />
+                  </>
+                )}
+                {sampleUrl && (
+                  <button
+                    type="button"
+                    className="photo__input__extra-btn photo__input__sample"
+                    onClick={handleSample}
+                    disabled={sampleLoading}
+                    aria-busy={sampleLoading}
+                  >
+                    {sampleLoading ? t("panel.sampleLoading") : t("panel.trySample")}
+                  </button>
+                )}
+                {kind === "image" && (
+                  <span className="photo__input__paste-hint">
+                    {t("panel.pasteHint", { keys: isMacLike ? "⌘V" : "Ctrl+V" })}
+                  </span>
+                )}
+              </div>
+            )}
             {showEmptyTrust && (
               <p className="photo__input__trust">{t("panel.emptyTrust")}</p>
             )}
@@ -1110,7 +1455,9 @@ const Panel = ({
                     {status === "ready" && fmtSize(file.size)}
                     {status === "queued" && t("panel.status.queued")}
                     {status === "processing" &&
-                      (item.progressText || t("panel.status.processing"))}
+                      (item.progressStage
+                        ? stageText(item)
+                        : item.progressText || t("panel.status.processing"))}
                     {status === "done" &&
                       `${fmtFileSize(file.size)} → ${fmtFileSize(item.processedSize)}`}
                     {status === "error" && item.error}
@@ -1118,13 +1465,30 @@ const Panel = ({
                   {status === "done" && item.note && (
                     <span className="side-panel__file-note">{item.note}</span>
                   )}
+                  {status === "processing" && item.progressStage &&
+                    renderStages(item.progressStage)}
                   {status === "processing" &&
                     typeof item.progressValue === "number" && (
                       <progress
                         className="side-panel__file-progress"
                         max={1}
                         value={item.progressValue}
-                        aria-label={item.progressText || t("panel.status.processing")}
+                        aria-label={
+                          item.progressStage
+                            ? stageText(item)
+                            : item.progressText || t("panel.status.processing")
+                        }
+                      />
+                    )}
+                  {/* Етап без відсотка (обробка в CloudConvert): "біжуча"
+                      смужка замість застиглої — видно, що робота йде */}
+                  {status === "processing" &&
+                    item.progressStage &&
+                    typeof item.progressValue !== "number" && (
+                      <span
+                        className="side-panel__file-progress side-panel__file-progress--indeterminate"
+                        role="progressbar"
+                        aria-label={stageText(item)}
                       />
                     )}
                 </span>
@@ -1209,11 +1573,24 @@ const Panel = ({
           </div>
         )}
 
+        {shareFiles && (
+          <button
+            type="button"
+            className="side-panel__share-btn"
+            onClick={handleShare}
+          >
+            <FiShare size={18} aria-hidden="true" />
+            {shareLabel}
+          </button>
+        )}
+
         {isMerge ? (
           merge.status === "done" ? (
             <button
               type="button"
-              className="side-panel__download-btn"
+              className={`side-panel__download-btn${
+                shareFiles ? " side-panel__download-btn--with-share" : ""
+              }`}
               onClick={handleDownloadMerge}
             >
               {downloadOneText || t("panel.upLoadPhoto")}
@@ -1235,7 +1612,7 @@ const Panel = ({
           <button
             className={`side-panel__download-btn ${
               doneItems.length === 0 ? "side-panel__download-btn--empty" : ""
-            }`}
+            }${shareFiles ? " side-panel__download-btn--with-share" : ""}`}
             onClick={handleDownloadAll}
             disabled={doneItems.length === 0 || isProcessing}
           >
@@ -1243,6 +1620,28 @@ const Panel = ({
               ? downloadManyText || t("panel.upLoadPhotos")
               : downloadOneText || t("panel.upLoadPhoto")}
           </button>
+        )}
+
+        {/* Тимчасове посилання на результат (round 34). key скидає стан,
+            щойно набір результатів змінився — старе посилання вело б не на те. */}
+        {((!isMerge && doneItems.length > 0 && !isProcessing) ||
+          (isMerge && merge.status === "done")) && (
+          <ShareLinkBox
+            key={
+              isMerge
+                ? merge.result?.url || "merge"
+                : `${doneItems.map((i) => i.id).join(",")}|${selectedFormat || ""}`
+            }
+            getFile={getShareFile}
+          />
+        )}
+
+        {/* Звичайний режим: щойно є хоч один готовий файл (кнопка активна) —
+            не чекаємо кліку "завантажити". Режим злиття: щойно злиття
+            завершено (merge.status === "done"). */}
+        {((!isMerge && doneItems.length > 0) ||
+          (isMerge && merge.status === "done")) && (
+          <TryAlsoInline current={currentSlug} />
         )}
       </aside>
     </main>

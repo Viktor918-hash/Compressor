@@ -159,3 +159,99 @@
         padding: 18px 28px;
     }
 }
+/* ______________________ ЗОНА ЗАВАНТАЖЕННЯ (round 33) ______________________ */
+
+/* Підпис головної кнопки: "Перетягніть файл…" на десктопі, "Вибрати з
+   галереї" на сенсорних пристроях — де перетягувати нікуди. Чистий CSS:
+   (pointer: coarse) = основний вказівник — палець. */
+.input__label--touch {
+    display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .input__label--desktop {
+        display: none;
+    }
+
+    .input__label--touch {
+        display: inline;
+    }
+
+    .input__text--button {
+        min-height: 56px;
+        min-width: min(100%, 280px);
+    }
+}
+
+/* "JPG, PNG, WebP · до 30 МБ · до 20 файлів" — ліміти видно до помилки */
+.photo__input__rules {
+    text-align: center;
+    margin-top: 12px;
+    font-size: var(--fs-sm, .8125rem);
+    color: var(--color-text-secondary, #4B5563);
+}
+
+.photo__input__extras {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 16px;
+    margin-top: 12px;
+}
+
+.photo__input__extra-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid var(--color-primary-200, #C7D2FE);
+    border-radius: var(--radius-full, 999px);
+    background: #fff;
+    color: var(--color-primary-700, #3730A3);
+    font-size: var(--fs-base, .9375rem);
+    font-weight: var(--fw-semibold, 600);
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
+}
+
+.photo__input__extra-btn:hover:not(:disabled) {
+    background: var(--color-primary-50, #EEF2FF);
+    border-color: var(--color-primary-600, #4338CA);
+}
+
+.photo__input__extra-btn:focus-visible {
+    outline: 2px solid var(--color-primary-600, #4338CA);
+    outline-offset: 2px;
+}
+
+.photo__input__extra-btn:disabled {
+    opacity: .6;
+    cursor: progress;
+}
+
+/* Кнопка камери — лише на сенсорних пристроях */
+.photo__input__camera {
+    display: none;
+}
+
+.photo__input__camera-input {
+    display: none;
+}
+
+.photo__input__paste-hint {
+    font-size: var(--fs-sm, .8125rem);
+    color: var(--color-text-secondary, #4B5563);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .photo__input__camera {
+        display: inline-flex;
+    }
+
+    /* на телефоні вставляти скріншот через Ctrl+V нікому не спадає на думку */
+    .photo__input__paste-hint {
+        display: none;
+    }
+}
