@@ -124,7 +124,6 @@ const CompressToSize = () => {
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
         currentSlug="compressToSize"
-        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{
           "image/jpeg": [],
           "image/png": [],

@@ -8,8 +8,8 @@ import { getR2Config, sweepExpired } from "../_lib/r2.js";
  * Додатково те саме прибирання принагідно робить /api/share/create.
  */
 export default async function handler(req, res) {
-  const secret = process.env.CRON_SECRET;
-  const auth = req.headers?.authorization || req.headers?.Authorization;
+  const secret = process.env.CRON_SECRET?.trim();
+  const auth = (req.headers?.authorization || req.headers?.Authorization || "").trim();
   if (!secret || auth !== `Bearer ${secret}`) {
     res.status(401).json({ error: "UNAUTHORIZED" });
     return;

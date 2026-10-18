@@ -82,7 +82,6 @@ const Hero = () => {
       </Helmet>
       <Panel
         currentSlug="home"
-        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{ "image/jpeg": [], "image/png": [], "image/webp": [] }}
         processFile={(file, { signal } = {}) => compressImage(file, opts, signal)}
         dropzoneText={t("hero.dropzone")}

@@ -160,10 +160,6 @@ const Panel = ({
   currentSlug,
 
   // ── Зона завантаження (round 33) ──────────────────────────────────
-  // sampleUrl — шлях до демо-файлу в public/ (напр. "/samples/demo-photo.jpg"):
-  // показує кнопку "Спробувати на прикладі" для тих, хто прийшов з пошуку
-  // без файлу під рукою. Без пропа кнопки немає.
-  sampleUrl,
   // cameraCapture — на сенсорних пристроях окрема кнопка "Сфотографувати"
   // (input capture="environment"); має сенс для OCR.
   cameraCapture = false,
@@ -591,25 +587,6 @@ const Panel = ({
     return () => document.removeEventListener("paste", onPaste);
   }, []);
 
-  // "Спробувати на прикладі": демо-файл зі свого ж домену (public/samples)
-  const [sampleLoading, setSampleLoading] = useState(false);
-  const handleSample = async () => {
-    if (!sampleUrl || sampleLoading) return;
-    setSampleLoading(true);
-    try {
-      const res = await fetch(sampleUrl);
-      if (!res.ok) throw new Error(`sample ${res.status}`);
-      const blob = await res.blob();
-      const name = sampleUrl.split("/").pop() || "sample";
-      trackGaEvent("sample_used", { tool: currentSlug || "unknown" });
-      ingestRef.current?.([new File([blob], name, { type: blob.type })]);
-    } catch (error) {
-      console.error("sample failed:", error);
-      setErrors([t("panel.sampleFailed")]);
-    } finally {
-      setSampleLoading(false);
-    }
-  };
 
   // "Сфотографувати" (OCR на телефоні): окремий input з capture
   const cameraInputRef = useRef(null);
@@ -1140,7 +1117,7 @@ const Panel = ({
               </button>
             </div>
             {formatsText && <p className="photo__input__rules">{rulesText}</p>}
-            {(sampleUrl || cameraCapture || kind === "image") && (
+            {(cameraCapture || kind === "image") && (
               <div className="photo__input__extras">
                 {cameraCapture && (
                   <>
@@ -1163,17 +1140,6 @@ const Panel = ({
                       onChange={handleCameraChange}
                     />
                   </>
-                )}
-                {sampleUrl && (
-                  <button
-                    type="button"
-                    className="photo__input__extra-btn photo__input__sample"
-                    onClick={handleSample}
-                    disabled={sampleLoading}
-                    aria-busy={sampleLoading}
-                  >
-                    {sampleLoading ? t("panel.sampleLoading") : t("panel.trySample")}
-                  </button>
                 )}
                 {kind === "image" && (
                   <span className="photo__input__paste-hint">

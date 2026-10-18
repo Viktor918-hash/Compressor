@@ -176,7 +176,13 @@ export function safeFileName(name) {
 
 // ── Конфігурація й серверні виклики ──────────────────────────────────
 export function getR2Config(env = process.env) {
-  const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET } = env;
+  // Trim: values pasted into the Vercel dashboard often carry a trailing
+  // newline or space, which breaks the SigV4 Credential (seen in production).
+  const clean = (v) => (typeof v === "string" ? v.trim() : v);
+  const R2_ACCOUNT_ID = clean(env.R2_ACCOUNT_ID);
+  const R2_ACCESS_KEY_ID = clean(env.R2_ACCESS_KEY_ID);
+  const R2_SECRET_ACCESS_KEY = clean(env.R2_SECRET_ACCESS_KEY);
+  const R2_BUCKET = clean(env.R2_BUCKET);
   if (!R2_ACCOUNT_ID || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_BUCKET) return null;
   return {
     host: `${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,

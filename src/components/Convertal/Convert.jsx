@@ -36,7 +36,6 @@ const Convertal = () => {
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
         currentSlug="convert"
-        sampleUrl="/samples/demo-photo.png"
         acceptedTypes={{
           "image/png": [],
           "image/webp": [],

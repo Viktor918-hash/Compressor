@@ -1,7 +1,6 @@
 // round 33: зона завантаження Panel.jsx — чисті хелпери
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
 import {
   acceptLabels,
   acceptKind,
@@ -83,26 +82,4 @@ test("estimateEtaSec: null у перші 2 с, далі — за середнь�
   assert.equal(estimateEtaSec(100, 100, 5), null);
   // 50 з 200 МБ за 10 с → 5 МБ/с → лишилось 150 МБ → 30 с
   assert.equal(estimateEtaSec(50, 200, 10), 30);
-});
-
-test("демо-файли для «Спробувати на прикладі» існують і на них посилаються сторінки", () => {
-  for (const f of ["demo-photo.jpg", "demo-photo.png", "demo-text.png"]) {
-    assert.ok(existsSync(`public/samples/${f}`), `немає public/samples/${f}`);
-  }
-  const pages = {
-    "src/components/Hero/Hero.jsx": "/samples/demo-photo.jpg",
-    "src/components/Convertal/Convert.jsx": "/samples/demo-photo.png",
-    "src/components/ImageToText/ImageToText.jsx": "/samples/demo-text.png",
-  };
-  for (const [file, url] of Object.entries(pages)) {
-    assert.ok(readFileSync(file, "utf8").includes(`sampleUrl="${url}"`), file);
-  }
-});
-
-test("демо-JPG містить GPS у EXIF (щоб на /remove-photo-metadata було що прибирати)", () => {
-  const buf = readFileSync("public/samples/demo-photo.jpg");
-  assert.equal(buf[0], 0xff);
-  assert.equal(buf[1], 0xd8);
-  assert.ok(buf.includes(Buffer.from("Exif\0\0")), "немає APP1 Exif");
-  assert.ok(buf.includes(Buffer.from("Demo sample (not a real camera)")), "немає позначки демо");
 });

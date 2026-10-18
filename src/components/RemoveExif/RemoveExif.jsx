@@ -117,7 +117,6 @@ const RemoveExif = () => {
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
         currentSlug="removeExif"
-        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{
           "image/jpeg": [],
           "image/png": [],

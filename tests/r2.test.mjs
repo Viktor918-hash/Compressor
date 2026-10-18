@@ -13,6 +13,8 @@ import {
   parseListXml,
   sweepExpired,
   uriEncode,
+  getR2Config,
+  presignPut,
 } from "../api/_lib/r2.js";
 
 const AWS = {
@@ -97,4 +99,20 @@ test("sweepExpired: видаляє лише прострочені (і сміт�
   assert.ok(deletes.some((u) => u.includes(dead)));
   assert.ok(deletes.some((u) => u.includes("garbage")));
   assert.ok(!deletes.some((u) => u.includes(live)));
+});
+
+test("getR2Config: обрізає пробіли й переноси рядка у змінних (баг на проді)", () => {
+  const cfg = getR2Config({
+    R2_ACCOUNT_ID: " acc123\n",
+    R2_ACCESS_KEY_ID: "AKID\n",
+    R2_SECRET_ACCESS_KEY: "secret \r\n",
+    R2_BUCKET: "bucket\n",
+  });
+  assert.equal(cfg.host, "acc123.r2.cloudflarestorage.com");
+  assert.equal(cfg.accessKeyId, "AKID");
+  assert.equal(cfg.secretAccessKey, "secret");
+  assert.equal(cfg.bucket, "bucket");
+  const url = presignPut(cfg, "shares/x/t.jpg", { contentType: "image/jpeg", contentLength: 10 });
+  assert.ok(!/%0A|%0D|%20/.test(url.split("X-Amz-Signature")[0]), "у підписаній адресі немає переносів");
+  assert.equal(getR2Config({ R2_ACCOUNT_ID: "a", R2_ACCESS_KEY_ID: "  ", R2_SECRET_ACCESS_KEY: "s", R2_BUCKET: "b" }), null);
 });

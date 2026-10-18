@@ -59,7 +59,6 @@ const ConvertPng = () => {
       <SeoHead route={route} lang={lang} jsonLd={jsonLd} />
       <Panel
         currentSlug="convertToPng"
-        sampleUrl="/samples/demo-photo.jpg"
         acceptedTypes={{
           "image/jpeg": [],
           "image/webp": [],
