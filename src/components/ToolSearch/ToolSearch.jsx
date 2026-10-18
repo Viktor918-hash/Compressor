@@ -26,9 +26,10 @@ const CATEGORY_ICONS = {
   convert: FiRepeat,
   edit: FiEdit3,
   docs: FiFileText,
+  video: FiVideo,
 };
 
-const VIDEO_SLUGS = ["compressVideo", "convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4"];
+const VIDEO_SLUGS = ["compressVideo", "convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4", "trimVideo", "videoToMp3"];
 
 /**
  * Пошук інструментів (round 33): Ctrl/Cmd+K або кнопка в хедері.

@@ -64,7 +64,11 @@
     "searchPlaceholder": "Busca una herramienta: comprimir, HEIC, PDF, vídeo…",
     "searchNoResults": "No se encontró nada. Pruebe otra palabra, p. ej. «jpg» o «vídeo».",
     "searchHint": "↑ ↓ para elegir · Enter para abrir · Esc para cerrar",
-    "searchClose": "Cerrar búsqueda"
+    "searchClose": "Cerrar búsqueda",
+    "videoToMp3": "Vídeo a MP3",
+    "videoToMp3Desc": "Guardar el audio de un vídeo en MP3",
+    "trimVideo": "Recortar vídeo",
+    "trimVideoDesc": "Cortar un fragmento en el navegador"
   },
   "home": {
     "categories": {
@@ -84,6 +88,10 @@
       "docs": {
         "title": "Documentos y texto",
         "subtitle": "Word, PDF, reconocimiento de texto y ajustes prediseñados para fotos."
+      },
+      "video": {
+        "title": "Vídeo",
+        "subtitle": "Comprimir, recortar, extraer el audio y cambiar el formato de vídeo."
       }
     }
   },
@@ -1824,6 +1832,156 @@
           "a": "Hasta 200MB por archivo. El número de conversiones gratuitas por día está limitado; los usuarios registrados obtienen un límite diario más alto que los invitados."
         }
       ]
+    },
+    "videoToMp3": {
+      "title": "Vídeo a MP3 online: el audio de cualquier vídeo en un minuto",
+      "text1": "Muchas veces de un vídeo solo se necesita el sonido: una canción de un videoclip, la grabación de una clase o un webinar, un pódcast que prefiere escuchar con la pantalla apagada, una nota de voz guardada como vídeo. Un archivo de vídeo es demasiado grande e incómodo para eso: un MP3 ocupa muchísimo menos, se reproduce en cualquier reproductor, en el móvil, en el coche o en un reproductor MP3 antiguo, y es fácil de enviar o subir a una aplicación de pódcasts.",
+      "text2": "La herramienta toma la primera pista de audio del vídeo y la codifica en MP3 con la tasa de bits que elija: 128, 192 o 320 kbps. El proceso ocurre en la propia pestaña del navegador con FFmpeg, el mismo motor que usan los editores de vídeo profesionales. El vídeo nunca se sube a un servidor, así que no hay colas, ni límites diarios, ni riesgo de que su grabación acabe en manos ajenas.",
+      "benefits": [
+        {
+          "title": "El archivo no sale de su dispositivo",
+          "text": "El vídeo se procesa en su navegador. No vemos el archivo ni lo guardamos ni un instante."
+        },
+        {
+          "title": "Sin límites ni registro",
+          "text": "Tantos archivos al día como quiera, hasta 10 a la vez y hasta 1000 MB cada uno, porque el trabajo lo hace su dispositivo y no nuestro servidor."
+        },
+        {
+          "title": "Tres niveles de calidad",
+          "text": "128 kbps para voz, 192 para la mayoría de los vídeos, 320 para música. Su elección se recuerda para la próxima visita."
+        },
+        {
+          "title": "También en el móvil",
+          "text": "Abra la página en un iPhone o Android, elija un vídeo de la galería y guarde el MP3, sin instalar ninguna aplicación."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo extraer el audio de un vídeo en MP3",
+          "steps": [
+            "Elija la calidad del MP3 encima de la zona de carga: 128, 192 o 320 kbps.",
+            "Arrastre el vídeo a la ventana o haga clic para elegir un archivo (MP4, MOV, WebM, MKV, AVI, 3GP).",
+            "La primera vez, el navegador descarga una sola vez el motor de procesamiento; después lo toma de la caché.",
+            "Espere a que termine la conversión: el progreso se ve para cada archivo.",
+            "Haga clic en «Descargar MP3». Varios archivos se pueden descargar en un solo ZIP."
+          ]
+        },
+        {
+          "title": "Qué tasa de bits elegir",
+          "text": "La tasa de bits indica cuántos datos tiene cada segundo de sonido. 128 kbps da el archivo más pequeño (alrededor de 1 MB por minuto) y es perfectamente válida para voz: clases, entrevistas, pódcasts. 192 kbps (unos 1,4 MB por minuto) es una opción sensata para música y la mayoría de los vídeos. 320 kbps (unos 2,4 MB por minuto) es el máximo del formato MP3 y tiene sentido para música que escuchará con buenos auriculares. Tenga en cuenta que una tasa más alta no mejora el sonido si en el vídeo ya estaba más comprimido: el resultado no puede superar al original."
+        },
+        {
+          "title": "Qué pasa con su archivo",
+          "text": "No se sube nada. La página carga el motor FFmpeg como módulo WebAssembly desde nuestro propio dominio y, a partir de ahí, todo el trabajo se hace en su navegador: lee el vídeo del disco por partes, extrae la pista de audio y la codifica en MP3. Al cerrar la pestaña no queda nada en memoria. Por eso aquí no hay límite de conversiones, a diferencia de las herramientas que usan un servidor."
+        },
+        {
+          "title": "Limitaciones que conviene conocer",
+          "text": "La velocidad depende de su dispositivo: en un ordenador moderno, el audio de un vídeo de unos minutos suele estar listo en segundos; en un móvil antiguo tarda más. Se usa la primera pista de audio: si el vídeo tiene varias pistas de idioma, se guarda la principal. Un vídeo sin sonido no se puede convertir, y la herramienta se lo indicará. El tamaño máximo de cada archivo es de 1000 MB."
+        },
+        {
+          "title": "Cuando solo necesita una parte",
+          "text": "Si de un vídeo largo solo quiere una canción o una cita, recorte primero ese fragmento con «Recortar vídeo» y después guarde su audio en MP3. Las dos herramientas funcionan en el navegador, así que el archivo nunca sale de su dispositivo."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Se sube el vídeo a un servidor?",
+          "a": "No. La conversión se hace en su navegador con FFmpeg (WebAssembly). Desde nuestro servidor solo se descarga el motor de procesamiento; su archivo no se envía a ningún sitio."
+        },
+        {
+          "q": "¿Qué formatos de vídeo se admiten?",
+          "a": "MP4, MOV (también de iPhone), WebM, MKV, AVI, M4V y 3GP. Basta con que el archivo tenga una pista de audio."
+        },
+        {
+          "q": "¿Por qué la primera vez tarda más?",
+          "a": "La primera vez, el navegador descarga el motor de procesamiento (unos 30 MB). Queda en caché, así que las siguientes conversiones empiezan al momento."
+        },
+        {
+          "q": "¿Hay un límite de archivos?",
+          "a": "No hay límite diario. Puede añadir hasta 10 vídeos a la vez, de hasta 1000 MB cada uno."
+        },
+        {
+          "q": "¿Puedo obtener audio sin pérdidas en lugar de MP3?",
+          "a": "Por ahora la herramienta solo guarda MP3, el formato más compatible. El MP3 comprime con pérdidas, pero a 192–320 kbps la diferencia con el original es difícil de oír."
+        }
+      ]
+    },
+    "trimVideo": {
+      "title": "Recortar vídeo online: cortar un fragmento sin perder calidad",
+      "text1": "La mayoría de las veces un vídeo no necesita comprimirse, sino acortarse: quitar lo que sobra al principio y al final, cortar un momento para una historia, enviar a un compañero solo los minutos importantes de una reunión grabada. Un fragmento corto pesa menos, se ve con más ganas y entra mejor en los límites de las aplicaciones de mensajería y del correo.",
+      "text2": "La herramienta muestra una vista previa, permite fijar el inicio y el final con controles deslizantes, con los botones «Inicio aquí / Final aquí» o con tiempos exactos, y guarda el fragmento. En el modo rápido el vídeo no se recodifica: los datos se copian tal cual del original, así que la calidad no cambia y el recorte tarda segundos incluso con archivos grandes. Todo ocurre en su navegador; el archivo no se sube a un servidor.",
+      "benefits": [
+        {
+          "title": "Sin perder calidad",
+          "text": "El modo rápido copia el vídeo y el audio tal cual, sin recodificar: ni imagen borrosa ni artefactos."
+        },
+        {
+          "title": "Privado",
+          "text": "El vídeo se procesa en su dispositivo y nunca llega a nuestro servidor. Las grabaciones personales siguen siendo personales."
+        },
+        {
+          "title": "Preciso al fotograma cuando hace falta",
+          "text": "Active «Recorte preciso» y el corte caerá exactamente en sus tiempos, recodificado a un MP4 compatible."
+        },
+        {
+          "title": "Sin límites ni registro",
+          "text": "Recorte tantos vídeos al día como quiera, de hasta 1000 MB cada uno: el trabajo lo hace su navegador."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Cómo recortar un vídeo",
+          "steps": [
+            "Arrastre el vídeo a la ventana o haga clic para elegir un archivo (MP4, MOV, WebM, MKV, AVI, 3GP).",
+            "En el panel aparece una vista previa: avance hasta el momento que quiera y pulse «Inicio aquí», y haga lo mismo con «Final aquí». O mueva los controles, o escriba los tiempos.",
+            "Pulse «Ver el fragmento» para comprobar los límites.",
+            "Si necesita precisión al fotograma, active «Recorte preciso».",
+            "Pulse «Recortar» y descargue el fragmento."
+          ]
+        },
+        {
+          "title": "Recorte rápido o preciso",
+          "text": "Un vídeo se compone de fotogramas clave y, entre ellos, solo se guardan los cambios. El modo rápido corta en fotogramas clave y no recodifica nada: el resultado está listo en segundos, la calidad es idéntica al original y el formato del archivo es el mismo. A cambio, el inicio puede adelantarse uno o dos segundos hasta el fotograma clave más cercano (en grabaciones de pantalla, a veces más). El modo preciso recodifica el fragmento a MP4 con H.264, de modo que los límites quedan exactamente donde los puso. Tarda bastante más, porque la codificación se hace en su navegador."
+        },
+        {
+          "title": "Si no aparece la vista previa",
+          "text": "Algunos navegadores no pueden reproducir ciertos formatos, por ejemplo MKV o los vídeos de iPhone en HEVC en Chrome para Windows. Aun así puede recortarlos: la herramienta calcula la duración por sí sola y usted fija el inicio y el final con los controles o con tiempos exactos. El resultado se reproduce en cualquier reproductor habitual."
+        },
+        {
+          "title": "Qué pasa con su archivo",
+          "text": "No se sube nada. La página carga una vez el motor FFmpeg (WebAssembly) desde nuestro dominio y después su navegador lee el vídeo del disco por partes, corta el fragmento y se lo devuelve. No vemos el archivo ni su nombre. Por eso aquí no hay colas ni límites diarios, a diferencia de las herramientas que usan un servidor."
+        },
+        {
+          "title": "Si el archivo sigue siendo demasiado grande",
+          "text": "Si incluso recortado el vídeo no entra en el límite de una aplicación de mensajería o del correo, redúzcalo con «Comprimir vídeo», que baja la resolución hasta el tamaño en MB que necesite. Y para quedarse solo con el sonido del fragmento, use «Vídeo a MP3»."
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Se pierde calidad al recortar?",
+          "a": "En el modo rápido, no: el vídeo y el audio se copian sin recodificar. En el modo preciso el fragmento se recodifica a H.264 con alta calidad y la diferencia suele ser invisible."
+        },
+        {
+          "q": "¿Por qué el fragmento empieza un poco antes de lo que indiqué?",
+          "a": "Así funciona el modo rápido: corta en el fotograma clave más cercano para no tener que recodificar. Si necesita precisión al fotograma, active «Recorte preciso»."
+        },
+        {
+          "q": "¿Se sube el vídeo a un servidor?",
+          "a": "No. El recorte se hace en su navegador con FFmpeg (WebAssembly). Desde nuestro servidor solo se descarga el motor de procesamiento."
+        },
+        {
+          "q": "¿En qué formato queda el resultado?",
+          "a": "En el modo rápido, en el mismo que el original (MP4, MOV, WebM, MKV, etc.). En el modo preciso, siempre en MP4 con vídeo H.264 y audio AAC, que se reproduce casi en cualquier sitio."
+        },
+        {
+          "q": "¿Puedo cortar varios fragmentos de un mismo vídeo?",
+          "a": "Un fragmento por pasada. Para obtener otro, añada el mismo vídeo de nuevo y elija otros límites."
+        },
+        {
+          "q": "¿Hay un límite de tamaño?",
+          "a": "Hasta 1000 MB por archivo y hasta 3 vídeos a la vez, sin límite diario. En móviles con poca memoria, los archivos muy grandes pueden no caber en el modo preciso: use el modo rápido o un ordenador."
+        }
+      ]
     }
   },
   "errors": {
@@ -2181,6 +2339,85 @@
     "noMargin": "sin márgenes",
     "reencode": "recodificado",
     "noReencode": "sin recodificar",
-    "ocrLangs": "Idiomas: {{langs}}"
+    "ocrLangs": "Idiomas: {{langs}}",
+    "mp3Bitrate": "MP3 {{value}} kbps",
+    "trimPrecise": "recorte preciso",
+    "trimFast": "recorte rápido"
+  },
+  "videoTools": {
+    "loadingEngine": "Cargando el motor de vídeo {{percent}} %",
+    "errors": {
+      "memory": "El navegador se quedó sin memoria para este archivo. Pruebe con un fragmento más corto o con un ordenador en lugar del móvil.",
+      "invalid": "No se pudo leer el vídeo: el archivo está dañado o tiene un formato no compatible.",
+      "engine": "No se pudo cargar el motor de vídeo. Compruebe la conexión e inténtelo de nuevo.",
+      "generic": "No se pudo procesar el vídeo. Inténtelo de nuevo o use otro archivo."
+    }
+  },
+  "videoToMp3": {
+    "titlePart2": "Extraer el audio de un vídeo",
+    "titleGradient": "a MP3",
+    "text1": "Guarde la pista de audio de un MP4, MOV, WebM, MKV o AVI como MP3: una canción de un videoclip, una clase, un pódcast o una nota de voz grabada como vídeo.",
+    "text2": "Todo ocurre en su navegador: el vídeo no se sube a ningún sitio, sin registro y sin límites diarios.",
+    "dropzone": "Arrastre un vídeo aquí o haga clic para extraer el audio en MP3",
+    "converting": "Convirtiendo a MP3 {{percent}} %",
+    "bitrateLabel": "Calidad del MP3",
+    "kbps": "{{value}} kbps",
+    "bitrateHint": {
+      "128": "El archivo más pequeño. Suficiente para voz, clases y pódcasts.",
+      "192": "El punto justo para música y la mayoría de los vídeos.",
+      "320": "La máxima calidad de MP3, para música cuando importa cada detalle. El archivo más grande."
+    },
+    "note": "MP3 · {{bitrate}} kbps · duración {{duration}}",
+    "noteNoDuration": "MP3 · {{bitrate}} kbps",
+    "errors": {
+      "noAudio": "Este vídeo no tiene pista de audio, así que no hay nada que guardar en MP3."
+    },
+    "panel": {
+      "emptyState": "Añada un vídeo",
+      "addMore": "Añadir más vídeos",
+      "addMoreAria": "Añadir más vídeos",
+      "selected": "Vídeos seleccionados:",
+      "downloadOne": "Descargar MP3",
+      "downloadMany": "Descargar MP3 (ZIP)",
+      "remove": "Eliminar"
+    }
+  },
+  "trimVideo": {
+    "titlePart2": "Recortar vídeo",
+    "titleGradient": "online",
+    "text1": "Corte el fragmento que necesita de un MP4, MOV, WebM o MKV: elija el inicio y el final, revise el resultado y guárdelo.",
+    "text2": "El recorte se hace en su navegador: el vídeo no se sube a un servidor y el modo rápido no recodifica el archivo, así que la calidad no cambia.",
+    "dropzone": "Arrastre un vídeo aquí o haga clic para recortarlo",
+    "trimming": "Recortando {{percent}} %",
+    "probing": "El navegador no puede mostrar la vista previa de este vídeo; calculando la duración…",
+    "noPreview": "El navegador no muestra la vista previa de este formato, pero puede recortarlo igualmente: indique la hora de inicio y de final.",
+    "start": "Inicio",
+    "end": "Final",
+    "formatHint": "Puede escribir el tiempo como min:seg, p. ej. 1:05.5",
+    "setStart": "Inicio aquí",
+    "setEnd": "Final aquí",
+    "playFragment": "Ver el fragmento",
+    "summary": "Fragmento {{from}} – {{to}} · duración {{length}}",
+    "precise": "Recorte preciso (recodifica, más lento)",
+    "fastHint": "Modo rápido: sin recodificar, con la misma calidad que el original. El corte se ajusta al fotograma clave más cercano, así que el inicio puede adelantarse uno o dos segundos.",
+    "preciseHint": "Modo preciso: el corte cae exactamente en sus tiempos y el resultado es un MP4 (H.264). En el navegador tarda más, sobre todo en el móvil.",
+    "confirm": "Recortar",
+    "confirmAria": "Recortar {{name}}",
+    "note": "Fragmento {{from}} – {{to}}.",
+    "notePrecise": "Recodificado a MP4 (H.264), corte exacto al fotograma.",
+    "noteFast": "Sin recodificar: la misma calidad que el original.",
+    "errors": {
+      "noRange": "Elija primero el fragmento: un inicio y un final.",
+      "unreadable": "No se pudo leer este vídeo. Puede que el archivo esté dañado."
+    },
+    "panel": {
+      "emptyState": "Añada un vídeo",
+      "addMore": "Añadir más vídeos",
+      "addMoreAria": "Añadir más vídeos",
+      "selected": "Vídeos seleccionados:",
+      "downloadOne": "Descargar fragmento",
+      "downloadMany": "Descargar fragmentos (ZIP)",
+      "remove": "Eliminar"
+    }
   }
 }

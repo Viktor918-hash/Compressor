@@ -14,6 +14,8 @@
 //
 // Додаючи нову сторінку — додайте один запис сюди. routes.jsx і
 // PRERENDER_ROUTES (vite.config.js) підхоплять її автоматично.
+import { BLOG_ROUTE_PATHS } from "./blog/posts.js";
+
 export const ROUTE_PATHS = [
   { slug: "home", uk: "/", en: "/en", ru: "/ru", es: "/es" },
   {
@@ -167,10 +169,27 @@ export const ROUTE_PATHS = [
     ru: "/ru/convert-webm-to-mp4",
     es: "/es/convertir-webm-a-mp4",
   },
+  // Раунд 36: відео в браузері (FFmpeg.wasm, файл нікуди не йде).
+  {
+    slug: "videoToMp3",
+    uk: "/video-to-mp3",
+    en: "/en/video-to-mp3",
+    ru: "/ru/video-to-mp3",
+    es: "/es/video-a-mp3",
+  },
+  {
+    slug: "trimVideo",
+    uk: "/trim-video",
+    en: "/en/trim-video",
+    ru: "/ru/trim-video",
+    es: "/es/recortar-video",
+  },
   // Довір-сторінки (uk+en спершу, як і для інструментів; ru/es — пізніше).
   // Не інструменти: без header.*/TOOLS-запису, посилання лише у футері.
   { slug: "privacy", uk: "/privacy", en: "/en/privacy" },
   { slug: "terms", uk: "/terms", en: "/en/terms" },
   { slug: "contact", uk: "/contact", en: "/en/contact" },
   { slug: "about", uk: "/about", en: "/en/about" },
+  // Раунд 36: блог (лише uk + en) — індекс і статті з src/blog/posts.js
+  ...BLOG_ROUTE_PATHS,
 ];

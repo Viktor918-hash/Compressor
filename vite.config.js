@@ -62,6 +62,11 @@ export default defineConfig(async () => {
   const launchOptions = await getLaunchOptions();
 
   return {
+    // FFmpeg.wasm (round 36): воркер @ffmpeg/ffmpeg — module worker з
+    // динамічним import() ядра, тож потрібен ES-формат воркерів; у dev
+    // пакет не можна пре-бандлити (зламається new URL("./worker.js")).
+    worker: { format: "es" },
+    optimizeDeps: { exclude: ["@ffmpeg/ffmpeg"] },
     plugins: [
       react(),
       prerender({

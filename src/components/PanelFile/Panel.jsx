@@ -12,6 +12,7 @@ import {
   FiUploadCloud,
   FiCamera,
   FiShare,
+  FiVideo,
 } from "react-icons/fi";
 import { TbPhotoPlus } from "react-icons/tb";
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
@@ -193,6 +194,7 @@ const Panel = ({
   const sessionRef = useRef(0);
   const runningRef = useRef(false);
   const controllerRef = useRef(null);
+  const runningIdRef = useRef(null); // id файлу, який зараз обробляється
   const itemsRef = useRef(items);
   const mergeRef = useRef(merge);
   const listRef = useRef(null);
@@ -252,6 +254,7 @@ const Panel = ({
     if (!next) return;
 
     runningRef.current = true;
+    runningIdRef.current = next.id;
     const controller = new AbortController();
     controllerRef.current = controller;
     const session = sessionRef.current;
@@ -890,6 +893,11 @@ const Panel = ({
 
   const handleRemoveFile = (id) => {
     invalidateMerge();
+    // round 36: файл прибрали посеред обробки — зупиняємо її, а не чекаємо
+    // кінця (довге перекодування відео в браузері тримало б чергу хвилинами)
+    if (runningRef.current && runningIdRef.current === id) {
+      controllerRef.current?.abort();
+    }
     setItems((prev) => {
       const fileToRemove = prev.find((f) => f.id === id);
       if (fileToRemove?.url) {
@@ -1406,6 +1414,8 @@ const Panel = ({
                   >
                     {status === "error" ? (
                       <FiAlertCircle size={20} />
+                    ) : kind === "video" ? (
+                      <FiVideo size={20} />
                     ) : (
                       <FiFileText size={20} />
                     )}

@@ -7,6 +7,7 @@ import { TOOLS } from "../../toolsCatalog";
 import { usePageLang } from "../../hooks/usePageLang";
 import { hasLang } from "../../utils/routeLangs";
 import { LEGAL_CONTENT } from "../Legal/legalContent";
+import { BLOG_LANGS, BLOG_POSTS, blogPostPath } from "../../blog/posts";
 
 const LEGAL_SLUGS = ["privacy", "terms", "contact", "about"];
 
@@ -34,6 +35,26 @@ const Footer = () => {
             })}
           </ul>
         </nav>
+
+        {/* Блог (round 36): лише uk/en */}
+        {BLOG_LANGS.includes(lang) && (
+          <nav className="footer__nav" aria-label={t("header.blog")}>
+            <h2 className="footer__nav-title">
+              <LocalizedLink to="/blog" className="footer__nav-title-link">
+                {t("header.blog")}
+              </LocalizedLink>
+            </h2>
+            <ul className="footer__nav-list">
+              {BLOG_POSTS.map((post) => (
+                <li key={post.slug}>
+                  <LocalizedLink to={blogPostPath(post, "uk")} className="footer__nav-link">
+                    {post[lang].h1}
+                  </LocalizedLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         {/* Довір-сторінки: Privacy/Terms/Contact/About — лише uk+en наразі */}
         <nav className="footer__nav" aria-label={t("footer.legal")}>

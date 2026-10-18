@@ -17,6 +17,13 @@ const EXT_TYPES = {
   bmp: "image/bmp",
   avif: "image/avif",
   mp4: "video/mp4",
+  m4v: "video/mp4",
+  mov: "video/quicktime",
+  webm: "video/webm",
+  mkv: "video/x-matroska",
+  avi: "video/x-msvideo",
+  "3gp": "video/3gpp",
+  mp3: "audio/mpeg",
   pdf: "application/pdf",
   doc: "application/msword",
   docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -75,7 +82,12 @@ export default async function handler(req, res) {
     const filename = item.key.slice(prefix.length);
     const contentType = typeFromName(filename);
     const downloadUrl = presignGet(cfg, item.key, { expiresSec: remainingSec, downloadName: filename });
-    const previewable = contentType.startsWith("image/") || contentType === "video/mp4";
+    // прев'ю лише для того, що браузери відтворюють самі
+    const previewable =
+      contentType.startsWith("image/") ||
+      contentType === "video/mp4" ||
+      contentType === "video/webm" ||
+      contentType === "audio/mpeg";
     const previewUrl = previewable
       ? presignGet(cfg, item.key, { expiresSec: remainingSec, downloadName: filename, inline: true })
       : null;

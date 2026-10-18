@@ -22,6 +22,11 @@ import ConvertMovToMp4 from "./components/ConvertVideoFormat/ConvertMovToMp4.jsx
 import ConvertMkvToMp4 from "./components/ConvertVideoFormat/ConvertMkvToMp4.jsx";
 import ConvertWebmToMp4 from "./components/ConvertVideoFormat/ConvertWebmToMp4.jsx";
 import { Privacy, Terms, Contact, About } from "./components/Legal/LegalPages.jsx";
+import VideoToMp3 from "./components/VideoTools/VideoToMp3.jsx";
+import TrimVideo from "./components/VideoTools/TrimVideo.jsx";
+import BlogIndex from "./components/Blog/BlogIndex.jsx";
+import BlogPost from "./components/Blog/BlogPost.jsx";
+import { BLOG_INDEX_SLUG, BLOG_POSTS } from "./blog/posts.js";
 import { ROUTE_PATHS } from "./routes.config.js";
 
 // Прив'язка React-компонента до кожного slug'а з routes.config.js.
@@ -51,10 +56,21 @@ const SLUG_COMPONENTS = {
   convertMovToMp4: ConvertMovToMp4,
   convertMkvToMp4: ConvertMkvToMp4,
   convertWebmToMp4: ConvertWebmToMp4,
+  videoToMp3: VideoToMp3,
+  trimVideo: TrimVideo,
   privacy: Privacy,
   terms: Terms,
   contact: Contact,
   about: About,
+  [BLOG_INDEX_SLUG]: BlogIndex,
+  // кожна стаття — окремий компонент без пропсів (так влаштовано ROUTES)
+  ...Object.fromEntries(
+    BLOG_POSTS.map((post) => {
+      const Post = () => <BlogPost slug={post.slug} />;
+      Post.displayName = `BlogPost(${post.slug})`;
+      return [post.slug, Post];
+    })
+  ),
 };
 
 // Форма кожного елемента ROUTES лишається такою ж, як і раніше:

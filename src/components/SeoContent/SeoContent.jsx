@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { FiZap, FiShield, FiSmartphone, FiCheckCircle, FiChevronDown } from "react-icons/fi";
 import RelatedTools from "./RelatedTools";
+import BlogRelated from "../Blog/BlogRelated";
 import "./SeoContent.css";
 
 // Іконки для 4 карток переваг — однаковий набір на всіх сторінках,
@@ -136,6 +137,7 @@ const SeoContent = ({ pageKey }) => {
           </div>
         )}
 
+        <BlogRelated toolSlug={pageKey} />
         <RelatedTools current={pageKey} />
       </div>
     </section>

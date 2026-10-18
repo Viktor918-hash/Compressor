@@ -148,3 +148,10 @@
 .share-view__report a {
   color: var(--color-text-muted, #6B7280);
 }
+
+/* round 36: прев'ю MP3 */
+.share-view__audio {
+  display: block;
+  width: 100%;
+  margin: 4px 0 8px;
+}

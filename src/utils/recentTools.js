@@ -65,6 +65,16 @@ export function settingsSummary(slug, get, t) {
       if (!raw) return null;
       return read("removeExif.reencode", false) ? t("recentTools.reencode") : t("recentTools.noReencode");
     }
+    case "videoToMp3": {
+      const raw = get(SETTINGS_PREFIX + "videoToMp3.bitrate");
+      if (!raw) return null;
+      return t("recentTools.mp3Bitrate", { value: read("videoToMp3.bitrate", 192) });
+    }
+    case "trimVideo": {
+      const raw = get(SETTINGS_PREFIX + "trimVideo.precise");
+      if (!raw) return null;
+      return read("trimVideo.precise", false) ? t("recentTools.trimPrecise") : t("recentTools.trimFast");
+    }
     case "imageToText": {
       const langs = parseStored(get(OCR_KEY), null, (v) => Array.isArray(v) && v.length > 0);
       if (!langs) return null;

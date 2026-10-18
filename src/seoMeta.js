@@ -5,6 +5,8 @@
 // es-блоки нижче — чорновий переклад для заповнення структури. Перед
 // публікацією бажано перевірити носієм мови або якісним перекладачем.
 
+import { BLOG_META } from "./blog/posts.js";
+
 export const PAGE_META = {
   home: {
     uk: {
@@ -541,4 +543,52 @@ export const PAGE_META = {
         "CompressPhoto is a free online toolkit for photos and documents that processes files right in your browser, with nothing uploaded to a server.",
     },
   },
+  // Раунд 36: відео в браузері (FFmpeg.wasm)
+  videoToMp3: {
+    uk: {
+      title: "Відео в MP3 онлайн — витягти звук з відео безкоштовно",
+      description:
+        "Конвертуйте MP4, MOV, WebM чи MKV у MP3 прямо в браузері: 128–320 кбіт/с, до 1000 МБ, без завантаження на сервер, без реєстрації й лімітів.",
+    },
+    en: {
+      title: "Video to MP3 Online — Extract Audio From Video for Free",
+      description:
+        "Convert MP4, MOV, WebM or MKV to MP3 right in your browser: 128–320 kbps, files up to 1000 MB, nothing uploaded, no sign-up and no daily limits.",
+    },
+    ru: {
+      title: "Видео в MP3 онлайн — извлечь звук из видео бесплатно",
+      description:
+        "Конвертируйте MP4, MOV, WebM или MKV в MP3 прямо в браузере: 128–320 кбит/с, до 1000 МБ, без загрузки на сервер, без регистрации и лимитов.",
+    },
+    es: {
+      title: "Vídeo a MP3 online: extraer el audio de un vídeo gratis",
+      description:
+        "Convierta MP4, MOV, WebM o MKV a MP3 en su navegador: 128–320 kbps, hasta 1000 MB, sin subir nada a un servidor, sin registro ni límites diarios.",
+    },
+  },
+  // Раунд 36: відео в браузері (FFmpeg.wasm)
+  trimVideo: {
+    uk: {
+      title: "Обрізати відео онлайн — без втрати якості, безкоштовно",
+      description:
+        "Виріжте фрагмент з MP4, MOV, WebM чи MKV прямо в браузері: прев'ю, точний час, режим без перекодування. Файл не йде на сервер, без лімітів.",
+    },
+    en: {
+      title: "Trim Video Online — Cut Clips Free, No Quality Loss",
+      description:
+        "Cut a clip from MP4, MOV, WebM or MKV right in your browser: preview, exact times and a no-re-encode mode. Nothing is uploaded and there are no limits.",
+    },
+    ru: {
+      title: "Обрезать видео онлайн — без потери качества, бесплатно",
+      description:
+        "Вырежьте фрагмент из MP4, MOV, WebM или MKV прямо в браузере: превью, точное время, режим без перекодирования. Файл не уходит на сервер, без лимитов.",
+    },
+    es: {
+      title: "Recortar vídeo online: sin perder calidad y gratis",
+      description:
+        "Corte un fragmento de MP4, MOV, WebM o MKV en su navegador: vista previa, tiempos exactos y modo sin recodificar. No se sube nada y no hay límites.",
+    },
+  },
+  // Раунд 36: блог (uk/en) — title/description живуть поруч із текстами статей
+  ...BLOG_META,
 };

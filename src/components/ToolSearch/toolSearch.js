@@ -30,6 +30,8 @@ export const TOOL_KEYWORDS = {
   convertMovToMp4: "mov mp4 iphone quicktime video відео видео convertir vídeo",
   convertMkvToMp4: "mkv mp4 matroska video відео видео convertir vídeo",
   convertWebmToMp4: "webm mp4 video відео видео convertir vídeo",
+  trimVideo: "trim cut clip video fragment shorten обрізати вирізати фрагмент відео обрезать вырезать видео recortar cortar vídeo",
+  videoToMp3: "mp3 audio sound music extract video звук аудіо музика витягти відео звук аудио музыка извлечь видео audio música extraer vídeo",
 };
 
 /**

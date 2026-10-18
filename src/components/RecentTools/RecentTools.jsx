@@ -15,8 +15,9 @@ const CATEGORY_ICONS = {
   convert: FiRepeat,
   edit: FiEdit3,
   docs: FiFileText,
+  video: FiVideo,
 };
-const VIDEO_SLUGS = ["compressVideo", "convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4"];
+const VIDEO_SLUGS = ["compressVideo", "convertMovToMp4", "convertMkvToMp4", "convertWebmToMp4", "trimVideo", "videoToMp3"];
 const KNOWN = TOOLS.map((tool) => tool.slug);
 
 const readStorage = (key) => {

@@ -64,7 +64,12 @@
     "searchPlaceholder": "Find a tool: compress, HEIC, PDF, video…",
     "searchNoResults": "Nothing found. Try another word, e.g. “jpg” or “video”.",
     "searchHint": "↑ ↓ to select · Enter to open · Esc to close",
-    "searchClose": "Close search"
+    "searchClose": "Close search",
+    "blog": "Blog",
+    "videoToMp3": "Video to MP3",
+    "videoToMp3Desc": "Save the audio from a video as MP3",
+    "trimVideo": "Trim Video",
+    "trimVideoDesc": "Cut a clip right in your browser"
   },
   "home": {
     "categories": {
@@ -84,6 +89,10 @@
       "docs": {
         "title": "Documents & text",
         "subtitle": "Word, PDF, text recognition, and ready-made photo presets."
+      },
+      "video": {
+        "title": "Video",
+        "subtitle": "Compress, trim, extract audio and change video formats."
       }
     }
   },
@@ -1836,6 +1845,171 @@
           "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
         }
       ]
+    },
+    "videoToMp3": {
+      "title": "Video to MP3 Online: Get the Audio From Any Video in a Minute",
+      "text1": "Often all you need from a video is the sound: a song from a music video, a recorded lecture or webinar, a podcast you'd rather listen to with the screen off, a voice message saved as video. A video file is too big and awkward for that — an MP3 takes a fraction of the space, plays in any player, on a phone, in the car or on an old MP3 player, and is easy to send or upload to a podcast app.",
+      "text2": "The tool takes the first audio track from your video and encodes it to MP3 at the bitrate you choose: 128, 192 or 320 kbps. Processing happens right in your browser tab with FFmpeg — the same engine professional video editors use. The video is never uploaded to a server, so there are no queues, no daily limits and no risk of your recording ending up with strangers.",
+      "benefits": [
+        {
+          "title": "Your file stays on your device",
+          "text": "The video is processed in your browser. We never see the file and never store it, not even for a moment."
+        },
+        {
+          "title": "No limits, no sign-up",
+          "text": "As many files a day as you like, up to 10 at a time and up to 1000 MB each — because your device does the work, not our server."
+        },
+        {
+          "title": "Three quality levels",
+          "text": "128 kbps for speech, 192 for most videos, 320 for music. Your choice is remembered for your next visit."
+        },
+        {
+          "title": "Works on phones too",
+          "text": "Open the page on an iPhone or Android, pick a video from your gallery and save the MP3 — no app to install."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to extract audio from a video as MP3",
+          "steps": [
+            "Choose the MP3 quality above the upload area: 128, 192 or 320 kbps.",
+            "Drag your video into the window or click to pick a file (MP4, MOV, WebM, MKV, AVI, 3GP).",
+            "The first time, your browser downloads the processing engine once; after that it comes from the cache.",
+            "Wait for the conversion to finish — progress is shown for each file.",
+            "Click \"Download MP3\". Several files can be downloaded as one ZIP."
+          ]
+        },
+        {
+          "title": "Which bitrate to choose",
+          "text": "Bitrate is how much data goes into each second of sound. 128 kbps gives the smallest file (about 1 MB per minute) and is perfectly fine for speech: lectures, interviews, podcasts. 192 kbps (about 1.4 MB per minute) is a sensible choice for music and most videos. 320 kbps (about 2.4 MB per minute) is the maximum for MP3 and makes sense for music you'll listen to on good headphones. Keep in mind that a higher bitrate can't make the sound better than it was in the video — the result can't beat the original."
+        },
+        {
+          "title": "What happens to your file",
+          "text": "Nothing is uploaded. The page loads the FFmpeg engine as a WebAssembly module from our own domain, and from then on all the work happens in your browser: it reads the video from disk in chunks, extracts the audio track and encodes it as MP3. Once you close the tab, nothing is left in memory. That's why there's no conversion limit here, unlike server-based tools."
+        },
+        {
+          "title": "Limitations worth knowing",
+          "text": "Speed depends on your device: on a modern computer the audio from a few-minute video is usually ready in seconds, while an older phone takes longer. The first audio track is used, so if a video has several language tracks, the main one is saved. A video without sound can't be converted — the tool will tell you so. The maximum size of one file is 1000 MB."
+        },
+        {
+          "title": "When you only need part of it",
+          "text": "If you only want one song or quote from a long video, cut that part out first with Trim Video, then save its audio as MP3. Both tools run in your browser, so the file never leaves your device."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is my video uploaded to a server?",
+          "a": "No. The conversion runs in your browser using FFmpeg (WebAssembly). Only the processing engine is downloaded from our server; your file isn't sent anywhere."
+        },
+        {
+          "q": "Which video formats are supported?",
+          "a": "MP4, MOV (including iPhone videos), WebM, MKV, AVI, M4V and 3GP. The file just needs to have an audio track."
+        },
+        {
+          "q": "Why does the first run take longer?",
+          "a": "The first time, your browser downloads the processing engine (about 30 MB). It's cached, so later conversions start right away."
+        },
+        {
+          "q": "Is there a limit on the number of files?",
+          "a": "There's no daily limit. You can add up to 10 videos at a time, up to 1000 MB each."
+        },
+        {
+          "q": "Can I get lossless audio instead of MP3?",
+          "a": "For now the tool saves MP3 only, the most compatible format. MP3 is lossy, but at 192–320 kbps the difference from the original is hard to hear."
+        }
+      ]
+    },
+    "trimVideo": {
+      "title": "Trim Video Online: Cut a Clip Without Losing Quality",
+      "text1": "Most of the time a video doesn't need compressing, just shortening: drop the dead time at the start and end, cut a moment for a story, send a colleague only the minutes of a meeting recording that matter. A short clip is lighter, more likely to be watched, and easier to fit within messenger and email limits.",
+      "text2": "The tool shows a preview, lets you set the start and end with sliders, \"Start here / End here\" buttons or exact times, and saves the clip. In fast mode the video isn't re-encoded — the data is simply copied from the original, so quality stays the same and trimming takes seconds even for large files. Everything happens in your browser; the file isn't uploaded to a server.",
+      "benefits": [
+        {
+          "title": "No quality loss",
+          "text": "Fast mode copies the video and audio as they are, with no re-encoding: no blur and no artifacts."
+        },
+        {
+          "title": "Private",
+          "text": "The video is processed on your device and never reaches our server. Personal recordings stay personal."
+        },
+        {
+          "title": "Frame-accurate when needed",
+          "text": "Turn on \"Precise trim\" and the cut lands exactly on your times, re-encoded to a compatible MP4."
+        },
+        {
+          "title": "No limits, no sign-up",
+          "text": "Trim as many videos a day as you like, up to 1000 MB each — your browser does the work."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How to trim a video",
+          "steps": [
+            "Drag your video into the window or click to pick a file (MP4, MOV, WebM, MKV, AVI, 3GP).",
+            "A preview appears in the panel: play to the moment you want and click \"Start here\", then do the same for \"End here\". Or move the sliders, or type the times.",
+            "Click \"Preview clip\" to check the boundaries.",
+            "If you need frame accuracy, turn on \"Precise trim\".",
+            "Click \"Trim\" and download the finished clip."
+          ]
+        },
+        {
+          "title": "Fast or precise trim",
+          "text": "A video is made of keyframes with only the changes stored in between. Fast mode cuts at keyframes and re-encodes nothing: the result is ready in seconds, the quality is identical to the original and the file format stays the same. The trade-off is that the start may move a second or two earlier, to the nearest keyframe (in screen recordings, sometimes more). Precise mode re-encodes the clip to MP4 with H.264, so the cut lands exactly where you set it. That takes noticeably longer, because the encoding happens in your browser."
+        },
+        {
+          "title": "If the preview doesn't show",
+          "text": "Some browsers can't play certain formats, for example MKV, or iPhone videos in HEVC in Chrome on Windows. You can still trim them: the tool works out the length itself, and you set the start and end with the sliders or exact times. The result plays in any regular video player."
+        },
+        {
+          "title": "What happens to your file",
+          "text": "Nothing is uploaded. The page loads the FFmpeg engine (WebAssembly) from our domain once, and then your browser reads the video from disk in chunks, cuts the clip and hands it back to you. We never see the file or even its name. That's why there are no queues or daily limits here, unlike server-based tools."
+        },
+        {
+          "title": "If the file is still too big",
+          "text": "If the video still doesn't fit a messenger or email limit after trimming, shrink it with Compress Video, which lowers the resolution to hit a size in MB. And to keep just the sound of the clip, use Video to MP3."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Does trimming reduce quality?",
+          "a": "In fast mode, no: video and audio are copied without re-encoding. In precise mode the clip is re-encoded to H.264 at high quality, and the difference is usually invisible."
+        },
+        {
+          "q": "Why does my clip start a bit earlier than I set?",
+          "a": "That's how fast mode works: it cuts at the nearest keyframe so it doesn't have to re-encode. For frame accuracy, turn on \"Precise trim\"."
+        },
+        {
+          "q": "Is my video uploaded to a server?",
+          "a": "No. Trimming runs in your browser using FFmpeg (WebAssembly). Only the processing engine is downloaded from our server."
+        },
+        {
+          "q": "What format will the result be?",
+          "a": "In fast mode, the same as the original (MP4, MOV, WebM, MKV and so on). In precise mode, always MP4 with H.264 video and AAC audio, which plays almost anywhere."
+        },
+        {
+          "q": "Can I cut several clips from one video?",
+          "a": "One clip per pass. To get another, add the same video again and pick different boundaries."
+        },
+        {
+          "q": "Is there a size limit?",
+          "a": "Up to 1000 MB per file and up to 3 videos at a time, with no daily limit. On phones with little memory, very large files may not fit in precise mode — use fast mode or a computer instead."
+        }
+      ]
+    },
+    "blog": {
+      "title": "CompressPhoto Blog"
+    },
+    "blogCompressTo200kb": {
+      "title": "How to Compress a Photo to 200KB Without Losing Quality"
+    },
+    "blogHeicToJpgWindows": {
+      "title": "HEIC to JPG on Windows Without Installing Anything"
+    },
+    "blogExifGps": {
+      "title": "What Is EXIF, and Is Your Photo Leaking Your Location?"
+    },
+    "blogVideoWhatsapp": {
+      "title": "Why WhatsApp Ruins Video Quality — and How to Compress a Video Yourself"
     }
   },
   "errors": {
@@ -2193,6 +2367,85 @@
     "noMargin": "no margins",
     "reencode": "re-encoded",
     "noReencode": "no re-encoding",
-    "ocrLangs": "Languages: {{langs}}"
+    "ocrLangs": "Languages: {{langs}}",
+    "mp3Bitrate": "MP3 {{value}} kbps",
+    "trimPrecise": "precise trim",
+    "trimFast": "fast trim"
+  },
+  "videoTools": {
+    "loadingEngine": "Loading the video engine {{percent}}%",
+    "errors": {
+      "memory": "Your browser ran out of memory for this file. Try a shorter clip, or a computer instead of a phone.",
+      "invalid": "Couldn't read the video: the file is damaged or in an unsupported format.",
+      "engine": "Couldn't load the video engine. Check your connection and try again.",
+      "generic": "Couldn't process the video. Try again or use another file."
+    }
+  },
+  "videoToMp3": {
+    "titlePart2": "Extract audio from video",
+    "titleGradient": "to MP3",
+    "text1": "Save the soundtrack of an MP4, MOV, WebM, MKV or AVI file as MP3: a song from a music video, a lecture, a podcast or a voice note recorded as video.",
+    "text2": "Everything happens in your browser: the video isn't uploaded anywhere, there's no sign-up and no daily limit.",
+    "dropzone": "Drop a video here or click to extract the audio as MP3",
+    "converting": "Converting to MP3 {{percent}}%",
+    "bitrateLabel": "MP3 quality",
+    "kbps": "{{value}} kbps",
+    "bitrateHint": {
+      "128": "Smallest file. Good enough for speech, lectures and podcasts.",
+      "192": "The sweet spot for music and most videos.",
+      "320": "Maximum MP3 quality — for music when every detail matters. Largest file."
+    },
+    "note": "MP3 · {{bitrate}} kbps · length {{duration}}",
+    "noteNoDuration": "MP3 · {{bitrate}} kbps",
+    "errors": {
+      "noAudio": "This video has no audio track, so there's nothing to save as MP3."
+    },
+    "panel": {
+      "emptyState": "Add a video",
+      "addMore": "Add more videos",
+      "addMoreAria": "Add more videos",
+      "selected": "Videos selected:",
+      "downloadOne": "Download MP3",
+      "downloadMany": "Download MP3s (ZIP)",
+      "remove": "Remove"
+    }
+  },
+  "trimVideo": {
+    "titlePart2": "Trim video",
+    "titleGradient": "online",
+    "text1": "Cut the part you need out of an MP4, MOV, WebM or MKV file: pick the start and end, preview the clip and save it.",
+    "text2": "Trimming happens in your browser — the video isn't uploaded to a server, and fast mode doesn't re-encode the file, so quality stays the same.",
+    "dropzone": "Drop a video here or click to trim it",
+    "trimming": "Trimming {{percent}}%",
+    "probing": "Your browser can't preview this video — detecting its length…",
+    "noPreview": "Your browser can't preview this format, but you can still trim it: enter the start and end times.",
+    "start": "Start",
+    "end": "End",
+    "formatHint": "You can type the time as min:sec, e.g. 1:05.5",
+    "setStart": "Start here",
+    "setEnd": "End here",
+    "playFragment": "Preview clip",
+    "summary": "Clip {{from}} – {{to}} · length {{length}}",
+    "precise": "Precise trim (re-encodes, slower)",
+    "fastHint": "Fast mode: no re-encoding, same quality as the original. The cut snaps to the nearest keyframe, so the start may move a second or two earlier.",
+    "preciseHint": "Precise mode: the cut lands exactly on your times and the result is an MP4 (H.264). Processing in the browser takes longer, especially on a phone.",
+    "confirm": "Trim",
+    "confirmAria": "Trim {{name}}",
+    "note": "Clip {{from}} – {{to}}.",
+    "notePrecise": "Re-encoded to MP4 (H.264), frame-accurate cut.",
+    "noteFast": "No re-encoding: same quality as the original.",
+    "errors": {
+      "noRange": "Pick the clip first: a start and an end.",
+      "unreadable": "Couldn't read this video. The file may be damaged."
+    },
+    "panel": {
+      "emptyState": "Add a video",
+      "addMore": "Add more videos",
+      "addMoreAria": "Add more videos",
+      "selected": "Videos selected:",
+      "downloadOne": "Download clip",
+      "downloadMany": "Download clips (ZIP)",
+      "remove": "Remove"
+    }
   }
 }

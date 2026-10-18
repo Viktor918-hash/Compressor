@@ -76,6 +76,9 @@ const ShareView = () => {
             {info.previewUrl && info.contentType.startsWith("video/") && (
               <video className="share-view__preview" src={info.previewUrl} controls preload="metadata" />
             )}
+            {info.previewUrl && info.contentType.startsWith("audio/") && (
+              <audio className="share-view__audio" src={info.previewUrl} controls preload="metadata" />
+            )}
             {!info.previewUrl && (
               <div className="share-view__file-icon" aria-hidden="true">
                 <FiFile size={40} />

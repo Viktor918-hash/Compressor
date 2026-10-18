@@ -212,6 +212,23 @@ test("info: документ — без preview", async () => {
   assert.equal(res.body.previewUrl, null);
 });
 
+test("info: MP3 і WebM — з прев'ю, MOV — без (round 36)", async () => {
+  let n = 0;
+  for (const [name, type, preview] of [
+    ["пісня.mp3", "audio/mpeg", true],
+    ["clip-trimmed.webm", "video/webm", true],
+    ["clip-trimmed.mov", "video/quicktime", false],
+  ]) {
+    reset();
+    const id = newShareId(nowSec() + 3600, Buffer.alloc(9, ++n));
+    r2Objects = [`shares/${id}/${name}`];
+    const res = await run(infoH, null, {}, "GET", { id });
+    assert.equal(res.code, 200, name);
+    assert.equal(res.body.contentType, type, name);
+    assert.equal(Boolean(res.body.previewUrl), preview, name);
+  }
+});
+
 test("info: прострочене → 410 і файл одразу видаляється", async () => {
   reset();
   const id = newShareId(nowSec() - 1, Buffer.from("oldoldold"));

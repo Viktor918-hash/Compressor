@@ -26,6 +26,13 @@ export const SHARE_TYPES = [
   "image/bmp",
   "image/avif",
   "video/mp4",
+  // round 36: «Обрізати відео» лишає контейнер оригіналу, «Відео в MP3» — MP3
+  "video/quicktime",
+  "video/webm",
+  "video/x-matroska",
+  "video/x-msvideo",
+  "video/3gpp",
+  "audio/mpeg",
   "application/pdf",
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",

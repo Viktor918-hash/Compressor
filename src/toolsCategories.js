@@ -34,6 +34,22 @@ export const TOOL_CATEGORIES = [
       "removeExif",
     ],
   },
+  // round 36: відео окремою групою (раніше відеоінструментів на головній
+  // у сітці не було — лише в меню й «Схожих»)
+  {
+    id: "video",
+    titleKey: "home.categories.video.title",
+    subtitleKey: "home.categories.video.subtitle",
+    colorVar: "accent",
+    slugs: [
+      "compressVideo",
+      "trimVideo",
+      "videoToMp3",
+      "convertMovToMp4",
+      "convertMkvToMp4",
+      "convertWebmToMp4",
+    ],
+  },
   {
     id: "docs",
     titleKey: "home.categories.docs.title",

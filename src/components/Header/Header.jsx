@@ -2,6 +2,9 @@ import { useState, useEffect, useRef, useId } from "react";
 import "./Header.css";
 import { MdKeyboardArrowDown, MdGradient } from "react-icons/md";
 import {
+  FiMusic,
+  FiScissors,
+  FiBookOpen,
   FiRepeat,
   FiX,
   FiMenu,
@@ -224,6 +227,8 @@ const Header = () => {
           icon: FiRepeat,
           label: t("header.convertWebmToMp4"),
         },
+        { to: "/trim-video", icon: FiScissors, label: t("header.trimVideo") },
+        { to: "/video-to-mp3", icon: FiMusic, label: t("header.videoToMp3") },
       ],
     },
     {
@@ -653,12 +658,46 @@ const Header = () => {
                       </span>
                     </div>
                   </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/trim-video"
+                    className="dropdown-panel__item"
+                  >
+                    <FiScissors size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.trimVideo")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.trimVideoDesc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
+                  <LocalizedLink hideIfMissing
+                    to="/video-to-mp3"
+                    className="dropdown-panel__item"
+                  >
+                    <FiMusic size={20} className="dropdown-panel__icon" />
+                    <div>
+                      <span className="dropdown-panel__title">
+                        {t("header.videoToMp3")}
+                      </span>
+                      <span className="dropdown-panel__desc">
+                        {t("header.videoToMp3Desc")}
+                      </span>
+                    </div>
+                  </LocalizedLink>
                 </div>
               </div>
             </li>
             <li className="header__list header__list--secondary">
               <LocalizedLink hideIfMissing to="/photo-presets" className="nav__link">
                 {t("presets.navTitle")}
+              </LocalizedLink>
+            </li>
+            {/* Блог (round 36): лише uk/en — у ru/es пункт ховається */}
+            <li className="header__list header__list--secondary">
+              <LocalizedLink hideIfMissing to="/blog" className="nav__link">
+                {t("header.blog")}
               </LocalizedLink>
             </li>
           </ul>
@@ -837,6 +876,16 @@ const Header = () => {
             );
           })}
         </div>
+
+        <LocalizedLink
+          hideIfMissing
+          to="/blog"
+          className="mobile-menu__item mobile-menu__blog"
+          onClick={closeMenu}
+        >
+          <FiBookOpen size={18} className="mobile-menu__icon" />
+          {t("header.blog")}
+        </LocalizedLink>
 
         <div className="mobile-menu__item mobile-menu__language">
           <LanguageSwitcher className="mobile-menu__language-switcher" />

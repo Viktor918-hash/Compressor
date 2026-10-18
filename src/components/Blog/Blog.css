@@ -1,0 +1,402 @@
+/* Блог (round 36): список статей і сторінка статті.
+   Ширина тексту ~70 символів — так довгі статті легко читати. */
+.blog {
+  padding: var(--space-10, 40px) var(--space-4) var(--space-20, 80px);
+}
+
+/* ── Список ───────────────────────────────────────────── */
+.blog-index__head {
+  max-width: 760px;
+  margin: 0 auto var(--space-8);
+  text-align: center;
+}
+
+.blog-index__title {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-black, 900);
+  line-height: var(--lh-tight, 1.15);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-index__intro {
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal, 1.55);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.blog-index__list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.blog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.blog-card:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.blog-card:focus-within {
+  box-shadow: var(--shadow-focus);
+}
+
+.blog-card__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.blog-card__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* вся картка клікабельна, але в DOM — одне посилання */
+.blog-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.blog-card__link:focus-visible {
+  outline: none;
+}
+
+.blog-card__desc {
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal, 1.55);
+  color: var(--color-text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.blog-card__meta,
+.blog-post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.blog-post__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.blog-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-primary-600);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card {
+    transition: none;
+  }
+  .blog-card:hover {
+    transform: none;
+  }
+}
+
+/* ── Стаття ───────────────────────────────────────────── */
+.blog-post,
+.blog-others {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.blog-crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.blog-crumbs a {
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.blog-crumbs a:hover {
+  text-decoration: underline;
+}
+
+.blog-post__title {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-black, 900);
+  line-height: var(--lh-tight, 1.15);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-post__meta {
+  margin-bottom: var(--space-8);
+}
+
+.blog-post__lead {
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: var(--color-text);
+  margin: 0 0 var(--space-4);
+}
+
+.blog-post__section {
+  margin-top: var(--space-8);
+}
+
+.blog-post__h2 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.3;
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-post__p,
+.blog-post__steps li,
+.blog-faq__a {
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.blog-post__p {
+  margin: 0 0 var(--space-3);
+}
+
+.blog-post__steps {
+  margin: 0;
+  padding-left: var(--space-6);
+}
+
+.blog-post__steps li {
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-1);
+}
+
+.blog-post a:not(.blog-cta__btn),
+.blog-faq a {
+  color: var(--color-primary-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-post strong {
+  color: var(--color-text);
+}
+
+.blog-post code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+/* CTA між текстом і FAQ */
+.blog-cta {
+  margin: var(--space-10, 40px) 0 0;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-50);
+  border: 1px solid var(--color-primary-100);
+  text-align: center;
+}
+
+.blog-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-600);
+  color: var(--color-text-on-primary);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold, 600);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.blog-cta__btn:hover {
+  background: var(--color-primary-700);
+}
+
+.blog-cta__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.blog-cta__sub {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.blog-faq {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.blog-faq__item {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.blog-faq__q {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-text);
+  margin: 0 0 var(--space-2);
+}
+
+.blog-faq__a {
+  margin: 0;
+}
+
+.blog-others {
+  margin-top: var(--space-12, 48px);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.blog-others__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold, 700);
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+}
+
+.blog-others__list {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.blog-others__list li {
+  margin-bottom: var(--space-2);
+}
+
+.blog-others__link {
+  font-size: var(--fs-base);
+  color: var(--color-primary-600);
+}
+
+/* ── «Корисне з блогу» на сторінках інструментів ─────── */
+.blog-related {
+  margin: var(--space-8) 0 0;
+}
+
+.blog-related__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold, 700);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+.blog-related__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.blog-related__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.blog-related__item:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.blog-related__icon {
+  flex-shrink: 0;
+  color: var(--color-primary-600);
+}
+
+.blog-related__link {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.blog-related__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.blog-related__link:focus-visible {
+  outline: none;
+}
+
+.blog-related__item:focus-within {
+  box-shadow: var(--shadow-focus);
+}
+
+.blog-related__all {
+  display: inline-block;
+  margin-top: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--color-primary-600);
+}
+
+@media (max-width: 600px) {
+  .blog {
+    padding-top: var(--space-6);
+  }
+
+  .blog-card,
+  .blog-cta {
+    padding: var(--space-5);
+  }
+
+  .blog-cta__btn {
+    width: 100%;
+  }
+}

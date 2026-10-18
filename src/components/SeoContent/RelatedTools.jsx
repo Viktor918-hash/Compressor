@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { FiMinimize2, FiRepeat, FiEdit3, FiFileText } from "react-icons/fi";
+import { FiMinimize2, FiRepeat, FiEdit3, FiFileText, FiVideo } from "react-icons/fi";
 import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { RELATED, toolBySlug } from "../../toolsCatalog";
@@ -16,6 +16,7 @@ const CATEGORY_ICONS = {
   convert: FiRepeat,
   edit: FiEdit3,
   docs: FiFileText,
+  video: FiVideo,
 };
 
 /**

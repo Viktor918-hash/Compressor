@@ -21,6 +21,7 @@ const MIME_LABELS = {
   "video/x-msvideo": "AVI",
   "video/avi": "AVI",
   "video/x-matroska": "MKV",
+  "video/3gpp": "3GP",
 };
 
 // Розширення → та сама назва (для записів accept на кшталт "": [".heic"])
@@ -42,6 +43,8 @@ const EXT_LABELS = {
   ".webm": "WebM",
   ".avi": "AVI",
   ".mkv": "MKV",
+  ".m4v": "M4V",
+  ".3gp": "3GP",
 };
 
 // Розширення за MIME-типом — для імені файлу, вставленого з буфера

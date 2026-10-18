@@ -26,7 +26,7 @@ export const LEGAL_CONTENT = {
         {
           heading: "1. Обробка файлів",
           paragraphs: [
-            "Більшість інструментів (стиснення, конвертація форматів, зміна розміру, обрізка, поворот, водяний знак, видалення фону, видалення метаданих, розпізнавання тексту, пресети) обробляють ваш файл повністю у вашому браузері. Файл не завантажується на наш сервер і не передається нам — ми фізично не маємо до нього доступу.",
+            "Більшість інструментів (стиснення, конвертація форматів, зміна розміру, обрізка, поворот, водяний знак, видалення фону, видалення метаданих, розпізнавання тексту, пресети, обрізка відео, звук з відео в MP3) обробляють ваш файл повністю у вашому браузері. Файл не завантажується на наш сервер і не передається нам — ми фізично не маємо до нього доступу.",
             "Виняток 1: конвертація Word ↔ PDF, стиснення відео та конвертація відео у MP4 відбуваються не локально. Файл вивантажується напряму з вашого браузера до сервісу конвертації CloudConvert. Файл автоматично видаляється з серверів CloudConvert невдовзі після обробки, відповідно до стандартних налаштувань збереження CloudConvert. Ми не зберігаємо копій цих файлів і не переглядаємо їхній вміст.",
             "Виняток 2: тимчасові посилання. Лише якщо ви самі натискаєте «Посилання на 2 години», готовий файл вивантажується в сховище Cloudflare R2, і будь-хто, у кого є посилання, може його завантажити. Посилання перестає працювати рівно через 2 години; файл видаляється зі сховища автоматично — під час наступного прибирання, не пізніше ніж за добу. Ми не переглядаємо вміст цих файлів, окрім випадків, коли отримуємо скаргу на незаконний вміст.",
           ],
@@ -79,7 +79,7 @@ export const LEGAL_CONTENT = {
         {
           heading: "1. File processing",
           paragraphs: [
-            "Most tools (compress, convert, resize, crop, rotate, watermark, background removal, metadata removal, OCR, presets) process your file entirely in your browser. The file is never uploaded to our server and we never have access to it.",
+            "Most tools (compress, convert, resize, crop, rotate, watermark, background removal, metadata removal, OCR, presets, video trimming, video to MP3) process your file entirely in your browser. The file is never uploaded to our server and we never have access to it.",
             "Exception 1: Word ↔ PDF conversion, video compression and video-to-MP4 conversion are not local. The file is uploaded directly from your browser to CloudConvert, our conversion provider. Files are automatically deleted from CloudConvert's servers shortly after processing, per CloudConvert's standard retention settings. We don't keep copies and don't inspect their content.",
             "Exception 2: temporary links. Only if you click \"2-hour link\" is the processed file uploaded to Cloudflare R2 storage, where anyone with the link can download it. The link stops working exactly 2 hours later; the file is deleted from storage automatically at the next cleanup, within 24 hours at the latest. We don't inspect these files unless we receive a report about unlawful content.",
           ],
