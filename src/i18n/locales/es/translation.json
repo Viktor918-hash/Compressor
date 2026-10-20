@@ -233,7 +233,48 @@
     "noMatch": "No hay ajustes para este filtro",
     "all": "Todos",
     "before": "ANTES",
-    "clearFilter": "Quitar filtro"
+    "clearFilter": "Quitar filtro",
+    "filterFilm": "Película y retro",
+    "styleFilter": "Estilo",
+    "allStyles": "Todos los estilos",
+    "styles": {
+      "soft": "Suave",
+      "dramatic": "Dramático",
+      "natural": "Luz natural",
+      "studio": "Estudio",
+      "goldenHour": "Hora dorada",
+      "overcast": "Día nublado",
+      "forest": "Bosque",
+      "sea": "Mar",
+      "street": "Calle",
+      "minimal": "Minimalista",
+      "tealOrange": "Turquesa y naranja",
+      "neon": "Neón",
+      "cityLights": "Luces de ciudad",
+      "moody": "Oscuro",
+      "beach": "Playa",
+      "sunny": "Soleado",
+      "travel": "Viajes",
+      "clean": "Limpio",
+      "sunset": "Atardecer",
+      "warm": "Cálido",
+      "bw": "Blanco y negro",
+      "golden": "Otoño dorado",
+      "cozy": "Acogedor",
+      "snow": "Nieve",
+      "frosty": "Helado",
+      "festive": "Festivo",
+      "analog": "Película analógica",
+      "film35": "35 mm",
+      "vintage": "Vintage",
+      "retro70s": "Años 70",
+      "retro80s": "Años 80",
+      "retro90s": "Años 90",
+      "lomo": "Lomo",
+      "polaroid": "Polaroid",
+      "sepia": "Sepia",
+      "noir": "Noir"
+    }
   },
   "removeBg": {
     "title": "Eliminar el fondo de una foto",
@@ -644,7 +685,7 @@
       "benefits": [
         {
           "title": "Categorías predefinidas",
-          "text": "Los filtros están agrupados por temática: retrato, naturaleza, urbano, noche, verano, coches, cinematográfico, otoño e invierno."
+          "text": "Los filtros están agrupados por temática: retrato, naturaleza, ciudad, noche, verano, coches, cine, otoño, invierno, película y retro, además de colecciones para tareas concretas."
         },
         {
           "title": "Intensidad ajustable",
@@ -674,7 +715,7 @@
         },
         {
           "q": "¿Cuántos preajustes hay disponibles?",
-          "a": "Hay decenas de preajustes disponibles en categorías como retrato, naturaleza, urbano, noche, verano, coches, cine, otoño e invierno."
+          "a": "Más de 60 filtros en categorías como retrato, naturaleza, ciudad, noche, verano, coches, cine, otoño, invierno, película y retro. Cada tema tiene su propia página, y también hay colecciones por tarea: aclarar una foto oscura, fotos de producto, coche en venta, comida, foto de perfil y boda."
         }
       ]
     },
@@ -1982,6 +2023,378 @@
           "a": "Hasta 1000 MB por archivo y hasta 3 vídeos a la vez, sin límite diario. En móviles con poca memoria, los archivos muy grandes pueden no caber en el modo preciso: use el modo rápido o un ordenador."
         }
       ]
+    },
+    "presetsPortrait": {
+      "title": "Cómo elegir un filtro para retratos",
+      "text1": "En un retrato lo más importante son la piel y los ojos, así que un buen filtro de retrato trata con cuidado los tonos naranjas y rojos: no vuelve la cara amarilla o rosada ni le da un aspecto de plástico. Para fotos del día a día y redes sociales, empieza con los filtros suaves o de luz natural: aclaran un poco las sombras y añaden calidez, pero la persona sigue pareciéndose a sí misma.",
+      "text2": "Los filtros dramáticos con sombras profundas encajan con fondos oscuros, luz de tarde y fotos creativas, y los de estudio con fondos lisos, retratos profesionales y fotos junto a una ventana. Puedes reducir la intensidad de cualquier filtro con el control: en retratos suele bastar un 50–70 % para un efecto visible pero discreto.",
+      "faq": [
+        {
+          "q": "¿Qué filtro uso para un selfie o una foto del móvil?",
+          "a": "Empieza con «Natural Skin» o «Clean Minimal»: igualan la luz y el tono de piel sin una estilización evidente. Si la foto está oscura, sube la intensidad al 120–150 %."
+        },
+        {
+          "q": "¿Los filtros cambian el tono de piel?",
+          "a": "Los filtros de retrato ajustan con cuidado los tonos naranjas y rojos, pero los estilos dramáticos y retro pueden enfriar o calentar la piel. Compara el antes y después con el deslizador y baja la intensidad si el tono no parece natural."
+        },
+        {
+          "q": "¿Se sube mi foto a un servidor?",
+          "a": "No. Los filtros se aplican directamente en tu navegador y la foto no se envía a ningún sitio."
+        },
+        {
+          "q": "¿Puedo hacer un retrato en blanco y negro?",
+          "a": "Sí: en el filtro «Dramático» hay un blanco y negro de alto contraste, y «Timeless B&W» ofrece una versión clásica más suave. Para pasar una foto a blanco y negro sin más cambios hay una herramienta aparte."
+        }
+      ]
+    },
+    "presetsNature": {
+      "title": "Filtros para paisajes: cuál va con cada luz",
+      "text1": "El mismo paisaje se ve completamente distinto a pleno sol, al atardecer y en un día nublado, por eso los filtros de esta colección están agrupados por luz y tema. «Hora dorada» potencia los naranjas cálidos y suaviza los azules, «Bosque» trabaja con los verdes y los filtros «Mar» añaden turquesa al agua y al cielo sin colores chillones.",
+      "text2": "El problema más común de las fotos al aire libre es un cielo gris y una imagen plana en un día nublado. Para eso está el filtro «Día nublado»: sus ajustes aclaran las sombras, añaden saturación y un toque de calidez, y la foto deja de parecer sucia. Si el efecto es demasiado fuerte, redúcelo con el control: para paisajes suele bastar un 70–100 %.",
+      "faq": [
+        {
+          "q": "¿Qué filtro hace que la vegetación se vea más viva?",
+          "a": "Prueba «Overcast Boost» o «Moody Green Vibe Preset» en los filtros «Bosque» o «Día nublado»: potencian los verdes y amarillos. Para un verde más sobrio, con aire de película, elige «Analog Green 200»."
+        },
+        {
+          "q": "¿Sirven estos filtros para fotos del móvil?",
+          "a": "Sí, funcionan con cualquier JPG, PNG o WebP, incluidas las fotos de smartphone. La foto se procesa en el navegador y el resultado se descarga en JPG."
+        },
+        {
+          "q": "¿En qué se diferencia un preset de un filtro de redes sociales?",
+          "a": "Un preset es un conjunto de ajustes de exposición, contraste, sombras, color y virado, como en Lightroom. Puedes cambiar su intensidad del 0 al 200 % y comparar el resultado con el original."
+        },
+        {
+          "q": "¿Puedo aplicar un filtro a varias fotos por igual?",
+          "a": "Por ahora el filtro se aplica a una foto cada vez. Para que una serie se vea uniforme, usa el mismo filtro y la misma intensidad en cada foto."
+        }
+      ]
+    },
+    "presetsUrban": {
+      "title": "Filtros para fotos de ciudad y arquitectura",
+      "text1": "A la fotografía urbana le encantan el contraste y las líneas limpias. Los filtros «Calle» añaden textura de película y sombras más profundas, para que la calle se vea viva y no como una foto plana del móvil. «Minimalista» apaga los colores y aclara la imagen, algo que funciona muy bien en arquitectura, hormigón, interiores luminosos y fondos lisos.",
+      "text2": "El contraste turquesa y naranja es un recurso favorito del cine: piel y luces cálidas sobre sombras frías. En una foto urbana convierte una calle cualquiera en un fotograma de película. Si los colores parecen demasiado intensos, baja la intensidad: el filtro mantiene el ambiente, pero con más sutileza.",
+      "faq": [
+        {
+          "q": "¿Qué filtro va bien para arquitectura?",
+          "a": "Elige el filtro «Minimalista»: «Urban Minimal White» y «Studio Clean» hacen la imagen luminosa y limpia, apagan los colores sobrantes y resaltan las líneas."
+        },
+        {
+          "q": "¿Qué es el estilo turquesa y naranja?",
+          "a": "Es un esquema de color en el que las sombras tiran a turquesa mientras los tonos cálidos (piel, farolas) siguen naranjas. Da sensación de cine y queda muy bien en calles al anochecer."
+        },
+        {
+          "q": "¿Se pierde calidad?",
+          "a": "El filtro solo cambia colores y tonos. La foto se guarda como JPG de alta calidad con el lado largo de hasta 2000 píxeles, suficiente para redes sociales y la mayoría de webs."
+        },
+        {
+          "q": "¿Necesito registrarme?",
+          "a": "No, los filtros son gratuitos y funcionan sin registro ni instalar programas."
+        }
+      ]
+    },
+    "presetsNight": {
+      "title": "Cómo editar una foto nocturna con un filtro",
+      "text1": "Las fotos nocturnas suelen tener dos problemas: son oscuras y los colores se ven sucios por la mezcla de luz de farolas, letreros y faros. Los filtros «Luces de ciudad» separan las luces cálidas de las sombras frías, y la imagen se ve más limpia y atmosférica. «Neón» potencia los rosas, morados y turquesas de los letreros, y «Oscuro» intensifica las sombras para una imagen cinematográfica.",
+      "text2": "Si la foto se hizo con muy poca luz y apenas se ve nada, empieza con «Low Light Rescue»: sube la exposición y las sombras y suaviza el ruido de color azul y morado. No sacará detalles de la oscuridad total, pero a menudo deja la foto lista para verla y publicarla.",
+      "faq": [
+        {
+          "q": "¿Cómo aclaro una foto nocturna oscura?",
+          "a": "Elige «Low Light Rescue» y, si hace falta, sube la intensidad al 130–150 %. Para fotos oscuras de día hay una colección aparte: «Aclarar foto oscura»."
+        },
+        {
+          "q": "¿Por qué las fotos nocturnas tienen ruido?",
+          "a": "Con poca luz la cámara amplifica la señal y aparecen puntitos de color. El filtro no elimina el ruido por completo, pero atenúa los tonos más visibles para que moleste menos."
+        },
+        {
+          "q": "¿Qué filtro va bien para letreros de neón?",
+          "a": "En el filtro «Neón»: «Cyber Neon / Night», «Neon Purple» y «Retro 80s» potencian los rosas, morados y turquesas."
+        },
+        {
+          "q": "¿Funciona en el móvil?",
+          "a": "Sí, la página funciona en el navegador del móvil: sube una foto de la galería, elige un filtro y guarda el resultado."
+        }
+      ]
+    },
+    "presetsSummer": {
+      "title": "Filtros de verano para fotos de vacaciones",
+      "text1": "Las fotos de verano suelen salir sobreexpuestas: el sol fuerte quema el cielo y la arena, y el agua pierde su color. Los filtros de esta colección suavizan las luces altas, aclaran las sombras y devuelven la saturación al agua y al cielo. «Playa» y «Mar» vuelven el agua turquesa, «Soleado» añade calidez e intensidad y «Viajes» realza los colores de calles, mercados y ciudades.",
+      "text2": "Para que tu serie de vacaciones se vea coherente en redes sociales, elige uno o dos filtros y aplícalos a todas las fotos con la misma intensidad. Los estilos retro «90s Disposable» y «Lomo Pop» recrean el aspecto de una cámara compacta de película, una estética muy popular en las stories de verano.",
+      "faq": [
+        {
+          "q": "¿Cómo hago que el agua de la foto se vea turquesa?",
+          "a": "Elige «Sea Breeze» u «Ocean & Summer» en el filtro «Playa»: potencian los tonos turquesa y azules del agua y el cielo."
+        },
+        {
+          "q": "¿Qué hago si el cielo de la foto sale blanco?",
+          "a": "Estos filtros atenúan las zonas más claras, pero un cielo totalmente quemado no se puede recuperar: no quedan datos. Funcionan mejor las fotos en las que el cielo aún tiene color."
+        },
+        {
+          "q": "¿Hay un filtro tipo cámara desechable?",
+          "a": "Sí, «90s Disposable» y «Lomo Pop»: contraste marcado, colores saturados, viñeta y un poco de grano. Hay más estilos así en la colección «Película y retro»."
+        },
+        {
+          "q": "¿Cuánto cuesta?",
+          "a": "Es gratis, sin registro y sin marcas de agua."
+        }
+      ]
+    },
+    "presetsAuto": {
+      "title": "Filtros para fotografía de coches",
+      "text1": "Un coche luce espectacular en una foto cuando se aprecia la forma de la carrocería: reflejos, líneas y profundidad de la pintura. Los filtros «Limpio» aumentan el contraste y los brillos sin alterar el color, como en una sesión de concesionario. «Oscuro» intensifica las sombras y deja solo los reflejos brillantes, y «Atardecer» da tonos dorados cálidos para tomas en movimiento o en carretera.",
+      "text2": "Importante: si fotografías el coche para un anuncio de venta, los filtros estilizados pueden perjudicarte, porque los compradores desconfían de las fotos en las que el color del coche no coincide con el real. Para ese caso hay una colección aparte, «Coche en venta», con filtros que solo aclaran y aportan nitidez.",
+      "faq": [
+        {
+          "q": "¿Qué filtro uso para fotos de coches en redes sociales?",
+          "a": "Para un look brillante de revista, «Bright Automobile» o «Showroom Gloss». Para tomas nocturnas con ambiente, «Dark Garage» o «Cinematic Moody»."
+        },
+        {
+          "q": "¿Sirven para un anuncio de venta?",
+          "a": "Mejor usa la colección «Coche en venta»: sus filtros no cambian el color de la carrocería, solo aclaran la imagen y la hacen más nítida."
+        },
+        {
+          "q": "¿Los filtros cambian el color del coche?",
+          "a": "Los estilizados (como «Sunset Drive» o «Dark Garage») cambian el tono general de la foto. Si necesitas un color exacto, baja la intensidad o elige un filtro de «Limpio»."
+        },
+        {
+          "q": "¿Dónde se guarda mi foto?",
+          "a": "En ningún sitio: el procesamiento ocurre en tu navegador y el archivo no se sube a ningún servidor."
+        }
+      ]
+    },
+    "presetsAutumn": {
+      "title": "Cómo hacer que las fotos de otoño luzcan más vivas",
+      "text1": "Las fotos de otoño suelen salir apagadas: las hojas se ven menos intensas que en persona y un cielo gris aplana la imagen. Los filtros «Otoño dorado» potencian los naranjas y rojos de las hojas y apagan los verdes, para que los colores otoñales pasen a primer plano. «Crimson Leaves» resalta los rojos intensos y «Autumn Gold» la luz dorada suave.",
+      "text2": "Para fotos con café, libros, mantas y jerséis van bien los filtros «Acogedor»: cálidos, algo apagados y con sombras suaves. Para calles lluviosas y niebla está «Oscuro»: sombras más frías, contraste profundo y colores contenidos. La intensidad se ajusta del 0 al 200 % con el control deslizante.",
+      "faq": [
+        {
+          "q": "¿Qué filtro hace que las hojas se vean más vivas?",
+          "a": "«Crimson Leaves» y «Autumn Gold» potencian los rojos, naranjas y amarillos de las hojas. Si el efecto se queda corto, sube la intensidad al 130–150 %."
+        },
+        {
+          "q": "¿Hay filtros acogedores para fotos con café o un libro?",
+          "a": "Sí, el filtro «Acogedor»: «Cozy Autumn», «Warm Knit» y «Retro 70s» dan colores cálidos y apagados al estilo de las fotos otoñales de Pinterest."
+        },
+        {
+          "q": "¿Cómo edito una foto de un día gris de otoño?",
+          "a": "Prueba el filtro «Oscuro» para resaltar el ambiente, o la colección «Naturaleza» con el filtro «Día nublado» para que la foto quede más luminosa y colorida."
+        },
+        {
+          "q": "¿Los filtros son gratis?",
+          "a": "Sí, todos son gratuitos, sin registro y sin marcas de agua."
+        }
+      ]
+    },
+    "presetsWinter": {
+      "title": "Filtros para fotos de invierno y Navidad",
+      "text1": "El gran problema de las fotos de invierno es la nieve azulada o gris: la cámara enfría el blanco por error. El filtro «Clean Snow» calienta un poco el balance de blancos y aclara la imagen, y la nieve vuelve a verse blanca. Si prefieres resaltar el frío, elige el filtro «Helado»: sombras azules frías y colores contenidos.",
+      "text2": "Para fotos de Navidad y Año Nuevo están los filtros «Festivo»: potencian los rojos y dorados, hacen más cálidas las luces de las guirnaldas y añaden una viñeta suave. Los filtros «Acogedor» van bien para fotos en casa junto al árbol, con chocolate caliente y regalos. Todo funciona en el navegador, sin subir la foto a ningún servidor.",
+      "faq": [
+        {
+          "q": "¿Por qué la nieve sale azul en la foto y cómo lo arreglo?",
+          "a": "La cámara suele equivocarse con el balance de blancos en la nieve y la enfría. El filtro «Clean Snow» calienta un poco la imagen y aclara los blancos para que la nieve parezca más natural."
+        },
+        {
+          "q": "¿Qué filtro uso para fotos navideñas con guirnaldas?",
+          "a": "«Holiday Lights» y «Christmas Warm Fireside» en el filtro «Festivo»: luces cálidas, rojos intensos y una viñeta suave."
+        },
+        {
+          "q": "¿Puedo dar a la foto un aspecto frío y helado?",
+          "a": "Sí, en el filtro «Helado» están «Frosty Blue» y «Misty Morning», que añaden tonos azules fríos y una ligera bruma."
+        },
+        {
+          "q": "¿Se pierde calidad al editar?",
+          "a": "El filtro solo cambia colores y tonos. El resultado se guarda como JPG de alta calidad con el lado largo de hasta 2000 píxeles."
+        }
+      ]
+    },
+    "presetsFilm": {
+      "title": "Cómo dar efecto película a una foto online",
+      "text1": "Los filtros de película imitan el carácter de la fotografía analógica: contraste más suave, negros levantados, matices característicos en sombras y luces y un grano ligero. «Película analógica» recuerda a los negativos de color clásicos: tonos de piel cálidos y verdes contenidos. «35 mm» da una imagen callejera contrastada con grano visible, y «Vintage» los colores desvaídos de las copias antiguas.",
+      "text2": "Los filtros retro reproducen la estética reconocible de cada década: los 70 anaranjados y marrones, los 80 rosa neón y las fotos contrastadas de una cámara desechable de los 90. «Lomo» aporta colores saturados y una viñeta marcada, «Polaroid» tonos pastel suaves, «Sepia» el virado marrón de las fotografías antiguas y «Noir» el blanco y negro contrastado del cine clásico. Los nombres describen el aspecto, no una marca concreta de película.",
+      "faq": [
+        {
+          "q": "¿Cómo consigo que una foto parezca de película?",
+          "a": "Elige un filtro de «Película analógica» o «35 mm»: suavizan el contraste, levantan los negros, cambian el color de las sombras y añaden grano. Ajusta la intensidad con el control."
+        },
+        {
+          "q": "¿Se añade grano como en la película real?",
+          "a": "Sí, la mayoría de los filtros de película y retro añaden un grano ligero, más visible en los tonos medios, como en la película de verdad. Si hay demasiado grano, baja la intensidad."
+        },
+        {
+          "q": "¿Qué filtro parece de los 90 o de cámara desechable?",
+          "a": "«90s Disposable»: contraste marcado, colores jugosos, un ligero tono verde, viñeta y grano, como una foto de cámara de un solo uso."
+        },
+        {
+          "q": "¿Son filtros oficiales de Kodak o Fujifilm?",
+          "a": "No, son filtros propios inspirados en películas clásicas, sin relación con ningún fabricante. Recrean el carácter general de la fotografía analógica, no las curvas exactas de una película concreta."
+        },
+        {
+          "q": "¿Puedo hacer fotos en sepia o en blanco y negro retro?",
+          "a": "Sí, con los filtros «Sepia» y «Noir»: «Classic Sepia» da el virado marrón de las fotos antiguas y «Film Noir» y «Black & White Moody» un blanco y negro contrastado."
+        }
+      ]
+    },
+    "presetsCinematic": {
+      "title": "Etalonaje cinematográfico para fotos online",
+      "text1": "Los filtros cinematográficos trasladan a la foto las técnicas de etalonaje del cine. El más conocido es el turquesa y naranja: las sombras se desplazan hacia un turquesa frío mientras la piel y las luces siguen cálidas, lo que da profundidad y un aspecto caro. «Oscuro» apuesta por sombras profundas y colores apagados, y «Cálido» por tonos de película suaves y algo desvaídos.",
+      "text2": "Los filtros cinematográficos en blanco y negro van bien en retratos y escenas callejeras donde importan la luz y la forma. La composición también ayuda a que una foto parezca un fotograma: encuadre amplio, una persona de perfil, luz lateral. El filtro completa el efecto, y el control de intensidad evita pasarse.",
+      "faq": [
+        {
+          "q": "¿Qué es un filtro cinematográfico?",
+          "a": "Es un conjunto de ajustes de color y tono que imita el etalonaje del cine: contraste entre sombras turquesa y luces cálidas, sombras profundas o colores de película contenidos."
+        },
+        {
+          "q": "¿Qué filtro se parece más a un fotograma de película?",
+          "a": "Prueba «Blockbuster Teal & Orange» o «Urban Cyan & Orange» en el filtro «Turquesa y naranja», y «Cinematic Moody» para un ambiente más sombrío."
+        },
+        {
+          "q": "¿Sirve para retratos?",
+          "a": "Sí, pero en retratos conviene bajar la intensidad al 50–80 % para que la piel siga natural. Hay filtros específicos en la colección «Retrato»."
+        },
+        {
+          "q": "¿Tengo que instalar Lightroom?",
+          "a": "No, los filtros funcionan directamente en el navegador, sin programas ni registro."
+        }
+      ]
+    },
+    "presetsBrightenDark": {
+      "title": "Por qué las fotos salen oscuras y cómo arreglarlas",
+      "text1": "Una foto suele salir oscura cuando hay una fuente de luz muy intensa en el encuadre, como una ventana, el cielo o una lámpara: la cámara reduce la exposición para no quemarla y la cara o el objeto quedan en sombra. Subir el brillo general no funciona bien en ese caso, porque la ventana y el cielo se convierten en manchas blancas. Por eso estos filtros actúan de forma selectiva: levantan mucho más las sombras y los tonos medios e incluso atenúan un poco las luces.",
+      "text2": "Si la foto se hizo de noche o en interior con mala luz, elige «Low Light Rescue»: aclara con más fuerza y suaviza el ruido de color. Para fotos de día algo apagadas basta con «Bright & Clear». Compara con el deslizador antes/después y ajusta la intensidad del 0 al 200 % hasta que la foto se vea natural.",
+      "faq": [
+        {
+          "q": "¿Cómo aclaro una foto sin quemar las luces?",
+          "a": "Elige «Brighten Shadows»: levanta las sombras mucho más que las luces e incluso atenúa un poco las zonas más brillantes, así que ventanas y cielo no se queman."
+        },
+        {
+          "q": "¿Se puede aclarar una foto nocturna muy oscura?",
+          "a": "Sí, «Low Light Rescue» al 150–200 % aclara mucho la imagen. Pero ningún filtro recupera detalles que la cámara no captó, y el ruido se notará más."
+        },
+        {
+          "q": "¿Se pierde calidad?",
+          "a": "El filtro solo cambia el brillo y los colores. El resultado se guarda como JPG de alta calidad con el lado largo de hasta 2000 píxeles."
+        },
+        {
+          "q": "¿Tengo que subir la foto a un servidor?",
+          "a": "No, todo se procesa en tu navegador y la foto no se envía a ningún sitio."
+        }
+      ]
+    },
+    "presetsProductPhoto": {
+      "title": "Cómo hacer fotos de producto que atraigan compradores",
+      "text1": "En portales de anuncios, tiendas online y tiendas de Instagram se cumple una regla sencilla: una foto luminosa y limpia, con colores fieles, vende más que una oscura o amarillenta. La mayoría de los productos se fotografían en casa con lámparas, y la imagen sale oscura y con tono amarillo. Los filtros de esta colección aclaran la foto, eliminan el amarillo de los blancos y dan nitidez a los detalles sin cambiar el color del producto.",
+      "text2": "El filtro no sustituye el fondo. Si el producto está fotografiado sobre un papel o una pared blanca, «Clean White Product» aclarará ese fondo y lo acercará al blanco. Si necesitas un fondo totalmente blanco o transparente, quítalo primero con otra herramienta y después aplica un filtro para la luz y el color. Y recuerda: el color del producto en la foto debe coincidir con el real, o llegarán devoluciones y malas reseñas.",
+      "faq": [
+        {
+          "q": "¿Cómo pongo un fondo blanco en una foto de producto?",
+          "a": "El filtro «Clean White Product» aclara un fondo claro y quita el tono amarillo. Para un fondo totalmente blanco o transparente, usa la herramienta «Eliminar fondo»."
+        },
+        {
+          "q": "¿El filtro cambiará el color del producto?",
+          "a": "Los filtros de esta colección apenas cambian el color: trabajan la luz, los blancos y la nitidez. Compara el antes y después y baja la intensidad si hace falta."
+        },
+        {
+          "q": "¿De qué tamaño será la foto?",
+          "a": "Se guarda como JPG con el lado largo de hasta 2000 píxeles, suficiente para anuncios y fichas de producto. Para cumplir el límite de peso de un portal, usa «Comprimir a N KB»."
+        },
+        {
+          "q": "¿Puedo editar una foto desde el móvil?",
+          "a": "Sí, la página funciona en el navegador del móvil: elige una foto de la galería, aplica un filtro y guarda el resultado."
+        }
+      ]
+    },
+    "presetsCarSale": {
+      "title": "Cómo fotografiar y editar un coche para un anuncio",
+      "text1": "El comprador decide si abre un anuncio por las primeras fotos. Lo que mejor funciona son fotos luminosas con luz de día difusa, sobre un fondo limpio y con detalles visibles: la carrocería por los cuatro lados, el interior, el salpicadero y las ruedas. Los filtros de esta colección mejoran la luz y el contraste, abren las sombras del interior y resaltan la forma de la carrocería, sin cambiar el color del coche.",
+      "text2": "¿Por qué evitar los filtros estilizados al vender? Los compradores desconfían de las fotos en las que el color del coche cambia de una a otra o se ve claramente distinto del real: parece un intento de ocultar defectos. Aplica el mismo filtro con la misma intensidad a toda la serie, y el anuncio se verá cuidado y honesto.",
+      "faq": [
+        {
+          "q": "¿Qué filtro elijo para las fotos de un coche en venta?",
+          "a": "Empieza con «Bright Automobile»: realza los reflejos de la carrocería y aclara las sombras sin cambiar el color. Para el interior va bien «Bright & Clear»."
+        },
+        {
+          "q": "¿Y si hice las fotos en un día nublado?",
+          "a": "Elige «Overcast Boost»: añade luz y un poco de calidez para que el coche y el fondo no se vean grises."
+        },
+        {
+          "q": "¿Puedo usar los filtros de la colección «Coches»?",
+          "a": "Para redes sociales sí, pero en anuncios mejor evita los estilizados, como «Dark Garage» o «Sunset Drive»: cambian el tono general y el color de la carrocería en la foto."
+        },
+        {
+          "q": "¿Necesito registrarme?",
+          "a": "No, los filtros son gratis y funcionan sin registro directamente en el navegador."
+        }
+      ]
+    },
+    "presetsFood": {
+      "title": "Cómo editar fotos de comida para que abran el apetito",
+      "text1": "La comida se ve sabrosa en una foto cuando tiene colores cálidos e intensos, se aprecia la textura y no hay dominante azul o verde por las lámparas. «Warm Appetizing Food» añade calidez y saturación a rojos y naranjas: bollería, carne, sopas, pizza. «Fresh & Bright Food» aclara la imagen y resalta los verdes frescos: ensaladas, desayunos, bowls y postres.",
+      "text2": "«Moody Food» es un estilo oscuro de restaurante: sombras profundas, fondo oscuro y el plato como protagonista. Funciona muy bien en cartas de noche, bares y fotos sobre tablas o platos oscuros. Para toda la carta de un local, elige un solo filtro: tu página de delivery o tu perfil de Instagram se verán coherentes.",
+      "faq": [
+        {
+          "q": "¿Qué filtro uso para las fotos de la carta?",
+          "a": "Para la mayoría de platos, «Warm Appetizing Food». Para ensaladas y desayunos ligeros, «Fresh & Bright Food»; para cartas de noche y bares, «Moody Food»."
+        },
+        {
+          "q": "¿Cómo quito el tono amarillo de las lámparas en fotos de comida?",
+          "a": "Prueba «Bright & Clear» o «Fresh & Bright Food»: dejan la imagen más luminosa y neutra. Si la foto está muy amarilla, mejor repetirla con luz de día junto a una ventana."
+        },
+        {
+          "q": "¿Sirve para Instagram?",
+          "a": "Sí. Para que tu feed se vea coherente, aplica el mismo filtro con la misma intensidad a todas las fotos."
+        },
+        {
+          "q": "¿Se sube la foto a un servidor?",
+          "a": "No, todo se procesa en tu navegador."
+        }
+      ]
+    },
+    "presetsAvatar": {
+      "title": "Cómo debe ser una buena foto de perfil",
+      "text1": "El avatar es una imagen pequeña que se ve en la lista de chats, en los comentarios o en los resultados de búsqueda, así que importan cosas sencillas: la cara bien iluminada y ocupando la mayor parte del encuadre, un fondo tranquilo y un tono de piel natural. Los filtros fuertes perjudican: deben reconocerte en persona y, en LinkedIn o un currículum, el exceso de edición parece poco profesional.",
+      "text2": "Por eso esta colección solo incluye filtros sutiles: «Natural Skin» iguala la luz y el tono de piel, «Studio Clean» da un aspecto profesional neutro y «Timeless B&W» un retrato sobrio en blanco y negro. Después de editar, puedes recortar la foto en círculo con esquinas transparentes para que el avatar luzca bien sobre cualquier fondo.",
+      "faq": [
+        {
+          "q": "¿Qué filtro uso para la foto de LinkedIn o del currículum?",
+          "a": "«Studio Clean» o «Natural Skin»: mejoran la luz y el color sin estilizar la foto."
+        },
+        {
+          "q": "¿Cómo hago un avatar redondo?",
+          "a": "Aplica un filtro, descarga el resultado y recórtalo en círculo con la herramienta «Recorte circular de fotos»: las esquinas quedarán transparentes."
+        },
+        {
+          "q": "¿Puedo hacer una foto de perfil en blanco y negro?",
+          "a": "Sí, «Timeless B&W» da un blanco y negro clásico y suave, sin contraste brusco."
+        },
+        {
+          "q": "¿Alguien puede ver mi foto?",
+          "a": "No, la foto se procesa en tu navegador y no se sube a ningún servidor."
+        }
+      ]
+    },
+    "presetsWedding": {
+      "title": "Filtros para fotos de boda: cómo elegir el estilo",
+      "text1": "Una boda son cientos de fotos con luces distintas: los preparativos de la mañana en interior, la ceremonia al aire libre, el paseo al atardecer y la noche en el salón. Para que el álbum sea coherente, elige un estilo principal. «Bright & Airy Wedding» es el más popular: luminoso, con sombras suaves y el blanco del vestido limpio. «Analog Warm 400» da un aspecto cálido de película para un reportaje con ambiente.",
+      "text2": "Las fotos en blanco y negro son un clásico de las bodas: «Timeless B&W» transmite muy bien las emociones (las lágrimas de los padres, las risas, los abrazos) y hace las fotos atemporales. Para el paseo al atardecer va bien «Golden Hour Glow». Todos los filtros funcionan en el navegador: las fotos no se suben a ningún servidor y tus imágenes personales se quedan contigo.",
+      "faq": [
+        {
+          "q": "¿Cuál es el mejor filtro para fotos de boda?",
+          "a": "El más versátil es «Bright & Airy Wedding». Para un estilo cálido de película, «Analog Warm 400»; para un aire clásico, «Timeless B&W»."
+        },
+        {
+          "q": "¿Puedo editar todo el álbum de boda igual?",
+          "a": "El filtro se aplica a una foto cada vez. Para que el álbum sea coherente, usa el mismo filtro y la misma intensidad en todas las fotos."
+        },
+        {
+          "q": "¿Es seguro editar fotos personales aquí?",
+          "a": "Sí, todo ocurre en tu navegador y las fotos no se envían a ningún sitio."
+        },
+        {
+          "q": "¿Sirven para preboda o bautizos?",
+          "a": "Sí, los filtros luminosos, pastel y en blanco y negro funcionan bien para cualquier celebración o evento familiar."
+        }
+      ]
     }
   },
   "errors": {
@@ -2418,6 +2831,168 @@
       "downloadOne": "Descargar fragmento",
       "downloadMany": "Descargar fragmentos (ZIP)",
       "remove": "Eliminar"
+    }
+  },
+  "presetPages": {
+    "ui": {
+      "breadcrumbs": "Ruta de navegación",
+      "home": "Inicio",
+      "collectionsTitle": "Colecciones de filtros",
+      "inCollection": "Filtros de esta colección",
+      "whyTitle": "Por qué estos filtros",
+      "count": "Filtros: {{count}}",
+      "uploadHint": "Sube una foto para ver cada filtro sobre tu propia imagen, con comparación antes/después y un control de intensidad.",
+      "allPresets": "Ver todos los filtros ({{count}})",
+      "allPresetsShort": "Todos los filtros",
+      "menuToggle": "Mostrar temas de filtros",
+      "mobileTitle": "Filtros para fotos"
+    },
+    "groups": {
+      "subjects": "Temas",
+      "styles": "Estaciones y estilos",
+      "tasks": "Para cada tarea"
+    },
+    "nav": {
+      "presetsPortrait": "Retrato",
+      "presetsNature": "Naturaleza",
+      "presetsUrban": "Ciudad",
+      "presetsNight": "Fotos nocturnas",
+      "presetsSummer": "Verano y viajes",
+      "presetsAuto": "Coches",
+      "presetsAutumn": "Otoño",
+      "presetsWinter": "Invierno y Navidad",
+      "presetsFilm": "Película y retro",
+      "presetsCinematic": "Cinematográficos",
+      "presetsBrightenDark": "Aclarar foto oscura",
+      "presetsProductPhoto": "Fotos de producto",
+      "presetsCarSale": "Coche en venta",
+      "presetsFood": "Comida para carta e Instagram",
+      "presetsAvatar": "Foto de perfil",
+      "presetsWedding": "Boda"
+    },
+    "presetsPortrait": {
+      "h1": "Filtros para retratos:",
+      "h1Accent": "suaves, dramáticos, de estudio",
+      "intro": "Filtros para fotos de personas: desde la luz natural y tonos de piel delicados hasta tomas dramáticas de alto contraste y un estilo de estudio limpio. Elige el ambiente con el filtro de abajo y compara el antes y después con tu propia foto."
+    },
+    "presetsNature": {
+      "h1": "Filtros para fotos de naturaleza:",
+      "h1Accent": "bosque, mar, hora dorada",
+      "intro": "Filtros para paisajes y paseos: tonos cálidos de la hora dorada, verdes profundos del bosque, turquesa fresco del mar y ajustes que devuelven la vida a las fotos grises de un día nublado."
+    },
+    "presetsUrban": {
+      "h1": "Filtros urbanos:",
+      "h1Accent": "calle, minimalismo, cine",
+      "intro": "Filtros para fotografía callejera, arquitectura y retratos en la ciudad: minimalismo sobrio, una calle contrastada con aire de película y el popular contraste cinematográfico turquesa y naranja."
+    },
+    "presetsNight": {
+      "h1": "Filtros para fotos nocturnas:",
+      "h1Accent": "neón y luces de ciudad",
+      "intro": "Ciudad de noche, letreros de neón, calles al anochecer y fotos con poca luz. Aquí hay filtros que hacen brillar las luces, intensifican la atmósfera o recuperan con cuidado los detalles de la oscuridad."
+    },
+    "presetsSummer": {
+      "h1": "Filtros de verano:",
+      "h1Accent": "playa, sol, viajes",
+      "intro": "Filtros para vacaciones y paseos de verano: sol radiante, agua turquesa, tardes cálidas y colores jugosos para las fotos de viaje que quieres publicar enseguida."
+    },
+    "presetsAuto": {
+      "h1": "Filtros para fotos de coches:",
+      "h1Accent": "brillo, noche, atardecer",
+      "intro": "Filtros para fotografía de automóviles: un brillo limpio de concesionario, un garaje oscuro y dramático y tomas cálidas al atardecer. Para anuncios de venta hay una colección aparte con colores fieles y sin estilización."
+    },
+    "presetsAutumn": {
+      "h1": "Filtros de otoño:",
+      "h1Accent": "dorado, acogedor, lluvioso",
+      "intro": "Filtros para fotos de otoño: hojas doradas y carmesí, fotos cálidas y acogedoras con café y jerséis, y calles lluviosas llenas de ambiente. Los filtros de estilo te ayudan a encontrar el tono que buscas."
+    },
+    "presetsWinter": {
+      "h1": "Filtros de invierno y Navidad:",
+      "h1Accent": "nieve, frío, fiesta",
+      "intro": "Filtros para paseos invernales y fiestas: nieve blanca sin tono azul, tonos fríos y helados, luces cálidas de guirnaldas y fotos acogedoras junto al árbol de Navidad."
+    },
+    "presetsFilm": {
+      "h1": "Filtros de película y retro:",
+      "h1Accent": "vintage, 35 mm, Polaroid",
+      "intro": "Efecto película para fotos digitales: color analógico, grano de 35 mm, vintage desvaído, retro de los años 70, 80 y 90, lomo, Polaroid, sepia y noir. Elige un estilo con el filtro y aplícalo a tu foto."
+    },
+    "presetsCinematic": {
+      "h1": "Filtros cinematográficos:",
+      "h1Accent": "fotos como fotogramas de película",
+      "intro": "Filtros con etalonaje de cine: contraste turquesa y naranja, tonos oscuros profundos, colores cálidos de película y clásicos en blanco y negro. Para retratos, ciudad y fotos con ambiente."
+    },
+    "presetsBrightenDark": {
+      "h1": "Cómo aclarar una foto oscura",
+      "h1Accent": "online en segundos",
+      "intro": "¿Tu foto salió oscura, apagada o sucia? Estos filtros levantan las sombras y la exposición, pero protegen las zonas claras para que no se quemen: la imagen queda más luminosa y limpia sin tocar curvas a mano.",
+      "why": {
+        "brighten-shadows": "Es el que más levanta las sombras y el brillo general, pero contiene las luces: para fotos a contraluz y en interiores.",
+        "bright-clear": "Aclara la imagen y añade nitidez e intensidad sin cambiar los colores: la opción comodín para una foto simplemente apagada.",
+        "low-light-rescue": "Para fotos nocturnas muy oscuras: aclarado fuerte y menos ruido de color azul.",
+        "overcast-boost": "Para fotos grises de día nublado: algo de luz, calidez y saturación para que no parezca sucia.",
+        "clean-minimal": "Aclara con suavidad y modera los colores: para una imagen luminosa y ligera."
+      }
+    },
+    "presetsProductPhoto": {
+      "h1": "Filtros para fotos de producto:",
+      "h1Accent": "luz, blanco y nitidez",
+      "intro": "Filtros para fotos de productos en anuncios y tiendas online: más luz, blancos limpios sin tono amarillo, detalles nítidos y colores fieles. Los compradores abren antes los anuncios con fotos luminosas y cuidadas.",
+      "why": {
+        "clean-white-product": "Es el que más aclara los blancos y zonas claras y elimina el tono amarillo de las lámparas: el fondo se acerca al blanco.",
+        "bright-clear": "Aclara y hace los detalles más nítidos sin cambiar el color: para productos en los que importa el color exacto.",
+        "lifestyle-product": "Luz cálida y suave para productos en un ambiente: decoración, textiles, cosmética, artesanía.",
+        "studio-clean": "Aspecto neutro de estudio: algo más de contraste, blancos limpios y colores contenidos."
+      },
+      "toolNote": "¿Necesitas un fondo totalmente blanco o transparente? El filtro solo aclara el fondo que ya existe, así que primero quítalo con la herramienta",
+      "toolLink": "«Eliminar fondo»"
+    },
+    "presetsCarSale": {
+      "h1": "Fotos de coche para vender:",
+      "h1Accent": "buena luz y colores fieles",
+      "intro": "Filtros para las fotos del coche que vendes en portales de anuncios o redes sociales: más luz, reflejos nítidos en la carrocería y detalles visibles del interior, sin estilizaciones que cambien el color del coche y generen desconfianza.",
+      "why": {
+        "bright-automobile": "Aumenta el contraste y los reflejos de la carrocería, aclara sombras en el interior y los pasos de rueda, y respeta el color real.",
+        "showroom-gloss": "Aspecto limpio de concesionario: luces brillantes, negros más profundos y colores algo más ricos.",
+        "overcast-boost": "Salva las fotos hechas en un día nublado: el coche y el fondo dejan de verse grises.",
+        "bright-clear": "Simplemente aclara y da nitidez: para fotos del interior, el salpicadero y los detalles."
+      }
+    },
+    "presetsFood": {
+      "h1": "Filtros para fotos de comida:",
+      "h1Accent": "para la carta, delivery e Instagram",
+      "intro": "Fotos de platos que abren el apetito para la carta de un café, la página de delivery o tu blog: tonos cálidos y sabrosos, verdes frescos y luminosos o un estilo oscuro de restaurante. Ajusta el ambiente al local o al plato.",
+      "why": {
+        "food-warm-appetizing": "Rojos y naranjas más cálidos e intensos: para bollería, carne, pizza y sopas.",
+        "fresh-bright-food": "Imagen luminosa y verdes jugosos: para ensaladas, desayunos, bowls y postres.",
+        "moody-food": "Estilo oscuro de restaurante con sombras profundas y el plato como protagonista.",
+        "bright-clear": "Solo más luz y nitidez, sin cambiar colores: cuando la foto de comida salió apagada."
+      }
+    },
+    "presetsAvatar": {
+      "h1": "Filtros para foto de perfil:",
+      "h1Accent": "natural, luminosa y cuidada",
+      "intro": "Filtros para fotos de perfil en mensajería, LinkedIn, currículums o redes sociales: luz uniforme, tono de piel natural y fondo limpio. Tu avatar debe permitir que te reconozcan, por eso aquí solo hay filtros sutiles.",
+      "why": {
+        "natural-skin": "Mínima intervención: un poco de luz y calidez y un tono de piel más uniforme. Pareces tú, solo que mejor iluminado.",
+        "studio-clean": "Aspecto profesional neutro para LinkedIn y currículums: blancos limpios y contraste moderado.",
+        "clean-minimal": "Luminoso y suave: ideal para fotos junto a una ventana o con fondo claro.",
+        "soft-pastel": "Tonos pastel delicados para perfiles personales y creativos.",
+        "timeless-bw": "Un retrato clásico en blanco y negro: sobrio y elegante, y disimula un mal balance de color."
+      },
+      "toolNote": "¿Necesitas un avatar redondo con esquinas transparentes? Después del filtro, usa la herramienta",
+      "toolLink": "«Recorte circular de fotos»"
+    },
+    "presetsWedding": {
+      "h1": "Filtros para fotos de boda:",
+      "h1Accent": "luminosos, de película, en blanco y negro",
+      "intro": "Filtros para fotos de boda y preboda: estilo luminoso y etéreo, pasteles suaves, película cálida, hora dorada y un blanco y negro atemporal. También funcionan muy bien para bautizos, graduaciones y otras celebraciones.",
+      "why": {
+        "wedding-bright-airy": "El estilo de boda más popular: mucha luz, sombras suaves y blancos limpios en el vestido.",
+        "soft-pastel": "Colores pastel delicados y una ligera bruma: para fotos románticas.",
+        "analog-warm-400": "Aspecto cálido de película con grano: para fotos de reportaje con ambiente.",
+        "golden-hour": "Realza la luz cálida del atardecer: para el paseo de los novios.",
+        "timeless-bw": "Un blanco y negro suave que no pasa de moda: para el primer beso, los abrazos y las emociones de los invitados.",
+        "blush-moody": "Un ambiente más cálido y profundo con toques rosados: para fotos de noche e interiores."
+      }
     }
   }
 }

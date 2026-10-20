@@ -37,6 +37,12 @@ import { useAuth } from "../../context/AuthContext";
 import AuthModal from "../AuthModal/AuthModal";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
 import ToolSearch from "../ToolSearch/ToolSearch";
+import {
+  PRESET_PAGES,
+  PRESET_PAGE_GROUPS,
+  presetPageUkPath,
+} from "../../presets/presetPages";
+import { presetPageIcon } from "../Presets/presetPageIcons";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -116,6 +122,41 @@ const Header = () => {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [isToolsOpen]);
+
+  // Випадне меню "Пресети" (round 38): сам пункт лишається посиланням на
+  // /photo-presets, теми відкриваються наведенням або кнопкою-стрілкою
+  // поруч (клавіатура: Enter/Space), закриваються Escape, кліком поза меню
+  // й виходом фокуса — так само, як "Інструменти".
+  const [isPresetsOpen, setIsPresetsOpen] = useState(false);
+  const presetsRef = useRef(null);
+  const presetsButtonRef = useRef(null);
+  const presetsPanelId = useId();
+
+  useEffect(() => {
+    if (!isPresetsOpen) return undefined;
+    const onPointerDown = (e) => {
+      if (presetsRef.current && !presetsRef.current.contains(e.target)) {
+        setIsPresetsOpen(false);
+      }
+    };
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsPresetsOpen(false);
+        presetsButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isPresetsOpen]);
+
+  const presetGroups = PRESET_PAGE_GROUPS.map((group) => ({
+    group,
+    pages: PRESET_PAGES.filter((p) => p.group === group),
+  }));
 
   // Мобільне меню — модальне: фокус усередині, Escape закриває
   const mobileMenuRef = useRef(null);
@@ -689,10 +730,72 @@ const Header = () => {
                 </div>
               </div>
             </li>
-            <li className="header__list header__list--secondary">
-              <LocalizedLink hideIfMissing to="/photo-presets" className="nav__link">
-                {t("presets.navTitle")}
-              </LocalizedLink>
+            <li
+              ref={presetsRef}
+              className={`header__list header__list--dropdown header__list--secondary header__list--presets ${
+                isPresetsOpen ? "header__list--open" : ""
+              }`}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget)) {
+                  setIsPresetsOpen(false);
+                }
+              }}
+            >
+              <span className="nav__split">
+                <LocalizedLink hideIfMissing to="/photo-presets" className="nav__link">
+                  {t("presets.navTitle")}
+                </LocalizedLink>
+                <button
+                  ref={presetsButtonRef}
+                  type="button"
+                  className="nav__link nav__link--button nav__link--toggle"
+                  aria-expanded={isPresetsOpen}
+                  aria-controls={presetsPanelId}
+                  aria-label={t("presetPages.ui.menuToggle")}
+                  onClick={() => setIsPresetsOpen((v) => !v)}
+                >
+                  <MdKeyboardArrowDown size={22} aria-hidden="true" />
+                </button>
+              </span>
+
+              <div
+                className="dropdown-panel dropdown-panel--presets"
+                id={presetsPanelId}
+              >
+                {presetGroups.map(({ group, pages }) => (
+                  <div className="dropdown-panel__col" key={group}>
+                    <span className="dropdown-panel__col-title">
+                      {t(`presetPages.groups.${group}`)}
+                    </span>
+                    {pages.map((page) => {
+                      const Icon = presetPageIcon(page);
+                      return (
+                        <LocalizedLink
+                          key={page.slug}
+                          hideIfMissing
+                          to={presetPageUkPath(page)}
+                          className="dropdown-panel__item dropdown-panel__item--compact"
+                          onClick={() => setIsPresetsOpen(false)}
+                        >
+                          <Icon size={18} className="dropdown-panel__icon" />
+                          <span className="dropdown-panel__title">
+                            {t(`presetPages.nav.${page.slug}`)}
+                          </span>
+                        </LocalizedLink>
+                      );
+                    })}
+                  </div>
+                ))}
+                <LocalizedLink
+                  hideIfMissing
+                  to="/photo-presets"
+                  className="dropdown-panel__footer-link"
+                  onClick={() => setIsPresetsOpen(false)}
+                >
+                  <FiSliders size={16} aria-hidden="true" />
+                  {t("presetPages.ui.allPresetsShort")}
+                </LocalizedLink>
+              </div>
             </li>
             {/* Блог (round 36): лише uk/en — у ru/es пункт ховається */}
             <li className="header__list header__list--secondary">
@@ -875,6 +978,44 @@ const Header = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Фото-пресети (round 38): окремий блок із темами-кнопками —
+            на телефоні це найзручніший вхід у тематичні добірки */}
+        <div className="mobile-menu__section mobile-presets">
+          <LocalizedLink
+            hideIfMissing
+            to="/photo-presets"
+            className="mobile-presets__head"
+            onClick={closeMenu}
+          >
+            <FiSliders size={18} className="mobile-menu__icon" />
+            <span>{t("presetPages.ui.mobileTitle")}</span>
+          </LocalizedLink>
+          {presetGroups.map(({ group, pages }) => (
+            <div className="mobile-presets__group" key={group}>
+              <span className="mobile-presets__group-title">
+                {t(`presetPages.groups.${group}`)}
+              </span>
+              <div className="mobile-presets__chips">
+                {pages.map((page) => {
+                  const Icon = presetPageIcon(page);
+                  return (
+                    <LocalizedLink
+                      key={page.slug}
+                      hideIfMissing
+                      to={presetPageUkPath(page)}
+                      className="mobile-presets__chip"
+                      onClick={closeMenu}
+                    >
+                      <Icon size={14} aria-hidden="true" />
+                      {t(`presetPages.nav.${page.slug}`)}
+                    </LocalizedLink>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
 
         <LocalizedLink

@@ -18,6 +18,7 @@ import { FiDownload, FiArrowLeft, FiX, FiSettings, FiUploadCloud } from "react-i
 import { useTranslation } from "react-i18next";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
+import TryAlsoInline from "../SeoContent/TryAlsoInline";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 import { PAGE_META } from "../../seoMeta";
@@ -458,6 +459,8 @@ const CropImage = () => {
           >
             {isProcessing ? t("cropImage.processing") : t("cropImage.crop")}
           </button>
+
+          {downloaded && <TryAlsoInline current="cropImage" />}
         </aside>
       </main>
       <SeoContent pageKey="cropImage" />

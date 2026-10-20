@@ -23,8 +23,12 @@ const BENEFIT_ICONS = [FiZap, FiShield, FiCheckCircle, FiSmartphone];
  *
  * Додає розмітку FAQPage (JSON-LD) — Google може показати розширений
  * сніпет із питаннями прямо у видачі пошуку.
+ *
+ * relatedKey — чиї "Схожі інструменти" і статті блогу показувати (за
+ * замовчуванням pageKey). Тематичні сторінки пресетів (presetsPortrait…)
+ * мають власний текст, але ті самі схожі інструменти, що й /photo-presets.
  */
-const SeoContent = ({ pageKey }) => {
+const SeoContent = ({ pageKey, relatedKey = pageKey }) => {
   const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -137,8 +141,8 @@ const SeoContent = ({ pageKey }) => {
           </div>
         )}
 
-        <BlogRelated toolSlug={pageKey} />
-        <RelatedTools current={pageKey} />
+        <BlogRelated toolSlug={relatedKey} />
+        <RelatedTools current={relatedKey} />
       </div>
     </section>
   );

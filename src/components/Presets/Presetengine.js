@@ -1,10 +1,20 @@
 // Наближений "движок" пресетів у стилі Lightroom, що працює повністю в браузері
 // через <canvas>. Це НЕ точна копія формул Adobe (вони закриті), а візуальне
 // наближення тих самих параметрів: exposure, contrast, shadows/highlights,
-// saturation/vibrance, HSL по 8 кольорах, split toning, вінʼєтка.
+// saturation/vibrance, HSL по 8 кольорах, split toning, вінʼєтка, зерно.
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+// Детермінований "шум" 0..1 для зерна плівки: однаковий для того самого
+// пікселя, тож прев'ю не "мерехтить" при русі повзунка інтенсивності.
+function grainNoise(index) {
+  let x = (index + 0x9e3779b9) | 0;
+  x = Math.imul(x ^ (x >>> 16), 0x85ebca6b);
+  x = Math.imul(x ^ (x >>> 13), 0xc2b2ae35);
+  x ^= x >>> 16;
+  return (x >>> 0) / 4294967295;
+}
 
 // ---- RGB <-> HSL (усі канали в діапазоні 0..1, h у градусах 0..360) ----
 function rgbToHsl(r, g, b) {
@@ -100,6 +110,9 @@ export function applyPresetToImageData(imageData, preset) {
   const cy = height / 2;
   const maxDist = Math.sqrt(cx * cx + cy * cy);
   const vignetteAmt = (p.vignette || 0) / 100;
+  // Зерно плівки (0..100, необов'язкове): однаковий шум у трьох каналах,
+  // найсильніший у середніх тонах, як у справжньої плівки.
+  const grainAmt = clamp((p.grain || 0) / 100, 0, 2) * 0.14;
 
   for (let i = 0; i < data.length; i += 4) {
     let r = data[i] / 255;
@@ -206,6 +219,15 @@ export function applyPresetToImageData(imageData, preset) {
       b *= darken;
     }
 
+    // 8) Зерно
+    if (grainAmt > 0) {
+      const lum = clamp01(0.299 * r + 0.587 * g + 0.114 * b);
+      const n = (grainNoise(i >> 2) - 0.5) * grainAmt * (0.4 + 2.4 * lum * (1 - lum));
+      r += n;
+      g += n;
+      b += n;
+    }
+
     data[i] = clamp01(r) * 255;
     data[i + 1] = clamp01(g) * 255;
     data[i + 2] = clamp01(b) * 255;
@@ -251,7 +273,12 @@ export async function renderPresetToCanvas(source, preset, { maxSize } = {}) {
 
 function loadImage(source) {
   return new Promise((resolve, reject) => {
-    if (source instanceof HTMLImageElement) {
+    // Уже декодоване джерело (напр. зменшене фото для мініатюр, яке
+    // Presets.jsx готує ОДИН раз замість декодування оригіналу на кожен пресет)
+    if (
+      source instanceof HTMLImageElement ||
+      (typeof HTMLCanvasElement !== "undefined" && source instanceof HTMLCanvasElement)
+    ) {
       resolve(source);
       return;
     }
@@ -315,6 +342,7 @@ export function scalePreset(preset, intensity) {
     temperature: scaleNum(preset.temperature),
     tint: scaleNum(preset.tint),
     vignette: scaleNum(preset.vignette),
+    grain: scaleNum(preset.grain),
   };
 
   if (preset.hsl) {

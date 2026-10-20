@@ -560,3 +560,148 @@ aside.mobile-menu {
         min-height: 38px;
     }
 }
+
+/* ____________ Меню «Пресети» (round 38) ____________
+   Пункт = посилання на /photo-presets + кнопка-стрілка (для клавіатури й
+   тачпадів); панель з темами відкривається наведенням, як «Інструменти». */
+.nav__split {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav__link--toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.dropdown-panel.dropdown-panel--presets {
+    width: min(840px, calc(100vw - 40px));
+    max-width: 840px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 28px;
+    row-gap: 0;
+    padding: 24px 28px 18px;
+}
+
+.dropdown-panel--presets .dropdown-panel__col:not(:first-child) {
+    border-left: 1px solid #eef0f4;
+    padding-left: 24px;
+}
+
+.dropdown-panel__item--compact {
+    padding: 8px 12px;
+}
+
+.dropdown-panel__item--compact .dropdown-panel__title {
+    font-weight: 500;
+}
+
+.dropdown-panel__footer-link {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: start;
+    margin-top: 14px;
+    padding: 10px 12px 2px;
+    border-top: 1px solid #eef0f4;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary-600);
+    text-decoration: none;
+}
+
+.dropdown-panel__footer-link:hover {
+    color: var(--color-primary-700);
+}
+
+/* Мобільне меню: окремий блок «Фото-пресети» з темами-кнопками */
+.mobile-presets__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 4px 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.mobile-presets__group {
+    padding: 4px 4px 8px;
+}
+
+.mobile-presets__group-title {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+}
+
+.mobile-presets__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mobile-presets__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 36px;
+    padding: 6px 11px;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 13px;
+    color: #1f2937;
+    text-decoration: none;
+}
+
+.mobile-presets__chip svg {
+    color: var(--color-primary-600);
+    flex-shrink: 0;
+}
+
+.mobile-presets__chip:active {
+    border-color: var(--color-primary-600);
+}
+
+@media (max-width: 1400px) {
+    .dropdown-panel.dropdown-panel--presets {
+        width: min(800px, calc(100vw - 40px));
+        padding: 20px 20px 14px;
+        column-gap: 18px;
+    }
+
+    .dropdown-panel--presets .dropdown-panel__col:not(:first-child) {
+        padding-left: 18px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .dropdown-panel.dropdown-panel--presets {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Між 1151 і ~1300 px пункти меню впритул підходили до кнопки пошуку
+   («Блог» торкався її рамки ще до round 38, а стрілка «Пресетів» додала
+   ~16 px). Зменшуємо проміжки між пунктами на вужчих десктопах. */
+@media (max-width: 1400px) {
+    .header__nav-list {
+        gap: 32px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .header__nav-list {
+        gap: 20px;
+    }
+}

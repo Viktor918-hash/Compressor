@@ -6,6 +6,7 @@
 // публікацією бажано перевірити носієм мови або якісним перекладачем.
 
 import { BLOG_META } from "./blog/posts.js";
+import { PRESET_PAGE_META } from "./presets/presetPages.js";
 
 export const PAGE_META = {
   home: {
@@ -100,12 +101,12 @@ export const PAGE_META = {
     uk: {
       title: "Готові фільтри та пресети для ваших фото",
       description:
-        "Швидко обробити фото онлайн: додайте готові фільтри та пресети за секунди. 25+ стилів для ваших зображень — без Lightroom, прямо в браузері.",
+        "Швидко обробити фото онлайн: додайте готові фільтри та пресети за секунди. 60+ стилів для ваших зображень — без Lightroom, прямо в браузері.",
     },
     en: {
       title: "Ready-made filters and presets for your photos",
       description:
-        "Quickly process photos online: add ready-made filters and presets in seconds. 25+ styles for your images — no Lightroom needed, right in your browser.",
+        "Quickly process photos online: add ready-made filters and presets in seconds. 60+ styles for your images — no Lightroom needed, right in your browser.",
     },
     ru: {
       title: "Бесплатные пресеты для фото онлайн",
@@ -115,7 +116,7 @@ export const PAGE_META = {
     es: {
       title: "Filtros y preajustes listos para tus fotos",
       description:
-        "Edita fotos online en segundos: aplica filtros y preajustes listos para usar. Más de 25 estilos para tus imágenes, sin necesidad de Lightroom.",
+        "Edita fotos online en segundos: aplica filtros y preajustes listos para usar. Más de 60 estilos para tus imágenes, sin necesidad de Lightroom.",
     },
   },
   wordToPdf: {
@@ -591,4 +592,5 @@ export const PAGE_META = {
   },
   // Раунд 36: блог (uk/en) — title/description живуть поруч із текстами статей
   ...BLOG_META,
+  ...PRESET_PAGE_META,
 };

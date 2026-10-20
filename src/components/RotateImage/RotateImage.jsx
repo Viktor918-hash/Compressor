@@ -18,6 +18,7 @@ import { TbFlipHorizontal, TbFlipVertical } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 import SeoHead from "../Seo/SeoHead";
 import SeoContent from "../SeoContent/SeoContent";
+import TryAlsoInline from "../SeoContent/TryAlsoInline";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 import { PAGE_META } from "../../seoMeta";
@@ -418,6 +419,8 @@ const RotateImage = () => {
           >
             {isProcessing ? t("rotateImage.processing") : t("rotateImage.download")}
           </button>
+
+          {downloaded && <TryAlsoInline current="rotateImage" />}
         </aside>
       </main>
       <SeoContent pageKey="rotateImage" />

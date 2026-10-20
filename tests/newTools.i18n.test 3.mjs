@@ -23,6 +23,9 @@ const TOOLS = {
   convertMovToMp4: { ru: "/ru/convert-mov-to-mp4", es: "/es/convertir-mov-a-mp4", sections: 5 },
   convertMkvToMp4: { ru: "/ru/convert-mkv-to-mp4", es: "/es/convertir-mkv-a-mp4", sections: 5 },
   convertWebmToMp4: { ru: "/ru/convert-webm-to-mp4", es: "/es/convertir-webm-a-mp4", sections: 5 },
+  // Раунд 36: відео в браузері (FFmpeg.wasm).
+  videoToMp3: { ru: "/ru/video-to-mp3", es: "/es/video-a-mp3", sections: 5 },
+  trimVideo: { ru: "/ru/trim-video", es: "/es/recortar-video", sections: 5 },
 };
 const read = (l) => JSON.parse(readFileSync(`src/i18n/locales/${l}/translation.json`, "utf8"));
 const words = (s) => (String(s).match(/[\p{L}\p{N}'’-]+/gu) || []).length;

@@ -234,7 +234,48 @@
     "noMatch": "No presets for this filter",
     "all": "All",
     "before": "BEFORE",
-    "clearFilter": "Clear filter"
+    "clearFilter": "Clear filter",
+    "filterFilm": "Film & retro",
+    "styleFilter": "Style",
+    "allStyles": "All styles",
+    "styles": {
+      "soft": "Soft",
+      "dramatic": "Dramatic",
+      "natural": "Natural light",
+      "studio": "Studio",
+      "goldenHour": "Golden hour",
+      "overcast": "Overcast",
+      "forest": "Forest",
+      "sea": "Sea",
+      "street": "Street",
+      "minimal": "Minimal",
+      "tealOrange": "Teal & orange",
+      "neon": "Neon",
+      "cityLights": "City lights",
+      "moody": "Moody",
+      "beach": "Beach",
+      "sunny": "Sunny",
+      "travel": "Travel",
+      "clean": "Clean",
+      "sunset": "Sunset",
+      "warm": "Warm",
+      "bw": "Black & white",
+      "golden": "Golden autumn",
+      "cozy": "Cozy",
+      "snow": "Snow",
+      "frosty": "Frosty",
+      "festive": "Festive",
+      "analog": "Analog film",
+      "film35": "35mm",
+      "vintage": "Vintage",
+      "retro70s": "70s",
+      "retro80s": "80s",
+      "retro90s": "90s",
+      "lomo": "Lomo",
+      "polaroid": "Polaroid",
+      "sepia": "Sepia",
+      "noir": "Noir"
+    }
   },
   "removeBg": {
     "title": "Remove background from photo",
@@ -645,7 +686,7 @@
       "benefits": [
         {
           "title": "Ready-made categories",
-          "text": "Filters are grouped by theme: portrait, nature, urban, night, summer, auto, cinematic, autumn, winter."
+          "text": "Filters are grouped by theme: portrait, nature, city, night, summer, cars, cinematic, autumn, winter, film and retro — plus collections for specific tasks."
         },
         {
           "title": "Adjustable intensity",
@@ -675,7 +716,7 @@
         },
         {
           "q": "How many presets are available?",
-          "a": "Dozens of presets are available across categories: portrait, nature, urban, night, summer, auto, cinematic, autumn and winter."
+          "a": "More than 60 presets across categories: portrait, nature, city, night, summer, cars, cinematic, autumn, winter, film and retro. Each theme has its own collection page, and there are task collections too: brighten a dark photo, product photos, a car for sale, food, profile pictures and weddings."
         }
       ]
     },
@@ -2010,6 +2051,381 @@
     },
     "blogVideoWhatsapp": {
       "title": "Why WhatsApp Ruins Video Quality — and How to Compress a Video Yourself"
+    },
+    "blogPngToJpgBlack": {
+      "title": "Why a Transparent PNG Turns Black After Converting to JPG"
+    },
+    "presetsPortrait": {
+      "title": "How to choose a portrait preset",
+      "text1": "Skin and eyes matter most in a portrait, so a good portrait preset is careful with orange and red tones: it doesn't turn faces yellow or pink and doesn't make skin look plastic. For everyday shots and social media, start with soft or natural-light presets — they lift the shadows a little and add warmth while the person still looks like themselves.",
+      "text2": "Dramatic presets with deep shadows suit dark backgrounds, evening light and creative shots, while studio presets work for plain backdrops, business portraits and window light. You can reduce the strength of any preset with the slider: for portraits 50–70% is often enough for a noticeable but tasteful effect.",
+      "faq": [
+        {
+          "q": "Which preset should I use for a selfie or a phone photo?",
+          "a": "Start with “Natural Skin” or “Clean Minimal”: they even out light and skin tone without obvious stylization. If the photo is dark, raise the effect strength to 120–150%."
+        },
+        {
+          "q": "Do presets change skin tone?",
+          "a": "Portrait presets adjust orange and red tones gently, but dramatic and retro styles can make skin cooler or warmer. Compare before/after with the slider and lower the strength if the tone looks unnatural."
+        },
+        {
+          "q": "Is my photo uploaded to a server?",
+          "a": "No. Presets are applied right in your browser and the photo is never sent anywhere."
+        },
+        {
+          "q": "Can I make a black and white portrait?",
+          "a": "Yes: the “Dramatic” filter includes a high-contrast black and white preset, and “Timeless B&W” gives a softer classic look. For a plain black and white conversion there is a separate “Black & White Photo” tool."
+        }
+      ]
+    },
+    "presetsNature": {
+      "title": "Landscape presets: what suits which light",
+      "text1": "The same landscape looks completely different at sunny noon, at sunset and on an overcast day, so the presets in this collection are grouped by light and subject. “Golden hour” boosts warm orange tones and gently mutes blues, “Forest” works with greens, and the “Sea” presets add turquoise to water and sky without making it garish.",
+      "text2": "The most common problem with outdoor photos is a gray sky and a flat image on a cloudy day. That's what the “Overcast” filter is for: its presets lift the shadows, add saturation and a touch of warmth so the shot stops looking dull. If the effect is too strong, reduce it with the slider — 70–100% is usually enough for landscapes.",
+      "faq": [
+        {
+          "q": "Which preset makes greenery more vivid?",
+          "a": "Try “Overcast Boost” or “Moody Green Vibe Preset” under the “Forest” or “Overcast” filter — they boost greens and yellows. For a more muted, film-like green, choose “Analog Green 200”."
+        },
+        {
+          "q": "Will these presets work with phone photos?",
+          "a": "Yes, presets work with any JPG, PNG or WebP, including smartphone photos. The photo is processed in your browser and the result is downloaded as a JPG."
+        },
+        {
+          "q": "How is a preset different from a social media filter?",
+          "a": "A preset is a set of exposure, contrast, shadow, color and toning adjustments, just like in Lightroom. You can smoothly change its strength from 0 to 200% and compare the result with the original."
+        },
+        {
+          "q": "Can I apply a preset to several photos the same way?",
+          "a": "For now a preset is applied to one photo at a time. To keep a series consistent, use the same preset and the same effect strength for every shot."
+        }
+      ]
+    },
+    "presetsUrban": {
+      "title": "Presets for city photos and architecture",
+      "text1": "City photography loves contrast and clean lines. The “Street” presets add a film-like texture and deeper shadows, so a street looks alive rather than like a flat phone snapshot. “Minimal” mutes colors and brightens the frame, which works well for architecture, concrete, bright interiors and plain backgrounds.",
+      "text2": "Teal and orange contrast is a favorite movie trick: warm skin and lights against cool shadows. In a city shot it makes an ordinary street look like a film still. If the colors feel too strong, reduce the effect strength — the preset keeps the mood but becomes subtler.",
+      "faq": [
+        {
+          "q": "Which preset works for architecture?",
+          "a": "Choose the “Minimal” filter: “Urban Minimal White” and “Studio Clean” make the frame bright and clean, mute extra colors and emphasize lines."
+        },
+        {
+          "q": "What is the teal and orange style?",
+          "a": "It's a color scheme where shadows shift toward teal while warm tones (skin, streetlights) stay orange. It gives a cinematic feel and looks great on streets in the evening."
+        },
+        {
+          "q": "Will the photo quality drop?",
+          "a": "A preset only changes colors and tones. The result is saved as a high-quality JPG with the long side up to 2000 pixels — enough for social media and most websites."
+        },
+        {
+          "q": "Do I need to sign up?",
+          "a": "No, the presets are free and work without registration or installing anything."
+        }
+      ]
+    },
+    "presetsNight": {
+      "title": "How to edit a night photo with a preset",
+      "text1": "Night shots usually have two problems: they're dark and the colors look muddy because of mixed light from streetlamps, signs and headlights. The “City lights” presets separate warm lights from cool shadows, so the shot looks cleaner and moodier. “Neon” boosts the pinks, purples and teals of signs, while “Moody” deepens the shadows for a cinematic image.",
+      "text2": "If a photo was taken in very weak light and you can barely see anything, start with “Low Light Rescue”: it raises exposure and shadows and mutes blue and purple color noise. It won't create detail out of total darkness, but it often makes the shot usable for viewing and posting.",
+      "faq": [
+        {
+          "q": "How do I brighten a dark night photo?",
+          "a": "Choose “Low Light Rescue” and, if needed, raise the effect strength to 130–150%. For dark daytime photos there's a separate “Brighten a dark photo” collection."
+        },
+        {
+          "q": "Why do night photos look noisy?",
+          "a": "In low light the camera amplifies the signal, which creates colored speckles. A preset won't remove noise completely, but it mutes the most visible color casts so the noise is less distracting."
+        },
+        {
+          "q": "Which preset suits neon signs?",
+          "a": "Under the “Neon” filter: “Cyber Neon / Night”, “Neon Purple” and “Retro 80s” boost pinks, purples and teals."
+        },
+        {
+          "q": "Does it work on a phone?",
+          "a": "Yes, the page works in a mobile browser: pick a photo from your gallery, choose a preset and save the result."
+        }
+      ]
+    },
+    "presetsSummer": {
+      "title": "Summer presets for vacation photos",
+      "text1": "Summer photos are often overexposed: bright sun blows out the sky and sand, and water loses its color. The presets in this collection tame highlights, lift shadows and bring saturation back to water and sky. “Beach” and “Sea” make the water turquoise, “Sunny” adds warmth and punch, and “Travel” brings out the colors of streets, markets and cities.",
+      "text2": "To make a vacation series look consistent on social media, pick one or two presets and apply them to every shot at the same strength. The retro styles “90s Disposable” and “Lomo Pop” recreate the look of a film point-and-shoot — a popular aesthetic for summer stories.",
+      "faq": [
+        {
+          "q": "How do I make water in a photo turquoise?",
+          "a": "Choose “Sea Breeze” or “Ocean & Summer” under the “Beach” filter: they boost the turquoise and blue tones of water and sky."
+        },
+        {
+          "q": "What if the sky in my photo is white?",
+          "a": "These presets tone down the brightest areas, but a completely blown-out sky can't be recovered — there's simply no data left. Shots where the sky still has some color work best."
+        },
+        {
+          "q": "Is there a disposable-camera preset?",
+          "a": "Yes, “90s Disposable” and “Lomo Pop”: punchy contrast, saturated colors, a vignette and light grain. More styles like these are in the “Film & retro” collection."
+        },
+        {
+          "q": "How much does it cost?",
+          "a": "It's free, with no registration and no watermarks."
+        }
+      ]
+    },
+    "presetsAuto": {
+      "title": "Presets for automotive photography",
+      "text1": "A car looks striking in a photo when you can see the shape of the body: reflections, lines and depth of paint. The “Clean” presets add contrast and highlights without distorting the color — the shot looks like it was taken in a showroom. “Moody” deepens the shadows and leaves only the reflections bright, while “Sunset” gives warm golden tones for rolling shots or road trips.",
+      "text2": "Important: if you're photographing a car for a sale listing, stylized presets can hurt — buyers distrust photos where the car's color differs from reality. For that case there's a separate “Car for sale” collection with presets that only brighten and clarify the shot.",
+      "faq": [
+        {
+          "q": "Which preset should I use for car photos on social media?",
+          "a": "For a bright magazine look — “Bright Automobile” or “Showroom Gloss”. For moody night shots — “Dark Garage” or “Cinematic Moody”."
+        },
+        {
+          "q": "Are these presets OK for a sale listing?",
+          "a": "Better use the “Car for sale” collection: its presets don't change the body color, they only brighten the shot and make it sharper-looking."
+        },
+        {
+          "q": "Do presets change the car's color?",
+          "a": "Stylized presets (such as “Sunset Drive” or “Dark Garage”) change the overall tone of the shot. If you need accurate color, lower the strength or choose a preset from the “Clean” filter."
+        },
+        {
+          "q": "Where is my photo stored?",
+          "a": "Nowhere — processing happens in your browser and the file is never uploaded to a server."
+        }
+      ]
+    },
+    "presetsAutumn": {
+      "title": "How to make autumn photos more vibrant",
+      "text1": "Fall photos often come out dull: leaves look less vivid than in real life and a gray sky makes the picture flat. The “Golden autumn” presets boost the oranges and reds of the leaves and mute the greens, bringing fall colors to the front. “Crimson Leaves” emphasizes deep reds, while “Autumn Gold” focuses on soft golden light.",
+      "text2": "For photos with coffee, books, blankets and sweaters, try the “Cozy” presets — warm, slightly muted, with soft shadows. For rainy streets and fog there's “Moody”: cooler shadows, deeper contrast and restrained colors. The effect strength can be adjusted smoothly from 0 to 200%.",
+      "faq": [
+        {
+          "q": "Which preset makes leaves more vivid?",
+          "a": "“Crimson Leaves” and “Autumn Gold” boost the reds, oranges and yellows of the leaves. If the effect is too weak, raise the strength to 130–150%."
+        },
+        {
+          "q": "Are there cozy presets for coffee or book photos?",
+          "a": "Yes, the “Cozy” filter: “Cozy Autumn”, “Warm Knit” and “Retro 70s” give warm, muted colors in the style of fall photos on Pinterest."
+        },
+        {
+          "q": "How do I edit a photo from a gloomy fall day?",
+          "a": "Try the “Moody” filter to emphasize the atmosphere, or the “Nature” collection with the “Overcast” filter to make the shot brighter and more colorful instead."
+        },
+        {
+          "q": "Are the presets free?",
+          "a": "Yes, all presets are free, with no registration and no watermarks."
+        }
+      ]
+    },
+    "presetsWinter": {
+      "title": "Presets for winter and holiday photos",
+      "text1": "The main problem with winter photos is blue or gray snow: the camera mistakenly cools down the white. The “Clean Snow” preset warms the white balance slightly and brightens the frame, so the snow looks white again. If you want to emphasize the frost instead, choose the “Frosty” filter — cool blue shadows and restrained colors.",
+      "text2": "For Christmas and New Year photos there are “Festive” presets: they boost reds and golds, make string lights warmer and add a gentle vignette. “Cozy” presets suit home shots by the tree, with cocoa and presents. Everything runs in your browser, without uploading the photo to a server.",
+      "faq": [
+        {
+          "q": "Why is the snow blue in my photo and how do I fix it?",
+          "a": "Cameras often get the white balance wrong on snow and make it cold. The “Clean Snow” preset warms the shot a little and brightens the whites, so the snow looks more natural."
+        },
+        {
+          "q": "Which preset works for Christmas photos with string lights?",
+          "a": "“Holiday Lights” and “Christmas Warm Fireside” under the “Festive” filter: warm lights, rich reds and a soft vignette."
+        },
+        {
+          "q": "Can I make a photo look cold and frosty?",
+          "a": "Yes, the “Frosty” filter includes “Frosty Blue” and “Misty Morning” — they add cool blue tones and a light haze."
+        },
+        {
+          "q": "Will the quality drop after editing?",
+          "a": "A preset only changes colors and tones. The result is saved as a high-quality JPG with the long side up to 2000 pixels."
+        }
+      ]
+    },
+    "presetsFilm": {
+      "title": "How to add a film effect to a photo online",
+      "text1": "Film presets imitate the character of analog photos: softer contrast, lifted blacks, distinctive tints in the shadows and highlights, and light grain. “Analog film” resembles classic color negative stock — warm skin tones and muted greens. “35mm” gives a contrasty street look with visible grain, and “Vintage” recreates the faded colors of old prints.",
+      "text2": "Retro presets reproduce the recognizable look of each decade: orange-brown 70s, neon-pink 80s and the punchy snapshots of a 90s disposable camera. “Lomo” delivers saturated colors and a heavy vignette, “Polaroid” soft pastel tones, “Sepia” the brown toning of old photographs and “Noir” the hard black and white contrast of classic cinema. Preset names describe the look, not a specific brand of film.",
+      "faq": [
+        {
+          "q": "How do I make a photo look like film?",
+          "a": "Choose a preset under the “Analog film” or “35mm” filter — they soften contrast, lift the blacks, shift shadow colors and add grain. Fine-tune the strength with the slider."
+        },
+        {
+          "q": "Is grain added like on real film?",
+          "a": "Yes, most film and retro presets add light grain that is most visible in the midtones, just like real film. If there's too much grain, lower the effect strength."
+        },
+        {
+          "q": "Which preset looks like the 90s or a disposable camera?",
+          "a": "“90s Disposable”: punchy contrast, juicy colors, a slight green tint, a vignette and grain — like a shot from a single-use camera."
+        },
+        {
+          "q": "Are these real Kodak or Fujifilm presets?",
+          "a": "No, they're our own presets inspired by classic film stocks, with no connection to any manufacturer. They recreate the general character of analog photos rather than the exact curves of a specific film."
+        },
+        {
+          "q": "Can I make sepia or black and white retro photos?",
+          "a": "Yes, under the “Sepia” and “Noir” filters: “Classic Sepia” gives the brown toning of old photos, while “Film Noir” and “Black & White Moody” give high-contrast black and white."
+        }
+      ]
+    },
+    "presetsCinematic": {
+      "title": "Cinematic color grading for photos online",
+      "text1": "Cinematic presets bring movie color-grading techniques to photos. The best known is teal and orange: shadows shift toward cool teal while skin and lights stay warm, giving the shot depth and an expensive look. “Moody” relies on deep shadows and muted colors, while “Warm” goes for soft, slightly faded film tones.",
+      "text2": "Black and white cinematic presets suit portraits and street scenes where light and shape matter. Composition helps a photo look like a film still too: a wide frame, a person in profile, side light. The preset completes the effect — and the intensity slider keeps you from overdoing it.",
+      "faq": [
+        {
+          "q": "What is a cinematic preset?",
+          "a": "It's a set of color and tone adjustments that imitates film color grading: contrast between teal shadows and warm highlights, deep shadows or muted film colors."
+        },
+        {
+          "q": "Which preset looks most like a movie still?",
+          "a": "Try “Blockbuster Teal & Orange” or “Urban Cyan & Orange” under the “Teal & orange” filter, and “Cinematic Moody” for a darker mood."
+        },
+        {
+          "q": "Does it work for portraits?",
+          "a": "Yes, but for portraits it's better to lower the strength to 50–80% so skin stays natural. Dedicated portrait presets are in the “Portrait” collection."
+        },
+        {
+          "q": "Do I need to install Lightroom?",
+          "a": "No, the presets work right in your browser, with no software and no sign-up."
+        }
+      ]
+    },
+    "presetsBrightenDark": {
+      "title": "Why photos come out dark and how to fix them",
+      "text1": "A photo usually turns out dark when there's a very bright light source in the frame — a window, the sky, a lamp: the camera lowers exposure so it doesn't blow out, and the face or subject ends up in shadow. Simply raising overall brightness doesn't work well here — the window and sky turn into white patches. That's why these presets work selectively: they lift shadows and midtones much more and even tone down the highlights a little.",
+      "text2": "If the photo was taken in the evening or indoors with poor light, choose “Low Light Rescue” — it brightens more strongly and mutes color noise. For slightly dull daytime shots, “Bright & Clear” is enough. Compare with the before/after slider and adjust the strength from 0 to 200% until the photo looks natural.",
+      "faq": [
+        {
+          "q": "How do I make a photo brighter without blowing out the highlights?",
+          "a": "Choose “Brighten Shadows”: it lifts shadows much more than highlights and even tones down the brightest areas slightly, so windows and sky don't burn out."
+        },
+        {
+          "q": "Can a very dark night photo be brightened?",
+          "a": "Yes, “Low Light Rescue” at 150–200% brightens the shot noticeably. But no filter can recover detail the camera never captured, and noise will become more visible."
+        },
+        {
+          "q": "Will the photo quality drop?",
+          "a": "A preset only changes brightness and colors. The result is saved as a high-quality JPG with the long side up to 2000 pixels."
+        },
+        {
+          "q": "Do I have to upload my photo to a server?",
+          "a": "No, processing happens in your browser — the photo is never sent anywhere."
+        }
+      ]
+    },
+    "presetsProductPhoto": {
+      "title": "How to make product photos appealing to buyers",
+      "text1": "For marketplace listings, online stores and Instagram shops a simple rule applies: a bright, clean photo with true colors sells better than a dark or yellowish one. Most products are shot at home under lamps, so the picture comes out dark and yellow-tinted. The presets in this collection brighten the shot, remove the yellow cast from whites and add clarity to details without changing the product's own color.",
+      "text2": "A preset doesn't replace the background. If the product was shot on white paper or a white wall, “Clean White Product” makes that background lighter and closer to white. If you need a perfectly white or transparent background, remove it with a separate tool first, then apply a preset for light and color. And remember: the product color in the photo must match reality, otherwise you'll get returns and bad reviews.",
+      "faq": [
+        {
+          "q": "How do I get a white background on a product photo?",
+          "a": "The “Clean White Product” preset brightens a light background and removes the yellow cast. For a fully white or transparent background, use the “Remove Background” tool."
+        },
+        {
+          "q": "Will the preset change the product color?",
+          "a": "The presets in this collection barely change color: they work with light, whites and clarity. Compare before/after and lower the strength if needed."
+        },
+        {
+          "q": "What size will the photo be?",
+          "a": "The result is saved as a JPG with the long side up to 2000 pixels — enough for listings and product pages. To meet a marketplace file-size limit, use “Compress to a Size”."
+        },
+        {
+          "q": "Can I edit a photo from my phone?",
+          "a": "Yes, the page works in a mobile browser: pick a photo from your gallery, apply a preset and save the result."
+        }
+      ]
+    },
+    "presetsCarSale": {
+      "title": "How to photograph and edit a car for a listing",
+      "text1": "Buyers decide whether to open a listing from the first few photos. Bright shots in soft daylight work best, on a clean background, with visible details: the body from four sides, the interior, the dashboard, the wheels. The presets in this collection improve light and contrast, open up shadows in the interior and emphasize the body's shape — without changing the car's color.",
+      "text2": "Why avoid stylized filters when selling? Buyers are wary of photos where the car's color shifts from shot to shot or clearly differs from reality: it looks like an attempt to hide defects. Apply the same preset at the same strength to the whole series — that way the listing looks tidy and honest.",
+      "faq": [
+        {
+          "q": "Which preset should I choose for a car sale listing?",
+          "a": "Start with “Bright Automobile” — it enhances body reflections and brightens shadows without changing color. For interior shots, “Bright & Clear” works well."
+        },
+        {
+          "q": "What if the photos were taken on a cloudy day?",
+          "a": "Choose “Overcast Boost”: it adds light and a little warmth, so the car and background don't look gray."
+        },
+        {
+          "q": "Can I use presets from the “Cars” collection?",
+          "a": "For social media, yes, but for listings avoid stylized presets like “Dark Garage” or “Sunset Drive”: they change the overall tone and the body color in the photo."
+        },
+        {
+          "q": "Do I need to sign up?",
+          "a": "No, the presets are free and work without registration right in your browser."
+        }
+      ]
+    },
+    "presetsFood": {
+      "title": "How to edit food photos so they look appetizing",
+      "text1": "Food looks tasty in a photo when it has warm, rich colors, visible texture and no blue or green cast from lamps. “Warm Appetizing Food” adds warmth and saturation to reds and oranges — pastries, meat, soups, pizza. “Fresh & Bright Food” brightens the shot and emphasizes fresh greens — for salads, breakfasts, bowls and desserts.",
+      "text2": "“Moody Food” is a dark restaurant style: deep shadows, a dark background and focus on the dish. It works well for evening menus, bars and photos on dark boards or plates. For a venue's whole menu, stick to one preset — your delivery page or Instagram profile will look consistent.",
+      "faq": [
+        {
+          "q": "Which preset should I use for menu photos?",
+          "a": "For most dishes — “Warm Appetizing Food”. For salads and light breakfasts — “Fresh & Bright Food”, for evening menus and bars — “Moody Food”."
+        },
+        {
+          "q": "How do I remove the yellow lamp cast from food photos?",
+          "a": "Try “Bright & Clear” or “Fresh & Bright Food” — they make the shot brighter and more neutral. If the photo is very yellow, it's better to reshoot it in daylight by a window."
+        },
+        {
+          "q": "Is this good for Instagram?",
+          "a": "Yes. To keep your feed consistent, apply the same preset at the same strength to all photos."
+        },
+        {
+          "q": "Is the photo uploaded to a server?",
+          "a": "No, processing happens in your browser."
+        }
+      ]
+    },
+    "presetsAvatar": {
+      "title": "What makes a good profile picture",
+      "text1": "A profile picture is a small image people see in chat lists, comments or search results, so simple things matter: the face is well lit and fills most of the frame, the background is calm and the skin tone looks natural. Heavy filters hurt here: people should recognize you in real life, and for LinkedIn or a résumé over-editing looks unprofessional.",
+      "text2": "That's why this collection contains only subtle presets: “Natural Skin” evens out light and skin tone, “Studio Clean” gives a neutral business look and “Timeless B&W” a restrained black and white portrait. After editing, you can crop the photo into a circle with transparent corners, so your avatar looks good on any background.",
+      "faq": [
+        {
+          "q": "Which preset should I use for a LinkedIn or résumé photo?",
+          "a": "“Studio Clean” or “Natural Skin”: they improve light and color without stylizing the photo."
+        },
+        {
+          "q": "How do I make a round avatar?",
+          "a": "Apply a preset, download the result and crop it into a circle with the “Circle Crop Photo” tool — the corners will be transparent."
+        },
+        {
+          "q": "Can I make a black and white profile picture?",
+          "a": "Yes, “Timeless B&W” gives a soft classic black and white photo without harsh contrast."
+        },
+        {
+          "q": "Can anyone see my photo?",
+          "a": "No, the photo is processed in your browser and isn't uploaded to a server."
+        }
+      ]
+    },
+    "presetsWedding": {
+      "title": "Wedding presets: how to choose a style",
+      "text1": "A wedding shoot means hundreds of frames in different light: getting ready indoors in the morning, an outdoor ceremony, a sunset walk, an evening at the venue. To make the album look consistent, choose one main style. “Bright & Airy Wedding” is the most popular: light, with soft shadows and a clean white dress. “Analog Warm 400” gives a warm film look for atmospheric documentary coverage.",
+      "text2": "Black and white shots are a wedding photography classic: “Timeless B&W” conveys emotions well — parents' tears, laughter, hugs — and makes photos timeless. For a sunset walk, try “Golden Hour Glow”. All presets work in your browser: photos aren't uploaded to a server, so your personal shots stay with you.",
+      "faq": [
+        {
+          "q": "What's the best preset for wedding photos?",
+          "a": "The most versatile is “Bright & Airy Wedding”. For a warm film style — “Analog Warm 400”, for a classic look — “Timeless B&W”."
+        },
+        {
+          "q": "Can I edit a whole wedding album the same way?",
+          "a": "A preset is applied to one photo at a time. To keep the album consistent, use the same preset and the same strength for every shot."
+        },
+        {
+          "q": "Is it safe to edit personal photos here?",
+          "a": "Yes, everything happens in your browser and your photos are never sent anywhere."
+        },
+        {
+          "q": "Do these presets work for engagement or christening photos?",
+          "a": "Yes, the light, pastel and black and white presets work well for any special or family occasion."
+        }
+      ]
     }
   },
   "errors": {
@@ -2446,6 +2862,168 @@
       "downloadOne": "Download clip",
       "downloadMany": "Download clips (ZIP)",
       "remove": "Remove"
+    }
+  },
+  "presetPages": {
+    "ui": {
+      "breadcrumbs": "Breadcrumb",
+      "home": "Home",
+      "collectionsTitle": "Preset collections",
+      "inCollection": "Presets in this collection",
+      "whyTitle": "Why these presets",
+      "count": "Presets: {{count}}",
+      "uploadHint": "Upload a photo to see every preset on your own shot, with a before/after comparison and an effect-strength slider.",
+      "allPresets": "Show all presets ({{count}})",
+      "allPresetsShort": "All presets",
+      "menuToggle": "Show preset themes",
+      "mobileTitle": "Photo presets"
+    },
+    "groups": {
+      "subjects": "Subjects",
+      "styles": "Seasons & styles",
+      "tasks": "For a task"
+    },
+    "nav": {
+      "presetsPortrait": "Portrait",
+      "presetsNature": "Nature",
+      "presetsUrban": "City",
+      "presetsNight": "Night photos",
+      "presetsSummer": "Summer & travel",
+      "presetsAuto": "Cars",
+      "presetsAutumn": "Autumn",
+      "presetsWinter": "Winter & holidays",
+      "presetsFilm": "Film & retro",
+      "presetsCinematic": "Cinematic",
+      "presetsBrightenDark": "Brighten a dark photo",
+      "presetsProductPhoto": "Product photos",
+      "presetsCarSale": "Car for sale",
+      "presetsFood": "Food for menus & Instagram",
+      "presetsAvatar": "Profile picture",
+      "presetsWedding": "Wedding"
+    },
+    "presetsPortrait": {
+      "h1": "Portrait presets:",
+      "h1Accent": "soft, dramatic, studio",
+      "intro": "Presets for photos of people: from natural light and gentle skin tones to high-contrast dramatic shots and a clean studio look. Pick a mood with the filter below and compare before/after on your own photo."
+    },
+    "presetsNature": {
+      "h1": "Nature photo presets:",
+      "h1Accent": "forest, sea, golden hour",
+      "intro": "Presets for landscapes and walks: warm golden-hour tones, deep forest greens, fresh turquoise sea and presets that bring dull overcast shots back to life."
+    },
+    "presetsUrban": {
+      "h1": "City presets:",
+      "h1Accent": "street, minimal, cinematic",
+      "intro": "Presets for street photography, architecture and city portraits: understated minimalism, a contrasty film-like street look and the popular cinematic teal-and-orange contrast."
+    },
+    "presetsNight": {
+      "h1": "Night photo presets:",
+      "h1Accent": "neon and city lights",
+      "intro": "Night cities, neon signs, evening streets and low-light shots. These presets make lights glow, deepen the mood or carefully pull detail out of the dark."
+    },
+    "presetsSummer": {
+      "h1": "Summer presets:",
+      "h1Accent": "beach, sun, travel",
+      "intro": "Presets for vacations and summer walks: bright sunshine, turquoise water, warm evenings and juicy colors for travel photos you want to post right away."
+    },
+    "presetsAuto": {
+      "h1": "Car photo presets:",
+      "h1Accent": "gloss, night, sunset",
+      "intro": "Presets for automotive photography: a clean showroom gloss, a dark dramatic garage and warm sunset shots. For sale listings there is a separate collection with honest colors and no stylization."
+    },
+    "presetsAutumn": {
+      "h1": "Autumn presets:",
+      "h1Accent": "golden, cozy, rainy",
+      "intro": "Presets for fall photos: golden and crimson leaves, cozy warm shots with coffee and sweaters, and moody rainy streets. The style filters help you find the right mood fast."
+    },
+    "presetsWinter": {
+      "h1": "Winter and holiday presets:",
+      "h1Accent": "snow, frost, festive lights",
+      "intro": "Presets for winter walks and the holidays: clean white snow without a blue cast, frosty cool tones, warm string lights and cozy shots by the Christmas tree."
+    },
+    "presetsFilm": {
+      "h1": "Film and retro presets:",
+      "h1Accent": "vintage, 35mm, Polaroid",
+      "intro": "A film look for digital photos: analog colors, 35mm grain, faded vintage, 70s, 80s and 90s retro, Lomo, Polaroid, sepia and noir. Pick a style with the filter and apply it to your shot."
+    },
+    "presetsCinematic": {
+      "h1": "Cinematic presets:",
+      "h1Accent": "make photos look like film stills",
+      "intro": "Presets with movie-style color grading: teal and orange contrast, deep moody tones, warm film colors and black and white classics. For portraits, cityscapes and atmospheric shots."
+    },
+    "presetsBrightenDark": {
+      "h1": "How to brighten a dark photo",
+      "h1Accent": "online in seconds",
+      "intro": "Did your photo come out dark, dull or muddy? These presets lift shadows and exposure while protecting the highlights from blowing out — the shot becomes brighter and cleaner without fiddling with curves.",
+      "why": {
+        "brighten-shadows": "Lifts shadows and overall brightness the most while holding back highlights — for backlit and indoor photos.",
+        "bright-clear": "Brightens the shot and adds clarity and punch without changing colors — a go-to for a merely dull photo.",
+        "low-light-rescue": "For really dark evening shots: strong brightening plus muted blue color noise.",
+        "overcast-boost": "For gray overcast shots: a bit of light, warmth and saturation so the photo doesn't look dirty.",
+        "clean-minimal": "Gently brightens and tones colors down — for a light, airy look."
+      }
+    },
+    "presetsProductPhoto": {
+      "h1": "Product photo presets:",
+      "h1Accent": "bright, white, crisp",
+      "intro": "Presets for product photos in listings and online stores: more light, cleaner whites without a yellow cast, crisper details and true colors. Shoppers click more often on bright, tidy photos.",
+      "why": {
+        "clean-white-product": "Brightens whites and light areas the most and removes the yellow cast of indoor lamps — the background gets closer to white.",
+        "bright-clear": "Brightens and makes details crisper without changing color — for products where exact color matters.",
+        "lifestyle-product": "Soft warm light for products shown in an interior: decor, textiles, cosmetics, handmade goods.",
+        "studio-clean": "A neutral studio look: a little more contrast, clean whites and restrained colors."
+      },
+      "toolNote": "Need a perfectly white or transparent background? A preset only brightens the existing background, so remove it first with the",
+      "toolLink": "“Remove Background” tool"
+    },
+    "presetsCarSale": {
+      "h1": "Car photos for a sale listing:",
+      "h1Accent": "bright light, honest colors",
+      "intro": "Presets for photos of a car you're selling online or on social media: more light, crisp reflections on the body and visible interior details — without stylization that changes the car's color and puts buyers off.",
+      "why": {
+        "bright-automobile": "Boosts contrast and body reflections, lifts shadows in the interior and wheel arches, and keeps the real color.",
+        "showroom-gloss": "A clean showroom look: bright highlights, deeper blacks and slightly richer colors.",
+        "overcast-boost": "Saves photos taken on a cloudy day: the car and the background stop looking gray.",
+        "bright-clear": "Simply brightens and clarifies — for shots of the interior, dashboard and details."
+      }
+    },
+    "presetsFood": {
+      "h1": "Food photo presets:",
+      "h1Accent": "for menus, delivery and Instagram",
+      "intro": "Mouth-watering dish photos for a café menu, a delivery page or your own blog: warm tasty tones, fresh bright greens or a dark restaurant style. Match the mood to the venue or the dish.",
+      "why": {
+        "food-warm-appetizing": "Warmer, richer reds and oranges — for pastries, meat, pizza and soups.",
+        "fresh-bright-food": "A bright shot with juicy greens — for salads, breakfasts, bowls and desserts.",
+        "moody-food": "A dark restaurant style with deep shadows and focus on the dish.",
+        "bright-clear": "Just brighter and crisper without color changes — when a food photo came out dull."
+      }
+    },
+    "presetsAvatar": {
+      "h1": "Profile picture presets:",
+      "h1Accent": "natural, bright, polished",
+      "intro": "Presets for profile photos in messengers, LinkedIn, résumés or social media: even light, natural skin tone and a clean background. People should recognize you from your avatar, so only subtle presets are here.",
+      "why": {
+        "natural-skin": "Minimal intervention: a bit of light and warmth and a more even skin tone — you look like yourself, just better lit.",
+        "studio-clean": "A neutral business look for LinkedIn and résumés: clean whites and moderate contrast.",
+        "clean-minimal": "Light and soft — great for photos by a window or against a light background.",
+        "soft-pastel": "Gentle pastel tones for personal pages and creative profiles.",
+        "timeless-bw": "A classic black and white portrait — understated and stylish, and it hides a bad color balance."
+      },
+      "toolNote": "Need a round avatar with transparent corners? After applying a preset, use the",
+      "toolLink": "“Circle Crop Photo” tool"
+    },
+    "presetsWedding": {
+      "h1": "Wedding presets:",
+      "h1Accent": "light, film, black and white",
+      "intro": "Presets for wedding and engagement photos: a bright airy style, gentle pastels, warm film, golden hour and timeless black and white. They also work well for christenings, graduations and other special occasions.",
+      "why": {
+        "wedding-bright-airy": "The most popular wedding style: lots of light, soft shadows and clean whites on the dress.",
+        "soft-pastel": "Delicate pastel colors and a light haze — for romantic shots.",
+        "analog-warm-400": "A warm film look with grain — for atmospheric documentary-style photos.",
+        "golden-hour": "Enhances warm evening light — for the couple's sunset walk.",
+        "timeless-bw": "A soft black and white that never dates — for first kisses, hugs and guests' emotions.",
+        "blush-moody": "A warmer, deeper mood with pinkish accents — for evening shots and interiors."
+      }
     }
   }
 }

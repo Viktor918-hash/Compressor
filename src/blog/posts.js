@@ -652,6 +652,158 @@ export const BLOG_POSTS = [
       },
     },
   },
+  {
+    // round 37: п'ята стаття блогу (growth-prompt.md, розділ 3.4) —
+    // факт про білий фон і якість 90% звірено з src/components/Convertal/
+    // convertToJpg.jsx (той самий тест, що стереже й статтю 1, round 36).
+    slug: "blogPngToJpgBlack",
+    path: "transparent-png-to-jpg-black",
+    published: "2026-10-19",
+    tool: "/convert-to-jpg",
+    linkedFrom: ["convert", "home", "convertToPng"],
+    uk: {
+      title: "Прозорий PNG → JPG став чорним: чому і як виправити",
+      description:
+        "Конвертували прозорий PNG у JPG — і фон став чорним? Пояснюємо, чому так стається, і даємо конвертер, що підкладає білий фон сам, без чорних плям.",
+      h1: "Чому прозорий PNG після конвертації в JPG стає чорним",
+      lead: [
+        "Ви стиснули логотип чи скрінштот, збережений як PNG із прозорим фоном, конвертували його в JPG — і замість прозорості отримали суцільне чорне тло. Це не поламаний файл і не збій конвертера — а особливість самого формату JPEG.",
+        "Нижче — чому так стається з будь-яким PNG, де є прозорість, і як конвертувати так, щоб замість непередбачуваної чорної плями лишився білий (або будь-який інший, якщо підкласти його заздалегідь) фон.",
+      ],
+      sections: [
+        {
+          heading: "Чому прозорість перетворюється саме на чорний колір",
+          paragraphs: [
+            "Формат JPEG узагалі не вміє зберігати прозорість (альфа-канал) — кожен піксель у ньому лише колір, без значення «наскільки прозоро». Коли конвертер переносить PNG у JPG, прозорі пікселі треба чимось замінити. Якщо програма явно не підкладає якийсь фон заздалегідь, порожня ділянка малюється так, як браузерний canvas заповнює її за замовчуванням — а незаторкнутий піксель у ньому за стандартом повністю прозорий чорний (rgba(0,0,0,0)). Коли файл зберігається в JPG без альфа-каналу, прозорість просто відкидається, і лишається саме цей чорний колір.",
+          ],
+        },
+        {
+          heading: "Як перевірити, перш ніж конвертувати",
+          steps: [
+            "Відкрийте PNG у перегляднику, що показує прозорість сіро-білою «шахівницею» (так її показує, наприклад, попередній перегляд файлів у Windows/macOS чи сам браузер) — якщо навколо об'єкта видно цю текстуру, це прозорість, яка стане чорною без правильного фону.",
+            "Якщо часу перевіряти немає — просто користуйтесь конвертером, який сам підкладає білий фон (нижче), і проблема не виникає в принципі.",
+          ],
+        },
+        {
+          heading: "Як конвертувати PNG у JPG без чорного фону",
+          steps: [
+            "**Відкрийте [«Конвертувати в JPG»](/convert-to-jpg).** Інструмент автоматично підкладає білий фон під прозорі ділянки PNG, WebP, BMP і HEIC/HEIF ще до перекодування в JPG — чорний фон просто не встигає з'явитися.",
+            "**Додайте фото** — до 20 файлів за раз, до 30 МБ кожен.",
+            "**Завантажте результат.** Якість JPG — 90%, фон під прозорими ділянками — білий; якщо потрібен інший колір фону, підкладіть його заздалегідь у будь-якому графічному редакторі — сам сайт колір фону не змінює.",
+          ],
+        },
+        {
+          heading: "Що робити, якщо фото вже збереглося з чорним фоном",
+          paragraphs: [
+            "Якщо файл уже конвертувався і чорний фон уже «впечений» у пікселі готового JPG — відновити прозорість неможливо: альфа-канал остаточно втрачається в момент першої конвертації. Доведеться повернутися до оригінального PNG (чи іншого файлу з прозорістю) і конвертувати його ще раз — цього разу інструментом, який коректно підкладає білий фон.",
+          ],
+        },
+        {
+          heading: "А чи стосується це інших форматів",
+          paragraphs: [
+            "Та ж історія з WebP і BMP: обидва можуть містити прозорість, а JPG не підтримує її в принципі. HEIC/HEIF з iPhone теж іноді мають альфа-канал — наприклад, скріншот із вирізаним фоном. Конвертер на сайті підкладає білий фон однаково для всіх цих форматів, а не лише для PNG.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Чому фон став саме чорним, а не, наприклад, білим?",
+          a: "Браузерний canvas, через який відбувається перекодування в більшості онлайн-конвертерів, за замовчуванням трактує незаторкнутий піксель як повністю прозорий чорний. Коли JPG зберігається без альфа-каналу, прозорість просто відкидається, і лишається саме чорний колір. Наш конвертер підкладає білий фон до того, як це станеться, тож чорного кольору в результаті немає.",
+        },
+        {
+          q: "Чи можна отримати інший колір фону, не білий?",
+          a: "Інструмент на сайті завжди підкладає білий — найуніверсальніший варіант для документів, друку й соцмереж. Якщо потрібен інший колір, підкладіть його вручну в графічному редакторі перед конвертацією.",
+        },
+        {
+          q: "Чи псується якість фото під час цієї конвертації?",
+          a: "Саме зображення (крім прозорих ділянок, які стають білими) перекодовується в JPG із якістю 90% — помітно вище за типові 70–80%, які деякі інші онлайн-конвертери ставлять за замовчуванням.",
+        },
+        {
+          q: "А WebP чи HEIC із прозорістю матимуть ту саму проблему?",
+          a: "Так, той самий принцип: будь-який формат з альфа-каналом (WebP, HEIC/HEIF, BMP із прозорістю) при конвертації в JPG без явного фону отримає чорні ділянки замість прозорих. Конвертер на сайті обробляє всі ці формати однаково.",
+        },
+        {
+          q: "Чи надсилається фото на сервер під час конвертації?",
+          a: "Ні. Конвертація відбувається локально у вашому браузері — файл нікуди не вивантажується.",
+        },
+      ],
+      cta: {
+        text: "Конвертувати PNG у JPG без чорного фону",
+        sub: "Безкоштовно, без реєстрації, прямо в браузері.",
+      },
+    },
+    en: {
+      title: "Transparent PNG Turned Black in JPG: Why, and the Fix",
+      description:
+        "Converted a transparent PNG to JPG and got a solid black background? Here's why that happens, and a converter that fills white automatically instead.",
+      h1: "Why a Transparent PNG Turns Black After Converting to JPG",
+      lead: [
+        "You compressed a logo or a screenshot saved as a transparent PNG, converted it to JPG — and instead of transparency you got a solid black background. That's not a broken file or a converter glitch; it's a quirk of the JPEG format itself.",
+        "Below: why this happens with any PNG that has transparency, and how to convert it so you get a white background (or any other color, if you fill it in beforehand) instead of an unpredictable black patch.",
+      ],
+      sections: [
+        {
+          heading: "Why transparency turns into black specifically",
+          paragraphs: [
+            "JPEG simply can't store transparency (an alpha channel) at all — every pixel is just a color, with no \"how transparent\" value. When a converter turns a PNG into a JPG, the transparent pixels have to be replaced with something. If the tool doesn't explicitly fill in a background color first, the empty area gets whatever the browser's canvas defaults to — and an untouched pixel there is, by spec, fully transparent black (rgba(0,0,0,0)). Once the file is saved as JPG without an alpha channel, the transparency is simply dropped, and that black color is what remains.",
+          ],
+        },
+        {
+          heading: "How to check before you convert",
+          steps: [
+            "Open the PNG in a viewer that shows transparency as a grey-and-white checkerboard (how Windows/macOS file previews or a browser show it) — if you see that pattern around the subject, that's transparency, and it will turn black without the right background.",
+            "If you don't have time to check, just use a converter that fills in a white background automatically (below), and the problem never comes up.",
+          ],
+        },
+        {
+          heading: "How to convert PNG to JPG without the black background",
+          steps: [
+            "**Open [Convert to JPG](/convert-to-jpg).** The tool automatically fills transparent areas of PNG, WebP, BMP and HEIC/HEIF with white before re-encoding to JPG, so a black background never gets the chance to appear.",
+            "**Add your photos** — up to 20 files at a time, up to 30 MB each.",
+            "**Download the result.** JPG quality is 90%, and the background under transparent areas is white; if you need a different color, fill it in yourself in an image editor beforehand — the site itself doesn't change the background color.",
+          ],
+        },
+        {
+          heading: "What if the photo already saved with a black background",
+          paragraphs: [
+            "If the file was already converted and the black background is baked into the finished JPG's pixels, there's no way to recover the transparency — the alpha channel is permanently lost the moment the first conversion happens. You'll need to go back to the original PNG (or another file that still has transparency) and convert it again, this time with a tool that fills the background correctly.",
+          ],
+        },
+        {
+          heading: "Does this affect other formats too",
+          paragraphs: [
+            "Same story with WebP and BMP: both can hold transparency, and JPG simply doesn't support it at all. HEIC/HEIF photos from an iPhone sometimes have an alpha channel too — for example, a screenshot with the background cut out. The converter on this site fills in a white background the same way for all of these formats, not just PNG.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Why did the background turn black specifically, not white?",
+          a: "The browser canvas that most online converters use for re-encoding treats an untouched pixel as fully transparent black by default. Once the JPG is saved without an alpha channel, the transparency is simply dropped and the color left behind is black. Our converter fills in white before that happens, so no black ever appears in the result.",
+        },
+        {
+          q: "Can I get a different background color instead of white?",
+          a: "The tool on this site always fills in white — the safest default for documents, printing and social media. If you need another color, fill it in yourself in an image editor before converting.",
+        },
+        {
+          q: "Does this conversion reduce photo quality?",
+          a: "The image itself (apart from the transparent areas, which become white) is re-encoded to JPG at 90% quality — noticeably higher than the 70-80% some other online converters use by default.",
+        },
+        {
+          q: "Will WebP or HEIC files with transparency have the same problem?",
+          a: "Yes, same principle: any format with an alpha channel (WebP, HEIC/HEIF, BMP with transparency) gets black areas instead of transparent ones when converted to JPG without an explicit background fill. The tool on this site handles all of these formats the same way.",
+        },
+        {
+          q: "Is my photo uploaded to a server during conversion?",
+          a: "No. The conversion happens locally in your browser — the file is never uploaded anywhere.",
+        },
+      ],
+      cta: {
+        text: "Convert PNG to JPG without a black background",
+        sub: "Free, no sign-up, runs entirely in your browser.",
+      },
+    },
+  },
 ];
 
 export const blogPostPath = (post, lang) =>

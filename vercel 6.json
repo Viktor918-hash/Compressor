@@ -1,0 +1,199 @@
+{
+  "redirects": [
+    {
+      "source": "/convert",
+      "destination": "/convert-to-jpg",
+      "permanent": true
+    },
+    {
+      "source": "/en/convert",
+      "destination": "/en/convert-to-jpg",
+      "permanent": true
+    },
+    {
+      "source": "/resize",
+      "destination": "/resize-image",
+      "permanent": true
+    },
+    {
+      "source": "/en/resize",
+      "destination": "/en/resize-image",
+      "permanent": true
+    },
+    {
+      "source": "/webp",
+      "destination": "/convert-to-webp",
+      "permanent": true
+    },
+    {
+      "source": "/en/webp",
+      "destination": "/en/convert-to-webp",
+      "permanent": true
+    },
+    {
+      "source": "/presets",
+      "destination": "/photo-presets",
+      "permanent": true
+    },
+    {
+      "source": "/en/presets",
+      "destination": "/en/photo-presets",
+      "permanent": true
+    },
+    {
+      "source": "/word-to-pdf",
+      "destination": "/convert-word-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/en/word-to-pdf",
+      "destination": "/en/convert-word-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/ru/onvert-to-jpg",
+      "destination": "/ru/convert-to-jpg",
+      "permanent": true
+    }
+  ],
+  "functions": {
+    "api/word-to-pdf.js": {
+      "maxDuration": 60
+    },
+    "api/pdf-to-word.js": {
+      "maxDuration": 60
+    },
+    "api/convert/init.js": {
+      "maxDuration": 30
+    },
+    "api/convert/status.js": {
+      "maxDuration": 15
+    },
+    "api/convert/cancel.js": {
+      "maxDuration": 15
+    },
+    "api/share/create.js": {
+      "maxDuration": 15
+    },
+    "api/share/info.js": {
+      "maxDuration": 10
+    },
+    "api/share/cleanup.js": {
+      "maxDuration": 60
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.r2.cloudflarestorage.com; font-src 'self' data:; connect-src 'self' blob: https://vsdezlzorioeazkxtfkt.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.cloudconvert.com https://*.r2.cloudflarestorage.com; media-src 'self' blob: https://*.r2.cloudflarestorage.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; report-uri /api/csp-report"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/og/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/tesseract/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/ffmpeg/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/s/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|ru|es)/s/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/share/cleanup",
+      "schedule": "0 3 * * *"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/s/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/:lang(en|ru|es)/s/:id",
+      "destination": "/index.html"
+    }
+  ]
+}

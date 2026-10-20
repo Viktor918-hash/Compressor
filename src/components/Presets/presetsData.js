@@ -1,20 +1,30 @@
 // Список доступних пресетів. Щоб додати новий — просто додайте ще один
 // об'єкт у цей масив з тими самими полями (значення беруться зі шкал
 // Lightroom: -100..100 для більшості, exposure в EV, hue-центри в градусах).
+// Нові пресети round 38 (плівка/ретро, сезони, задачі) — у presetsExtra.js.
 //
 // Джерело значень для "blvck" — реальний XMP-пресет (crs:* атрибути).
 //
-// categories — тип сюжету/фото, для якого підходить пресет (portrait, nature,
-// urban, night, summer, auto, cinematic — універсальний/кіно-стиль).
+// categories — тип сюжету/фото, для якого підходить пресет: portrait, nature,
+// urban, night, summer, auto, cinematic, autumn, winter, film (є сторінки
+// /photo-presets/<категорія>, див. src/presets/presetPages.js); також
+// службові wedding/food/product.
+// styles — підфільтри всередині категорії (soft, dramatic, goldenHour, neon,
+// analog, retro70s…). Які стилі показуються в якій категорії — у
+// presetPages.js (CATEGORY_STYLES); підписи — presets.styles.<id> у перекладах.
 // moods — настрій/колористика (dark, light, warm, cool, vintage, bw, vibrant).
-// Обидва поля — масиви, пресет може належати до кількох категорій/настроїв.
+// Усі поля — масиви, пресет може належати до кількох категорій/стилів.
+// grain — зерно плівки 0..100 (необов'язкове).
 
-export const PRESETS = [
+import { EXTRA_PRESETS } from "./presetsExtra.js";
+
+const BASE_PRESETS = [
   {
     id: "blvck",
     name: "BLVCK",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "urban"],
+    styles: ["moody", "street"],
     moods: ["dark", "cool"],
     exposure: -0.2,
     contrast: 40,
@@ -51,7 +61,8 @@ export const PRESETS = [
     id: "warm-film",
     name: "Warm Film",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "film"],
+    styles: ["warm", "analog"],
     moods: ["warm", "vintage"],
     exposure: 0.1,
     contrast: 15,
@@ -87,7 +98,8 @@ export const PRESETS = [
     id: "clean-minimal",
     name: "Clean Minimal",
 
-    categories: ["portrait"],
+    categories: ["portrait", "urban"],
+    styles: ["natural", "studio", "minimal"],
     moods: ["light"],
     exposure: 0.35,
     contrast: -15,
@@ -122,7 +134,8 @@ export const PRESETS = [
     id: "golden-hour",
     name: "Golden Hour Glow",
 
-    categories: ["summer"],
+    categories: ["summer", "nature", "portrait", "autumn"],
+    styles: ["sunny", "goldenHour", "soft", "golden"],
     moods: ["warm", "light"],
     exposure: 0.15,
     contrast: 10,
@@ -157,7 +170,8 @@ export const PRESETS = [
     id: "moody-dark",
     name: "Moody Dark Aesthetic",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "night", "portrait"],
+    styles: ["moody", "dramatic"],
     moods: ["dark"],
     exposure: -0.4,
     contrast: 25,
@@ -193,7 +207,8 @@ export const PRESETS = [
     id: "ocean-vibes",
     name: "Ocean & Summer",
 
-    categories: ["summer"],
+    categories: ["summer", "nature"],
+    styles: ["beach", "travel", "sea"],
     moods: ["cool", "vibrant"],
     exposure: 0.1,
     contrast: 12,
@@ -228,7 +243,8 @@ export const PRESETS = [
     id: "vintage-matte",
     name: "Vintage Matte",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "film"],
+    styles: ["vintage", "warm"],
     moods: ["vintage"],
     exposure: 0.05,
     contrast: -25,
@@ -263,7 +279,8 @@ export const PRESETS = [
     id: "cyber-neon",
     name: "Cyber Neon / Night",
 
-    categories: ["night"],
+    categories: ["night", "urban"],
+    styles: ["neon"],
     moods: ["cool", "vibrant"],
     exposure: -0.1,
     contrast: 30,
@@ -299,6 +316,7 @@ export const PRESETS = [
     name: "Forest Bath",
 
     categories: ["nature"],
+    styles: ["forest"],
     moods: ["cool"],
     exposure: -0.2,
     contrast: -25,
@@ -333,7 +351,8 @@ export const PRESETS = [
     id: "dark-gothic-red",
     name: "Dark Gothic Red",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "portrait"],
+    styles: ["moody", "dramatic"],
     moods: ["dark"],
     exposure: -0.35,
     contrast: 45,
@@ -351,6 +370,7 @@ export const PRESETS = [
     name: "Urban Minimal White",
 
     categories: ["portrait", "urban"],
+    styles: ["studio", "minimal"],
     moods: ["light"],
     exposure: 0.25,
     contrast: 10,
@@ -368,6 +388,7 @@ export const PRESETS = [
     name: "Dark Background Pop",
 
     categories: ["portrait", "urban"],
+    styles: ["dramatic", "studio", "street"],
     moods: ["dark"],
     exposure: -0.3, // Легке загальне затемнення
     contrast: 40, // Підсилюємо різницю між об'єктом і фоном
@@ -384,7 +405,8 @@ export const PRESETS = [
     id: "urban-cyan-orange",
     name: "Urban Cyan & Orange",
 
-    categories: ["urban", "cinematic"],
+    categories: ["urban", "cinematic", "night"],
+    styles: ["tealOrange", "cityLights"],
     moods: ["cool"],
     exposure: -0.1,
     contrast: 30,
@@ -401,7 +423,8 @@ export const PRESETS = [
     id: "black-and-white-moody",
     name: "Black & White Moody",
 
-    categories: ["cinematic"],
+    categories: ["cinematic", "portrait", "film"],
+    styles: ["bw", "dramatic", "noir"],
     moods: ["bw", "dark"],
     exposure: -0.35,
     contrast: 9,
@@ -418,7 +441,8 @@ export const PRESETS = [
     id: "forest-moody",
     name: "Forest Moody",
     group: "JNCK Media",
-    categories: ["nature"],
+    categories: ["nature", "autumn"],
+    styles: ["forest", "moody"],
     moods: ["cool"],
     exposure: 0.0,
     contrast: 0,
@@ -479,7 +503,8 @@ export const PRESETS = [
     id: "dark-blue-moody-2",
     name: "Dark Blue Moody 2",
     group: "JNCK Media",
-    categories: ["cinematic"],
+    categories: ["cinematic", "night"],
+    styles: ["moody"],
     moods: ["dark", "warm"],
     exposure: -0.19,
     contrast: 21,
@@ -541,6 +566,7 @@ export const PRESETS = [
     name: "Moody Green Vibe Preset",
     group: "JNCK Media",
     categories: ["nature"],
+    styles: ["forest", "overcast"],
     moods: [],
     exposure: 0.0,
     contrast: 0,
@@ -601,7 +627,8 @@ export const PRESETS = [
     id: "cinematic-moody",
     name: "Cinematic Moody",
     group: "JNCK Media",
-    categories: ["cinematic"],
+    categories: ["cinematic", "night", "auto"],
+    styles: ["moody", "tealOrange"],
     moods: ["dark", "cool"],
     exposure: -0.1,
     contrast: 0,
@@ -663,6 +690,7 @@ export const PRESETS = [
     name: "Blush Moody",
     group: "JNCK Media",
     categories: ["portrait"],
+    styles: ["soft"],
     moods: ["warm"],
     exposure: 0.0,
     contrast: -36,
@@ -724,6 +752,7 @@ export const PRESETS = [
     name: "Bright Automobile",
     group: "JNCK Media",
     categories: ["auto"],
+    styles: ["clean"],
     moods: [],
     exposure: 0.0,
     contrast: 52,
@@ -785,6 +814,7 @@ export const PRESETS = [
     name: "Bright & Airy Wedding",
 
     categories: ["wedding", "portrait"],
+    styles: ["soft", "natural"],
     moods: ["light"],
     exposure: 0.5,
     contrast: -15,
@@ -820,6 +850,7 @@ export const PRESETS = [
     name: "Warm Appetizing Food",
 
     categories: ["food"],
+    styles: [],
     moods: ["warm"],
     exposure: 0.2,
     contrast: 15,
@@ -855,6 +886,7 @@ export const PRESETS = [
     name: "Autumn Gold",
 
     categories: ["autumn", "nature"],
+    styles: ["golden", "goldenHour"],
     moods: ["warm"],
     exposure: 0.05,
     contrast: 12,
@@ -890,6 +922,7 @@ export const PRESETS = [
     name: "Christmas Warm Fireside",
 
     categories: ["winter"],
+    styles: ["festive", "cozy"],
     moods: ["warm"],
     exposure: 0.2,
     contrast: 15,
@@ -925,6 +958,7 @@ export const PRESETS = [
     name: "Lifestyle Product",
 
     categories: ["product"],
+    styles: [],
     moods: ["light"],
     exposure: 0.2,
     contrast: 10,
@@ -958,7 +992,8 @@ export const PRESETS = [
   {
     id: "bangkok-street",
     name: "Bangkok Street",
-    categories: ["urban"],
+    categories: ["urban", "summer"],
+    styles: ["street", "travel"],
     moods: ["vibrant"],
     exposure: -0.2,
     contrast: 25,
@@ -990,3 +1025,13 @@ export const PRESETS = [
     vignette: 0,
   },
 ];
+
+// Увага: пресети групи "JNCK Media" записані у форматі XMP
+// (hsl.hue/saturation/luminance, splitToning.shadowSaturation), який рушій не
+// читає — тож їхні HSL і тонування зараз не застосовуються. Це давня
+// поведінка; просте "увімкнення" дає смуги на градієнтах неба через
+// екстремальні значення luminance (перевірено в round 38), тому формат
+// навмисно не нормалізується — див. CHANGES, round 38.
+export const PRESETS = [...BASE_PRESETS, ...EXTRA_PRESETS];
+
+export const presetById = (id) => PRESETS.find((p) => p.id === id);

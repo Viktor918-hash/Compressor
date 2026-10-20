@@ -15,6 +15,7 @@
 // Додаючи нову сторінку — додайте один запис сюди. routes.jsx і
 // PRERENDER_ROUTES (vite.config.js) підхоплять її автоматично.
 import { BLOG_ROUTE_PATHS } from "./blog/posts.js";
+import { PRESETS_BASE, PRESET_PAGE_ROUTE_PATHS } from "./presets/presetPages.js";
 
 export const ROUTE_PATHS = [
   { slug: "home", uk: "/", en: "/en", ru: "/ru", es: "/es" },
@@ -39,13 +40,10 @@ export const ROUTE_PATHS = [
     ru: "/ru/convert-to-webp",
     es: "/es/convertir-a-webp", // TODO: за бажанням /es/convertir-a-webp
   },
-  {
-    slug: "presets",
-    uk: "/photo-presets",
-    en: "/en/photo-presets",
-    ru: "/ru/photo-presets",
-    es: "/es/filtros-para-fotos", // TODO: за бажанням /es/filtros-para-fotos
-  },
+  // Адреси — з src/presets/presetPages.js (там же базується кожна підсторінка)
+  { slug: "presets", ...PRESETS_BASE },
+  // Round 38: тематичні сторінки пресетів /photo-presets/<тема> (4 мови)
+  ...PRESET_PAGE_ROUTE_PATHS,
   {
     slug: "wordToPdf",
     uk: "/convert-word-to-pdf",

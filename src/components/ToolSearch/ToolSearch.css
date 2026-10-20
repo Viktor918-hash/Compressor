@@ -232,7 +232,9 @@
   color: var(--color-text-muted, #6B7280);
 }
 
-@media (max-width: 1150px) {
+/* Round 38: було ≤1150 px, але між 1151 і 1300 px пункти меню («Блог»)
+   заходили під кнопку пошуку — тепер на цих ширинах лише іконка. */
+@media (max-width: 1300px) {
   .header__search-text,
   .header__search-kbd {
     display: none;

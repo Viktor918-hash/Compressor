@@ -27,6 +27,7 @@ import TrimVideo from "./components/VideoTools/TrimVideo.jsx";
 import BlogIndex from "./components/Blog/BlogIndex.jsx";
 import BlogPost from "./components/Blog/BlogPost.jsx";
 import { BLOG_INDEX_SLUG, BLOG_POSTS } from "./blog/posts.js";
+import { PRESET_PAGES } from "./presets/presetPages.js";
 import { ROUTE_PATHS } from "./routes.config.js";
 
 // Прив'язка React-компонента до кожного slug'а з routes.config.js.
@@ -62,6 +63,15 @@ const SLUG_COMPONENTS = {
   terms: Terms,
   contact: Contact,
   about: About,
+  // Тематичні сторінки пресетів (round 38): той самий компонент Presets,
+  // що й /photo-presets, з pageSlug — див. src/presets/presetPages.js
+  ...Object.fromEntries(
+    PRESET_PAGES.map((page) => {
+      const PresetPage = () => <Presets pageSlug={page.slug} />;
+      PresetPage.displayName = `Presets(${page.slug})`;
+      return [page.slug, PresetPage];
+    })
+  ),
   [BLOG_INDEX_SLUG]: BlogIndex,
   // кожна стаття — окремий компонент без пропсів (так влаштовано ROUTES)
   ...Object.fromEntries(
