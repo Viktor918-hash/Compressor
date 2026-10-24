@@ -516,920 +516,737 @@
   },
   "seoContent": {
     "home": {
-      "title": "Why compress images online",
-      "text1": "Image compression shrinks a file's size without a noticeable drop in quality: photos load faster, your site ranks better in Google, and email attachments no longer clog up inboxes. The compressor runs right in your browser — JPG, PNG or WebP files are compressed in seconds, and the originals never leave your device.",
-      "text2": "This matters most for website owners, bloggers and online stores: lighter images speed up page loads, improve Core Web Vitals, and directly affect search rankings. Smaller files also save disk space and are faster to send over messengers and email.",
+      "title": "How to compress a photo without ruining it",
+      "text1": "Compression shrinks JPG, PNG and WebP files so they load faster on a website, fit form upload limits and do not clog your inbox. You stay in control of the result: a quality slider from 40 to 95%, set to 80% by default.",
+      "text2": "By default the pixel dimensions stay the same. If you need a smaller image, untick the box and choose the long side: 3840, 2560, 1920 or 1280 px. Photos are compressed on your device and are not uploaded to a server.",
       "benefits": [
         {
-          "title": "Speed",
-          "text": "Compression happens instantly right in the browser — no queues or server upload waiting."
+          "title": "Never heavier",
+          "text": "If the compressed version is not smaller than the original, you get the original back."
         },
         {
-          "title": "Privacy",
-          "text": "Files are processed locally on your device and never uploaded to third-party servers."
+          "title": "Up to 20 photos at once",
+          "text": "Each up to 30 MB. Download all results as a single ZIP."
         },
         {
-          "title": "Quality preserved",
-          "text": "A smart algorithm shrinks file size while keeping the image sharp and colorful."
+          "title": "Settings are remembered",
+          "text": "Your chosen quality and size are kept for your next visit."
         },
         {
-          "title": "Works everywhere",
-          "text": "The tool works equally well on desktop, tablet and phone — no software to install."
+          "title": "Any device",
+          "text": "Windows, macOS, Android or iPhone — all you need is a browser."
         }
       ],
       "faq": [
         {
-          "q": "How much smaller will my photo be after compression?",
-          "a": "Depending on the format and original quality, file size typically drops by 50-90% with almost no visible difference."
+          "q": "Why does a PNG barely shrink?",
+          "a": "PNG stores pixels losslessly, so the quality slider has little effect on it. Reduce the long side or convert the file to WebP or JPG instead."
         },
         {
-          "q": "Can I compress several photos at once?",
-          "a": "Yes, you can upload multiple images at once — each is processed and you can download the results as a single archive."
+          "q": "Which quality should I choose?",
+          "a": "Start at 80%. If the file is still too large, lower the quality or limit the resolution, then compare the result with the original."
         },
         {
-          "q": "Will the image quality drop?",
-          "a": "The algorithm picks an optimal compression level so the image still looks sharp even with a much smaller file size."
+          "q": "How do I compress a photo to an exact number of KB?",
+          "a": "Use “Compress to a Size”: you enter the target and the tool picks the quality for you."
         },
         {
-          "q": "Do I need to install any software?",
-          "a": "No, everything works right in the browser on any device — Windows, macOS, Android or iOS."
+          "q": "Can I compress HEIC photos from an iPhone?",
+          "a": "Not on this page, which accepts JPG, PNG and WebP. Convert iPhone photos to JPG first."
         }
       ]
     },
     "convert": {
-      "title": "Why convert images to JPG",
-      "text1": "JPG is one of the most widely supported image formats, compatible with websites, social networks, messaging apps, software and most devices. Converting PNG, WebP, HEIC and other formats to JPG helps prepare photos for services that require or work best with JPG.",
-      "text2": "Our JPG converter automatically optimizes the output settings for a strong balance between file size and visual quality. Convert multiple images at once and prepare photos from your phone, camera or computer in just a few clicks.",
+      "title": "JPG converter: when you need one",
+      "text1": "Almost every website, form, messenger and older program accepts JPG. So a PNG, WebP or iPhone HEIC picture is often easier to convert than to find something that opens it.",
+      "text2": "The converter saves results at 90% quality. Transparent areas are filled with white, because the format has no transparency. Add up to 20 files of 30 MB each and download them together as one archive.",
       "benefits": [
         {
-          "title": "Widely supported",
-          "text": "JPG works across websites, devices, image editors and online services."
+          "title": "iPhone photos",
+          "text": "HEIC and HEIF files convert right on the page, with no extra software."
         },
         {
-          "title": "Automatic optimization",
-          "text": "Output settings are adjusted automatically for an excellent balance of image quality and file size."
+          "title": "White instead of black",
+          "text": "A transparent background will not turn black: the tool puts white underneath."
         },
         {
-          "title": "HEIC to JPG",
-          "text": "Convert iPhone photos from HEIC or HEIF to JPG directly in your browser."
+          "title": "Batch processing",
+          "text": "Several files at once, all results in one ZIP."
         },
         {
-          "title": "Batch conversion",
-          "text": "Upload multiple images and convert them at the same time."
+          "title": "Done on your device",
+          "text": "Files are converted in your browser rather than on a server."
         }
       ],
       "faq": [
         {
-          "q": "Which formats can I convert to JPG?",
-          "a": "Popular formats such as PNG, WebP, HEIC, HEIF and BMP are supported."
+          "q": "Which formats can be converted?",
+          "a": "PNG, WebP, BMP, HEIC and HEIF."
         },
         {
-          "q": "Will my photo stay high quality after conversion?",
-          "a": "Yes. The converter automatically selects suitable JPG settings to provide high visual quality in the final file."
+          "q": "Why did my transparent PNG get a white background?",
+          "a": "JPG cannot store transparency. To keep those areas from turning black, the converter fills them with white. If you need transparency, use “Convert to PNG”."
         },
         {
-          "q": "Can I convert iPhone photos?",
-          "a": "Yes. HEIC and HEIF photos can be converted to JPG directly in your browser."
-        },
-        {
-          "q": "Can I convert multiple photos at once?",
-          "a": "Yes. Upload multiple images and process them together."
+          "q": "What quality is the result?",
+          "a": "90%. Compression artifacts are usually invisible at this level, while the file stays a reasonable size."
         }
       ]
     },
     "resize": {
-      "title": "Why resize a photo",
-      "text1": "Resizing an image is needed when a photo is too large for a website upload, a form with specific size requirements, or a social network with a fixed post format. Instead of guessing proportions by hand, the tool lets you set an exact width and height or pick a ready-made preset.",
-      "text2": "The right image size saves visitors' bandwidth, speeds up page loading, and improves Google PageSpeed scores. For social media, it also guarantees the photo won't be cropped awkwardly in a feed or profile.",
+      "title": "Resize a photo for a website or social media",
+      "text1": "Phone photos are often bigger than needed: a website form asks for specific dimensions, and a social network crops the image its own way. Here you can set an exact width and height or use a ready-made preset.",
+      "text2": "Presets: Instagram 1080×1080, Facebook 1200×630, YouTube 1280×720, Twitter 1600×900. When the proportions change, you drag the frame yourself and choose which part of the shot to keep.",
       "benefits": [
         {
-          "title": "Ready-made presets",
-          "text": "Sizes for Instagram, Facebook, YouTube and Twitter are set up in advance — just pick the platform."
+          "title": "Proportions under control",
+          "text": "With aspect ratio locked, type the width and the height is calculated for you."
         },
         {
-          "title": "Crop control",
-          "text": "Manually choose which part of the photo to keep when changing proportions by dragging the crop area."
+          "title": "Your framing",
+          "text": "Drag the crop area to decide what stays in the picture."
         },
         {
-          "title": "Aspect ratio lock",
-          "text": "The fixed aspect ratio option prevents distortion when only one side is changed."
+          "title": "Three formats",
+          "text": "Save the result as JPG, PNG or WebP."
         },
         {
-          "title": "Output format choice",
-          "text": "Save the resized photo as JPG, PNG or WebP, depending on where it will be used."
+          "title": "White background for JPG",
+          "text": "A transparent PNG saved as JPG gets white, not black, behind it."
         }
       ],
       "faq": [
         {
-          "q": "How do I resize a photo for a specific social network?",
-          "a": "Pick a ready preset (Instagram, Facebook, YouTube, Twitter) and the dimensions are applied automatically."
+          "q": "Can I change only the width?",
+          "a": "Yes. While the aspect ratio is locked, the height is calculated automatically."
         },
         {
-          "q": "What if the new proportions don't match the original?",
-          "a": "The tool offers cropping, and you can drag the crop area to choose which part of the photo to keep."
+          "q": "What if I set different proportions?",
+          "a": "The extra part is cropped. Use the frame on the preview to choose which part of the photo stays."
         },
         {
-          "q": "Can I set only the width and have the height calculated automatically?",
-          "a": "Yes, aspect ratio lock is on by default — just enter one value."
-        },
-        {
-          "q": "What format is the result saved in?",
-          "a": "You can choose JPG, PNG or WebP right before downloading the finished file."
+          "q": "How do I reduce the file size rather than the pixels?",
+          "a": "Use the compressor on the home page or “Compress to a Size”: they reduce the size in kilobytes."
         }
       ]
     },
     "webp": {
       "title": "Why convert photos to WebP",
-      "text1": "WebP is a modern image format from Google that compresses photos far more efficiently than JPG or PNG while keeping almost the same visual quality. Google officially recommends WebP for websites, since lighter images directly affect page load speed and search rankings.",
-      "text2": "WebP supports modern image features, including transparency, and can be used as a compact format for websites and web applications.",
+      "text1": "WebP is a Google image format that is usually a quarter to a third smaller than JPG at the same visual quality. On a website that means faster pages and better Core Web Vitals.",
+      "text2": "Here you can convert JPG, PNG, BMP and iPhone HEIC photos. Conversion runs in your browser, so your files are not sent anywhere.",
       "benefits": [
         {
-          "title": "Smaller file size",
-          "text": "WebP is typically 25-35% lighter than a JPG of the same visual quality."
+          "title": "Lighter pages",
+          "text": "Smaller images speed up your site and use less of your visitors' mobile data."
         },
         {
-          "title": "Better SEO",
-          "text": "Lighter images speed up your site, which positively affects Core Web Vitals and Google rankings."
+          "title": "Transparency kept",
+          "text": "Logos and icons from PNG will not get a white background."
         },
         {
-          "title": "Transparency support",
-          "text": "Unlike JPG, WebP supports an alpha channel — convert logos and icons without a white background."
+          "title": "Up to 20 files at once",
+          "text": "Up to 30 MB each, with all results in one ZIP."
         },
         {
-          "title": "Wide compatibility",
-          "text": "The format is supported by every modern browser and most CMS platforms."
+          "title": "Every browser reads it",
+          "text": "Chrome, Firefox, Safari and Edge display the format with no setup."
         }
       ],
       "faq": [
         {
-          "q": "Why is WebP better than JPG for a website?",
-          "a": "WebP gives a smaller file size at the same quality, which speeds up page loads and improves SEO metrics."
+          "q": "What quality does the converter use?",
+          "a": "85%. At that level the picture looks almost like the original, while the file is noticeably lighter."
         },
         {
-          "q": "Do all browsers support WebP?",
-          "a": "Yes, all modern versions of Chrome, Firefox, Safari and Edge display WebP without extra settings."
+          "q": "Will older programs open WebP?",
+          "a": "Browsers show it, but some older viewers and editors do not. Keep a JPG copy for those."
         },
         {
-          "q": "Can I convert iPhone HEIC photos to WebP?",
-          "a": "Yes, HEIC and HEIF files are supported alongside JPG, PNG and BMP."
-        },
-        {
-          "q": "Is background transparency lost when converting to WebP?",
-          "a": "No, WebP supports transparency, so logos and PNGs with a transparent background convert correctly."
+          "q": "How much smaller will my file be?",
+          "a": "It depends on the picture: detailed photos shrink less, simple graphics shrink more. Compare the size before and after on your own file."
         }
       ]
     },
     "presets": {
-      "title": "Why use photo presets",
-      "text1": "Presets are ready-made sets of color, contrast and tone adjustments that give photos a finished, stylish look in one click. Instead of manually editing every image in a complex photo editor, just pick a category (portrait, nature, urban, night) and apply the filter.",
-      "text2": "A consistent editing style across all your photos creates a recognizable visual brand for a blog, online store or social media account. Each preset's intensity can be smoothly adjusted with a slider so the effect looks natural instead of overpowering the photo.",
+      "title": "What photo presets give you",
+      "text1": "A preset is a ready-made set of color, contrast and tone settings, like in Lightroom. You pick a style and it's applied to your photo, instead of adjusting every slider by hand.",
+      "text2": "More than 60 presets are grouped into 16 themed collections, from portrait and film looks to product shots and cars for sale. Using one style across all your photos makes a blog or shop feed recognizable.",
       "benefits": [
         {
-          "title": "Ready-made categories",
-          "text": "Filters are grouped by theme: portrait, nature, city, night, summer, cars, cinematic, autumn, winter, film and retro — plus collections for specific tasks."
+          "title": "Strength from 0 to 200%",
+          "text": "The slider makes the effect barely visible or pushes it further."
         },
         {
-          "title": "Adjustable intensity",
-          "text": "The effect strength can be smoothly changed from 0% to 200% to find the perfect balance."
+          "title": "Before/after view",
+          "text": "A comparison slider shows the original and the result in one frame."
         },
         {
-          "title": "Before/after comparison",
-          "text": "A before/after slider lets you clearly see how the preset changes the original photo."
+          "title": "Collections for tasks",
+          "text": "Brighten a dark shot, prepare a product photo, edit a wedding or profile picture."
         },
         {
-          "title": "Instant results",
-          "text": "Processing happens instantly in the browser — the finished photo can be downloaded right away in high quality."
+          "title": "Photo stays with you",
+          "text": "Presets are applied in the browser and the file isn't sent anywhere."
         }
       ],
       "faq": [
         {
-          "q": "What is a photo preset?",
-          "a": "It's a ready-made set of color and tone adjustments applied to a photo in one click instead of manual editing."
+          "q": "How do I pick the right preset?",
+          "a": "Start with a collection that matches your subject and compare a few options. Thumbnails are rendered from your own photo, so you see the real result."
         },
         {
-          "q": "Can I change the strength of a preset's effect?",
-          "a": "Yes, the intensity slider lets you reduce or boost the effect from 0% to 200%."
+          "q": "What about quality after editing?",
+          "a": "The photo is saved as a JPG at 92% quality with the long side up to 2000 px — plenty for social media and websites."
         },
         {
-          "q": "Does image quality drop after applying a preset?",
-          "a": "No, the finished image is exported at high resolution with no extra compression."
-        },
-        {
-          "q": "How many presets are available?",
-          "a": "More than 60 presets across categories: portrait, nature, city, night, summer, cars, cinematic, autumn, winter, film and retro. Each theme has its own collection page, and there are task collections too: brighten a dark photo, product photos, a car for sale, food, profile pictures and weddings."
+          "q": "Do I need Lightroom?",
+          "a": "No. Everything works on the site, and there are no preset files to download."
         }
       ]
     },
     "wordToPdf": {
-      "title": "Why convert Word to PDF",
-      "text1": "PDF keeps a document's layout unchanged on any device — fonts, spacing and images look identical on a computer, a phone, or when printed. This matters for resumes, contracts, business proposals and official documents that shouldn't shift out of place when opened in a different version of Word.",
-      "text2": "A PDF file is also harder to accidentally alter than a .doc or .docx, which is why the format is the standard for sending final versions of documents. The file is sent over an encrypted connection to a conversion server and is automatically deleted from it after a short time; formatting, tables and images are preserved.",
+      "title": "Why save a Word document as PDF",
+      "text1": "A PDF looks the same on every device and in print: fonts, margins and tables stay in place. That's why résumés, contracts and business proposals are usually sent this way.",
+      "text2": "The conversion runs on a server: your file travels over an encrypted connection and is deleted from it automatically shortly afterwards. You don't need Word installed.",
       "benefits": [
         {
-          "title": "Formatting preserved",
-          "text": "Fonts, spacing, tables and images look identical to the original on any device."
+          "title": "Layout unchanged",
+          "text": "Fonts, tables, images and spacing carry over exactly as in the original."
         },
         {
-          "title": "Ready to send",
-          "text": "PDF opens without Word or LibreOffice — any viewer or browser is enough."
+          "title": "Opens anywhere",
+          "text": "The recipient only needs a browser or phone, not Word."
         },
         {
-          "title": "Batch conversion",
-          "text": "Upload several .doc or .docx files at once and get all the PDFs as a single archive."
+          "title": "Up to 10 files at once",
+          "text": "Several documents convert together and download as one archive."
         },
         {
-          "title": "Harder to edit by accident",
-          "text": "Unlike Word, a PDF document is less likely to be accidentally edited after it's sent."
+          "title": "Harder to change by accident",
+          "text": "The recipient won't shift the layout or edit the text unintentionally."
         }
       ],
       "faq": [
         {
-          "q": "Is formatting preserved when converting Word to PDF?",
-          "a": "Yes, fonts, tables, images and spacing carry over to the PDF unchanged."
+          "q": "Which files can I convert?",
+          "a": ".doc and .docx up to 50 MB each, from any Word version or compatible editor."
         },
         {
-          "q": "Which document formats are supported?",
-          "a": ".doc and .docx files from any version of Microsoft Word or a compatible editor are accepted."
+          "q": "How many free conversions do I get?",
+          "a": "The daily number is limited. Registered users get a higher limit than guests."
         },
         {
-          "q": "Can I convert several documents at once?",
-          "a": "Yes, you can upload up to 10 files at a time and get the result as a single archive."
-        },
-        {
-          "q": "Do I need Word installed to convert?",
-          "a": "No, the conversion happens on the service's server — no Word or other software is needed on your device."
+          "q": "How do I make a PDF editable again?",
+          "a": "Use the separate PDF to Word converter — it produces a .docx you can edit."
         }
       ]
     },
     "pdfToWord": {
-      "title": "Why convert PDF to Word",
-      "text1": "PDF is great for viewing and printing but awkward to edit — fixing the text requires a .docx file that opens in Word or Google Docs. Converting PDF to Word restores the ability to edit text, tables and document structure without retyping everything by hand.",
-      "text2": "This is especially useful when working with old contracts, reports or forms where the original Word file has long been lost and only a scan or PDF version remains. The resulting .docx file keeps the paragraph structure and basic formatting of the original.",
+      "title": "When to turn a PDF into Word",
+      "text1": "A PDF is easy to read and print but awkward to edit. Converting it to .docx lets you fix the text, tables and structure in Word or Google Docs without retyping.",
+      "text2": "It's a lifesaver when the original file is lost and all you have is the PDF of a contract, report or form. Processing happens on a server, and the file is deleted from it automatically shortly afterwards.",
       "benefits": [
         {
-          "title": "Editable result",
-          "text": "The resulting .docx file can be opened and edited right away in Word or Google Docs."
+          "title": "Editable .docx",
+          "text": "The result opens right away in Word or Google Docs."
         },
         {
-          "title": "Structure preserved",
-          "text": "Paragraphs, headings and basic formatting carry over from PDF to Word as accurately as possible."
+          "title": "Document structure",
+          "text": "Paragraphs, headings and basic formatting are carried over as closely as possible."
         },
         {
-          "title": "No manual retyping",
-          "text": "There's no need to manually retype the text from the document — the converter does it automatically."
+          "title": "No retyping",
+          "text": "There's no need to copy pages out by hand."
         },
         {
-          "title": "Batch processing",
-          "text": "Upload several PDF files at once and get all the .docx files as a single archive."
+          "title": "Several files at once",
+          "text": "Up to 10 documents per batch, with all results in one archive."
         }
       ],
       "faq": [
         {
-          "q": "Can I edit the text after converting PDF to Word?",
-          "a": "Yes, the result is a regular .docx file that opens and can be edited in Word or Google Docs."
+          "q": "Do scanned PDFs work?",
+          "a": "PDFs with a text layer work best. For a scan, run image-to-text recognition first."
         },
         {
-          "q": "Are scanned PDFs supported?",
-          "a": "The converter works best with text-based PDFs; for scans, we recommend using a text recognition (OCR) tool."
+          "q": "Are tables and images kept?",
+          "a": "The basic structure carries over. A complex layout sometimes needs a manual touch-up."
         },
         {
-          "q": "Are tables and images preserved?",
-          "a": "The document's basic structure, including paragraphs and images, carries over to the Word file."
-        },
-        {
-          "q": "How many files can I convert at once?",
-          "a": "You can upload up to 10 PDF files at the same time."
+          "q": "What are the limits?",
+          "a": "Up to 50 MB per file. Free conversions per day are limited, and registering raises the limit."
         }
       ]
     },
     "removeBg": {
-      "title": "Why remove the background from a photo",
-      "text1": "Background removal is needed for online store product photos, avatars, presentations or collages, when only the subject matters and not what's around it. Instead of cutting it out by hand in Photoshop, a neural network automatically detects the object's edges and removes the background in seconds.",
-      "text2": "The resulting image with a transparent background (PNG) can be placed on any other background, banner or layout without white or gray edges around the subject. A built-in magic brush lets you manually fix details the model may have removed or kept by mistake.",
+      "title": "Removing a photo background: when you need it",
+      "text1": "A transparent background is useful for marketplace product cards, profile pictures, slides and collages — anywhere the subject matters more than its surroundings. A neural network finds the outline on its own, so there's no tracing edges in Photoshop.",
+      "text2": "You can touch up the automatic result with the magic brush. Restore mode brings back parts erased by mistake, and Remove mode clears leftover background around hair or fine details. The file is saved as a PNG with transparency.",
       "benefits": [
         {
-          "title": "Automatic detection",
-          "text": "A neural network identifies the object's edges in the photo on its own — no need to trace the outline by hand."
+          "title": "No manual outlining",
+          "text": "The model separates a person, product or pet from the background by itself."
         },
         {
-          "title": "Magic brush",
-          "text": "Manually restore or erase mask details — useful for hair, transparent edges or complex shapes."
+          "title": "Brush touch-ups",
+          "text": "Adjustable brush size lets you work precisely along tricky edges."
         },
         {
-          "title": "Transparent PNG",
-          "text": "The result is saved with an alpha channel, so the subject can easily be placed on another background."
+          "title": "PNG with alpha",
+          "text": "The cut-out sits on any banner or layout without a gray fringe."
         },
         {
-          "title": "Processed in the browser",
-          "text": "The photo isn't uploaded to a third-party server — all processing happens locally on your device."
+          "title": "No Photoshop needed",
+          "text": "A browser on your computer or phone is enough."
         }
       ],
       "faq": [
         {
-          "q": "Is this tool suitable for removing the background from product photos?",
-          "a": "Yes, that's one of its main use cases — product cards for marketplaces and online stores."
+          "q": "Does it work for product photos?",
+          "a": "Yes, that's one of the main uses — product cards for marketplaces and online stores."
         },
         {
-          "q": "What if the background isn't removed perfectly?",
-          "a": "Use the magic brush to manually restore or erase the parts of the mask you need."
+          "q": "What if the background isn't removed cleanly?",
+          "a": "Open the magic brush: Restore brings back the areas you need, Remove erases what's left over."
         },
         {
-          "q": "What format is the result saved in?",
-          "a": "The file is saved as PNG with a transparent background (alpha channel)."
+          "q": "What format is the result?",
+          "a": "A PNG with a transparent background, meaning it has an alpha channel."
         },
         {
-          "q": "Is the photo sent to a server for processing?",
-          "a": "No, background detection and removal happens right in your browser on your device."
+          "q": "Is my photo sent to a server?",
+          "a": "No. Your browser downloads the recognition model once, and after that the photo is processed on your device."
         }
       ]
     },
     "imageToText": {
-      "title": "Why recognize text from an image",
-      "text1": "Text recognition (OCR) turns text in a screenshot, scan or photo of a document into editable text that can be copied, edited or pasted into another document. It saves you from manually retyping quotes from books, documents, signs or presentation slides.",
-      "text2": "The tool works right in the browser without uploading images to third-party servers, which matters for confidential documents. The recognized text can be downloaded in a convenient format for further editing or archiving.",
+      "title": "Extract text from a photo, screenshot or scan",
+      "text1": "OCR turns a picture of a page into plain text you can copy and edit. No more retyping a quote from a book, a contract clause or a presentation slide.",
+      "text2": "Before uploading, pick the document's languages: Ukrainian, Russian, English or Spanish, up to three at once. Choosing the right language matters most for accuracy. Save the result as .txt or .doc.",
       "benefits": [
         {
-          "title": "Fast recognition",
-          "text": "Text in a photo or scan is recognized in seconds, with no manual retyping."
+          "title": "Up to 20 images at once",
+          "text": "Each file is recognized separately, and you can download all results together."
         },
         {
-          "title": "Multiple files at once",
-          "text": "Upload up to 20 images at a time and recognize the text in each one."
+          "title": "Mixed-language documents",
+          "text": "For example, Ukrainian with English terms in a manual or contract."
         },
         {
-          "title": "Privacy",
-          "text": "Recognition happens locally in the browser — images are never sent to a server."
+          "title": "Snap with your camera",
+          "text": "On a phone you can photograph the page directly instead of picking a file."
         },
         {
-          "title": "Output format choice",
-          "text": "The result can be saved in a convenient text format for further editing."
+          "title": "Stays on your device",
+          "text": "Recognition runs locally, so confidential papers never leave your computer."
         }
       ],
       "faq": [
         {
-          "q": "Which images are supported for text recognition?",
-          "a": "JPG, PNG, WebP and BMP files are accepted — screenshots, photos of documents or scans."
+          "q": "Which files can I use?",
+          "a": "JPG, PNG, WebP and BMP up to 15 MB: screenshots, photos of documents, scans."
         },
         {
-          "q": "Is the image sent to a server?",
-          "a": "No, text recognition happens entirely in the browser on your device."
+          "q": "Can it read handwriting?",
+          "a": "It works best with printed type. Handwriting comes out with noticeable errors."
         },
         {
-          "q": "How accurate is handwritten text recognition?",
-          "a": "Best results are achieved with printed text; handwritten text is recognized with lower accuracy."
+          "q": "Why did I get gibberish instead of words?",
+          "a": "Most likely the document's language isn't selected. Add it in the language picker and run recognition again."
         },
         {
-          "q": "How many files can I process at once?",
-          "a": "You can upload up to 20 images at a time, each processed individually."
+          "q": "Which format should I save?",
+          "a": ".txt for plain text, .doc to open the result straight in Word."
         }
       ]
     },
     "faqTitle": "Frequently asked questions",
     "compressToSize": {
-      "title": "Why compress a photo to an exact size",
-      "text1": "Many application forms, online accounts, mail services and classified-ad sites accept a photo only up to a certain size — 200 KB, for example. Ordinary compression doesn't help here: you can't tell how large the result will be, so you end up guessing where to put a quality slider. This tool works the other way round. You set the limit, and it finds the quality — and, if needed, the resolution — that keeps the file within it.",
-      "text2": "Everything happens in your browser: the photo is not uploaded to a server, so it is fine for a scanned document or a passport-style picture as well. The result is saved as JPEG or WebP, and for every file you see the size before and after, the quality that was used and the final resolution.",
+      "title": "How to compress a photo to a target size in KB",
+      "text1": "Government portals, job applications, email and classifieds sites often set a cap like 200 KB per photo. Regular compression is guesswork here: you never know how big the file will end up. This tool works the other way round. You set the limit, and it picks the quality and, if needed, the resolution.",
+      "text2": "For every file you see the size before and after, the quality used and the final resolution. The result is saved as JPEG or WebP.",
       "benefits": [
         {
-          "title": "Exactly within the limit",
-          "text": "Enter a number in KB or MB — the file will not exceed it, and the quality will be the highest that fits."
+          "title": "A limit in KB or MB",
+          "text": "Pick 50, 100, 200, 500 or 1000 KB, or type your own number. The file will not go over it."
         },
         {
-          "title": "No server upload",
-          "text": "Files never leave your device, and no sign-up is needed."
+          "title": "Best quality that fits",
+          "text": "The tool doesn't shrink files just to be safe. It looks for the highest quality that still fits."
         },
         {
-          "title": "An honest result",
-          "text": "You see before → after, the quality and the resolution. If the target can't be reached, we say so plainly."
+          "title": "Scans stay with you",
+          "text": "Compression runs on your device, so ID scans and application photos are never uploaded."
         },
         {
-          "title": "Several photos at once",
-          "text": "Up to 20 photos at a time with the same limit; several files download as one ZIP archive."
+          "title": "Up to 20 photos at once",
+          "text": "One limit for the whole batch, and several results download as a single ZIP file."
         }
       ],
       "sections": [
         {
-          "title": "How to compress a photo to the size you need",
-          "steps": [
-            "Choose the target size: click one of the presets (50, 100, 200, 500 or 1000 KB) or type your own number and pick KB or MB.",
-            "Pick the output format. JPEG is accepted almost everywhere; WebP usually gives a smaller file at the same quality but is not supported by every service.",
-            "Drop your photos into the upload area or click it to choose files. JPG, PNG, WebP, BMP and iPhone HEIC are supported.",
-            "Wait until it finishes: for each file the tool shows which quality it is currently trying.",
-            "Check the size and resolution in the list and download the result — a single file, or a ZIP archive if you added several photos."
-          ]
-        },
-        {
           "title": "How the size is found",
-          "text": "The tool first tries a high quality, 95%. If the file is larger than the target, it checks the lower bound, 30%, and then uses a binary search to find the highest quality at which the file still fits; for one resolution that is at most eight attempts. If even 30% is not enough, the resolution is reduced in steps of 85%, but never below 600 pixels on the longer side. That way you get the largest resolution and the highest quality that fit the limit, instead of a file that was shrunk \"just in case\". Sizes are counted in thousands of bytes (1 KB = 1000 bytes), so the file fits the limit however your service counts."
+          "text": "The tool first tries 95% quality. If the file is too big, it runs a binary search between 95% and 30%, with eight attempts at most. When even 30% is not enough, it scales the image down in 85% steps. It never goes below 600 pixels on the long side. One kilobyte here means 1000 bytes, so the file passes any site's size check."
         },
         {
-          "title": "When you need it",
-          "text": "Photos for online application forms and personal accounts, job applications and CVs, e-mails with an attachment limit, forums, classified ads and CRM systems that refuse large files. It also helps when you need to quickly reduce the weight of a picture for a messenger or a website and you know exactly how much it is allowed to weigh."
+          "title": "JPEG or WebP",
+          "text": "Almost every site and form accepts JPEG. WebP is usually smaller at the same quality, but older systems can't open it. If you're not sure a form takes WebP, choose JPEG."
         },
         {
-          "title": "Limitations worth knowing",
-          "text": "A very small limit for a large, detailed photo can't be met without a visible loss of sharpness. If compressing to the size you asked for is impossible even at a resolution of 600 pixels, we will not hand you a ruined file — we will show the smallest size we managed to reach. Transparency is not kept: transparent areas of a PNG become white. Metadata (such as the date a photo was taken or its location) and the embedded colour profile are not carried into the result. If a JPG, PNG or WebP file is already not larger than the target, it is returned unchanged. A single file may be up to 30 MB, and up to 20 files can be processed at a time. Speed depends on your device: large pictures take longer on a slow phone."
-        },
-        {
-          "title": "Privacy",
-          "text": "Compression runs locally in your browser, using your own device. Files are not sent to a server, are not stored and are not available to us. The page works without sign-up, and the contents of your photos are not passed to any analytics service."
+          "title": "Limitations",
+          "text": "A very small limit on a detailed photo means a visible loss of sharpness. If the target can't be reached even at 600 pixels, you'll see the smallest size achieved instead of a ruined file. Transparent PNG areas turn white. Capture date, location and the color profile are not kept. Each file can be up to 30 MB."
         }
       ],
       "faq": [
         {
-          "q": "How do I compress an image to 200 KB?",
-          "a": "Choose 200 KB among the presets, add your photo and download the result. The tool picks the quality itself and, if necessary, lowers the resolution a little."
+          "q": "How do I reduce a photo to 200 KB?",
+          "a": "Pick 200 KB, add your photo and download the result. The tool chooses the quality and, if needed, the resolution for you."
         },
         {
           "q": "Can I compress a photo to 100 KB without losing quality?",
-          "a": "Not entirely without loss — JPEG and WebP are lossy formats. We look for the highest quality at which the file fits the limit. For simple images the difference is barely visible, while very detailed photos will show artifacts at a small limit."
+          "a": "Not entirely, because JPEG and WebP are lossy formats. On simple images the difference is barely visible. Detailed shots under a small limit will show artifacts."
         },
         {
-          "q": "What happens if the photo is already smaller than the limit?",
-          "a": "If a JPG, PNG or WebP file is already not larger than the target, we return it unchanged and tell you so — needless compression would only lower the quality."
+          "q": "What if my photo is already under the limit?",
+          "a": "A JPG, PNG or WebP that already fits is returned unchanged. Compressing it again would only lower the quality."
         },
         {
-          "q": "Why can't my photo be compressed to the size I need?",
-          "a": "Sometimes the target is too small for that picture. We lower the quality to 30% and the resolution down to 600 pixels on the longer side, and then stop. You will see the smallest size that was reached — choose a larger limit or a simpler image."
-        },
-        {
-          "q": "Can I compress an iPhone photo in HEIC format?",
-          "a": "Yes, HEIC is recognised and converted to JPEG or WebP. The extra module needed for it is loaded only on this page, and only when you add a HEIC file."
-        },
-        {
-          "q": "Is it safe to use this for photos of documents?",
-          "a": "Files never leave your device: processing happens in the browser. We can't see or store your photos."
+          "q": "Does it work with iPhone HEIC photos?",
+          "a": "Yes, HEIC is converted to JPEG or WebP. The extra module for this only loads when you add a HEIC file."
         }
       ]
     },
     "convertToPng": {
-      "title": "Why convert an image to PNG",
-      "text1": "PNG is a lossless format with true transparency. It is the one people ask for when it comes to logos, screenshots, diagrams, graphics for websites and presentations, and mockups in design tools. Often, though, the image reaches you in a different shape: a WebP saved from a browser, an iPhone HEIC, an AVIF from a modern website or a GIF. This page quickly turns such files into a PNG that opens anywhere.",
-      "text2": "The conversion runs in your browser: files are not uploaded to a server, so personal photos and work material are both fine. The size in pixels stays the same, the rotation stored in the file is applied, and transparent areas are not filled in. Several images can be converted at once and download as a single ZIP archive.",
+      "title": "When to convert an image to PNG",
+      "text1": "PNG keeps every pixel without loss and supports real transparency. It's what people ask for with logos, screenshots, diagrams and design mockups. Yet images often arrive in other formats: WebP saved from a browser, HEIC from an iPhone, AVIF or GIF. This page turns them into a file that opens anywhere.",
+      "text2": "The pixel dimensions stay the same, and the orientation stored by your phone is respected. You can convert several files together and get them as one ZIP.",
       "benefits": [
         {
           "title": "Transparency is kept",
-          "text": "If a WebP, AVIF or GIF had transparent areas, they stay transparent in the PNG instead of turning black or white."
+          "text": "Transparent areas from WebP, AVIF or GIF don't turn black or white."
         },
         {
-          "title": "No server upload",
-          "text": "Everything happens on your device. No sign-up is needed."
+          "title": "No sideways photos",
+          "text": "The rotation your camera wrote into the file is applied automatically."
         },
         {
-          "title": "Correct rotation",
-          "text": "A phone photo does not end up lying on its side: the orientation stored in the file is applied."
+          "title": "Seven input formats",
+          "text": "JPG, WebP, BMP, GIF, AVIF, HEIC and HEIF, up to 20 files at a time."
         },
         {
-          "title": "Many formats and files",
-          "text": "JPG, WebP, BMP, GIF, AVIF, HEIC and HEIF; up to 20 files at a time, several results in one ZIP."
+          "title": "Work files stay offline",
+          "text": "Conversion runs on your device, so mockups and screenshots are never sent anywhere."
         }
       ],
       "sections": [
         {
-          "title": "How to convert an image to PNG",
-          "steps": [
-            "Drop your files into the upload area or click it and choose images. JPG, WebP, BMP, GIF, AVIF and iPhone HEIC are supported.",
-            "Wait a few seconds — each file is processed separately, and you can see what is happening to it.",
-            "Check the size before and after in the list: a PNG is often larger, and that is normal.",
-            "Download the result — a single PNG, or a ZIP archive if you added several files."
-          ]
+          "title": "How a lossless format differs from JPG",
+          "text": "Lossless images shine where there is crisp text, sharp edges or a transparent background. Regular photos get heavier than in JPG or WebP because of smooth color gradients. If file size matters for email or a website, stay with JPG or WebP. Converting won't remove artifacts already present in a JPG. But from now on you can edit and re-save the file without further loss."
         },
         {
-          "title": "PNG or JPG: which to choose",
-          "text": "PNG compresses an image without loss, which makes it a good fit for screenshots, logos, diagrams, interfaces and anything with crisp text, sharp edges or a transparent background. Ordinary photographs are a different story: as PNG they are usually noticeably heavier than as JPG or WebP, because they are full of smooth colour transitions. If you are preparing a photo for a website, an e-mail or a messenger and weight matters, keep JPG or WebP, and pick PNG when you need transparency or pixel-exact accuracy. Converting a JPG to PNG does not bring back detail that was already lost when the JPG was compressed: the artifacts stay, but from then on you can edit and re-save the file without losing quality a second time."
+          "title": "What happens to transparency",
+          "text": "Transparent areas from WebP, AVIF and GIF carry over as they are. JPG and BMP have no transparency, so their background stays colored. Making it transparent takes a separate background removal step."
         },
         {
-          "title": "About transparency",
-          "text": "WebP, AVIF and GIF can contain transparent areas, and a PNG keeps them. JPG and ordinary BMP have no transparency, so the PNG made from them will not have a transparent background either: wherever the original had a colour, it stays. If you need to remove the background from a photo, the site has a separate background-removal tool for that."
-        },
-        {
-          "title": "Good to know",
-          "text": "For an animated GIF or WebP only the first frame is taken. Photo metadata, including EXIF and GPS coordinates, is not carried over into the PNG. HEIC files can become very large once turned into PNG. The limit is 30 MB per file and 20 files at a time; very large images on weak phones may fail to process, and you will see a message about it. If an AVIF file does not open, your browser does not support that format."
-        },
-        {
-          "title": "Privacy",
-          "text": "The conversion runs locally in your browser, using your own device. Files are not sent to a server, are not stored and are not available to us. The page works without sign-up."
+          "title": "Limitations",
+          "text": "Only the first frame of an animated GIF or WebP is kept. EXIF data and GPS coordinates are not copied. A converted HEIC photo can become very large. The limit is 30 MB per file. AVIF only opens if your browser supports it."
         }
       ],
       "faq": [
         {
-          "q": "Will PNG make my photo smaller?",
-          "a": "Mostly not. PNG stores the image without loss, so photographs in it are usually heavier than as JPG or WebP. To reduce the weight, keep JPG or WebP or use compression."
+          "q": "Will the file get smaller?",
+          "a": "Usually not, since lossless photos weigh more. To reduce the size, use compression instead."
         },
         {
-          "q": "Will the background become transparent when I convert a JPG to PNG?",
-          "a": "No. JPG has no transparency, so the background colour stays the same in the PNG. Making it transparent takes separate processing — background removal."
+          "q": "Will the background become transparent after converting a JPG?",
+          "a": "No, the background color stays. Only background removal makes it transparent."
         },
         {
-          "q": "Is quality lost during conversion?",
-          "a": "The move to PNG itself loses nothing: the pixel data is preserved exactly. But if the original was a compressed JPG or WebP, its losses were already in the file, and PNG cannot repair them."
-        },
-        {
-          "q": "Can I convert an iPhone HEIC to PNG?",
-          "a": "Yes. Add a .heic or .heif file — the page recognises it and converts it. Keep in mind that a PNG made from such a photo can be very large."
+          "q": "Is quality lost?",
+          "a": "The conversion itself loses nothing, as the pixels are copied exactly. Any loss already in a JPG or WebP remains."
         },
         {
           "q": "What happens to a GIF animation?",
-          "a": "Only the first frame is saved, as an ordinary PNG. This page does not preserve animation."
-        },
-        {
-          "q": "Does the PNG contain the location where the photo was taken?",
-          "a": "No. Metadata, including EXIF and GPS, is not carried over into the PNG. But if your goal is specifically to strip metadata from a photo, a dedicated tool is the better choice."
+          "a": "Only the first frame is saved as a still image."
         }
       ]
     },
     "removeExif": {
-      "title": "Why remove EXIF and metadata from photos",
-      "text1": "Every photo from a smartphone or a camera carries more than you can see on the screen. The file records the camera model, the date and time it was taken, lens settings, sometimes the device's serial number, the author's name and the name of the program used to edit the photo. The most sensitive part is the GPS coordinates: they show where exactly the picture was taken, including your home or workplace. This data is called metadata, and its most common format is EXIF.",
-      "text2": "This page shows what was found in each photo — camera, date, coordinates, software, author — and removes the metadata in one step. Everything happens in your browser: files are not uploaded to a server. For JPEG, PNG and WebP the pixel data is not re-encoded, so quality does not change.",
+      "title": "Remove EXIF and GPS data from a photo before sharing",
+      "text1": "A phone photo stores the camera model, the date and time, sometimes a serial number, the author and the editing app. The most sensitive part is GPS: it shows where the picture was taken, including your home.",
+      "text2": "This page shows what each file contains and strips it out. For JPEG, PNG and WebP the pixels are not re-encoded, so quality stays the same. Cleaned files get “-clean” added to their names.",
       "benefits": [
         {
-          "title": "See what was in the file",
-          "text": "Camera, date taken, software, author, serial number and — as a separate warning — GPS coordinates."
+          "title": "See what was inside",
+          "text": "Camera, date, software, author, serial number and a separate warning about coordinates."
         },
         {
-          "title": "No loss of quality",
-          "text": "Only the auxiliary blocks are cut out of the file; the image itself stays byte for byte the same."
+          "title": "The image is not re-saved",
+          "text": "Only metadata blocks are cut out; the image data keeps the exact same bytes."
         },
         {
-          "title": "No server upload",
-          "text": "Files never leave your device and no sign-up is needed."
+          "title": "Coordinates stay on your device",
+          "text": "Your browser reads and removes the metadata, and files are not sent anywhere."
         },
         {
-          "title": "JPEG, PNG and WebP",
-          "text": "Up to 20 files at a time; several results download as one ZIP archive."
+          "title": "Up to 20 photos at once",
+          "text": "JPEG, PNG and WebP up to 30 MB each; several results download as one ZIP."
         }
       ],
       "sections": [
         {
-          "title": "How to remove metadata from a photo",
-          "steps": [
-            "Drop your photos into the upload area or click it and choose files. JPEG, PNG and WebP are supported.",
-            "Wait a moment: for each file you get a summary — what was found and what was removed, including GPS coordinates if there were any.",
-            "Check the size before and after and download the result — a single file or a ZIP archive. Cleaned files get a \"-clean\" suffix in their name."
-          ]
-        },
-        {
           "title": "What exactly is removed",
-          "text": "From a JPEG the tool removes the EXIF blocks (camera, date, settings, GPS, the embedded thumbnail), XMP, IPTC and other Photoshop data, comments, and everything written after the end of the image — for example the extra pictures some phones store inside the file. From a PNG it removes text fields, EXIF data and the modification time, and from a WebP the EXIF and XMP blocks. The embedded colour profile (ICC) is kept so the colours do not change."
+          "text": "From JPEG: EXIF with camera, date, settings, GPS and thumbnail, plus XMP, IPTC, comments and data after the image ends. From PNG: text fields, EXIF and modification time; from WebP: EXIF and XMP. The ICC color profile stays, so colors do not shift."
         },
         {
-          "title": "How it works without losing quality",
-          "text": "The usual way to \"clean\" a photo is to open it and save it again, and every such save slightly damages a JPEG. This works differently: the file is split into blocks, the metadata blocks are cut out, and the compressed image data is copied unchanged. That is why the pixels before and after match exactly."
+          "title": "Why quality does not change",
+          "text": "The usual way to “clean” a photo is to open and re-save it, which degrades a JPEG each time. Here the metadata blocks are cut out and the compressed image data is copied unchanged. Pixels before and after match exactly."
         },
         {
-          "title": "The rotation tag and the re-encoding mode",
-          "text": "Most portrait photos from smartphones are stored lying on their side, and a special rotation tag in EXIF tells viewers how to show them correctly. If it is deleted together with the rest, the photo opens sideways. So by default we keep only that tag in a JPEG — there is nothing personal in it. If you need to remove absolutely everything, turn on full re-encoding: the photo is physically rotated and the tag disappears. The price is that JPEG and WebP are saved again at 92% quality and the original colour profile is replaced with standard sRGB (the colours are recalculated, not lost)."
+          "title": "The rotation tag and full re-encoding",
+          "text": "Portrait phone photos are often stored sideways and displayed correctly thanks to a rotation tag. So in JPEG this tag is kept; it contains nothing personal. To remove everything, turn on full re-encoding. The photo is physically rotated, but JPEG and WebP are re-saved at 92% quality and the color profile becomes standard sRGB."
         },
         {
-          "title": "Limitations worth knowing",
-          "text": "Removing metadata is not anonymity. Faces, signs, car plates and landmarks remain in the picture itself, and the file name may contain a date or a place. HEIC is not supported: convert such photos to JPG first. The limit is 30 MB per file and 20 files at a time. Extra pictures that phones store after the main one (depth, an HDR map) are removed together with the other data, so on HDR displays the photo may look slightly different. Animated PNG and WebP can only be cleaned without re-encoding — otherwise only the first frame would be saved."
-        },
-        {
-          "title": "Privacy",
-          "text": "Processing happens locally in your browser. Files are not sent to a server, are not stored and are not available to us. The library that reads the metadata is loaded only on this page and runs on your own device."
+          "title": "Limitations",
+          "text": "A clean file does not make a photo anonymous: faces, signs and license plates stay in the picture. HEIC is not supported, so convert it to JPG first. Extra frames such as an HDR map are removed too, so on an HDR screen the photo may look a little different. Animated PNG and WebP are cleaned only without re-encoding."
         }
       ],
       "faq": [
         {
-          "q": "Does removing EXIF reduce the quality of the photo?",
-          "a": "No. The image is not re-encoded: only auxiliary blocks are cut out of the file and the compressed pixel data stays the same. Quality changes only if you turn on full re-encoding yourself."
+          "q": "Can removed metadata be restored?",
+          "a": "Not from the cleaned file — the blocks are physically gone. If you may need the data, keep the original separately."
         },
         {
-          "q": "Can the removed metadata be recovered?",
-          "a": "Not from the cleaned file: the blocks are not hidden, they are physically absent from the new file. You still have the original, so if you may need that data, keep it separately."
+          "q": "Don't social networks strip EXIF themselves?",
+          "a": "Some do when you publish, but not all and not always. When a photo is sent as a file, by email or to cloud storage, the data usually stays."
         },
         {
-          "q": "What exactly is removed from a photo?",
-          "a": "EXIF (camera, date, settings, GPS coordinates, thumbnail), XMP, IPTC, comments and PNG text fields. The ICC colour profile is kept."
+          "q": "How can I check that GPS is really gone?",
+          "a": "After processing, each file shows a summary of what was found and removed, plus its size before and after."
         },
         {
-          "q": "Do social networks and messengers strip metadata by themselves?",
-          "a": "Some services remove metadata when you publish, but not all of them and not always: when a photo is sent as a file, by e-mail or to cloud storage, the data usually stays. It is safer to clean the file yourself before sending it."
-        },
-        {
-          "q": "Which formats are supported?",
-          "a": "JPEG, PNG and WebP. Convert iPhone photos in HEIC format to JPG first."
-        },
-        {
-          "q": "Do my photos stay on my device?",
-          "a": "Yes. Everything runs in the browser: files are not uploaded to a server and are not stored."
+          "q": "How do I clean an iPhone photo?",
+          "a": "Save or convert it to JPG first, then add it here. This page does not accept HEIC."
         }
       ]
     },
     "photoToPdf": {
-      "title": "Why combine photos into a single PDF file",
-      "text1": "PDF remains the universal format for sending documents: it opens the same way on a computer, a phone, or inside an email client, and its pages don't get scattered the way separate photos do in a chat. A PDF is easy to attach to an email, print, or upload to a portal that accepts only one document instead of a dozen separate images. People most often combine scanned documents, photographed notebook or book pages, receipts for an expense report, or product photos for a catalog into one PDF.",
-      "text2": "This tool combines several photos into one PDF right in your browser: add the files, arrange them in the order you need, choose a page size and margins, and download the finished document. Photos are never uploaded to a server or stored anywhere.",
+      "title": "How to combine several photos into one PDF",
+      "text1": "One PDF is easier to send than a dozen separate photos: the pages stay in order and don't get lost in a chat. People use it for document scans, notebook pages, receipts for an expense report or product photos for a catalog. Many portals accept only one file, and a PDF solves that.",
+      "text2": "Add your photos, put them in order and choose the page size and margins. The document is built on your device, so your scans are never sent anywhere.",
       "benefits": [
         {
-          "title": "Page order under your control",
-          "text": "Use the ↑↓ arrows or drag photos into the order they should appear in the document."
+          "title": "Your page order",
+          "text": "Use the ↑↓ arrows or drag and drop to arrange the photos the way they should appear."
         },
         {
-          "title": "No quality loss where possible",
-          "text": "An unrotated JPEG and a plain PNG are embedded into the PDF as they are, without re-compression."
+          "title": "JPEG and PNG not re-encoded",
+          "text": "Plain JPEGs without a rotation tag and PNGs are embedded as they are, with no extra compression."
         },
         {
-          "title": "Nothing uploaded to a server",
-          "text": "The whole PDF is built in your browser; the files never leave your device."
+          "title": "A4 or photo size",
+          "text": "An A4 sheet with margins for printing, or a page that matches the photo exactly."
         },
         {
-          "title": "Flexible page sizes",
-          "text": "A4 with margins for printing, or a page sized to match the photo when you need the exact shot dimensions."
+          "title": "Even a single photo",
+          "text": "One image gives a one-page document, handy for sending a scan."
         }
       ],
       "sections": [
         {
-          "title": "How to combine photos into a PDF",
-          "steps": [
-            "Drag photos into the upload area or click it and choose files. JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF (iPhone photos) are all supported.",
-            "Arrange the photos in the order you need: use the ↑↓ arrows next to each file or drag them in the list.",
-            "Choose the page size and margins in the settings above the upload area.",
-            "Click \"Create PDF\" and download the finished file once it's ready."
-          ]
+          "title": "A4 or photo size",
+          "text": "On A4, each photo is fitted to the sheet without changing its proportions. Portrait or landscape orientation is chosen automatically from the shape of the shot. The photo-size mode makes the page exactly as large as the image, with no white bars. A 10 mm margin adds space on every side, which helps for printing or binding."
         },
         {
-          "title": "Page size: A4 or photo size",
-          "text": "An A4 page suits printing and documents expected in a standard size: each photo is fitted onto the sheet while keeping its proportions, and the orientation (portrait or landscape) is chosen automatically from the shape of the photo itself. \"Photo size\" makes the page exactly the size of the image (plus margins, if enabled) — handy when it matters to keep the original proportions without adding white bars around the shot."
+          "title": "What happens to quality",
+          "text": "JPEGs without a rotation tag and plain PNGs go into the document unchanged. Portrait shots from a phone with a rotation tag, plus WebP, BMP, GIF, AVIF and HEIC, are first turned the right way up. They are then re-encoded as JPEG at 92% quality, and transparent areas become white."
         },
         {
-          "title": "Page margins",
-          "text": "A 0 mm margin means the photo fills almost the entire page. A 10 mm margin adds a small border on every side, similar to most office documents — useful if the PDF will be printed or filed."
-        },
-        {
-          "title": "How quality is preserved",
-          "text": "For a JPEG without a rotation tag and for a plain PNG, the tool embeds the original image bytes into the PDF — with no re-compression or re-encoding. If a JPEG carries a rotation tag (typical for portrait photos from smartphones) or the format isn't supported directly (WebP, BMP, GIF, AVIF, HEIC/HEIF), the photo is first corrected to the right orientation and re-encoded as JPEG at 92% quality, the same way other tools on the site do it. In both cases PNG transparency is filled with white, since a printed page has no transparency."
-        },
-        {
-          "title": "Limits worth knowing about",
-          "text": "The limit is 30 MB per file and up to 20 files at once; if the whole album is over 200 MB, a warning appears but processing still finishes. Very large photos or a large number of pages can produce a heavy PDF and take longer on slower devices. The tool doesn't add page numbers, watermarks, or captions — just the photos themselves, one per page."
-        },
-        {
-          "title": "Privacy",
-          "text": "The whole PDF is assembled locally in your browser. Photos are never sent to a server, never stored, and never accessible to us; once you close the page, nothing remains except the file you downloaded to your device."
+          "title": "Limitations",
+          "text": "Up to 20 photos at a time, each up to 30 MB. If they add up to more than 200 MB, you'll see a warning, but the file is still created. On slower devices a large album takes longer. The tool doesn't add page numbers, captions or watermarks."
         }
       ],
       "faq": [
         {
-          "q": "Can I change the photo order after adding files?",
-          "a": "Yes. As long as the PDF hasn't been created yet, you can reorder photos with the ↑↓ arrows next to each file or by dragging them in the list."
+          "q": "Can I change the photo order after adding them?",
+          "a": "Yes, until you create the PDF: use the ↑↓ arrows next to each file or drag it in the list."
         },
         {
-          "q": "Does the photo quality get worse in the PDF?",
-          "a": "An unrotated JPEG and a plain PNG are embedded without re-encoding. Rotated photos and formats like WebP or HEIC are re-encoded as JPEG at 92% quality to keep the correct orientation."
+          "q": "Will the photos lose quality in the PDF?",
+          "a": "JPEGs and PNGs without rotation are embedded unchanged. Other images are re-encoded as JPEG at 92% quality to keep the correct orientation."
         },
         {
           "q": "Which page size should I choose?",
-          "a": "A4 for printing or documents expected in a standard size; \"photo size\" when you need to keep the original shot proportions without white margins around it."
+          "a": "A4 for printing and official documents. Photo size when you want the original proportions with no white margins."
         },
         {
-          "q": "How many photos can I add?",
-          "a": "Up to 20 files at once, up to 30 MB each. If the total size is over 200 MB, a warning appears, but processing still completes."
-        },
-        {
-          "q": "Can I add just one photo?",
-          "a": "Yes, you'll get a one-page PDF — useful, for example, to send a photo of a document as a PDF."
-        },
-        {
-          "q": "Do my photos stay on a server?",
-          "a": "No. The PDF is built in your browser; the files are never uploaded anywhere."
+          "q": "How many photos can I combine?",
+          "a": "Up to 20 files at a time, up to 30 MB each."
         }
       ]
     },
     "cropImage": {
-      "title": "Why crop a photo online",
-      "text1": "Cropping is one of the simplest ways to improve a photo: trim distracting edges, draw attention to the subject, or fit the shot to a specific ratio — a square for a profile picture, a wide frame for a cover image, or a vertical crop for a Story. People most often crop before posting to Instagram, Facebook, or YouTube, for an avatar or a website banner, or simply to cut out people or objects at the edge of the frame.",
-      "text2": "This tool lets you crop a photo right in your browser: drag the selection frame or its corners with a mouse or a finger, pick a ready-made ratio from the list or leave it freeform, then download the result as JPG, PNG, or WebP. The photo is never uploaded to a server and isn't stored anywhere.",
+      "title": "Crop a photo online to the right aspect ratio",
+      "text1": "Cropping removes clutter from the edges and fits a photo to where it will be posted. A profile picture needs a square, Stories and Reels need a 9:16 vertical frame, and a video cover needs 16:9.",
+      "text2": "Drag the crop box with a mouse or a finger, or pull its corners. When a ratio is locked, the box keeps its shape even while you resize it from a corner.",
       "benefits": [
         {
-          "title": "Precise selection frame",
-          "text": "Drag the whole frame or just one corner with a mouse or a finger and see the result update instantly on the photo itself — no guessing and no repeated attempts."
+          "title": "Eight frame modes",
+          "text": "1:1, 4:3, 3:4, 3:2, 2:3, 16:9, 9:16 or a free shape."
         },
         {
-          "title": "Ready-made social ratios",
-          "text": "1:1 for a profile picture, 9:16 for Stories and Reels, 16:9 for a video cover — plus the other common ratios, or a freeform frame when you need an exact custom shape."
+          "title": "Exact pixel sizes",
+          "text": "The original and selection sizes are shown next to the preview."
         },
         {
-          "title": "No quality loss",
-          "text": "Cropping just selects part of the image rather than compressing it: the pixels inside the frame stay exactly as sharp as the original. You choose the output format and compression yourself."
+          "title": "Works on touchscreens",
+          "text": "The box and its corners are easy to drag on a phone or tablet."
         },
         {
           "title": "Nothing is uploaded",
-          "text": "The whole crop happens in your browser, on your own device; the photo is never sent anywhere or stored."
+          "text": "Cropping happens on your device. The image is never sent to a server."
         }
       ],
       "sections": [
         {
-          "title": "How to crop a photo",
-          "steps": [
-            "Drag a photo into the upload area or click it and choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
-            "Pick a ready-made ratio in the settings, or leave it on “Free” for a custom shape.",
-            "Drag the frame to move the selection, or its corners to resize it.",
-            "Choose the output format (JPG, PNG, or WebP) and click “Crop & Download”."
-          ]
+          "title": "Which ratio to choose",
+          "text": "1:1 suits avatars and square posts. 4:3 and 3:2 are classic photo frames, and 3:4 and 2:3 are their vertical versions. 16:9 fits covers and banners, 9:16 fits Stories. If none of these works, pick “Free”."
         },
         {
-          "title": "Ready-made ratios and freeform selection",
-          "text": "The ratio list covers the most common cases: a 1:1 square for avatars and social profiles, 4:3 and 3:2 for classic photo framing, and 16:9 and 9:16 for video and vertical Stories — each available in both orientations. If none of them fit, pick “Free” and drag the corners to set any shape you need."
+          "title": "How the crop box behaves",
+          "text": "Drag the middle of the box to move the selection. Drag a corner to resize it while the opposite corner stays put. The box can't leave the photo."
         },
         {
-          "title": "Output formats: JPG, PNG, WebP",
-          "text": "The output format is separate from the format of the file you uploaded. JPG suits photos and gives the smallest file size; PNG keeps transparency if the original had it; WebP combines a small size with transparency support, though it isn't supported by every older app."
-        },
-        {
-          "title": "Does cropping reduce quality",
-          "text": "Cropping itself doesn't touch the pixels inside the selected area — they stay exactly as sharp as in the original. Some loss is only possible during the final encoding to JPG or WebP (lossy formats), the same as saving any photo in those formats; PNG encodes without any loss at all."
-        },
-        {
-          "title": "Supported upload formats",
-          "text": "The tool accepts JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF — the format iPhones save photos in by default. Whatever the source format, you can always save the result as JPG, PNG, or WebP."
-        },
-        {
-          "title": "Privacy",
-          "text": "The photo is processed entirely in your browser: it is never uploaded to a server, stored, or sent anywhere, even temporarily. Close the tab and every trace of the file is gone."
+          "title": "Quality and output format",
+          "text": "Pixels inside the box are not changed. JPG and WebP are saved at 92% quality, and PNG is saved without lossy compression. Transparent areas turn white in JPG."
         }
       ],
       "faq": [
         {
-          "q": "Can I crop a photo on my phone?",
-          "a": "Yes — you can drag the frame and its corners with a finger just like with a mouse on a computer; the interface is built for touch screens."
-        },
-        {
           "q": "Can I crop a photo into a circle?",
-          "a": "Right now the selection frame is rectangular only. A circular crop could be a separate tool down the line."
+          "a": "The crop box here is rectangular. For a round avatar with transparent corners, use the separate “Circle Crop Photo” tool."
         },
         {
-          "q": "Will cropping reduce the quality?",
-          "a": "The pixels inside the frame aren't changed by the crop itself. Some loss is possible only when saving as JPG or WebP, which are lossy formats — pick PNG if you need a crop with absolutely no loss."
+          "q": "How do I make a square profile picture?",
+          "a": "Choose 1:1, move the box over the face and resize it from a corner. It stays square."
         },
         {
-          "q": "How many photos can I crop in a row?",
-          "a": "As many as you like — the tool handles one photo at a time: just upload the next one right after downloading the previous result."
+          "q": "Can I crop several photos at once?",
+          "a": "No, the tool works with one photo. After downloading the result, you can open the next one right away."
         },
         {
-          "q": "Which photo formats are supported?",
-          "a": "On upload: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. You can save the result as JPG, PNG, or WebP."
-        },
-        {
-          "q": "Is there a file size limit?",
-          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+          "q": "Will the file get smaller after cropping?",
+          "a": "Usually yes, since fewer pixels remain. If you need a specific file size, use “Compress to a Size” after cropping."
         }
       ]
     },
     "rotateImage": {
-      "title": "Why rotate or flip a photo online",
-      "text1": "A photo from a phone or camera sometimes ends up sideways or upside down — the camera got the orientation wrong while shooting, or the file is opened in an app that ignores the rotation tag. Rotating such a shot by 90°, 180°, or the other way is one of the simplest fixes that noticeably improves how a photo reads. Flipping (a horizontal or vertical mirror) is useful for something different: fixing \"backwards\" text captured through a mirror or shop window, turning a portrait so the subject's gaze points toward text in a layout, or just picking whichever composition looks more natural.",
-      "text2": "This tool rotates and flips photos right in your browser: upload a photo, click the rotate or flip buttons — the preview updates instantly, so you see the result right away. Once the orientation looks right, download the file as JPG, PNG, or WebP. Nothing gets uploaded to a server or stored anywhere.",
+      "title": "Rotate or flip a photo online",
+      "text1": "Phone photos sometimes open sideways or upside down. The camera misread the orientation, or the viewer ignores the rotation tag. Here you can turn the image by 90°, 180° or 270° and mirror it if needed.",
+      "text2": "Flipping solves different problems. Text in a mirror selfie reads backwards. A face on a portrait should look toward the copy on a layout. You can combine both actions, and the preview changes after every click.",
       "benefits": [
         {
-          "title": "Instant result",
-          "text": "Rotation and flipping apply the moment you click a button — no processing wait, the preview updates in real time."
+          "title": "A quarter turn per click",
+          "text": "Use “Left 90°” or “Right 90°”. Two clicks in a row give you 180°."
         },
         {
-          "title": "Rotate and flip together",
-          "text": "Combine both actions in any order and any number of times — for example, rotate 90° and also flip horizontally — to land on exactly the orientation you need."
+          "title": "Flip on either axis",
+          "text": "Horizontal flip swaps left and right. Vertical flip swaps top and bottom."
         },
         {
-          "title": "No quality loss at 90°/180°",
-          "text": "Rotating by 90°, 180°, or 270° and flipping only move the same pixels around rather than recalculating them, so image sharpness stays the same."
+          "title": "No resampling",
+          "text": "Turns in 90° steps only move pixels around, so sharpness stays the same."
         },
         {
-          "title": "Nothing uploaded to a server",
-          "text": "All processing happens right in your browser on your own device; the photo is never sent anywhere or stored on our side."
+          "title": "The file stays with you",
+          "text": "Rotation runs in your browser tab. The site never receives or stores your photo."
         }
       ],
       "sections": [
         {
-          "title": "How to rotate or flip a photo",
-          "steps": [
-            "Drag a photo into the upload area, or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
-            "Click \"Left 90°\" or \"Right 90°\" to rotate the photo — the preview updates instantly; clicking one twice in a row gives you a 180° rotation.",
-            "If needed, turn on a horizontal or vertical flip — the toggle buttons can be combined with rotation in any way.",
-            "Pick the output format (JPG, PNG, or WebP) and click \"Download\"."
-          ]
+          "title": "Rotating and flipping together",
+          "text": "Order doesn't matter: flip first and rotate later, or the other way round. Click a button again to undo it. The result size is shown under the preview; after a 90° turn, width and height swap."
         },
         {
-          "title": "90°, 180° rotation and flipping",
-          "text": "The \"Left 90°\" and \"Right 90°\" buttons turn the image a quarter turn in the chosen direction; clicking one twice gives a 180° rotation. A horizontal flip mirrors the photo left-right, a vertical flip mirrors it top-bottom; both flags are independent of rotation and can be switched on at the same time as it, so any orientation you need is a few clicks away."
+          "title": "When quality can still drop",
+          "text": "Rotation itself loses nothing. A small loss can happen only when saving as JPG or WebP, because both formats compress. Save as PNG if you need an exact copy of the pixels."
         },
         {
-          "title": "Output formats: JPG, PNG, WebP",
-          "text": "Choose the result format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any; WebP combines a small size with transparency support, though it doesn't open in every older program."
-        },
-        {
-          "title": "Does rotating hurt image quality",
-          "text": "Rotating by 90°, 180°, or 270° and flipping only rearrange pixels without recalculating or blending them, so sharpness stays exactly the same as the original. Some loss is possible only during the final encode to JPG or WebP (lossy formats), the same as saving any photo in those formats; PNG encodes losslessly."
-        },
-        {
-          "title": "Privacy",
-          "text": "The photo is processed entirely in your browser: it is never uploaded to a server, never stored, and never transmitted anywhere, even temporarily. Close the tab and every trace of the work is gone."
+          "title": "Transparent backgrounds",
+          "text": "PNG and WebP keep the original transparency. JPG has no transparency, so those areas are filled with white rather than black."
         }
       ],
       "faq": [
         {
-          "q": "Can I rotate a photo by an arbitrary angle, not just 90°?",
-          "a": "Right now only 90° steps (and their combinations up to 270°) plus flipping are available. Arbitrary-angle rotation could be a separate tool down the line."
+          "q": "Can I rotate by a custom angle, like 15°?",
+          "a": "No, only 90° steps and flips are available. This tool won't straighten a tilted horizon."
         },
         {
           "q": "What's the difference between rotating and flipping?",
-          "a": "Rotating turns the whole image around its center by 90°, 180°, or 270°. Flipping mirrors the photo along one axis — left-right (horizontal) or top-bottom (vertical) — without turning it."
+          "a": "Rotating turns the frame around its center. Flipping creates a mirror image along one axis without turning it."
         },
         {
-          "q": "Will rotating reduce photo quality?",
-          "a": "No, rotating by 90°, 180°, or 270° and flipping only rearrange pixels. Some loss is possible only when saving as JPG or WebP — lossy formats; pick PNG if you need it completely lossless."
+          "q": "Why does my iPhone photo open rotated?",
+          "a": "Cameras often store orientation in a separate tag, and some apps ignore it. Rotating here bakes the orientation into the pixels."
         },
         {
-          "q": "Can I rotate and flip a photo at the same time?",
-          "a": "Yes, the two actions are independent: rotate first and flip after (or the other way around), and undo or repeat either one at any point — the preview always shows the current result."
-        },
-        {
-          "q": "Which photo formats are supported?",
-          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. The result can be saved as JPG, PNG, or WebP."
-        },
-        {
-          "q": "Is there a file size limit?",
-          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+          "q": "Which files can I rotate?",
+          "a": "JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC up to 30 MB. You can save as JPG, PNG or WebP."
         }
       ]
     },
     "addWatermark": {
-      "title": "Why add a watermark to a photo",
-      "text1": "A watermark — a caption or logo laid over a photo — protects original photos from being used without permission while also reminding the viewer where the image came from. Photographers stamp a signature or studio name on a portfolio before posting to social media; marketplace sellers add a logo to product photos so competitors can't copy them; bloggers brand screenshots and video stills with their own mark. A bold caption across the center scares off casual theft entirely, while a subtle mark in a corner or a barely-visible overlay keeps the photo looking clean while still being legally marked.",
-      "text2": "This tool adds a text watermark or your own logo to a photo right in your browser: type a caption or upload an image, pick a position — one of four corners, the center, or a repeating \"tile\" pattern across the whole frame — and adjust size and opacity. The preview updates instantly, so you see the result before downloading. The finished file saves as JPG, PNG, or WebP; nothing gets uploaded to a server or stored anywhere.",
+      "title": "How to add a watermark to a photo",
+      "text1": "A watermark shows who took the photo and makes unauthorized reuse harder. Photographers sign their portfolios, sellers put a logo on product shots, and bloggers brand their screenshots.",
+      "text2": "The watermark can be text or your own logo. Place it in a corner, in the center, or repeat it as a tile across the whole frame. Every change shows up in the preview immediately.",
       "benefits": [
         {
-          "title": "Text or your own logo",
-          "text": "Type a caption or upload an image of your logo — both work with the same position, size, and opacity controls."
+          "title": "Text or logo",
+          "text": "Type a signature or upload a logo file. Position and opacity work the same for both."
         },
         {
-          "title": "One mark or a full tiled pattern",
-          "text": "A single watermark in a corner or center protects less than a repeating tile across the whole photo — a tiled pattern is much harder to crop out."
+          "title": "Tile mode",
+          "text": "The mark repeats across the whole photo, so it can't simply be cropped out."
         },
         {
-          "title": "Live preview",
-          "text": "Every change to text, color, size, opacity, or position shows up instantly in the preview — no guessing how it'll look after downloading."
+          "title": "Size in percent",
+          "text": "The mark scales with the photo and looks the same on small and large images."
         },
         {
-          "title": "Nothing uploaded to a server",
-          "text": "All processing happens right in your browser on your own device; the photo and logo are never sent anywhere or stored on our side."
+          "title": "Your logo stays local",
+          "text": "Both the photo and the logo file are processed in your browser tab."
         }
       ],
       "sections": [
         {
-          "title": "How to add a watermark to a photo",
-          "steps": [
-            "Drag a photo into the upload area, or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF (iPhone photos) are all supported.",
-            "Pick the watermark type — text or image (upload a logo file with its own button).",
-            "Adjust size, color (for text), and opacity — the preview updates instantly.",
-            "Choose a position — one of four corners, the center, or \"Tile\" — and the output format, then click \"Download\"."
-          ]
+          "title": "Text mark or logo",
+          "text": "Text is enough for a name, studio name or website address. You can pick the color and a font size from 2 to 15% of the photo. For a logo, a PNG with a transparent background works best: there's no white box around the mark."
         },
         {
-          "title": "Text watermark or logo",
-          "text": "A text watermark suits cases where a name, caption, or short link is enough — just type the text and pick a color and font size. A logo makes the brand clearer: upload a PNG with a transparent background for the cleanest result (no white box around the mark), or any other format such as a photo or screenshot. Both scale relative to the photo's own size, so they look proportional on both small and large images."
+          "title": "Position: corner, center or tile",
+          "text": "A corner mark barely gets in the way, but it's easy to crop off. The center is more visible. Tile mode protects best because the text covers the whole frame, though it's more noticeable."
         },
         {
-          "title": "Position and tiling",
-          "text": "The five fixed positions — four corners and center — suit a soft, barely-noticeable caption that doesn't get in the way of viewing the photo. \"Tile\" mode repeats the watermark across the whole frame at even intervals — the most reliable protection against theft, since no part of the photo can be cropped away without losing the mark, though it's more noticeable."
-        },
-        {
-          "title": "Opacity and size",
-          "text": "Opacity ranges from 5% (barely visible) to 100% (solid and clearly readable). Font or logo size is calculated as a percentage of the photo's own dimensions, so proportions stay consistent whether you upload an 800×600 shot or a 6000×4000 one."
-        },
-        {
-          "title": "Output formats: JPG, PNG, WebP",
-          "text": "Choose the result format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any; WebP combines a small size with transparency support, though it doesn't open in every older program."
-        },
-        {
-          "title": "Privacy",
-          "text": "The photo and logo are processed entirely in your browser: neither is ever uploaded to a server, stored, or transmitted anywhere, even temporarily. Close the tab and every trace of the work is gone."
+          "title": "Opacity",
+          "text": "The slider sets opacity from 5% to 100%. Around 20–40% the mark is visible without hiding details. At 5% it's barely noticeable but still part of the file."
         }
       ],
       "faq": [
         {
-          "q": "Can I make the watermark nearly invisible?",
-          "a": "Yes, the opacity slider goes down to 5% — the mark stays embedded in the file but is barely noticeable."
+          "q": "How do I make the watermark semi-transparent?",
+          "a": "Lower the opacity with the slider. The minimum is 5%."
         },
         {
-          "q": "Can I use my own logo instead of text?",
-          "a": "Yes, pick the \"Image\" type and upload a logo file — a PNG with a transparent background works best, so there's no white box around the mark."
+          "q": "Why is there a white box around my logo?",
+          "a": "Your logo is probably a JPG without transparency. Use a PNG with a transparent background."
         },
         {
-          "q": "What does \"Tile\" mode do?",
-          "a": "The watermark repeats across the whole photo at even intervals instead of a single caption in one corner — a much stronger deterrent against cropping or retouching the mark out."
+          "q": "Can I watermark several photos at once?",
+          "a": "No, the mark is applied to one photo at a time. For a series, repeat the same settings for each image."
         },
         {
-          "q": "Will adding a watermark reduce photo quality?",
-          "a": "Applying the mark itself doesn't change the rest of the image. Some loss is possible only when saving as JPG or WebP — lossy formats; pick PNG if you need it completely lossless."
-        },
-        {
-          "q": "Which photo formats are supported?",
-          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF, and HEIC/HEIF. The result can be saved as JPG, PNG, or WebP."
-        },
-        {
-          "q": "Is there a file size limit?",
-          "a": "Yes, up to 30 MB per file — plenty for photos from any modern phone or camera."
+          "q": "Which files can I use?",
+          "a": "Photos and logos in JPEG, PNG, WebP, BMP, GIF, AVIF or HEIC, photos up to 30 MB. The result is JPG, PNG or WebP."
         }
       ]
     },
@@ -1446,594 +1263,450 @@
       "title": "About CompressPhoto"
     },
     "blackAndWhite": {
-      "title": "Why convert a photo to black and white online",
-      "text1": "A black and white photo isn't just nostalgia for old prints: the effect strips away color noise and leaves only shape, light and shadow, which often reads as more striking than the color original. Portrait photographers use it to hide uneven skin tone or an off white balance; designers use it to unify a batch of photos shot under different lighting into one consistent style; on documents and résumés, a black and white photo looks restrained and professional. There's a practical reason too: when lighting is mixed (daylight next to a warm lamp), the color version often looks unnatural, while the black and white version looks perfectly natural — even artistic.",
-      "text2": "This tool converts a photo to black and white right in your browser: upload a photo and drag the intensity slider — at 100% the photo becomes fully black and white, and at in-between values the colors stay but are muted, which often looks softer than an abrupt switch. The preview updates instantly with every move of the slider, so you see the result right away. Once you like it, download the file as JPG, PNG or WebP. The photo is never uploaded to a server and isn't stored anywhere.",
+      "title": "Black and white photo online with adjustable strength",
+      "text1": "Without color, a photo is reduced to shape, light and shadow. That is why a black and white version often looks stronger than the original. It also rescues shots with mixed lighting, where daylight and a yellow lamp produce muddy tones.",
+      "text2": "Upload a photo and move the slider from 0 to 100%. The preview follows the slider, so there is no separate “Apply” step. The result is saved as JPG, PNG or WebP with “-bw” added to the file name.",
       "benefits": [
         {
-          "title": "Instant result",
-          "text": "The effect is applied the moment you move the slider — the preview updates in real time, with no separate \"apply\" step or processing wait."
+          "title": "Strength you choose",
+          "text": "The slider is smooth: tone colors down slightly or remove them completely."
         },
         {
-          "title": "Adjustable intensity",
-          "text": "Unlike a simple on/off toggle, a 0-100% slider lets you dial in exactly the right amount of desaturation — from a light color tone-down to a fully black and white photo."
+          "title": "See it as you drag",
+          "text": "The preview redraws while the slider moves, so the right balance is easy to judge by eye."
         },
         {
-          "title": "No loss of pixel detail",
-          "text": "The black and white conversion only recalculates each pixel's color based on its brightness — pixel positions and image detail are untouched."
+          "title": "Detail stays intact",
+          "text": "Only pixel colors change; their position and the sharpness of the image are untouched."
         },
         {
-          "title": "Nothing uploaded to a server",
-          "text": "All processing happens right in your browser, on your own device; the photo is never sent anywhere or stored on the site's side."
+          "title": "The photo stays on your device",
+          "text": "Your browser does the conversion, and the site never receives a copy."
         }
       ],
       "sections": [
         {
-          "title": "How to convert a photo to black and white",
-          "steps": [
-            "Drag a photo into the upload area or click it to choose a file. JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF (iPhone photos) are all supported.",
-            "Drag the intensity slider right to strengthen the effect, or left to keep more color — the preview updates right away.",
-            "Set the slider to 100% for the classic, fully black and white look.",
-            "Pick an output format (JPG, PNG or WebP) and click \"Download\"."
-          ]
+          "title": "Partial desaturation instead of an on/off switch",
+          "text": "At 100% you get a classic black and white photo. At 40–60% colors remain but become calmer. This suits portraits and shots with a loud background, where removing all color takes away too much."
         },
         {
-          "title": "Effect intensity: from partial to full desaturation",
-          "text": "The intensity slider isn't just a color/black-and-white switch: at 100% the photo becomes the classic black and white look, while at in-between values (say, 40-60%) the colors stay visible but muted, which often suits portraits or photos with a busy background better, where removing color entirely throws away too much information. Experiment with the value until the preview shows the balance you want."
+          "title": "How the gray tone is calculated",
+          "text": "Each pixel's brightness uses the standard weights: red 0.299, green 0.587, blue 0.114. Television uses the same coefficients for a monochrome signal. As a result, foliage does not sink into black and the sky does not turn into a white patch."
         },
         {
-          "title": "Output formats: JPG, PNG, WebP",
-          "text": "Choose the output format independently of the source file's format. JPG suits photographs and gives the smallest file size; PNG keeps transparency if the original had any (say, a PNG logo); WebP combines a small size with transparency support, though it doesn't open in every older program."
-        },
-        {
-          "title": "Does black and white conversion lose quality",
-          "text": "Converting to black and white recalculates each pixel's brightness using a standard formula (the same weights TVs and video codecs use for a black and white signal), rather than changing or blending neighboring pixels, so sharpness and detail aren't lost. Some loss is possible only during final encoding to JPG or WebP — lossy formats, same as saving any photo in them; pick PNG if you need zero loss."
-        },
-        {
-          "title": "Privacy",
-          "text": "The photo is processed entirely in your browser: it's never uploaded to a server, never stored, and never sent anywhere, even temporarily. Close the tab and every trace of working with the photo is gone."
+          "title": "When black and white works best",
+          "text": "Portrait photographers use it to hide uneven skin tone or a poor white balance. Designers use it to unify a series shot on different cameras. On a résumé or an official document, a monochrome photo looks restrained."
         }
       ],
       "faq": [
         {
-          "q": "Can I make a photo only partially black and white?",
-          "a": "Yes, that's exactly what the intensity slider is for: at an in-between value (say, 50%) the colors stay, just muted, instead of being removed entirely."
+          "q": "How is this different from sepia?",
+          "a": "This tool produces shades of gray based on brightness. Sepia adds a warm brown tone; you will find it among the film presets."
         },
         {
-          "q": "What's the difference between black and white and a sepia effect?",
-          "a": "This tool does true desaturation (grayscale shades based on brightness), not the warm brown tone of sepia — they're different effects; sepia could become a separate tool in the future."
+          "q": "Will my original file change?",
+          "a": "No. You download a new file with “-bw” in its name, and the original stays as it was."
         },
         {
-          "q": "Will the photo lose quality after converting to black and white?",
-          "a": "No, only each pixel's color changes based on its brightness; pixel positions and detail stay the same. A small loss is possible only when saving as JPG or WebP."
+          "q": "What happens to a transparent PNG?",
+          "a": "PNG and WebP keep the transparency. JPG cannot store it, so empty areas become white."
         },
         {
-          "q": "Which photo formats are supported?",
-          "a": "On input: JPEG, PNG, WebP, BMP, GIF, AVIF and HEIC/HEIF. The result can be saved as JPG, PNG or WebP."
-        },
-        {
-          "q": "Is there a file size limit?",
-          "a": "Yes, up to 30MB per file — plenty for photos from any modern phone or camera."
-        },
-        {
-          "q": "Is the photo stored on a server?",
-          "a": "No, everything happens in your browser; the photo is never sent to or stored on the site's server."
+          "q": "Can I convert an iPhone photo in HEIC?",
+          "a": "Yes. HEIC opens just like JPEG, PNG, WebP, BMP, GIF or AVIF."
         }
       ]
     },
     "circleCrop": {
-      "title": "Circle Crop Photo Online: Avatar, Logo, Round Picture",
-      "text1": "Circle crop turns any straight photo into a perfect circle — exactly the shape social media avatars, messenger profile pictures, and round logos need. The tool runs right in your browser: upload a photo, drag the selection frame over the face or object you want, and download the result with a single click.",
-      "text2": "Unlike regular rectangular cropping, the frame here always stays a perfect circle no matter what aspect ratio the original photo has. You can export the result as PNG or WebP with a transparent background around the circle (so it sits cleanly on any site or app background), or as JPG with a white backdrop if transparency isn't needed.",
+      "title": "Circle crop for profile pictures and logos",
+      "text1": "Social networks and messengers show profile photos as circles. Upload a rectangular picture and the platform crops it for you, often cutting off part of a face or a logo. Cropping the circle yourself means the frame contains exactly what you want.",
+      "text2": "The frame here always stays a circle, whatever the proportions of the original. Move it over a face or an object and resize it with the corner handles. The result is saved as PNG, WebP or JPG.",
       "benefits": [
         {
-          "title": "A perfect circle",
-          "text": "The selection frame always stays an exact circle, never an oval, no matter the original photo's aspect ratio or how you drag it."
+          "title": "A circle, never an oval",
+          "text": "However you drag the handles, the frame keeps its round shape."
         },
         {
-          "title": "Transparent PNG/WebP background",
-          "text": "Everything outside the circle becomes transparent in PNG or WebP — drop the circle onto any background with no white corners around it."
+          "title": "Transparent corners",
+          "text": "In PNG and WebP everything outside the circle is transparent, so the avatar sits on any background."
         },
         {
-          "title": "No quality loss",
-          "text": "Cropping doesn't compress or re-encode the pixels inside the circle — they stay exactly as in the original until you export to your chosen format."
+          "title": "Pixels are not resampled",
+          "text": "The circle's content is copied from the original as is; compression only happens when saving to JPG or WebP."
         },
         {
-          "title": "Everything in the browser",
-          "text": "The photo is processed locally on your browser's canvas — nothing is uploaded to a server, and the file goes nowhere until you click Download yourself."
+          "title": "Works with a finger too",
+          "text": "On a phone you move the frame by touch, just as you would with a mouse."
         }
       ],
       "sections": [
         {
-          "title": "Why you'd want a circle-cropped photo",
-          "text": "A round shape is the standard for social media avatars (Facebook, Instagram, LinkedIn, Telegram, Discord), messenger and video-call profile pictures (Zoom, Google Meet), and round logos or app icons. If you upload a plain rectangular photo as an avatar, the platform will crop it into a circle automatically anyway — often cutting off a face or logo awkwardly. Cropping it into a circle yourself beforehand gives you control over exactly what stays in frame."
+          "title": "Where a round photo is needed",
+          "text": "Avatars on Facebook, Instagram, LinkedIn, Telegram, Discord and WhatsApp. Profile photos for Zoom and Google Meet. Round logos, badges and community icons."
         },
         {
-          "title": "How to circle-crop a photo online",
+          "title": "How to cut out a circle",
           "steps": [
-            "Upload a photo — drag a file into the browser window or pick one from your device.",
-            "A circular frame appears centered on the preview — drag it to the right spot with a finger or your mouse.",
-            "Drag any of the four corner handles to make the circle bigger or smaller — the shape always stays a perfect circle.",
-            "Pick an output format: PNG or WebP for a transparent background around the circle, or JPG if transparency isn't needed.",
-            "Click \"Crop and download\" — the finished file saves to your device right away."
+            "Open a photo — a round frame appears in the center.",
+            "Drag the frame over the area you need and set its size with a corner handle.",
+            "Pick a format and click “Crop and download”."
           ]
         },
         {
-          "title": "PNG with transparency or JPG with white",
-          "text": "PNG and WebP support transparency (an alpha channel) — everything left outside the circle becomes fully transparent, so the circle can sit on a dark, light or colored background without a white square around it. JPG doesn't support transparency, so wherever the background should be transparent it gets filled with white instead — fine if the circle will sit on a white background, or for simple printing."
-        },
-        {
-          "title": "Which platforms a circle crop works for",
-          "text": "Circle cropping suits avatars for Facebook, Instagram, X (Twitter), LinkedIn, Telegram, Discord, Slack and WhatsApp; profile pictures in Zoom, Google Meet and Skype; round app icons on iOS and Android; and company logos that are traditionally round, such as seals, badges and community icons."
-        },
-        {
-          "title": "Privacy and processing speed",
-          "text": "Everything happens locally on your browser's canvas — the photo is never uploaded to any server, and the crop itself takes a fraction of a second even for large photos straight from a phone. Once you close the tab or pick a new photo, the processed image simply disappears from the browser's memory — no copy is kept on compressphoto.org's servers."
+          "title": "PNG or JPG for a round photo",
+          "text": "PNG is the default: the corners outside the circle are transparent and no quality is lost. WebP is transparent too but lighter. JPG has no transparency, so the corners are filled with white — fine for a white background or for print."
         }
       ],
       "faq": [
         {
-          "q": "Is the photo uploaded to a server?",
-          "a": "No. All processing happens locally in your browser on a canvas element — the photo is never sent to compressphoto.org's servers or anyone else's."
+          "q": "Can I crop an oval?",
+          "a": "No, the frame is always round. For a rectangle or custom proportions, use the “Crop image” tool."
         },
         {
-          "q": "Which format should I pick — PNG or JPG?",
-          "a": "PNG or WebP if you need a transparent background around the circle (usually the right choice for avatars and logos). JPG if the background should be white or file size matters for printing."
+          "q": "Why crop it myself if the network shows a circle anyway?",
+          "a": "You decide what ends up in the center. Transparent corners also matter for a logo on a website or in a presentation."
         },
         {
-          "q": "Can I crop into an oval instead of a circle?",
-          "a": "No, the frame always stays a perfect circle. If you need a freeform or rectangular shape, use the regular Crop Image tool instead."
+          "q": "Can anyone see my photo?",
+          "a": "No. The browser crops it on a canvas, and the file is not sent to a server."
         },
         {
-          "q": "Does this work on a phone?",
-          "a": "Yes, dragging the frame and corner handles supports touch exactly like a mouse — everything works in a mobile browser with no app to install."
-        },
-        {
-          "q": "What's the maximum photo resolution it can handle?",
-          "a": "The limit comes from the browser itself (typically up to around 16,000 pixels per side) — more than enough for photos from modern phones and cameras."
-        },
-        {
-          "q": "Is it free and registration-free?",
-          "a": "Yes, the tool is completely free, requires no sign-up, and has no limit on how many photos you can crop."
+          "q": "What will the finished file be called?",
+          "a": "“-circle” is added to the original name, for example photo-circle.png."
         }
       ]
     },
     "compressVideo": {
-      "title": "Compress Video Online: MP4, MOV, AVI, WebM and MKV Without Losing Watchability",
-      "text1": "Video from a modern phone or camera can easily weigh hundreds of megabytes after just a few seconds of recording — sending a file like that over messaging apps, attaching it to an email, or uploading it to a website quickly becomes a problem. Platforms either compress it themselves with their own algorithm (and often hurt the quality in the process), or simply refuse the file outright. This tool shrinks video size right online, keeping quality good enough for everyday viewing rather than professional editing.",
-      "text2": "There are two modes: \"Recommended\" — one click, and we pick a sensible resolution for you (usually capped at 720p, which noticeably shrinks the file without hurting clarity on a typical screen), or \"Custom size\" — choose a specific frame height (1080p, 720p, 480p or 360p) yourself if you know exactly which platform the file is headed to. The tool never lets you shrink a video below its own resolution — upscaling would only make the file bigger with no real benefit.",
+      "title": "How to compress a video online without ruining the picture",
+      "text1": "A phone video can easily weigh hundreds of megabytes. Messengers and email either reject a file like that or squeeze it themselves, often badly. Here you shrink it in advance and decide how far to go.",
+      "text2": "“Recommended” scales the frame down to 720p when the original is larger, which is enough for messengers and social media. With “Custom size” you enter the file size you want in megabytes, and the resolution is chosen to match. The output is always MP4 with H.264.",
       "benefits": [
         {
-          "title": "Noticeably smaller files",
-          "text": "Reducing the frame resolution is the most reliable way to meaningfully shrink a video, regardless of the codec or bitrate it was originally recorded with."
+          "title": "Target size in MB",
+          "text": "Know the platform's upload limit? Type it in and the tool works out the resolution needed."
         },
         {
-          "title": "Recommended or custom",
-          "text": "One click for the typical case (\"Recommended\"), or full control over the result — 1080p, 720p, 480p or 360p, depending on where the file is headed."
+          "title": "Settings per file",
+          "text": "Add up to 5 videos and pick a mode for each one. A target larger than the file is flagged right away."
         },
         {
-          "title": "Up to 200MB per file",
-          "text": "The upload goes straight to the processing service, so even large files from a phone or camera don't hit typical web-form upload limits."
+          "title": "No upscaling",
+          "text": "Resolution is never increased, since that would only bloat the file without adding detail."
         },
         {
-          "title": "No software to install",
-          "text": "Everything happens in a browser tab — no desktop converter or mobile app to install."
+          "title": "MP4, MOV, AVI, WebM, MKV",
+          "text": "Common formats from phones, cameras and screen recorders are accepted, up to 200 MB each."
         }
       ],
       "sections": [
         {
-          "title": "Why compress a video before sending it",
-          "text": "Most messaging apps (WhatsApp, Telegram, Viber) and email providers cap how large an attachment can be — and if a video goes over that limit, either sending simply won't start, or the platform compresses it automatically with its own algorithm, often with a noticeable quality drop or even a format change. By compressing the video yourself first, you control exactly what resolution and quality the recipient gets, and you can be confident the file will go through on the first try."
+          "title": "Why the size in MB is approximate",
+          "text": "The tool doesn't control bitrate directly. It estimates which resolution to request so the file lands near your target. Fast-moving scenes compress worse than static ones, so the result can differ a little. You see both the target and the actual size under the file."
         },
         {
-          "title": "How to compress a video online, step by step",
-          "steps": [
-            "Upload the video file — drag it into the browser window or pick it from your device (up to 200MB, MP4, MOV, AVI, WebM or MKV).",
-            "Choose a mode: \"Recommended\" for a typical result in one click, or \"Custom size\" to set the resolution yourself.",
-            "Start the process — the file uploads to the processing server, and you'll see progress for both the upload and the compression.",
-            "Once compression finishes, download the finished MP4 file to your device with one click."
-          ]
+          "title": "What happens to quality",
+          "text": "Most of the saving comes from fewer pixels per frame. The aspect ratio is kept, so nothing gets stretched. On a phone screen 720p looks clean, but for professional editing keep working from the original."
         },
         {
-          "title": "What actually happens during compression",
-          "text": "The tool re-encodes the video into MP4 with the H.264 codec — the most widely supported format, playable on virtually any phone, browser or platform without extra codecs. If a target resolution smaller than the original is set, the frame is scaled down proportionally (no distortion), and a new bitrate is chosen automatically to match that resolution — it's this reduction in pixel count that drives most of the size savings."
-        },
-        {
-          "title": "Supported formats and limits",
-          "text": "Accepted input formats are MP4, MOV (QuickTime), AVI, WebM and MKV — the most common formats from phones, cameras and screen recordings. The maximum size for a single file is 200MB, and the number of free compressions per day is limited (higher for signed-up users). These are deliberate business limits tied to how long a single video takes to process on the server, not an arbitrary technical restriction — for the vast majority of short clips (a few minutes or less) this is more than enough."
-        },
-        {
-          "title": "Privacy: what happens to your file",
-          "text": "Unlike the photo-editing tools on this site, which run entirely locally on the browser's canvas, video compression requires real server-side processing — that amount of computation simply can't be done by the browser alone. The file is temporarily uploaded to a processing service for conversion only, the result is handed back to you, and neither the original nor the compressed file is stored on compressphoto.org's own servers — the processing service deletes its copy once the job finishes."
+          "title": "Where the video is processed",
+          "text": "Unlike the photo editors on this site, video isn't re-encoded in your browser. A browser can't handle that much work, so a processing service does it. The file goes there only for the job. compressphoto.org doesn't keep it, and the service deletes it afterwards."
         }
       ],
       "faq": [
         {
-          "q": "Does the video get uploaded to a server?",
-          "a": "Yes — unlike this site's photo editors, video compression requires real computation that a browser can't perform on its own. The file is sent to a processing service purely for conversion and isn't kept once the job is done."
+          "q": "What if I enter a size larger than the file itself?",
+          "a": "The “Compress” button stays disabled and a note explains why. The target has to be smaller than the original."
         },
         {
-          "q": "Which video formats are supported?",
-          "a": "Input: MP4, MOV, AVI, WebM, MKV. Output is always MP4 with the H.264 codec — the most widely supported choice for playback on any device."
+          "q": "Is the sound kept?",
+          "a": "Yes. Only the video track is changed; the audio stays as it was."
         },
         {
-          "q": "What's the difference between \"Recommended\" and \"Custom size\"?",
-          "a": "\"Recommended\" automatically picks a resolution (usually up to 720p) with no extra steps. \"Custom size\" lets you explicitly choose 1080p, 720p, 480p or 360p if you know exactly which platform the file is for."
+          "q": "What format will I get back?",
+          "a": "Always MP4 with H.264, which plays on virtually any phone, browser or player."
         },
         {
-          "q": "Can I upscale a video's resolution?",
-          "a": "No. If the resolution you pick is larger than the original, the tool simply leaves the original resolution unchanged — upscaling adds no real detail, it only makes the file bigger."
+          "q": "Why does a video take longer than a photo?",
+          "a": "Re-encoding video is heavy work, and the upload adds time on top. A large clip can take a minute or more."
         },
         {
-          "q": "What's the maximum size and how many free compressions do I get per day?",
-          "a": "Up to 200MB per file. The number of free compressions per day is limited; signed-up users get a higher daily limit than guests."
-        },
-        {
-          "q": "Why does video compression take longer than photo compression?",
-          "a": "Video is processed on a server rather than in the browser, and re-encoding is far more computationally heavy than handling a single image — for longer or larger files, it can take a minute or more."
+          "q": "How many compressions per day are free?",
+          "a": "There is a daily limit. Registered users get a higher one than guests."
         }
       ]
     },
     "convertMovToMp4": {
-      "title": "Convert MOV to MP4 Online: iPhone Video Without Compatibility Headaches",
-      "text1": "MOV (QuickTime) is the default recording format on iPhones, iPads and Apple cameras, but outside the Apple ecosystem it causes trouble: some Windows Media Player versions can't open MOV without extra codecs, many Android or older desktop video editors reject it outright, and upload forms, websites or certain messaging apps sometimes refuse MOV files or silently re-compress them with their own algorithm. MP4 is the most widely supported video container in the world, opening without issue on any device, browser or editing program.",
-      "text2": "The tool re-encodes the video stream into H.264 inside an MP4 container — that exact combination is what guarantees near-universal compatibility. If the source iPhone video was already recorded in H.264 (the typical setting on older camera configurations), the change happens mostly at the container level with minimal impact on quality; if it was recorded in the newer HEVC (H.265, the \"High Efficiency\" setting on iPhone cameras), a real re-encode takes place — either way the result stays visually solid and ready for viewing and further editing.",
+      "title": "MOV to MP4: iPhone videos that open anywhere",
+      "text1": "iPhones, iPads and Apple cameras record video as MOV (QuickTime). Outside Apple's world such files sometimes refuse to open. Older Windows Media Player asks for codecs, some Android editors can't see them, and upload forms on websites turn them down.",
+      "text2": "This MOV to MP4 converter re-encodes the video to H.264, the combination nearly everything can play. How much the file changes depends on your camera settings. A clip already in H.264 is mostly just repackaged. Video shot in “High Efficiency” (HEVC, H.265) is fully re-encoded.",
       "benefits": [
         {
-          "title": "Opens anywhere",
-          "text": "MP4 with H.264 is the format every phone, browser, smart TV and practically every video editor accepts without extra codecs."
+          "title": "iPhone HEVC works too",
+          "text": "“High Efficiency” clips become H.264 and open on devices that don't support HEVC."
         },
         {
-          "title": "Up to 200MB per file",
-          "text": "Upload goes straight to the processing service, so even multi-minute camera videos don't hit typical web-form limits."
+          "title": "Minimal change for H.264",
+          "text": "If the MOV is already H.264, mostly the container changes and quality barely moves."
         },
         {
-          "title": "Nothing to install",
-          "text": "Everything happens in a browser tab — no desktop converter or mobile app required."
+          "title": "Several clips at once",
+          "text": "Add up to 5 files from your gallery, each up to 200 MB."
         },
         {
-          "title": "Honest about re-encoding",
-          "text": "If the source codec is already H.264, changes are minimal; if it's HEVC, the video is genuinely re-encoded, and the page doesn't hide that."
+          "title": "Resolution untouched",
+          "text": "The frame keeps its size. To make the file smaller, use “Compress video”."
         }
       ],
       "sections": [
         {
-          "title": "Why MOV doesn't always open where you need it to",
-          "text": "MOV is Apple's own container, and while modern Windows and most current apps have learned to open it, edge cases remain: older Windows Media Player versions, some Android editing apps, corporate upload systems, or even certain messaging apps can reject MOV or throw a format error. Converting to MP4 upfront removes that uncertainty no matter where the file ends up."
+          "title": "Where MOV usually gets rejected",
+          "text": "Modern Macs and Windows open MOV; the trouble is everything around them. Corporate upload systems, some messengers and older editing apps can throw a format error. MP4 is accepted almost everywhere, so converting first settles the question wherever the file goes next."
         },
         {
-          "title": "How to convert MOV to MP4 online: step by step",
-          "steps": [
-            "Upload your .mov file — drag it into the browser window or pick it from your device (up to 200MB).",
-            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
-            "Once conversion finishes, download the ready MP4 file to your device with one click."
-          ]
-        },
-        {
-          "title": "What actually happens during conversion",
-          "text": "The tool re-encodes the video stream to H.264 inside an MP4 container. If the source is already H.264, the change happens mostly at the packaging level (minimal quality impact); if the source uses HEVC/H.265, a genuine video re-encode takes place — deliberately, not as a hidden drawback: it's the only way to guarantee the file opens on devices that don't support HEVC."
+          "title": "Will quality drop?",
+          "text": "For H.264 the difference is minimal. HEVC is fully re-encoded, otherwise the file wouldn't open on devices without that codec. The picture stays good, but it isn't a bit-for-bit copy."
         },
         {
           "title": "Limits",
-          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). These are deliberate limits tied to server-side processing time per video."
-        },
-        {
-          "title": "Privacy: what happens to your file",
-          "text": "Conversion requires real server-side processing that a browser can't perform on its own. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+          "text": "Up to 200 MB per file. Free conversions per day are limited, and registered users get more."
         }
       ],
       "faq": [
         {
-          "q": "Does the video get uploaded to a server?",
-          "a": "Yes — format conversion requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+          "q": "Where does my iPhone video go?",
+          "a": "To a processing service, because a browser can't re-encode a video stream on its own. The file is sent there only for the conversion and deleted afterwards; compressphoto.org doesn't store it."
         },
         {
-          "q": "Will the video quality change?",
-          "a": "If the source video is already H.264 (typical for iPhone), the change is minimal. If it's HEVC/H.265, a genuine re-encode happens — the result stays visually solid, but it isn't a bit-for-bit copy of the original."
+          "q": "Is the audio kept?",
+          "a": "Yes, only the video stream and the container change."
         },
         {
-          "q": "How is this different from \"Compress Video\"?",
-          "a": "\"Compress Video\" lowers the resolution to meaningfully shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the frame resolution."
+          "q": "How is this different from “Compress video”?",
+          "a": "Compression lowers the resolution to cut the file size. This page only switches the format to MP4 with H.264 and leaves the frame size alone."
         },
         {
-          "q": "Can I upload a different format instead of MOV?",
-          "a": "This page only accepts .mov files — there are separate conversion pages for MKV and WebM, and \"Compress Video\" accepts any of 5 formats at once with compression."
-        },
-        {
-          "q": "What's the max size and how many free conversions per day?",
-          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+          "q": "Can I upload MKV or WebM here?",
+          "a": "No, this page takes .mov files only. MKV and WebM have their own converters, and “Compress video” accepts five formats."
         }
       ]
     },
     "convertMkvToMp4": {
-      "title": "Convert MKV to MP4 Online: Compatible Video for Phones, TVs and Any Player",
-      "text1": "MKV (Matroska) is an open container popular for movie rips, recordings with multiple audio tracks or subtitles, and torrent downloads — but that very flexibility is the problem: MKV can hold almost any combination of video and audio codecs, and not every device can decode all of them. Many smart TVs, older game consoles, iPhones/iPads and even some modern video editors simply won't open MKV, or they show a black screen with no picture.",
-      "text2": "MP4 with H.264 is the most widely supported combination, guaranteed to open on the vast majority of devices. The tool re-encodes the MKV video stream (often HEVC, VP9 or an older codec) to H.264 inside an MP4 container, keeping the audio and the main video track so the result stays visually solid and fully compatible.",
+      "title": "MKV to MP4: so your TV and phone can play the movie",
+      "text1": "MKV (Matroska) is an open container used for movie rips and recordings with several audio tracks or subtitles. That flexibility is exactly why smart TVs, iPhones, game consoles and some editors refuse MKV or show a black screen.",
+      "text2": "This MKV to MP4 converter re-encodes the video to H.264 and carries over the main audio track. MP4 with H.264 plays on almost every player and TV, whatever codec the original used.",
       "benefits": [
         {
-          "title": "Guaranteed compatibility",
-          "text": "MP4 with H.264 opens on smart TVs, phones, game consoles and any player — regardless of which codec the original MKV used."
+          "title": "Any codec inside",
+          "text": "HEVC, VP9 or old DivX/Xvid — the output is always H.264."
         },
         {
-          "title": "Up to 200MB per file",
-          "text": "Upload goes straight to the processing service, so even large files with multiple audio tracks don't hit typical web-form limits."
+          "title": "Main audio stays",
+          "text": "The primary audio track moves into the MP4 along with the video."
         },
         {
-          "title": "Nothing to install",
-          "text": "Everything happens in a browser tab — no desktop converter or codec pack required."
+          "title": "For TVs, consoles and editing",
+          "text": "The result opens where the MKV gave a format error."
         },
         {
-          "title": "Video and main audio preserved",
-          "text": "Only what's needed for compatibility gets re-encoded — the main video track and audio stay intact."
+          "title": "A few episodes at once",
+          "text": "Add up to 5 files, each up to 200 MB."
         }
       ],
       "sections": [
         {
-          "title": "Why MKV won't open on a smart TV or phone",
-          "text": "MKV is an \"envelope\" container that can carry very different codecs inside: HEVC/H.265, VP9, older DivX/Xvid for video, DTS/AC3/FLAC for audio. A device needs to support EVERY one of those codecs to play the file — and if even one isn't supported, the result is a playback error or a black, silent screen. MP4/H.264 removes that uncertainty: it's a combination almost everything supports."
+          "title": "Why an MKV shows a black screen",
+          "text": "MKV is just an envelope. The video inside may be HEVC, VP9 or DivX/Xvid, and the sound DTS, AC3 or FLAC. A device has to support every one of those codecs. If even one is missing, you lose the picture or the sound."
         },
         {
-          "title": "How to convert MKV to MP4 online: step by step",
-          "steps": [
-            "Upload your .mkv file — drag it into the browser window or pick it from your device (up to 200MB).",
-            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
-            "Once conversion finishes, download the ready MP4 file to your device with one click."
-          ]
+          "title": "What doesn't carry over",
+          "text": "The output gets the main audio track. Extra tracks and subtitles embedded in the MKV aren't moved to MP4 automatically. If you need a different dub, check the file after converting."
         },
         {
-          "title": "What actually happens during conversion",
-          "text": "The tool re-encodes the video stream to H.264 inside an MP4 container. Since MKV often uses codecs MP4 doesn't natively support (HEVC, VP9), this is always a genuine video re-encode rather than simple repackaging — the result stays visually solid, though it isn't a bit-for-bit copy of the original."
-        },
-        {
-          "title": "Limits",
-          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). If the MKV contains multiple audio tracks or subtitles, only the main audio track carries over — MKV-specific subtitle tracks don't transfer to MP4 automatically."
-        },
-        {
-          "title": "Privacy: what happens to your file",
-          "text": "Conversion requires real server-side processing that a browser can't perform on its own, especially when re-encoding between codecs. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+          "title": "Re-encoding and limits",
+          "text": "MKV almost always holds codecs MP4 can't take directly, so the video is fully re-encoded. Quality stays good, though it isn't an exact copy. A processing service does the work and deletes the file afterwards. The limit is 200 MB per file."
         }
       ],
       "faq": [
         {
-          "q": "Why won't my MKV open on a smart TV or phone?",
-          "a": "MKV can carry codecs (HEVC, VP9, etc.) not every device can decode. Converting to MP4/H.264 fixes this — that combination is supported by almost any device."
+          "q": "Why won't my MKV play on the TV?",
+          "a": "Most likely the TV doesn't support a codec inside the file, such as HEVC or VP9. After conversion to MP4 with H.264 the problem goes away."
         },
         {
-          "q": "Does the video get uploaded to a server?",
-          "a": "Yes — re-encoding a video requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+          "q": "Can I shrink the file at the same time?",
+          "a": "No, this tool leaves the resolution alone because its job is compatibility. To get a lighter file, use “Compress video”."
         },
         {
-          "q": "Will all audio tracks and subtitles from the MKV be kept?",
-          "a": "The main audio track carries over into the result. MKV-specific subtitle tracks don't transfer to MP4 automatically."
+          "q": "Can I convert several episodes at once?",
+          "a": "Yes, up to 5 files per batch. Each one must be 200 MB or less."
         },
         {
-          "q": "How is this different from \"Compress Video\"?",
-          "a": "\"Compress Video\" lowers the frame resolution to shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the resolution."
-        },
-        {
-          "q": "What's the max size and how many free conversions per day?",
-          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+          "q": "How many free conversions do I get per day?",
+          "a": "The daily number is limited. Registered users have a higher limit than guests."
         }
       ]
     },
     "convertWebmToMp4": {
-      "title": "Convert WebM to MP4 Online: Screen and Browser Recordings in a Compatible Format",
-      "text1": "WebM is an open, royalty-free format built on VP8/VP9 codecs, widely used by browser-based screen recorders, webcam capture tools, screencast apps and some messaging platforms. The trouble starts when that file needs to go into a presentation, open in a classic desktop video editor (iMovie, older Premiere or Vegas versions) or upload to a platform that doesn't support WebM — many of those simply don't know what to do with VP8/VP9.",
-      "text2": "MP4 with H.264 is supported almost everywhere: in presentation software (PowerPoint, Keynote), in most video editors, and on every platform. The tool re-encodes the WebM video stream to H.264 inside an MP4 container, keeping audio and picture visually solid, though without claiming a bit-for-bit match with the original.",
+      "title": "WebM to MP4: screen recordings for slides and editors",
+      "text1": "WebM, built on the VP8/VP9 codecs, is a format made for the web. Browser screen recorders, webcams and screencast services save clips in it. The trouble starts when you need the recording in PowerPoint or Keynote, or in iMovie, an older Premiere or Vegas.",
+      "text2": "Those apps expect H.264 and simply don't recognize VP8/VP9. This WebM to MP4 converter re-encodes the video to H.264 and keeps the sound. After that, presentations, editors and platforms without WebM support accept the file.",
       "benefits": [
         {
-          "title": "Works in presentations and editors",
-          "text": "MP4/H.264 is the format PowerPoint, Keynote and the vast majority of editing software accept, unlike WebM."
+          "title": "Drops into presentations",
+          "text": "PowerPoint and Keynote take MP4 with H.264 without extra codecs."
         },
         {
-          "title": "Up to 200MB per file",
-          "text": "Upload goes straight to the processing service, so even long screen recordings don't hit typical web-form limits."
+          "title": "Ready for editing",
+          "text": "Open the screen recording straight away in a classic video editor."
         },
         {
-          "title": "Nothing to install",
-          "text": "Everything happens in a browser tab — no desktop converter required."
+          "title": "Long recordings up to 200 MB",
+          "text": "A screencast several minutes long usually fits within that limit."
         },
         {
-          "title": "Quality kept as high as possible",
-          "text": "Re-encoding happens only for codec compatibility — picture and sound stay visually solid."
+          "title": "Audio track preserved",
+          "text": "Only the video is re-encoded; voice and music stay."
         }
       ],
       "sections": [
         {
-          "title": "Why WebM won't open in a presentation or older editor",
-          "text": "WebM was built specifically for the web (on VP8/VP9 codecs), and while modern browsers handle it beautifully, software outside the browser — desktop presentation apps, some video editors, older devices — is often built only for H.264/MP4 and simply doesn't recognize VP8/VP9. Converting to MP4 fixes this in one step."
+          "title": "Why WebM won't open outside the browser",
+          "text": "Browsers handle WebM well because it was designed for the web. Desktop apps and older devices often know only H.264/MP4. To them VP8/VP9 is an unknown codec, so the file won't open."
         },
         {
-          "title": "How to convert WebM to MP4 online: step by step",
-          "steps": [
-            "Upload your .webm file — drag it into the browser window or pick it from your device (up to 200MB).",
-            "Click to start — the file uploads to the processing service, and you'll see upload and conversion progress.",
-            "Once conversion finishes, download the ready MP4 file to your device with one click."
-          ]
-        },
-        {
-          "title": "What actually happens during conversion",
-          "text": "The tool re-encodes the video stream from VP8/VP9 to H.264 inside an MP4 container — this is always a genuine re-encode (VP8/VP9 and H.264 are fundamentally different codecs, so simple repackaging isn't possible), so the result stays visually solid but isn't a bit-for-bit copy of the original."
+          "title": "Quality after re-encoding",
+          "text": "VP8/VP9 and H.264 are fundamentally different codecs, so simple repackaging isn't possible. The video is fully re-encoded: it still looks good but isn't identical to the original."
         },
         {
           "title": "Limits",
-          "text": "Maximum file size is 200MB, and the number of free conversions per day is limited (higher for registered users). For long, high-resolution screen recordings, it's worth keeping that limit in mind beforehand."
-        },
-        {
-          "title": "Privacy: what happens to your file",
-          "text": "Conversion requires real server-side processing that a browser can't perform on its own when re-encoding from VP8/VP9 to H.264. The file is temporarily uploaded to the processing service only for conversion, the result is returned to you, and neither the source nor the converted file is stored on the compressphoto.org server — the processing service deletes both once the job finishes."
+          "text": "For high-resolution screen recordings, keep the 200 MB limit in mind before you start. Free conversions per day are limited, and signing up gives you more."
         }
       ],
       "faq": [
         {
-          "q": "Why won't WebM open in PowerPoint or Keynote?",
-          "a": "Those apps are built for H.264/MP4 and don't recognize the VP8/VP9 codecs WebM is based on. Converting to MP4 fixes it."
+          "q": "Why won't PowerPoint insert my WebM?",
+          "a": "PowerPoint and Keynote don't recognize VP8/VP9, the codecs WebM is built on. The converted MP4 inserts without trouble."
         },
         {
-          "q": "Does the video get uploaded to a server?",
-          "a": "Yes — re-encoding from VP8/VP9 to H.264 requires real processing a browser can't do on its own. The file goes to the processing service only for conversion and isn't kept after the job finishes."
+          "q": "Will my recording stay on a server?",
+          "a": "No. A processing service does the re-encoding, since a browser can't. The recording is there only during conversion and is deleted afterwards; compressphoto.org doesn't keep it."
         },
         {
-          "q": "Will the video quality change?",
-          "a": "VP8/VP9 and H.264 are different codecs, so re-encoding is always genuine (not simple repackaging). The result stays visually solid, but it isn't a bit-for-bit copy of the original."
+          "q": "Does the resolution change?",
+          "a": "No, the frame size stays the same. If you need a lighter file, the “Compress video” tool lowers the resolution."
         },
         {
-          "q": "How is this different from \"Compress Video\"?",
-          "a": "\"Compress Video\" lowers the frame resolution to shrink file size. This tool only changes the format (container and codec) to MP4/H.264, without touching the resolution."
-        },
-        {
-          "q": "What's the max size and how many free conversions per day?",
-          "a": "Up to 200MB per file. The number of free conversions per day is limited; registered users get a higher daily limit than guests."
+          "q": "Can I convert several recordings at once?",
+          "a": "Yes, up to 5 files per batch, each up to 200 MB."
         }
       ]
     },
     "videoToMp3": {
-      "title": "Video to MP3 Online: Get the Audio From Any Video in a Minute",
-      "text1": "Often all you need from a video is the sound: a song from a music video, a recorded lecture or webinar, a podcast you'd rather listen to with the screen off, a voice message saved as video. A video file is too big and awkward for that — an MP3 takes a fraction of the space, plays in any player, on a phone, in the car or on an old MP3 player, and is easy to send or upload to a podcast app.",
-      "text2": "The tool takes the first audio track from your video and encodes it to MP3 at the bitrate you choose: 128, 192 or 320 kbps. Processing happens right in your browser tab with FFmpeg — the same engine professional video editors use. The video is never uploaded to a server, so there are no queues, no daily limits and no risk of your recording ending up with strangers.",
+      "title": "Video to MP3 online: keep just the audio",
+      "text1": "Sometimes you only need the sound from a video. It might be a song from a music video, a recorded lecture or a podcast for your walk. An MP3 is many times smaller than the video and plays anywhere, from your phone to your car stereo.",
+      "text2": "The tool takes the first audio track and encodes it to MP3 at 128, 192 or 320 kbps. The work is done by FFmpeg, which your browser loads from our domain as a WebAssembly module. The video itself stays on your computer or phone.",
       "benefits": [
         {
-          "title": "Your file stays on your device",
-          "text": "The video is processed in your browser. We never see the file and never store it, not even for a moment."
+          "title": "No daily limits",
+          "text": "Your device does the converting, not our server. So there is no queue and no cap on files per day."
         },
         {
-          "title": "No limits, no sign-up",
-          "text": "As many files a day as you like, up to 10 at a time and up to 1000 MB each — because your device does the work, not our server."
+          "title": "Up to 10 files at once",
+          "text": "Each up to 1000 MB. Several finished MP3s download together as one ZIP."
         },
         {
           "title": "Three quality levels",
-          "text": "128 kbps for speech, 192 for most videos, 320 for music. Your choice is remembered for your next visit."
+          "text": "128, 192 or 320 kbps. The site remembers your choice for next time."
         },
         {
-          "title": "Works on phones too",
-          "text": "Open the page on an iPhone or Android, pick a video from your gallery and save the MP3 — no app to install."
+          "title": "Works on phones",
+          "text": "Pick a video from your iPhone or Android gallery and save the MP3 without installing an app."
         }
       ],
       "sections": [
         {
-          "title": "How to extract audio from a video as MP3",
-          "steps": [
-            "Choose the MP3 quality above the upload area: 128, 192 or 320 kbps.",
-            "Drag your video into the window or click to pick a file (MP4, MOV, WebM, MKV, AVI, 3GP).",
-            "The first time, your browser downloads the processing engine once; after that it comes from the cache.",
-            "Wait for the conversion to finish — progress is shown for each file.",
-            "Click \"Download MP3\". Several files can be downloaded as one ZIP."
-          ]
+          "title": "Which bitrate to pick",
+          "text": "Bitrate is how much data goes into each second of sound. 128 kbps is about 1 MB per minute and is plenty for speech. 192 kbps (about 1.4 MB per minute) suits music and most videos. 320 kbps (about 2.4 MB per minute) is the MP3 maximum and makes sense for good headphones. A higher bitrate cannot make the sound better than it was in the video."
         },
         {
-          "title": "Which bitrate to choose",
-          "text": "Bitrate is how much data goes into each second of sound. 128 kbps gives the smallest file (about 1 MB per minute) and is perfectly fine for speech: lectures, interviews, podcasts. 192 kbps (about 1.4 MB per minute) is a sensible choice for music and most videos. 320 kbps (about 2.4 MB per minute) is the maximum for MP3 and makes sense for music you'll listen to on good headphones. Keep in mind that a higher bitrate can't make the sound better than it was in the video — the result can't beat the original."
-        },
-        {
-          "title": "What happens to your file",
-          "text": "Nothing is uploaded. The page loads the FFmpeg engine as a WebAssembly module from our own domain, and from then on all the work happens in your browser: it reads the video from disk in chunks, extracts the audio track and encodes it as MP3. Once you close the tab, nothing is left in memory. That's why there's no conversion limit here, unlike server-based tools."
-        },
-        {
-          "title": "Limitations worth knowing",
-          "text": "Speed depends on your device: on a modern computer the audio from a few-minute video is usually ready in seconds, while an older phone takes longer. The first audio track is used, so if a video has several language tracks, the main one is saved. A video without sound can't be converted — the tool will tell you so. The maximum size of one file is 1000 MB."
+          "title": "Limitations",
+          "text": "Speed depends on your device, so an old phone takes noticeably longer than a laptop. Only the first audio track is kept, which means a multi-language film gives you the main language. If the video has no sound, the tool tells you."
         },
         {
           "title": "When you only need part of it",
-          "text": "If you only want one song or quote from a long video, cut that part out first with Trim Video, then save its audio as MP3. Both tools run in your browser, so the file never leaves your device."
+          "text": "To save one song or quote from a long recording, cut it out first with “Trim Video”. Then turn that clip into an MP3 here."
         }
       ],
       "faq": [
         {
-          "q": "Is my video uploaded to a server?",
-          "a": "No. The conversion runs in your browser using FFmpeg (WebAssembly). Only the processing engine is downloaded from our server; your file isn't sent anywhere."
+          "q": "Which video formats work?",
+          "a": "MP4, MOV (including iPhone videos), WebM, MKV, AVI, M4V and 3GP. The file needs to contain an audio track."
         },
         {
-          "q": "Which video formats are supported?",
-          "a": "MP4, MOV (including iPhone videos), WebM, MKV, AVI, M4V and 3GP. The file just needs to have an audio track."
+          "q": "Why is the first conversion slower?",
+          "a": "Your browser downloads the processing engine once, about 30 MB. After that it comes from the cache and new files start right away."
         },
         {
-          "q": "Why does the first run take longer?",
-          "a": "The first time, your browser downloads the processing engine (about 30 MB). It's cached, so later conversions start right away."
-        },
-        {
-          "q": "Is there a limit on the number of files?",
-          "a": "There's no daily limit. You can add up to 10 videos at a time, up to 1000 MB each."
+          "q": "Does my video reach your server?",
+          "a": "No. Only FFmpeg is downloaded from us. Your browser reads the file from disk in chunks and processes it locally."
         },
         {
           "q": "Can I get lossless audio instead of MP3?",
-          "a": "For now the tool saves MP3 only, the most compatible format. MP3 is lossy, but at 192–320 kbps the difference from the original is hard to hear."
+          "a": "Not yet. MP3 is the only output because every device opens it. At 192–320 kbps the difference from the original is hard to hear."
         }
       ]
     },
     "trimVideo": {
-      "title": "Trim Video Online: Cut a Clip Without Losing Quality",
-      "text1": "Most of the time a video doesn't need compressing, just shortening: drop the dead time at the start and end, cut a moment for a story, send a colleague only the minutes of a meeting recording that matter. A short clip is lighter, more likely to be watched, and easier to fit within messenger and email limits.",
-      "text2": "The tool shows a preview, lets you set the start and end with sliders, \"Start here / End here\" buttons or exact times, and saves the clip. In fast mode the video isn't re-encoded — the data is simply copied from the original, so quality stays the same and trimming takes seconds even for large files. Everything happens in your browser; the file isn't uploaded to a server.",
+      "title": "Trim video online: keep only the part you need",
+      "text1": "Often a video does not need compressing, just shortening. Cut the dead time at both ends, grab a moment for a story, or send a colleague a few minutes of a meeting. A short clip also gets past messenger and email size limits more easily.",
+      "text2": "Set the start and end with sliders, with the “Start here / End here” buttons or by typing exact times. You can preview the clip before saving. Trimming runs in your browser tab, and the file is not uploaded anywhere.",
       "benefits": [
         {
-          "title": "No quality loss",
-          "text": "Fast mode copies the video and audio as they are, with no re-encoding: no blur and no artifacts."
-        },
-        {
-          "title": "Private",
-          "text": "The video is processed on your device and never reaches our server. Personal recordings stay personal."
+          "title": "Original quality",
+          "text": "Fast mode copies video and audio without re-encoding, so there is no blur and no artifacts."
         },
         {
           "title": "Frame-accurate when needed",
-          "text": "Turn on \"Precise trim\" and the cut lands exactly on your times, re-encoded to a compatible MP4."
+          "text": "“Precise trim” cuts exactly at the times you set and saves the clip as a widely compatible MP4."
         },
         {
-          "title": "No limits, no sign-up",
-          "text": "Trim as many videos a day as you like, up to 1000 MB each — your browser does the work."
+          "title": "Your recordings stay yours",
+          "text": "We never see the video or even its name, because it never reaches our server."
+        },
+        {
+          "title": "Big files",
+          "text": "Up to 1000 MB per video and up to three videos at a time, with no daily limit."
         }
       ],
       "sections": [
         {
-          "title": "How to trim a video",
-          "steps": [
-            "Drag your video into the window or click to pick a file (MP4, MOV, WebM, MKV, AVI, 3GP).",
-            "A preview appears in the panel: play to the moment you want and click \"Start here\", then do the same for \"End here\". Or move the sliders, or type the times.",
-            "Click \"Preview clip\" to check the boundaries.",
-            "If you need frame accuracy, turn on \"Precise trim\".",
-            "Click \"Trim\" and download the finished clip."
-          ]
+          "title": "Fast or precise trimming",
+          "text": "Video is stored as keyframes plus the changes between them. Fast mode cuts on keyframes and re-encodes nothing. The clip is ready in seconds and keeps its original format. The catch is that it may start a second or two early, or more in screen recordings. Precise mode re-encodes the clip to H.264 MP4 and cuts exactly where you said. It takes noticeably longer, because your browser does the encoding."
         },
         {
-          "title": "Fast or precise trim",
-          "text": "A video is made of keyframes with only the changes stored in between. Fast mode cuts at keyframes and re-encodes nothing: the result is ready in seconds, the quality is identical to the original and the file format stays the same. The trade-off is that the start may move a second or two earlier, to the nearest keyframe (in screen recordings, sometimes more). Precise mode re-encodes the clip to MP4 with H.264, so the cut lands exactly where you set it. That takes noticeably longer, because the encoding happens in your browser."
+          "title": "If the preview does not show",
+          "text": "Some browsers cannot play certain formats, such as MKV or HEVC iPhone videos in Chrome on Windows. You can still trim them: the tool reads the duration, and you set the cut points with the sliders or exact times."
         },
         {
-          "title": "If the preview doesn't show",
-          "text": "Some browsers can't play certain formats, for example MKV, or iPhone videos in HEVC in Chrome on Windows. You can still trim them: the tool works out the length itself, and you set the start and end with the sliders or exact times. The result plays in any regular video player."
-        },
-        {
-          "title": "What happens to your file",
-          "text": "Nothing is uploaded. The page loads the FFmpeg engine (WebAssembly) from our domain once, and then your browser reads the video from disk in chunks, cuts the clip and hands it back to you. We never see the file or even its name. That's why there are no queues or daily limits here, unlike server-based tools."
-        },
-        {
-          "title": "If the file is still too big",
-          "text": "If the video still doesn't fit a messenger or email limit after trimming, shrink it with Compress Video, which lowers the resolution to hit a size in MB. And to keep just the sound of the clip, use Video to MP3."
+          "title": "If the clip is still too big",
+          "text": "When even the trimmed part exceeds a messenger limit, shrink it with “Compress Video”. To keep only the clip's sound, use “Video to MP3”."
         }
       ],
       "faq": [
         {
-          "q": "Does trimming reduce quality?",
-          "a": "In fast mode, no: video and audio are copied without re-encoding. In precise mode the clip is re-encoded to H.264 at high quality, and the difference is usually invisible."
+          "q": "Why does my clip start a little earlier than I set?",
+          "a": "Fast mode cuts at the nearest keyframe so it does not have to re-encode. For frame-accurate cuts, turn on “Precise trim”."
         },
         {
-          "q": "Why does my clip start a bit earlier than I set?",
-          "a": "That's how fast mode works: it cuts at the nearest keyframe so it doesn't have to re-encode. For frame accuracy, turn on \"Precise trim\"."
-        },
-        {
-          "q": "Is my video uploaded to a server?",
-          "a": "No. Trimming runs in your browser using FFmpeg (WebAssembly). Only the processing engine is downloaded from our server."
-        },
-        {
-          "q": "What format will the result be?",
-          "a": "In fast mode, the same as the original (MP4, MOV, WebM, MKV and so on). In precise mode, always MP4 with H.264 video and AAC audio, which plays almost anywhere."
+          "q": "What format will the clip be?",
+          "a": "In fast mode it matches the original: MP4, MOV, WebM, MKV and so on. In precise mode it is always MP4 with H.264 video and AAC audio."
         },
         {
           "q": "Can I cut several clips from one video?",
-          "a": "One clip per pass. To get another, add the same video again and pick different boundaries."
+          "a": "One pass gives one clip. For another one, add the same video again and set new cut points."
         },
         {
-          "q": "Is there a size limit?",
-          "a": "Up to 1000 MB per file and up to 3 videos at a time, with no daily limit. On phones with little memory, very large files may not fit in precise mode — use fast mode or a computer instead."
+          "q": "Can a phone handle a large file?",
+          "a": "In fast mode, yes. Precise mode may run out of memory on a phone with little RAM. In that case use fast mode or switch to a computer."
         }
       ]
     },
@@ -2057,7 +1730,7 @@
     },
     "presetsPortrait": {
       "title": "How to choose a portrait preset",
-      "text1": "Skin and eyes matter most in a portrait, so a good portrait preset is careful with orange and red tones: it doesn't turn faces yellow or pink and doesn't make skin look plastic. For everyday shots and social media, start with soft or natural-light presets — they lift the shadows a little and add warmth while the person still looks like themselves.",
+      "text1": "Skin and eyes matter most in a portrait. A good portrait preset is careful with orange and red tones, so faces don't turn yellow, pink or plastic-looking. For everyday shots and social media, start with the soft or natural-light presets. They lift the shadows slightly and add warmth, and the person still looks like themselves.",
       "text2": "Dramatic presets with deep shadows suit dark backgrounds, evening light and creative shots, while studio presets work for plain backdrops, business portraits and window light. You can reduce the strength of any preset with the slider: for portraits 50–70% is often enough for a noticeable but tasteful effect.",
       "faq": [
         {
@@ -2069,8 +1742,8 @@
           "a": "Portrait presets adjust orange and red tones gently, but dramatic and retro styles can make skin cooler or warmer. Compare before/after with the slider and lower the strength if the tone looks unnatural."
         },
         {
-          "q": "Is my photo uploaded to a server?",
-          "a": "No. Presets are applied right in your browser and the photo is never sent anywhere."
+          "q": "Can I show only soft or only studio presets?",
+          "a": "Yes. Above the list there's a style filter: Soft, Dramatic, Natural light and Studio. It keeps only the presets of the chosen style."
         },
         {
           "q": "Can I make a black and white portrait?",
@@ -2080,7 +1753,7 @@
     },
     "presetsNature": {
       "title": "Landscape presets: what suits which light",
-      "text1": "The same landscape looks completely different at sunny noon, at sunset and on an overcast day, so the presets in this collection are grouped by light and subject. “Golden hour” boosts warm orange tones and gently mutes blues, “Forest” works with greens, and the “Sea” presets add turquoise to water and sky without making it garish.",
+      "text1": "The same landscape looks completely different at noon, at sunset and on an overcast day. That's why the presets here are grouped by light and subject. “Golden hour” boosts warm orange tones and gently mutes blues. “Forest” works with greens, and the “Sea” presets add turquoise to water and sky without making it garish.",
       "text2": "The most common problem with outdoor photos is a gray sky and a flat image on a cloudy day. That's what the “Overcast” filter is for: its presets lift the shadows, add saturation and a touch of warmth so the shot stops looking dull. If the effect is too strong, reduce it with the slider — 70–100% is usually enough for landscapes.",
       "faq": [
         {
@@ -2096,8 +1769,8 @@
           "a": "A preset is a set of exposure, contrast, shadow, color and toning adjustments, just like in Lightroom. You can smoothly change its strength from 0 to 200% and compare the result with the original."
         },
         {
-          "q": "Can I apply a preset to several photos the same way?",
-          "a": "For now a preset is applied to one photo at a time. To keep a series consistent, use the same preset and the same effect strength for every shot."
+          "q": "Is there a preset for a misty morning?",
+          "a": "Yes, “Misty Morning”: softer contrast, cool tones and muted colors. You'll find it under the “Overcast” filter."
         }
       ]
     },
@@ -2115,19 +1788,19 @@
           "a": "It's a color scheme where shadows shift toward teal while warm tones (skin, streetlights) stay orange. It gives a cinematic feel and looks great on streets in the evening."
         },
         {
-          "q": "Will the photo quality drop?",
-          "a": "A preset only changes colors and tones. The result is saved as a high-quality JPG with the long side up to 2000 pixels — enough for social media and most websites."
+          "q": "Which preset gives street photos a film look?",
+          "a": "“35mm Street”: stronger contrast, restrained colors, a vignette and visible grain. It's also in the “Film & retro” collection."
         },
         {
-          "q": "Do I need to sign up?",
-          "a": "No, the presets are free and work without registration or installing anything."
+          "q": "Are there city presets for evening shots?",
+          "a": "Yes, “City Lights” and “Cyber Neon / Night” work for both city and night photos. More are in the “Night photos” collection."
         }
       ]
     },
     "presetsNight": {
       "title": "How to edit a night photo with a preset",
       "text1": "Night shots usually have two problems: they're dark and the colors look muddy because of mixed light from streetlamps, signs and headlights. The “City lights” presets separate warm lights from cool shadows, so the shot looks cleaner and moodier. “Neon” boosts the pinks, purples and teals of signs, while “Moody” deepens the shadows for a cinematic image.",
-      "text2": "If a photo was taken in very weak light and you can barely see anything, start with “Low Light Rescue”: it raises exposure and shadows and mutes blue and purple color noise. It won't create detail out of total darkness, but it often makes the shot usable for viewing and posting.",
+      "text2": "If a photo was taken in very weak light and you can barely see anything, start with “Low Light Rescue”. It raises exposure and shadows and mutes blue and purple color noise. It won't create detail out of total darkness, but it often makes the shot usable for viewing and posting.",
       "faq": [
         {
           "q": "How do I brighten a dark night photo?",
@@ -2142,8 +1815,8 @@
           "a": "Under the “Neon” filter: “Cyber Neon / Night”, “Neon Purple” and “Retro 80s” boost pinks, purples and teals."
         },
         {
-          "q": "Does it work on a phone?",
-          "a": "Yes, the page works in a mobile browser: pick a photo from your gallery, choose a preset and save the result."
+          "q": "Which preset suits a car photo at night?",
+          "a": "“Dark Garage”: deep shadows, muted colors and bright reflections on the body. It's also in the “Cars” collection."
         }
       ]
     },
@@ -2165,8 +1838,8 @@
           "a": "Yes, “90s Disposable” and “Lomo Pop”: punchy contrast, saturated colors, a vignette and light grain. More styles like these are in the “Film & retro” collection."
         },
         {
-          "q": "How much does it cost?",
-          "a": "It's free, with no registration and no watermarks."
+          "q": "Which preset suits travel photos of streets and markets?",
+          "a": "“Bangkok Street” adds warmth and brings out the colors of streets and markets. For bright sunny shots, try “Sunny Pop”."
         }
       ]
     },
@@ -2188,8 +1861,8 @@
           "a": "Stylized presets (such as “Sunset Drive” or “Dark Garage”) change the overall tone of the shot. If you need accurate color, lower the strength or choose a preset from the “Clean” filter."
         },
         {
-          "q": "Where is my photo stored?",
-          "a": "Nowhere — processing happens in your browser and the file is never uploaded to a server."
+          "q": "Is there a preset for car photos at sunset?",
+          "a": "Yes, “Sunset Drive”: warm golden tones and richer reds and oranges. It's under the “Sunset” filter."
         }
       ]
     },
@@ -2211,15 +1884,15 @@
           "a": "Try the “Moody” filter to emphasize the atmosphere, or the “Nature” collection with the “Overcast” filter to make the shot brighter and more colorful instead."
         },
         {
-          "q": "Are the presets free?",
-          "a": "Yes, all presets are free, with no registration and no watermarks."
+          "q": "Do the autumn presets work for portraits?",
+          "a": "Yes. “Golden Hour Glow” gently warms the skin, and “Warm Knit” gives cozy, muted colors for sweater shots. For portraits, 60–80% strength is often enough."
         }
       ]
     },
     "presetsWinter": {
       "title": "Presets for winter and holiday photos",
       "text1": "The main problem with winter photos is blue or gray snow: the camera mistakenly cools down the white. The “Clean Snow” preset warms the white balance slightly and brightens the frame, so the snow looks white again. If you want to emphasize the frost instead, choose the “Frosty” filter — cool blue shadows and restrained colors.",
-      "text2": "For Christmas and New Year photos there are “Festive” presets: they boost reds and golds, make string lights warmer and add a gentle vignette. “Cozy” presets suit home shots by the tree, with cocoa and presents. Everything runs in your browser, without uploading the photo to a server.",
+      "text2": "For Christmas and New Year photos there are “Festive” presets: they boost reds and golds, make string lights warmer and add a gentle vignette. “Cozy” presets suit home shots by the tree, with cocoa and presents.",
       "faq": [
         {
           "q": "Why is the snow blue in my photo and how do I fix it?",
@@ -2234,15 +1907,15 @@
           "a": "Yes, the “Frosty” filter includes “Frosty Blue” and “Misty Morning” — they add cool blue tones and a light haze."
         },
         {
-          "q": "Will the quality drop after editing?",
-          "a": "A preset only changes colors and tones. The result is saved as a high-quality JPG with the long side up to 2000 pixels."
+          "q": "What's the difference between “Clean Snow” and “Frosty Blue”?",
+          "a": "“Clean Snow” warms the white balance slightly and brightens the shot so the snow looks white. “Frosty Blue” does the opposite: it cools the photo and mutes warm colors."
         }
       ]
     },
     "presetsFilm": {
       "title": "How to add a film effect to a photo online",
       "text1": "Film presets imitate the character of analog photos: softer contrast, lifted blacks, distinctive tints in the shadows and highlights, and light grain. “Analog film” resembles classic color negative stock — warm skin tones and muted greens. “35mm” gives a contrasty street look with visible grain, and “Vintage” recreates the faded colors of old prints.",
-      "text2": "Retro presets reproduce the recognizable look of each decade: orange-brown 70s, neon-pink 80s and the punchy snapshots of a 90s disposable camera. “Lomo” delivers saturated colors and a heavy vignette, “Polaroid” soft pastel tones, “Sepia” the brown toning of old photographs and “Noir” the hard black and white contrast of classic cinema. Preset names describe the look, not a specific brand of film.",
+      "text2": "Retro presets reproduce the look of each decade: orange-brown 70s, neon-pink 80s and the punchy snapshots of a 90s disposable camera. “Lomo” delivers saturated colors and a heavy vignette, and “Polaroid” soft pastel tones. “Sepia” adds the brown toning of old photographs, and “Noir” the hard black and white contrast of classic cinema. Preset names describe the look, not a specific brand of film.",
       "faq": [
         {
           "q": "How do I make a photo look like film?",
@@ -2262,18 +1935,18 @@
         },
         {
           "q": "Can I make sepia or black and white retro photos?",
-          "a": "Yes, under the “Sepia” and “Noir” filters: “Classic Sepia” gives the brown toning of old photos, while “Film Noir” and “Black & White Moody” give high-contrast black and white."
+          "a": "Yes, under the “Sepia” and “Noir” filters. “Classic Sepia” gives the brown toning of old photos, while “Film Noir” and “Black & White Moody” give high-contrast black and white."
         }
       ]
     },
     "presetsCinematic": {
       "title": "Cinematic color grading for photos online",
-      "text1": "Cinematic presets bring movie color-grading techniques to photos. The best known is teal and orange: shadows shift toward cool teal while skin and lights stay warm, giving the shot depth and an expensive look. “Moody” relies on deep shadows and muted colors, while “Warm” goes for soft, slightly faded film tones.",
+      "text1": "Cinematic presets bring movie color-grading techniques to photos. The best known is teal and orange. Shadows shift toward cool teal while skin and lights stay warm, which gives the shot depth and an expensive look. “Moody” relies on deep shadows and muted colors, while “Warm” goes for soft, slightly faded film tones.",
       "text2": "Black and white cinematic presets suit portraits and street scenes where light and shape matter. Composition helps a photo look like a film still too: a wide frame, a person in profile, side light. The preset completes the effect — and the intensity slider keeps you from overdoing it.",
       "faq": [
         {
           "q": "What is a cinematic preset?",
-          "a": "It's a set of color and tone adjustments that imitates film color grading: contrast between teal shadows and warm highlights, deep shadows or muted film colors."
+          "a": "It's a set of color and tone adjustments that imitates film color grading. Typical looks: teal shadows with warm highlights, deep shadows, or muted film colors."
         },
         {
           "q": "Which preset looks most like a movie still?",
@@ -2291,7 +1964,7 @@
     },
     "presetsBrightenDark": {
       "title": "Why photos come out dark and how to fix them",
-      "text1": "A photo usually turns out dark when there's a very bright light source in the frame — a window, the sky, a lamp: the camera lowers exposure so it doesn't blow out, and the face or subject ends up in shadow. Simply raising overall brightness doesn't work well here — the window and sky turn into white patches. That's why these presets work selectively: they lift shadows and midtones much more and even tone down the highlights a little.",
+      "text1": "A photo usually turns out dark when there's a very bright light source in the frame: a window, the sky or a lamp. The camera lowers exposure so it doesn't blow out, and the face or subject ends up in shadow. Simply raising overall brightness doesn't help — the window and sky turn into white patches. That's why these presets work selectively: they lift shadows and midtones much more and even tone down the highlights a little.",
       "text2": "If the photo was taken in the evening or indoors with poor light, choose “Low Light Rescue” — it brightens more strongly and mutes color noise. For slightly dull daytime shots, “Bright & Clear” is enough. Compare with the before/after slider and adjust the strength from 0 to 200% until the photo looks natural.",
       "faq": [
         {
@@ -2303,18 +1976,18 @@
           "a": "Yes, “Low Light Rescue” at 150–200% brightens the shot noticeably. But no filter can recover detail the camera never captured, and noise will become more visible."
         },
         {
-          "q": "Will the photo quality drop?",
-          "a": "A preset only changes brightness and colors. The result is saved as a high-quality JPG with the long side up to 2000 pixels."
+          "q": "What if colors look washed out after brightening?",
+          "a": "Try “Bright & Clear”: it brightens the shot and adds contrast and punch at the same time."
         },
         {
-          "q": "Do I have to upload my photo to a server?",
-          "a": "No, processing happens in your browser — the photo is never sent anywhere."
+          "q": "Can I brighten only the dark areas?",
+          "a": "A preset affects the whole frame. But “Brighten Shadows” lifts dark areas much more than bright ones, so the result is close to brightening only the shadows."
         }
       ]
     },
     "presetsProductPhoto": {
       "title": "How to make product photos appealing to buyers",
-      "text1": "For marketplace listings, online stores and Instagram shops a simple rule applies: a bright, clean photo with true colors sells better than a dark or yellowish one. Most products are shot at home under lamps, so the picture comes out dark and yellow-tinted. The presets in this collection brighten the shot, remove the yellow cast from whites and add clarity to details without changing the product's own color.",
+      "text1": "For marketplace listings, online stores and Instagram shops, a bright, clean photo with true colors sells better than a dark or yellowish one. Most products are shot at home under lamps, so the picture comes out dark and yellow-tinted. These presets brighten the shot, remove the yellow cast from whites and add clarity to details. The product's own color stays the same.",
       "text2": "A preset doesn't replace the background. If the product was shot on white paper or a white wall, “Clean White Product” makes that background lighter and closer to white. If you need a perfectly white or transparent background, remove it with a separate tool first, then apply a preset for light and color. And remember: the product color in the photo must match reality, otherwise you'll get returns and bad reviews.",
       "faq": [
         {
@@ -2330,15 +2003,15 @@
           "a": "The result is saved as a JPG with the long side up to 2000 pixels — enough for listings and product pages. To meet a marketplace file-size limit, use “Compress to a Size”."
         },
         {
-          "q": "Can I edit a photo from my phone?",
-          "a": "Yes, the page works in a mobile browser: pick a photo from your gallery, apply a preset and save the result."
+          "q": "Which preset suits a product shown in an interior?",
+          "a": "“Lifestyle Product”: soft warm light for decor, textiles, cosmetics and handmade goods. For a product on a white background, “Clean White Product” works better."
         }
       ]
     },
     "presetsCarSale": {
       "title": "How to photograph and edit a car for a listing",
       "text1": "Buyers decide whether to open a listing from the first few photos. Bright shots in soft daylight work best, on a clean background, with visible details: the body from four sides, the interior, the dashboard, the wheels. The presets in this collection improve light and contrast, open up shadows in the interior and emphasize the body's shape — without changing the car's color.",
-      "text2": "Why avoid stylized filters when selling? Buyers are wary of photos where the car's color shifts from shot to shot or clearly differs from reality: it looks like an attempt to hide defects. Apply the same preset at the same strength to the whole series — that way the listing looks tidy and honest.",
+      "text2": "Why avoid stylized filters when selling? Buyers are wary of photos where the car's color changes from shot to shot or differs from reality. It looks like an attempt to hide defects. Apply the same preset at the same strength to the whole series, and the listing will look tidy and honest.",
       "faq": [
         {
           "q": "Which preset should I choose for a car sale listing?",
@@ -2350,17 +2023,17 @@
         },
         {
           "q": "Can I use presets from the “Cars” collection?",
-          "a": "For social media, yes, but for listings avoid stylized presets like “Dark Garage” or “Sunset Drive”: they change the overall tone and the body color in the photo."
+          "a": "For social media, yes. For listings, avoid stylized presets like “Dark Garage” or “Sunset Drive”: they change the overall tone and the body color."
         },
         {
-          "q": "Do I need to sign up?",
-          "a": "No, the presets are free and work without registration right in your browser."
+          "q": "What if the listing site limits the photo file size?",
+          "a": "Compress the finished photo with the “Compress to a Size” tool: it picks the quality to fit the file size you need."
         }
       ]
     },
     "presetsFood": {
       "title": "How to edit food photos so they look appetizing",
-      "text1": "Food looks tasty in a photo when it has warm, rich colors, visible texture and no blue or green cast from lamps. “Warm Appetizing Food” adds warmth and saturation to reds and oranges — pastries, meat, soups, pizza. “Fresh & Bright Food” brightens the shot and emphasizes fresh greens — for salads, breakfasts, bowls and desserts.",
+      "text1": "Dishes look tasty in a photo when they have warm, rich colors, visible texture and no blue or green cast from lamps. “Warm Appetizing Food” adds warmth and saturation to reds and oranges — pastries, meat, soups, pizza. “Fresh & Bright Food” brightens the shot and emphasizes fresh greens — for salads, breakfasts, bowls and desserts.",
       "text2": "“Moody Food” is a dark restaurant style: deep shadows, a dark background and focus on the dish. It works well for evening menus, bars and photos on dark boards or plates. For a venue's whole menu, stick to one preset — your delivery page or Instagram profile will look consistent.",
       "faq": [
         {
@@ -2376,15 +2049,15 @@
           "a": "Yes. To keep your feed consistent, apply the same preset at the same strength to all photos."
         },
         {
-          "q": "Is the photo uploaded to a server?",
-          "a": "No, processing happens in your browser."
+          "q": "How do I crop a dish photo for Instagram?",
+          "a": "After applying a preset, use the “Crop Image” tool. It has ready-made ratios, including a 1:1 square and a vertical 3:4."
         }
       ]
     },
     "presetsAvatar": {
       "title": "What makes a good profile picture",
-      "text1": "A profile picture is a small image people see in chat lists, comments or search results, so simple things matter: the face is well lit and fills most of the frame, the background is calm and the skin tone looks natural. Heavy filters hurt here: people should recognize you in real life, and for LinkedIn or a résumé over-editing looks unprofessional.",
-      "text2": "That's why this collection contains only subtle presets: “Natural Skin” evens out light and skin tone, “Studio Clean” gives a neutral business look and “Timeless B&W” a restrained black and white portrait. After editing, you can crop the photo into a circle with transparent corners, so your avatar looks good on any background.",
+      "text1": "People see a profile picture small: in chat lists, comments or search results. So simple things matter: the face is well lit and fills most of the frame, the background is calm and the skin tone looks natural. Heavy filters hurt here. People should recognize you in real life, and for LinkedIn or a résumé over-editing looks unprofessional.",
+      "text2": "That's why this collection contains only subtle presets. “Natural Skin” evens out light and skin tone, and “Studio Clean” gives a neutral business look. “Timeless B&W” makes a restrained black and white portrait. After editing, you can crop the photo into a circle with transparent corners, and the avatar will look good on any background.",
       "faq": [
         {
           "q": "Which preset should I use for a LinkedIn or résumé photo?",
@@ -2399,14 +2072,14 @@
           "a": "Yes, “Timeless B&W” gives a soft classic black and white photo without harsh contrast."
         },
         {
-          "q": "Can anyone see my photo?",
-          "a": "No, the photo is processed in your browser and isn't uploaded to a server."
+          "q": "Can I remove the background behind me?",
+          "a": "A preset doesn't change the background. Remove it with the “Remove Background” tool, then crop the photo into a circle."
         }
       ]
     },
     "presetsWedding": {
       "title": "Wedding presets: how to choose a style",
-      "text1": "A wedding shoot means hundreds of frames in different light: getting ready indoors in the morning, an outdoor ceremony, a sunset walk, an evening at the venue. To make the album look consistent, choose one main style. “Bright & Airy Wedding” is the most popular: light, with soft shadows and a clean white dress. “Analog Warm 400” gives a warm film look for atmospheric documentary coverage.",
+      "text1": "A wedding shoot means hundreds of frames in different light. There's getting ready indoors, an outdoor ceremony, a sunset walk and an evening at the venue. To make the album consistent, choose one main style. “Bright & Airy Wedding” is the most popular: light, with soft shadows and a clean white dress. “Analog Warm 400” gives a warm film look for atmospheric documentary coverage.",
       "text2": "Black and white shots are a wedding photography classic: “Timeless B&W” conveys emotions well — parents' tears, laughter, hugs — and makes photos timeless. For a sunset walk, try “Golden Hour Glow”. All presets work in your browser: photos aren't uploaded to a server, so your personal shots stay with you.",
       "faq": [
         {

@@ -59,11 +59,12 @@ test("SEO-метадані: title ≤ 60, description 120–160, унікаль�
   }
 });
 
-test("SEO-текст: ≥ 500 слів, 4 переваги, 4–6 питань у FAQ, без відсутніх ключів", () => {
+test("SEO-текст: 250–500 слів, 4 переваги, 4–6 питань у FAQ, без відсутніх ключів", () => {
   for (const l of ["uk", "en", "ru", "es"]) {
     const tr = read(l);
     const seo = tr.seoContent.convertToPng;
-    assert.ok(walk(seo).reduce((n, s) => n + words(s), 0) >= 500, `${l}: замало слів`);
+    const total = walk(seo).reduce((n, s) => n + words(s), 0);
+    assert.ok(total >= 250 && total <= 500, `${l}: ${total} слів`);
     assert.equal(seo.benefits.length, 4);
     assert.ok(seo.faq.length >= 4 && seo.faq.length <= 6);
     for (const k of ["titlePart2", "titleGradient", "text1", "text2", "dropzone"]) assert.ok(tr.convertToPng[k], `${l}.convertToPng.${k}`);

@@ -1,5 +1,6 @@
 // Нові інструменти (хвиля 1): маршрути, SEO-метадані й переклади в усіх 4 мовах.
-// title ≤ 60, description 120–160, ≥ 500 слів SEO-тексту, однакова структура ключів,
+// title ≤ 60, description 120–160, SEO-текст 250–500 слів (round 39: тексти скорочено,
+// верхня межа — щоб вони знову не розросталися «водою»), однакова структура ключів,
 // однакові {{плейсхолдери}} — щоб при перекладі нічого не загубилось.
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -46,10 +47,11 @@ for (const [slug, exp] of Object.entries(TOOLS)) {
       assert.ok(m.title.length <= 60, `${l} title ${m.title.length}`);
       assert.ok(m.description.length >= 120 && m.description.length <= 160, `${l} description ${m.description.length}`);
       const seo = read(l).seoContent[slug];
-      assert.ok(walk(seo).reduce((n, s) => n + words(s), 0) >= 500, `${l}: замало слів`);
+      const total = walk(seo).reduce((n, s) => n + words(s), 0);
+      assert.ok(total >= 250 && total <= 500, `${l}: ${total} слів (очікується 250–500)`);
       assert.equal(seo.benefits.length, 4);
       assert.ok(seo.faq.length >= 4 && seo.faq.length <= 6);
-      assert.equal(seo.sections.length, exp.sections);
+      assert.ok(seo.sections.length >= 2 && seo.sections.length <= exp.sections, `${l}: розділів ${seo.sections.length}`);
     }
   });
 

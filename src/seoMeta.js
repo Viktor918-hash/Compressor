@@ -13,88 +13,88 @@ export const PAGE_META = {
     uk: {
       title: "Стиснути зображення онлайн швидко та без втрати якості",
       description:
-        "Безкоштовно стиснути фото JPG, PNG та WebP відразу в браузері. Легко та без зайвих зусиль",
+        "Стиснення фото JPG, PNG і WebP у браузері: якість від 40 до 95 %, розмір у пікселях за бажанням. Файл не стане більшим за оригінал.",
     },
     en: {
       title: "Compress images online quickly and without loss of quality",
       description:
-        "Free online photo compressor for JPG, PNG and WebP directly in your browser. Easy and effortless",
+        "Compress JPG, PNG and WebP photos in your browser: set quality from 40 to 95% and optionally cap the size in pixels. The file never gets bigger.",
     },
     ru: {
       title: "Сжать изображение онлайн бесплатно",
       description:
-        "Сжать изображения онлайн. Сжимайте и оптимизируйте JPEG, PNG и WebP изображения прямо в браузере, легко и бесплатно.",
+        "Сжатие фото JPG, PNG и WebP в браузере: качество от 40 до 95 %, размер в пикселях по желанию. Файл не станет больше оригинала.",
     },
     es: {
       title: "Comprimir imágenes online rápido y sin perder calidad",
       description:
-        "Comprime fotos JPG, PNG y WebP gratis, directamente en el navegador. Fácil y sin complicaciones",
+        "Comprime fotos JPG, PNG y WebP en el navegador: calidad del 40 al 95 % y tamaño en píxeles opcional. El archivo nunca queda más pesado.",
     },
   },
   convert: {
     uk: {
       title: "Швидке конвертування фото у JPG онлайн безкоштовно",
       description:
-        "Перетворити зображення в JPG. Перетворюйте PNG, WEBP, BMP та HEIC (фото з iPhone) на формат JPG. Конвертуйте кілька файлів онлайн одночасно.",
+        "Перетворіть PNG, WebP, BMP або HEIC з iPhone на JPG з якістю 90 %. Прозорі ділянки отримують біле тло. Кілька файлів за раз, без реєстрації.",
     },
     en: {
       title: "Image converter to JPG",
       description:
-        "Convert images to JPG. Turn PNG, WEBP, BMP and HEIC (iPhone photos) files into JPG format. Convert multiple images online simultaneously.",
+        "Turn PNG, WebP, BMP or iPhone HEIC images into JPG at 90% quality. Transparent areas get a white background. Several files at once, no sign-up.",
     },
     ru: {
       title: "Конвертировать изображения в JPG",
       description:
-        "Конвертировать изображения в JPG. Преобразовывайте PNG, WEBP, BMP и HEIC (фото с iPhone) в формат JPG. Конвертируйте несколько файлов онлайн одновременно.",
+        "Превратите PNG, WebP, BMP или HEIC с iPhone в JPG с качеством 90 %. Прозрачные участки получают белый фон. Несколько файлов за раз, без регистрации.",
     },
     es: {
       title: "Conversor de imágenes a JPG",
       description:
-        "Convierte imágenes a JPG. Transforma archivos PNG, WEBP, BMP y HEIC (fotos de iPhone) al formato JPG. Convierte varias imágenes a la vez.",
+        "Pasa imágenes PNG, WebP, BMP o HEIC de iPhone a JPG con calidad del 90 %. Las zonas transparentes reciben fondo blanco. Varios archivos a la vez.",
     },
   },
   resize: {
     uk: {
       title: "Змінити розмір фото онлайн",
       description:
-        "Швидко змініть розмір зображень під потрібні. Безкоштовно змінюй розмір фото прямо в браузері.",
+        "Змініть ширину й висоту фото в пікселях або оберіть готовий розмір для соцмереж. Пропорції можна зберегти, обробка — у вашому браузері.",
     },
     en: {
       title: "Resize Images Online Free",
       description:
-        "Quickly resize images to what you need. Free online photo resizer directly in your browser.",
+        "Change a photo's width and height in pixels or pick a ready-made size for social media. Keep the aspect ratio if you need to; it runs in your browser.",
     },
     ru: {
       title: "Изменить размер изображений онлайн",
       description:
-        "Изменить размер фото онлайн бесплатно. Изменяйте размер изображений в формате JPG, PNG, SVG или GIF за считанные секунды легко и бесплатно.",
+        "Измените ширину и высоту фото в пикселях или выберите готовый размер для соцсетей. Пропорции можно сохранить, обработка идёт в браузере.",
     },
     es: {
       title: "Redimensionar Imágenes Online Gratis",
       description:
-        "Cambia el tamaño de tus imágenes rápidamente. Redimensionador de fotos gratuito directamente en el navegador.",
+        "Cambia el ancho y alto de una foto en píxeles o elige un tamaño listo para redes sociales. Puedes mantener la proporción; todo ocurre en tu navegador.",
     },
   },
   webp: {
     uk: {
       title: "Швидке конвертування фото у WEBP онлайн безкоштовно",
       description:
-        "Перетворити зображення в WEBP. Перетворюйте JPG, PNG, BMP та HEIC (фото з iPhone) на формат WEBP. Конвертуйте кілька файлів онлайн одночасно.",
+        "Зробіть фото легшими для сайту: JPG, PNG, BMP і HEIC з iPhone перетворюються на WebP з якістю 85 %. Прозорість зберігається, кілька файлів за раз.",
     },
     en: {
       title: "Convert images to WebP",
       description:
-        "Convert images to WebP. Turn JPG, PNG, BMP and HEIC (iPhone photos) files into WebP format. Convert multiple images online simultaneously.",
+        "Make images lighter for your website: JPG, PNG, BMP and iPhone HEIC become WebP at 85% quality. Transparency is kept, several files at once.",
     },
     ru: {
       title: "Конвертировать изображения в WEBP",
       description:
-        "Конвертировать изображения в WEBP. Преобразовывайте JPG, PNG, BMP и HEIC (фото с iPhone) в формат WEBP. Конвертируйте несколько файлов онлайн одновременно.",
+        "Сделайте картинки легче для сайта: JPG, PNG, BMP и HEIC с iPhone превращаются в WebP с качеством 85 %. Прозрачность сохраняется, несколько файлов сразу.",
     },
     es: {
       title: "Convertir imágenes a WebP",
       description:
-        "Convierte imágenes a WebP. Transforma archivos JPG, PNG, BMP y HEIC (fotos de iPhone) al formato WebP. Convierte varias imágenes a la vez.",
+        "Aligera las imágenes de tu web: JPG, PNG, BMP y HEIC de iPhone pasan a WebP con calidad del 85 %. Se conserva la transparencia; varios archivos a la vez.",
     },
   },
   presets: {
@@ -111,7 +111,7 @@ export const PAGE_META = {
     ru: {
       title: "Бесплатные пресеты для фото онлайн",
       description:
-        "Готовый набор настроек для быстрого изменения фотографии прямо в браузере. Пресеты Лайтрум онлайн без скачивания",
+        "Более 60 пресетов для фото в браузере: плёнка, портрет, природа, ночь, сезоны и подборки под задачи. Сила эффекта регулируется, есть сравнение «до/после».",
     },
     es: {
       title: "Filtros y preajustes listos para tus fotos",
@@ -123,44 +123,44 @@ export const PAGE_META = {
     uk: {
       title: "Конвертувати Word у PDF онлайн безкоштовно",
       description:
-        "Перетворіть DOC та DOCX у PDF за кілька секунд онлайн. Точна конвертація зі збереженням форматування, без встановлення програм.",
+        "Перетворіть DOC і DOCX у PDF зі збереженням шрифтів і верстки. До 10 файлів по 50 МБ; конвертація відбувається на сервері CloudConvert.",
     },
     en: {
       title: "Convert Word to PDF online for free",
       description:
-        "Turn DOC and DOCX files into PDF in seconds, online. Accurate conversion with formatting preserved — no software to install.",
+        "Turn DOC and DOCX files into PDF with fonts and layout kept. Up to 10 files of 50 MB each; the conversion runs on CloudConvert's servers.",
     },
     ru: {
-      title: "Конвертировать WORD в PDF",
+      title: "Конвертировать Word в PDF онлайн бесплатно",
       description:
-        "Преобразование документов Word в PDF с первоначальной точностью PDF файла. Преобразование Word в PDF онлайн, легко и бесплатно.",
+        "Преобразуйте DOC и DOCX в PDF с сохранением шрифтов и вёрстки. До 10 файлов по 50 МБ; конвертация выполняется на сервере CloudConvert.",
     },
     es: {
       title: "Convertir Word a PDF online gratis",
       description:
-        "Convierte archivos DOC y DOCX a PDF en segundos, online. Conversión precisa con formato conservado, sin instalar programas.",
+        "Convierte archivos DOC y DOCX a PDF conservando fuentes y diseño. Hasta 10 archivos de 50 MB; la conversión se hace en los servidores de CloudConvert.",
     },
   },
   pdfToWord: {
     uk: {
       title: "Конвертувати PDF у Word онлайн безкоштовно",
       description:
-        "Перетворіть PDF у редагований DOCX-файл за кілька секунд зі збереженням форматування. До 10 файлів одночасно, безкоштовно.",
+        "Перетворіть PDF на редагований DOCX, щоб виправити текст у Word. До 10 файлів по 50 МБ; складну верстку інколи доведеться доправити вручну.",
     },
     en: {
       title: "Convert PDF to Word online for free",
       description:
-        "Turn your PDF into an editable DOCX file in seconds, formatting preserved. Up to 10 files at once, for free.",
+        "Turn a PDF into an editable DOCX so you can fix the text in Word. Up to 10 files of 50 MB each; complex layouts may need a manual touch-up.",
     },
     ru: {
       title: "Конвертировать PDF в Word онлайн бесплатно",
       description:
-        "Превратите PDF в редактируемый DOCX-файл за несколько секунд с сохранением форматирования. До 10 файлов одновременно, бесплатно.",
+        "Превратите PDF в редактируемый DOCX, чтобы исправить текст в Word. До 10 файлов по 50 МБ; сложную вёрстку иногда придётся поправить вручную.",
     },
     es: {
       title: "Convertir PDF a Word online gratis",
       description:
-        "Convierte tu PDF en un archivo DOCX editable en segundos, conservando el formato. Hasta 10 archivos a la vez, gratis.",
+        "Convierte un PDF en un DOCX editable para corregir el texto en Word. Hasta 10 archivos de 50 MB; los diseños complejos pueden requerir retoques.",
     },
   },
   removeBg: {
@@ -189,22 +189,22 @@ export const PAGE_META = {
     uk: {
       title: "Розпізнати текст із фото онлайн безкоштовно",
       description:
-        "Конвертувати фото, скріншот в текст. Розпізнати текст із зображення або відсканованої сторінки, онлайн без реєстрації.",
+        "Розпізнайте текст зі скриншота, фото документа чи скану: українська, російська, англійська й іспанська. Результат — .txt або .doc, без реєстрації.",
     },
     en: {
       title: "Extract Text from Image Online Free",
       description:
-        "Turn any photo, scan, or screenshot into editable text right in your browser. Supports English, Ukrainian, Russian and Spanish. Your files never leave your device.",
+        "Pull text from a screenshot, document photo or scan in English, Ukrainian, Russian or Spanish. Save it as .txt or .doc; the image stays on your device.",
     },
     ru: {
       title: "Распознать текст с фото онлайн бесплатно",
       description:
-        "Конвертер фото в текст позволяет скопировать текст с фото. Вы можете извлечь текст с картинки с помощью этого переводчика изображений.",
+        "Распознайте текст со скриншота, фото документа или скана: русский, украинский, английский и испанский. Результат — .txt или .doc, без регистрации.",
     },
     es: {
       title: "Extraer texto de una imagen online gratis",
       description:
-        "Convierte cualquier foto, escaneo o captura de pantalla en texto editable directamente en tu navegador. Compatible con español, inglés, ucraniano y ruso. Tus archivos nunca salen de tu dispositivo.",
+        "Extrae el texto de una captura, foto de un documento o escaneo en español, inglés, ucraniano o ruso. Guárdalo en .txt o .doc; la imagen no sale del equipo.",
     },
   },
   // Нові інструменти: ru/es — мої переклади, бажано вичитати носієм
@@ -410,22 +410,22 @@ export const PAGE_META = {
     uk: {
       title: "Стиснути відео онлайн безкоштовно (MP4, MOV, AVI)",
       description:
-        "Зменшіть розмір відео MP4, MOV, AVI, WebM чи MKV онлайн — рекомендоване стиснення або свій розмір кадру. До 200 МБ, без встановлення програм.",
+        "Зменшіть відео MP4, MOV, AVI, WebM чи MKV: рекомендоване стиснення або цільовий розмір у МБ, наприклад для месенджера. До 5 файлів по 200 МБ.",
     },
     en: {
       title: "Compress Video Online Free (MP4, MOV, AVI)",
       description:
-        "Shrink MP4, MOV, AVI, WebM or MKV video files online — pick recommended compression or choose your own resolution. Up to 200MB, nothing to install.",
+        "Shrink MP4, MOV, AVI, WebM or MKV videos: use the recommended setting or a target size in MB, for example for a messenger. Up to 5 files of 200 MB.",
     },
     ru: {
       title: "Сжать видео онлайн бесплатно (MP4, MOV, AVI)",
       description:
-        "Уменьшите размер видео MP4, MOV, AVI, WebM или MKV онлайн — рекомендованное сжатие или свой размер кадра. До 200 МБ, без установки программ.",
+        "Уменьшите видео MP4, MOV, AVI, WebM или MKV: рекомендованное сжатие или целевой размер в МБ, например для мессенджера. До 5 файлов по 200 МБ.",
     },
     es: {
       title: "Comprimir Video Online Gratis (MP4, MOV, AVI)",
       description:
-        "Reduce el tamaño de video MP4, MOV, AVI, WebM o MKV online: compresión recomendada o tu propia resolución. Hasta 200MB, sin instalar programas.",
+        "Reduce videos MP4, MOV, AVI, WebM o MKV: compresión recomendada o un tamaño objetivo en MB, por ejemplo para un mensajero. Hasta 5 archivos de 200 MB.",
     },
   },
   // Раунд 24: три вузькі конвертери формату (не стиснення) — кожен під
@@ -434,66 +434,66 @@ export const PAGE_META = {
     uk: {
       title: "Конвертувати MOV в MP4 онлайн безкоштовно",
       description:
-        "Перетворіть відео MOV (QuickTime) у MP4 прямо в браузері — без встановлення програм. Файл до 200 МБ, готовий результат за кілька секунд.",
+        "Перетворіть MOV з iPhone чи камери на MP4 (H.264), який відкривається на Windows, Android і сайтах. Відео HEVC перекодовується. До 200 МБ на файл.",
     },
     en: {
       title: "Convert MOV to MP4 Online Free",
       description:
-        "Convert QuickTime MOV video files to MP4 online, right in your browser — nothing to install. Up to 200MB, ready in seconds.",
+        "Turn MOV files from an iPhone or camera into MP4 (H.264) that plays on Windows, Android and websites. HEVC video is re-encoded. Up to 200 MB per file.",
     },
     ru: {
       title: "Конвертировать MOV в MP4 онлайн бесплатно",
       description:
-        "Преобразуйте видео MOV (QuickTime) в MP4 прямо в браузере — без установки программ. Файл до 200 МБ, готовый результат за секунды.",
+        "Превратите MOV с iPhone или камеры в MP4 (H.264), который открывается на Windows, Android и сайтах. Видео HEVC перекодируется. До 200 МБ на файл.",
     },
     es: {
       title: "Convertir MOV a MP4 Online Gratis",
       description:
-        "Convierte archivos de video MOV (QuickTime) a MP4 online, directo en el navegador — sin instalar nada. Hasta 200MB, listo en segundos.",
+        "Convierte archivos MOV del iPhone o de una cámara a MP4 (H.264), que se reproduce en Windows, Android y webs. El video HEVC se recodifica. Hasta 200 MB.",
     },
   },
   convertMkvToMp4: {
     uk: {
       title: "Конвертувати MKV в MP4 онлайн безкоштовно",
       description:
-        "Перетворіть відео MKV (Matroska) у MP4 прямо в браузері — сумісний формат для будь-якого телефона чи плеєра. До 200 МБ, без програм.",
+        "MKV не відкривається на телевізорі чи в монтажній програмі? Перетворіть його на MP4 з H.264. Звук зберігається, роздільність та сама. До 200 МБ.",
     },
     en: {
       title: "Convert MKV to MP4 Online Free",
       description:
-        "Convert MKV (Matroska) video files to MP4 online — a universally compatible format for any phone or player. Up to 200MB, nothing to install.",
+        "MKV won't open on your TV or in your video editor? Convert it to MP4 with H.264. The audio is kept and the resolution stays the same. Up to 200 MB.",
     },
     ru: {
       title: "Конвертировать MKV в MP4 онлайн бесплатно",
       description:
-        "Преобразуйте видео MKV (Matroska) в MP4 прямо в браузере — совместимый формат для любого телефона или плеера. До 200 МБ, без программ.",
+        "MKV не открывается на телевизоре или в монтажной программе? Преобразуйте его в MP4 с H.264. Звук сохраняется, разрешение то же. До 200 МБ.",
     },
     es: {
       title: "Convertir MKV a MP4 Online Gratis",
       description:
-        "Convierte archivos de video MKV (Matroska) a MP4 online — un formato compatible con cualquier teléfono o reproductor. Hasta 200MB, sin instalar nada.",
+        "¿Tu MKV no se abre en el televisor o en el editor de video? Conviértelo a MP4 con H.264. Se conserva el audio y la resolución no cambia. Hasta 200 MB.",
     },
   },
   convertWebmToMp4: {
     uk: {
       title: "Конвертувати WebM в MP4 онлайн безкоштовно",
       description:
-        "Перетворіть відео WebM у MP4 прямо в браузері — зручно для монтажу, презентацій і платформ, які не підтримують WebM. До 200 МБ, без програм.",
+        "Перетворіть запис екрана чи відео з браузера у форматі WebM на MP4 для PowerPoint, Keynote і монтажу. Роздільність не змінюється, до 200 МБ.",
     },
     en: {
       title: "Convert WebM to MP4 Online Free",
       description:
-        "Convert WebM video files to MP4 online — handy for editing software, presentations, and platforms that don't support WebM. Up to 200MB, nothing to install.",
+        "Convert a WebM screen recording or browser video to MP4 for PowerPoint, Keynote and video editors. The resolution stays the same, up to 200 MB.",
     },
     ru: {
       title: "Конвертировать WebM в MP4 онлайн бесплатно",
       description:
-        "Преобразуйте видео WebM в MP4 прямо в браузере — удобно для монтажа, презентаций и платформ, не поддерживающих WebM. До 200 МБ, без программ.",
+        "Преобразуйте запись экрана или видео из браузера в формате WebM в MP4 для PowerPoint, Keynote и монтажа. Разрешение не меняется, до 200 МБ.",
     },
     es: {
       title: "Convertir WebM a MP4 Online Gratis",
       description:
-        "Convierte archivos de video WebM a MP4 online — ideal para edición, presentaciones y plataformas que no admiten WebM. Hasta 200MB, sin instalar nada.",
+        "Convierte una grabación de pantalla o un video WebM del navegador a MP4 para PowerPoint, Keynote y editores. La resolución no cambia; hasta 200 MB.",
     },
   },
   // Довір-сторінки: лише uk+en (ru/es — пізніше). noindex не ставимо —
