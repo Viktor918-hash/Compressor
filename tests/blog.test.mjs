@@ -11,8 +11,8 @@ const texts = (c) => [
   ...c.faq.map((f) => f.a),
 ];
 
-test("блог: індекс і 5 статей лише в uk/en, у маршрутах і sitemap", () => {
-  assert.equal(BLOG_POSTS.length, 5);
+test("блог: індекс і 6 статей лише в uk/en, у маршрутах і sitemap", () => {
+  assert.equal(BLOG_POSTS.length, 6);
   for (const r of BLOG_ROUTE_PATHS) {
     const route = ROUTE_PATHS.find((x) => x.slug === r.slug);
     assert.ok(route, r.slug);
