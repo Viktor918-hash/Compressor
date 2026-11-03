@@ -99,11 +99,17 @@ const SeoHead = ({
   if (route?.slug === "home") {
     jsonLdList.push(
       { "@context": "https://schema.org", ...ORGANIZATION },
+      // Назва сайту у видачі Google (site names): url — завжди корінь
+      // домену, навіть на /en, /ru, /es (Google не підтримує назви для
+      // підкаталогів, а різні url на мовних головних розмивали сигнал).
+      // alternateName — запасні варіанти, якщо Google не прийме основну.
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
         name: "CompressPhoto",
-        url: canonicalUrl,
+        alternateName: ["Compress Photo", "compressphoto.org"],
+        url: `${SITE_URL}/`,
         inLanguage: lang,
         publisher: { "@id": ORGANIZATION_ID },
       }
