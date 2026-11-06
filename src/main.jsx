@@ -7,6 +7,7 @@ import "./components/resetCSS/reset.css";
 import App from "./App.jsx";
 import { i18nReady } from "./i18n/i18n.js";
 import { initAnalyticsFromStoredConsent } from "./utils/consent.js";
+import { inject } from "@vercel/analytics";
 
 /**
  * Сторінки в dist/ — це статичний HTML, "запечений" через Puppeteer-пре-рендер
@@ -38,6 +39,21 @@ removePrerenderedSeoTags();
 
 // Google Analytics вантажимо лише якщо користувач раніше дав згоду
 initAnalyticsFromStoredConsent();
+
+// Vercel Web Analytics (round 45): без cookie, лише агреговані перегляди
+// сторінок — рахує й тих, хто не дав згоди на GA. Не запускаємо під час
+// пре-рендеру (Puppeteer: navigator.webdriver), інакше <script> «запікся» б
+// у статичний HTML. Ідентифікатор тимчасового посилання (/s/:id) не
+// передаємо — замінюємо на [id].
+if (!navigator.webdriver) {
+  inject({
+    mode: import.meta.env.PROD ? "production" : "development",
+    beforeSend: (event) => ({
+      ...event,
+      url: event.url.replace(/\/s\/[^/?#]+/, "/s/[id]"),
+    }),
+  });
+}
 
 // Рендеримо після завантаження пакета мови поточного URL — перший кадр уже
 // з правильною мовою (без мигання). Поки чекаємо, лишається запечений HTML.

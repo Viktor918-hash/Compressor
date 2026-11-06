@@ -38,9 +38,11 @@ export const LEGAL_CONTENT = {
           ],
         },
         {
-          heading: "3. Аналітика (лише за згодою)",
+          heading: "3. Аналітика",
           paragraphs: [
-            "Ми використовуємо Google Analytics, щоб розуміти, які інструменти популярні. Аналітика вмикається лише після вашої згоди в банері cookie-згоди; без згоди жоден запит до Google Analytics не надсилається. Ми не передаємо в аналітику імена ваших файлів чи їх вміст. Ви можете відкликати згоду в будь-який момент через посилання «Налаштування cookies» у футері.",
+            "Ми використовуємо Google Analytics, щоб розуміти, які інструменти популярні. Google Analytics вмикається лише після вашої згоди в банері cookie-згоди; без згоди жоден запит до Google Analytics не надсилається. Ви можете відкликати згоду в будь-який момент через посилання «Налаштування cookies» у футері.",
+            "Загальну кількість відвідувань ми рахуємо також через Vercel Web Analytics. Цей сервіс не використовує cookie і не зберігає IP-адреси: він записує лише адресу сторінки, джерело переходу, країну, тип пристрою й браузер, а відвідувача розпізнає за знеособленим хешем, який видаляється через 24 години. Ідентифікатори тимчасових посилань у статистику не потрапляють.",
+            "Ні в Google Analytics, ні у Vercel Web Analytics ми не передаємо імена ваших файлів чи їх вміст.",
           ],
         },
         {
@@ -57,6 +59,7 @@ export const LEGAL_CONTENT = {
             "Supabase — акаунти й авторизація: email, хеш пароля.",
             "Vercel — хостинг сайту: стандартні серверні логи (IP, User-Agent).",
             "Google Analytics — статистика використання, лише за згодою: анонімізовані дані сесії.",
+            "Vercel Web Analytics — загальна статистика відвідувань без cookie: сторінка, джерело переходу, країна, тип пристрою й браузер.",
           ],
         },
         {
@@ -91,9 +94,11 @@ export const LEGAL_CONTENT = {
           ],
         },
         {
-          heading: "3. Analytics (consent-gated)",
+          heading: "3. Analytics",
           paragraphs: [
-            "We use Google Analytics to understand which tools are popular. Analytics only loads after you accept our cookie consent banner; without consent, no request to Google Analytics is ever sent. We never send file names or file content to analytics. You can withdraw consent at any time via the \"Cookie settings\" link in the footer.",
+            "We use Google Analytics to understand which tools are popular. Google Analytics only loads after you accept our cookie consent banner; without consent, no request to Google Analytics is ever sent. You can withdraw consent at any time via the \"Cookie settings\" link in the footer.",
+            "We also count overall visits with Vercel Web Analytics. It uses no cookies and doesn't store IP addresses: it records only the page URL, referrer, country, device type and browser, and recognizes a visitor by an anonymous hash that is discarded after 24 hours. Temporary link IDs are never sent to these statistics.",
+            "We never send file names or file content to either Google Analytics or Vercel Web Analytics.",
           ],
         },
         {
@@ -110,6 +115,7 @@ export const LEGAL_CONTENT = {
             "Supabase — accounts & authentication: email, hashed password.",
             "Vercel — site hosting: standard server logs (IP, user agent).",
             "Google Analytics — usage statistics, consent-gated: anonymized session data.",
+            "Vercel Web Analytics — cookieless visit statistics: page, referrer, country, device type and browser.",
           ],
         },
         {
