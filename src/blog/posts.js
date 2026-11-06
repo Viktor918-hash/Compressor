@@ -2,15 +2,15 @@
 // імпортують routes.config.js (а через нього vite.config.js у Node),
 // seoMeta.js, компоненти блогу і тести.
 //
-// Мови: лише uk + en (правило growth-prompt: ru/es — після перших показів
-// у GSC). Тексти — з чернеток claude/compressphoto-blog-draft-01…04.md,
-// звірені з кодом інструментів перед публікацією (див. CHANGES.md, round 36).
+// Мови: кожна стаття має поле langs (за замовчуванням ["uk", "en"]).
+// Round 44: статті можуть бути й у es/ru — лише ті, де є підтверджений
+// попит у GSC. Індекс блогу існує в мові, якщо в ній є хоч одна стаття.
+// Тексти звірені з кодом інструментів перед публікацією.
 //
 // Розмітка в текстах — мінімальна, рендерить src/components/Blog/inline.jsx:
 //   **жирний**, `код`, [текст](/шлях-uk) — внутрішнє посилання (канонічний
 //   uk-шлях; LocalizedLink сам підставить адресу поточної мови).
 
-export const BLOG_LANGS = ["uk", "en"];
 export const BLOG_INDEX_SLUG = "blog";
 export const BLOG_PUBLISHED = "2026-10-18";
 
@@ -31,10 +31,26 @@ export const BLOG_INDEX = {
     intro:
       "Short, practical guides for everyday problems with photos, video and documents: what to do when a site rejects your file, and how to keep the quality.",
   },
+  es: {
+    title: "Blog de CompressPhoto: consejos sobre fotos y archivos",
+    description:
+      "Guías prácticas sobre fotos y archivos: cómo convertir imágenes sin perder calidad, cuándo usar PNG o JPG y cómo quitar el fondo de una foto gratis.",
+    h1: "Blog de CompressPhoto",
+    intro:
+      "Guías breves y prácticas para problemas comunes con fotos y archivos: formatos, fondo transparente y calidad de imagen.",
+  },
+  ru: {
+    title: "Блог CompressPhoto: советы о фото, видео и файлах",
+    description:
+      "Практические инструкции о фото, видео и файлах: как сжать снимок до нужного размера, сменить формат без потери качества и убрать фон с фото.",
+    h1: "Блог CompressPhoto",
+    intro:
+      "Короткие практические инструкции для обычных задач с фото, видео и документами: форматы, размер файла и качество.",
+  },
 };
 
-// Підписи інтерфейсу блогу (не через i18n: блог існує лише в uk/en,
-// а ключі в translation.json вимагались би в усіх 4 мовах).
+// Підписи інтерфейсу блогу (не через i18n: блог є не в усіх мовах,
+// а ключі в translation.json вимагались би в усіх 4).
 export const BLOG_UI = {
   uk: {
     home: "Головна",
@@ -57,6 +73,28 @@ export const BLOG_UI = {
     otherPosts: "More articles",
     fromBlog: "From our blog",
     allPosts: "All blog articles",
+  },
+  es: {
+    home: "Inicio",
+    blog: "Blog",
+    readMore: "Leer el artículo",
+    minRead: (n) => `${n} min de lectura`,
+    published: "Publicado el",
+    faq: "Preguntas y respuestas",
+    otherPosts: "Más artículos",
+    fromBlog: "Del blog",
+    allPosts: "Todos los artículos del blog",
+  },
+  ru: {
+    home: "Главная",
+    blog: "Блог",
+    readMore: "Читать статью",
+    minRead: (n) => `${n} мин чтения`,
+    published: "Опубликовано",
+    faq: "Вопросы и ответы",
+    otherPosts: "Другие статьи",
+    fromBlog: "Полезное из блога",
+    allPosts: "Все статьи блога",
   },
 };
 
@@ -974,18 +1012,261 @@ export const BLOG_POSTS = [
       },
     },
   },
+  {
+    // round 44: сьома стаття — перша з іспанською версією (GSC 01–03.11:
+    // «convertir a png», «png sin fondo», «convertir jpg a png transparente»,
+    // /es/convertir-a-png на поз. 70–80). Факти звірені з кодом:
+    // ConvertPng/convertToPng.js (фон не підкладається, прозорість WebP/GIF/AVIF
+    // зберігається, JPG/BMP — без прозорості, 20 файлів × 30 МБ),
+    // RemoveBg/RemoveBg.jsx (@imgly у браузері, модель ~40 МБ, «Магічна кисть»
+    // Повернути/Прибрати, результат PNG, зменшення до 1600 px ПК / 1024 px телефон).
+    slug: "blogJpgToPngTransparent",
+    path: "jpg-to-png-transparent-background",
+    paths: { es: "convertir-jpg-a-png-fondo-transparente" },
+    langs: ["uk", "en", "es"],
+    published: "2026-11-06",
+    tool: "/remove-background",
+    linkedFrom: ["convertToPng", "removeBg"],
+    uk: {
+      title: "JPG у PNG: чому фон не став прозорим і як це виправити",
+      description:
+        "Конвертували JPG у PNG, а фон лишився білим? Пояснюємо, чому так, як перевірити справжню прозорість і як прибрати фон із фото безкоштовно.",
+      h1: "Чому після конвертації JPG у PNG фон не стає прозорим",
+      lead: [
+        "Вам потрібен логотип чи фото товару на прозорому фоні. Ви конвертуєте JPG у PNG, вставляєте в презентацію, а навколо предмета той самий білий прямокутник.",
+        "Конвертер працює правильно. Розбираємо, чому так виходить і як отримати PNG, у якому фону справді немає.",
+      ],
+      sections: [
+        {
+          heading: "PNG лише вміє зберігати прозорість",
+          paragraphs: [
+            "У JPG прозорості немає взагалі. Кожен піксель має колір, зокрема й білий фон навколо предмета.",
+            "PNG уміє зберігати прозорі пікселі, але конвертер не знає, що на картинці є фоном. Він копіює пікселі як є, тож білий фон із JPG стає білими пікселями в PNG.",
+            "Щоб фон зник, його треба виділити й прибрати. Це окрема операція, і називається вона видаленням фону.",
+          ],
+        },
+        {
+          heading: "Як перевірити, чи PNG справді прозорий",
+          paragraphs: [
+            "Вставте файл на кольоровий слайд або відкрийте в програмі, що показує прозорість сіро-білою «шахівницею». Якщо навколо предмета видно колір слайда, фон прозорий.",
+            "Обережно з картинками з пошуку з підписом «PNG без фону». Часто «шахівниця» на них просто намальована. На слайді ви побачите ті самі сіро-білі квадрати.",
+          ],
+        },
+        {
+          heading: "Як зробити PNG із прозорим фоном",
+          steps: [
+            "Відкрийте [«Видалити фон»](/remove-background) і додайте фото у форматі JPG, PNG чи WebP.",
+            "Під час першого запуску браузер завантажить модель розпізнавання, близько 40 МБ. Далі фото обробляється на вашому пристрої й нікуди не надсилається.",
+            "Якщо фон прибрано неідеально, відкрийте «Магічну кисть». Режим «Повернути» відновлює потрібні ділянки, «Прибрати» стирає зайве.",
+            "Натисніть «Завантажити PNG». Файл матиме прозорий фон.",
+          ],
+        },
+        {
+          heading: "Коли достатньо звичайної конвертації",
+          paragraphs: [
+            "Якщо прозорість у картинці вже є, наприклад у WebP чи GIF, [«Конвертувати в PNG»](/convert-to-png) збереже її. Там можна обробити до 20 файлів за раз, до 30 МБ кожен.",
+            "Звичайна конвертація JPG у PNG теж має сенс. PNG зберігає без втрат, тож файл можна редагувати й перезберігати без погіршення якості. Але важить він більше, ніж JPG.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Чи можна зробити фон прозорим просто під час конвертації?",
+          a: "Ні. Конвертер не відрізняє фон від предмета. Спершу приберіть фон, і результат одразу буде у PNG.",
+        },
+        {
+          q: "Чи зменшиться фото після видалення фону?",
+          a: "Великі фото перед обробкою зменшуються: до 1600 px за довшою стороною на комп'ютері й до 1024 px на телефоні. Для логотипа, аватарки чи картки товару цього зазвичай досить.",
+        },
+        {
+          q: "Чому PNG важить більше за JPG?",
+          a: "PNG стискає без втрат, тож фотографія в ньому займає помітно більше місця. Для логотипів і скриншотів різниця менша.",
+        },
+        {
+          q: "Що буде, якщо прозорий PNG знову перетворити на JPG?",
+          a: "JPG не зберігає прозорість, тож прозорі ділянки чимось заповняться. Чому інколи вони стають чорними, пояснюємо у статті [про прозорий PNG і чорний фон](/blog/transparent-png-to-jpg-black).",
+        },
+        {
+          q: "Чи надсилаються мої фото на сервер?",
+          a: "Ні. І конвертація в PNG, і видалення фону працюють у вашому браузері.",
+        },
+      ],
+      cta: {
+        text: "Прибрати фон і отримати PNG",
+        sub: "Безкоштовно, без реєстрації, фото не покидає ваш пристрій.",
+      },
+    },
+    en: {
+      title: "JPG to PNG: Why the Background Isn't Transparent",
+      description:
+        "Converted a JPG to PNG and the background stayed white? Here's why, how to check for real transparency, and how to remove a photo background for free.",
+      h1: "Why Converting JPG to PNG Doesn't Make the Background Transparent",
+      lead: [
+        "You need a logo or a product photo on a transparent background. You convert the JPG to PNG, drop it into a slide, and the same white box is still around the object.",
+        "The converter isn't broken. Here's why it happens and how to get a PNG that really has no background.",
+      ],
+      sections: [
+        {
+          heading: "PNG can store transparency, but it doesn't create it",
+          paragraphs: [
+            "JPG has no transparency at all. Every pixel has a color, including the white background around the object.",
+            "PNG can store transparent pixels, but a converter doesn't know which part of the picture is background. It copies the pixels as they are, so a white background in the JPG becomes white pixels in the PNG.",
+            "To make the background disappear, it has to be detected and removed. That's a separate step called background removal.",
+          ],
+        },
+        {
+          heading: "How to check if a PNG is really transparent",
+          paragraphs: [
+            "Place the file on a colored slide, or open it in an app that shows transparency as a grey-and-white checkerboard. If you see the slide color around the object, the background is transparent.",
+            "Be careful with images from search results labeled \"transparent PNG\". Often the checkerboard is simply drawn into the picture. On your slide you'll see the same grey and white squares.",
+          ],
+        },
+        {
+          heading: "How to make a PNG with a transparent background",
+          steps: [
+            "Open [Remove background](/remove-background) and add a JPG, PNG or WebP photo.",
+            "The first time, your browser downloads the recognition model, about 40 MB. After that, the photo is processed on your device and isn't sent anywhere.",
+            "If the edges aren't clean, open the Magic brush. Restore brings back the parts you need, and Erase removes what's left over.",
+            "Click Download PNG. The file will have a transparent background.",
+          ],
+        },
+        {
+          heading: "When a plain conversion is enough",
+          paragraphs: [
+            "If the image already has transparency, for example a WebP or GIF, [Convert to PNG](/convert-to-png) keeps it. You can convert up to 20 files at a time, up to 30 MB each.",
+            "A plain JPG to PNG conversion is useful too. PNG is lossless, so you can edit and re-save the file without losing quality. It will be larger than the JPG, though.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Can I make the background transparent just by converting?",
+          a: "No. A converter can't tell the background from the object. Remove the background first, and the result is already a PNG.",
+        },
+        {
+          q: "Will the photo get smaller after removing the background?",
+          a: "Large photos are scaled down before processing: to 1600 px on the long side on a computer and 1024 px on a phone. That's usually enough for a logo, an avatar or a product listing.",
+        },
+        {
+          q: "Why is a PNG bigger than a JPG?",
+          a: "PNG compresses without loss, so a photo takes noticeably more space. For logos and screenshots the difference is smaller.",
+        },
+        {
+          q: "What happens if I convert a transparent PNG back to JPG?",
+          a: "JPG can't store transparency, so the transparent areas get filled with a color. We explain why they sometimes turn black in [our article on transparent PNGs and black backgrounds](/blog/transparent-png-to-jpg-black).",
+        },
+        {
+          q: "Are my photos uploaded to a server?",
+          a: "No. Both PNG conversion and background removal run in your browser.",
+        },
+      ],
+      cta: {
+        text: "Remove the background and get a PNG",
+        sub: "Free, no sign-up, your photo never leaves your device.",
+      },
+    },
+    es: {
+      title: "JPG a PNG: por qué el fondo no queda transparente",
+      description:
+        "¿Convertiste un JPG a PNG y el fondo sigue blanco? Te explicamos por qué, cómo comprobar si un PNG es transparente y cómo quitar el fondo gratis.",
+      h1: "Por qué al convertir JPG a PNG el fondo no queda transparente",
+      lead: [
+        "Necesitas un logo o la foto de un producto con fondo transparente. Conviertes el JPG a PNG, lo pegas en una presentación y alrededor del objeto sigue el mismo rectángulo blanco.",
+        "El convertidor no está fallando. Te explicamos por qué pasa y cómo conseguir un PNG que de verdad no tenga fondo.",
+      ],
+      sections: [
+        {
+          heading: "El PNG puede guardar transparencia, pero no la crea",
+          paragraphs: [
+            "El JPG no admite transparencia. Cada píxel tiene un color, incluido el fondo blanco alrededor del objeto.",
+            "El PNG sí puede guardar píxeles transparentes, pero el convertidor no sabe qué parte de la imagen es el fondo. Copia los píxeles tal cual, así que el fondo blanco del JPG se convierte en píxeles blancos en el PNG.",
+            "Para que el fondo desaparezca, hay que detectarlo y quitarlo. Es un paso aparte: eliminar el fondo.",
+          ],
+        },
+        {
+          heading: "Cómo saber si un PNG es realmente transparente",
+          paragraphs: [
+            "Pega el archivo sobre una diapositiva de color o ábrelo en un programa que muestre la transparencia como un tablero gris y blanco. Si alrededor del objeto ves el color de la diapositiva, el fondo es transparente.",
+            "Cuidado con las imágenes de los buscadores que dicen «PNG sin fondo». Muchas veces el tablero está dibujado en la propia imagen. En tu diapositiva verás los mismos cuadros grises y blancos.",
+          ],
+        },
+        {
+          heading: "Cómo crear un PNG con fondo transparente",
+          steps: [
+            "Abre [Eliminar fondo](/remove-background) y sube una foto en JPG, PNG o WebP.",
+            "La primera vez, tu navegador descarga el modelo de reconocimiento, de unos 40 MB. Después, la foto se procesa en tu dispositivo y no se envía a ningún sitio.",
+            "Si los bordes no quedan limpios, abre el Pincel mágico. Restaurar recupera las zonas que necesitas y Borrar quita lo que sobra.",
+            "Pulsa Descargar PNG. El archivo tendrá el fondo transparente.",
+          ],
+        },
+        {
+          heading: "Cuándo basta con una conversión normal",
+          paragraphs: [
+            "Si la imagen ya tiene transparencia, por ejemplo un WebP o un GIF, [Convertir a PNG](/convert-to-png) la conserva. Puedes convertir hasta 20 archivos a la vez, de hasta 30 MB cada uno.",
+            "Pasar un JPG a PNG también tiene sentido sin quitar el fondo. El PNG guarda sin pérdida, así que puedes editar y volver a guardar el archivo sin perder calidad. Eso sí, pesará más que el JPG.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "¿Puedo hacer el fondo transparente solo con convertir?",
+          a: "No. El convertidor no distingue el fondo del objeto. Primero quita el fondo y el resultado ya saldrá en PNG.",
+        },
+        {
+          q: "¿La foto se hace más pequeña al quitar el fondo?",
+          a: "Las fotos grandes se reducen antes de procesarlas: a 1600 px en el lado largo en el ordenador y a 1024 px en el teléfono. Para un logo, un avatar o la ficha de un producto suele ser suficiente.",
+        },
+        {
+          q: "¿Por qué el PNG pesa más que el JPG?",
+          a: "El PNG comprime sin pérdida, así que una foto ocupa bastante más. En logos y capturas de pantalla la diferencia es menor.",
+        },
+        {
+          q: "¿Qué pasa si vuelvo a convertir un PNG transparente a JPG?",
+          a: "El JPG no guarda transparencia, así que las zonas transparentes se rellenan con un color. Si necesitas un JPG, [Convertir a JPG](/convert-to-jpg) pone un fondo blanco.",
+        },
+        {
+          q: "¿Mis fotos se suben a un servidor?",
+          a: "No. Tanto la conversión a PNG como la eliminación del fondo funcionan en tu navegador.",
+        },
+      ],
+      cta: {
+        text: "Quitar el fondo y obtener un PNG",
+        sub: "Gratis, sin registro, tu foto no sale de tu dispositivo.",
+      },
+    },
+  },
 ];
 
-export const blogPostPath = (post, lang) =>
-  lang === "uk" ? `/blog/${post.path}` : `/${lang}/blog/${post.path}`;
+const SITE_LANG_ORDER = ["uk", "en", "ru", "es"];
 
-/** Маршрути блогу для routes.config.js: індекс + статті, лише uk/en */
+/** Мови статті (за замовчуванням uk + en) */
+export const postLangs = (post) => post.langs || ["uk", "en"];
+
+/** Мови, у яких існує блог: є хоча б одна стаття цією мовою */
+export const BLOG_LANGS = SITE_LANG_ORDER.filter((l) =>
+  BLOG_POSTS.some((p) => postLangs(p).includes(l))
+);
+
+/** Статті, доступні в мові */
+export const postsInLang = (lang) => BLOG_POSTS.filter((p) => postLangs(p).includes(lang));
+
+/** Адреса статті; post.paths — окремий slug для мови (напр. іспанський) */
+export const blogPostPath = (post, lang) => {
+  const path = post.paths?.[lang] || post.path;
+  return lang === "uk" ? `/blog/${path}` : `/${lang}/blog/${path}`;
+};
+
+const blogIndexPath = (lang) => (lang === "uk" ? "/blog" : `/${lang}/blog`);
+
+/** Маршрути блогу для routes.config.js: індекс + статті, лише в їхніх мовах */
 export const BLOG_ROUTE_PATHS = [
-  { slug: BLOG_INDEX_SLUG, uk: "/blog", en: "/en/blog" },
+  {
+    slug: BLOG_INDEX_SLUG,
+    ...Object.fromEntries(BLOG_LANGS.map((l) => [l, blogIndexPath(l)])),
+  },
   ...BLOG_POSTS.map((post) => ({
     slug: post.slug,
-    uk: blogPostPath(post, "uk"),
-    en: blogPostPath(post, "en"),
+    ...Object.fromEntries(postLangs(post).map((l) => [l, blogPostPath(post, l)])),
   })),
 ];
 
@@ -998,7 +1279,7 @@ export const BLOG_META = {
     BLOG_POSTS.map((post) => [
       post.slug,
       Object.fromEntries(
-        BLOG_LANGS.map((l) => [l, { title: post[l].title, description: post[l].description }])
+        postLangs(post).map((l) => [l, { title: post[l].title, description: post[l].description }])
       ),
     ])
   ),
@@ -1007,8 +1288,10 @@ export const BLOG_META = {
 export const blogPostBySlug = (slug) => BLOG_POSTS.find((p) => p.slug === slug);
 
 /** Статті, на які варто послатися зі сторінки інструмента */
-export const postsForTool = (toolSlug) =>
-  BLOG_POSTS.filter((p) => p.linkedFrom.includes(toolSlug));
+export const postsForTool = (toolSlug, lang) =>
+  BLOG_POSTS.filter(
+    (p) => p.linkedFrom.includes(toolSlug) && (!lang || postLangs(p).includes(lang))
+  );
 
 const stripMarkup = (s) =>
   String(s)
@@ -1031,9 +1314,11 @@ export const readingMinutes = (post, lang) => {
   return Math.max(1, Math.round(words / 200));
 };
 
-/** 2026-10-18 → «18 жовтня 2026 р.» / "October 18, 2026" */
+const DATE_LOCALES = { uk: "uk-UA", en: "en-US", ru: "ru-RU", es: "es-ES" };
+
+/** 2026-10-18 → «18 жовтня 2026 р.» / "October 18, 2026" / «18 de octubre de 2026» */
 export const formatBlogDate = (iso, lang) =>
-  new Intl.DateTimeFormat(lang === "uk" ? "uk-UA" : "en-US", {
+  new Intl.DateTimeFormat(DATE_LOCALES[lang] || "uk-UA", {
     day: "numeric",
     month: "long",
     year: "numeric",

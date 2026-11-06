@@ -6,13 +6,12 @@ import { BLOG_LANGS, BLOG_UI, blogPostPath, postsForTool } from "../../blog/post
 
 /**
  * «Корисне з блогу» на сторінці інструмента (round 36): посилання на
- * статті, пов'язані з цим інструментом. Блог існує лише в uk/en — у ru/es
- * блок не рендериться.
+ * статті, пов'язані з цим інструментом і доступні в мові сторінки.
  */
 const BlogRelated = ({ toolSlug }) => {
   const lang = usePageLang();
   if (!BLOG_LANGS.includes(lang)) return null;
-  const posts = postsForTool(toolSlug);
+  const posts = postsForTool(toolSlug, lang);
   if (posts.length === 0) return null;
   const ui = BLOG_UI[lang];
   return (

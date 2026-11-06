@@ -797,7 +797,7 @@ const Header = () => {
                 </LocalizedLink>
               </div>
             </li>
-            {/* Блог (round 36): лише uk/en — у ru/es пункт ховається */}
+            {/* Блог (round 36, 44): пункт ховається в мовах, де статей немає */}
             <li className="header__list header__list--secondary">
               <LocalizedLink hideIfMissing to="/blog" className="nav__link">
                 {t("header.blog")}

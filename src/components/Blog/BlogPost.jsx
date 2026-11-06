@@ -5,30 +5,34 @@ import LocalizedLink from "../LocalizedLink/LocalizedLink";
 import { ROUTES } from "../../routes";
 import { usePageLang } from "../../hooks/usePageLang";
 import {
-  BLOG_POSTS,
   BLOG_UI,
   blogPostBySlug,
   blogPostPath,
   formatBlogDate,
+  postLangs,
+  postsInLang,
   readingMinutes,
 } from "../../blog/posts";
+import { HOME_PATHS } from "../../utils/routeLangs";
 import { renderInline } from "./inline";
 
 const SITE_URL = "https://compressphoto.org";
 
 /**
- * Стаття блогу (round 36). Контент — у src/blog/posts.js (uk/en).
+ * Стаття блогу (round 36). Контент — у src/blog/posts.js; мови статті — post.langs.
  * Розмітка: BlogPosting + BreadcrumbList «Головна → Блог → Стаття».
  */
 const BlogPost = ({ slug }) => {
-  const lang = usePageLang() === "en" ? "en" : "uk";
+  const pageLang = usePageLang();
   const post = blogPostBySlug(slug);
   const route = ROUTES.find((r) => r.slug === slug);
+  const indexRoute = ROUTES.find((r) => r.slug === "blog");
   if (!post || !route) return null;
+  const lang = postLangs(post).includes(pageLang) ? pageLang : postLangs(post)[0];
   const c = post[lang];
   const ui = BLOG_UI[lang];
   const url = `${SITE_URL}${blogPostPath(post, lang)}`;
-  const others = BLOG_POSTS.filter((p) => p.slug !== slug);
+  const others = postsInLang(lang).filter((p) => p.slug !== slug);
 
   const jsonLd = [
     {
@@ -49,8 +53,8 @@ const BlogPost = ({ slug }) => {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "CompressPhoto", item: `${SITE_URL}${lang === "uk" ? "/" : "/en"}` },
-        { "@type": "ListItem", position: 2, name: ui.blog, item: `${SITE_URL}${lang === "uk" ? "/blog" : "/en/blog"}` },
+        { "@type": "ListItem", position: 1, name: "CompressPhoto", item: `${SITE_URL}${HOME_PATHS[lang]}` },
+        { "@type": "ListItem", position: 2, name: ui.blog, item: `${SITE_URL}${indexRoute?.[lang] || "/blog"}` },
         { "@type": "ListItem", position: 3, name: c.h1, item: url },
       ],
     },
@@ -122,6 +126,7 @@ const BlogPost = ({ slug }) => {
           </section>
         </article>
 
+        {others.length > 0 && (
         <nav className="blog-others" aria-label={ui.otherPosts}>
           <h2 className="blog-others__title">{ui.otherPosts}</h2>
           <ul className="blog-others__list">
@@ -134,6 +139,7 @@ const BlogPost = ({ slug }) => {
             ))}
           </ul>
         </nav>
+        )}
       </main>
     </>
   );

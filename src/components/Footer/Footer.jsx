@@ -7,7 +7,7 @@ import { TOOLS } from "../../toolsCatalog";
 import { usePageLang } from "../../hooks/usePageLang";
 import { hasLang } from "../../utils/routeLangs";
 import { LEGAL_CONTENT } from "../Legal/legalContent";
-import { BLOG_LANGS, BLOG_POSTS, blogPostPath } from "../../blog/posts";
+import { BLOG_LANGS, blogPostPath, postsInLang } from "../../blog/posts";
 
 const LEGAL_SLUGS = ["privacy", "terms", "contact", "about"];
 
@@ -36,7 +36,7 @@ const Footer = () => {
           </ul>
         </nav>
 
-        {/* Блог (round 36): лише uk/en */}
+        {/* Блог (round 36, 44): лише мови, у яких є статті */}
         {BLOG_LANGS.includes(lang) && (
           <nav className="footer__nav" aria-label={t("header.blog")}>
             <h2 className="footer__nav-title">
@@ -45,7 +45,7 @@ const Footer = () => {
               </LocalizedLink>
             </h2>
             <ul className="footer__nav-list">
-              {BLOG_POSTS.map((post) => (
+              {postsInLang(lang).map((post) => (
                 <li key={post.slug}>
                   <LocalizedLink to={blogPostPath(post, "uk")} className="footer__nav-link">
                     {post[lang].h1}

@@ -1731,6 +1731,9 @@
     "blogWebpToJpg": {
       "title": "What Is WebP, How to Open It and How to Convert It to JPG"
     },
+    "blogJpgToPngTransparent": {
+      "title": "Why Converting JPG to PNG Doesn't Make the Background Transparent"
+    },
     "presetsPortrait": {
       "title": "How to choose a portrait preset",
       "text1": "Skin and eyes matter most in a portrait. A good portrait preset is careful with orange and red tones, so faces don't turn yellow, pink or plastic-looking. For everyday shots and social media, start with the soft or natural-light presets. They lift the shadows slightly and add warmth, and the person still looks like themselves.",

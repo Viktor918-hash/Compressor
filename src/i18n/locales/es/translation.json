@@ -1,5 +1,6 @@
 {
   "header": {
+    "blog": "Blog",
     "tools": "Herramientas de imagen",
     "compress": "Comprimir fotos",
     "compressDesc": "Reduce el tamaño de JPG, PNG y WebP",
@@ -514,6 +515,12 @@
     }
   },
   "seoContent": {
+    "blog": {
+      "title": "Blog de CompressPhoto"
+    },
+    "blogJpgToPngTransparent": {
+      "title": "Por qué al convertir JPG a PNG el fondo no queda transparente"
+    },
     "home": {
       "title": "Cómo comprimir una foto sin estropearla",
       "text1": "Comprimir reduce el peso de archivos JPG, PNG y WebP. Así cargan más rápido en una web, caben en el límite de un formulario y no llenan tu correo. Tú controlas el resultado: un deslizador de calidad del 40 al 95 %, con el 80 % por defecto.",

@@ -7,18 +7,21 @@ import { usePageLang } from "../../hooks/usePageLang";
 import {
   BLOG_INDEX,
   BLOG_INDEX_SLUG,
-  BLOG_POSTS,
+  BLOG_LANGS,
   BLOG_UI,
   blogPostPath,
   formatBlogDate,
+  postsInLang,
   readingMinutes,
 } from "../../blog/posts";
 
 const SITE_URL = "https://compressphoto.org";
 
-/** /blog, /en/blog — список статей (round 36) */
+/** /blog, /en/blog, /es/blog — список статей цієї мови (round 36, 44) */
 const BlogIndex = () => {
-  const lang = usePageLang() === "en" ? "en" : "uk";
+  const pageLang = usePageLang();
+  const lang = BLOG_LANGS.includes(pageLang) ? pageLang : "uk";
+  const posts = postsInLang(lang);
   const route = ROUTES.find((r) => r.slug === BLOG_INDEX_SLUG);
   const c = BLOG_INDEX[lang];
   const ui = BLOG_UI[lang];
@@ -31,7 +34,7 @@ const BlogIndex = () => {
     inLanguage: lang,
     url: `${SITE_URL}${route[lang]}`,
     publisher: { "@id": `${SITE_URL}/#organization` },
-    blogPost: BLOG_POSTS.map((p) => ({
+    blogPost: posts.map((p) => ({
       "@type": "BlogPosting",
       headline: p[lang].h1,
       url: `${SITE_URL}${blogPostPath(p, lang)}`,
@@ -48,7 +51,7 @@ const BlogIndex = () => {
           <p className="blog-index__intro">{c.intro}</p>
         </header>
         <ul className="blog-index__list">
-          {BLOG_POSTS.map((p) => (
+          {posts.map((p) => (
             <li key={p.slug} className="blog-card">
               <h2 className="blog-card__title">
                 <LocalizedLink to={blogPostPath(p, "uk")} className="blog-card__link">
